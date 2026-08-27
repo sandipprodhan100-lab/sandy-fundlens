@@ -4,29 +4,29 @@
     "schemeName": "Mirae Asset Large Cap Fund - Direct Plan - Growth",
     "fundHouse": "Mirae Asset Mutual Fund",
     "schemeCategory": "Large Cap",
-    "firstDate": "2023-08-28",
+    "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 747,
-    "updatedAt": "2026-08-27T23:12:36.634263Z"
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:38:29.923862Z"
   },
   {
     "schemeCode": 120503,
     "schemeName": "SBI Bluechip Fund - Direct Plan - Growth",
     "fundHouse": "SBI Mutual Fund",
     "schemeCategory": "Large Cap",
-    "firstDate": "2023-08-28",
+    "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 746,
-    "updatedAt": "2026-08-27T23:12:38.349310Z"
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:38:30.690394Z"
   },
   {
     "schemeCode": 118989,
     "schemeName": "ICICI Prudential Bluechip Fund - Direct Plan - Growth",
     "fundHouse": "ICICI Prudential Mutual Fund",
     "schemeCategory": "Large Cap",
-    "firstDate": "2023-08-28",
+    "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
-    "rows": 738,
-    "updatedAt": "2026-08-27T23:12:40.513602Z"
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:38:31.507423Z"
   }
 ]

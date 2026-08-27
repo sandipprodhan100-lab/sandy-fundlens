@@ -13,7 +13,25 @@ load_dotenv(dotenv_path=env_path)
 
 from app.data_lake.s3_connector import LOCAL_LAKE_DIR
 
-def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access_key: str = None, secret_key: str = None):
+def purge_s3_bucket(s3_client, bucket_name: str, prefix: str = "nav/"):
+    print(f"=== Purging/Cleaning existing data in s3://{bucket_name}/{prefix} ... ===")
+    paginator = s3_client.get_paginator("list_objects_v2")
+    deleted_count = 0
+    
+    for page in paginator.paginate(Bucket=bucket_name, Prefix=prefix):
+        if "Contents" in page:
+            objects_to_delete = [{"Key": obj["Key"]} for obj in page["Contents"]]
+            if objects_to_delete:
+                s3_client.delete_objects(
+                    Bucket=bucket_name,
+                    Delete={"Objects": objects_to_delete}
+                )
+                deleted_count += len(objects_to_delete)
+                print(f"Deleted batch of {len(objects_to_delete)} objects...")
+
+    print(f"=== Purge Complete! Total old S3 objects deleted: {deleted_count} ===")
+
+def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access_key: str = None, secret_key: str = None, purge_first: bool = False):
     ak = access_key or os.getenv("AWS_ACCESS_KEY_ID")
     sk = secret_key or os.getenv("AWS_SECRET_ACCESS_KEY")
     reg = region or os.getenv("AWS_REGION", "ap-south-1")
@@ -21,12 +39,15 @@ def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access
     
     print(f"=== Syncing Local Parquet Data Lake to AWS S3 Bucket: {bucket} ({reg}) ===")
 
-    
     if not ak or not sk:
         print("Error: AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY not provided.")
         return False
 
-    s3 = boto3.client("s3", aws_access_key_id=ak, aws_secret_access_key=sk, region_name=region)
+    s3 = boto3.client("s3", aws_access_key_id=ak, aws_secret_access_key=sk, region_name=reg)
+
+    if purge_first:
+        purge_s3_bucket(s3, bucket, prefix="nav/")
+
 
     uploaded_count = 0
     for root, _, files in os.walk(LOCAL_LAKE_DIR):
@@ -39,19 +60,19 @@ def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access
             if file.endswith(".txt"):
                 content_type = "text/plain"
 
-            print(f"Uploading: {s3_key} ...")
+            print(f"Uploading fresh object: {s3_key} ...")
             with open(full_path, "rb") as f:
                 s3.put_object(
-                    Bucket=bucket_name,
+                    Bucket=bucket,
                     Key=s3_key,
                     Body=f.read(),
                     ContentType=content_type
                 )
             uploaded_count += 1
 
-    print(f"=== Upload Complete! {uploaded_count} files synced to s3://{bucket_name}/ ===")
+    print(f"=== Upload Complete! {uploaded_count} clean fresh files synced to s3://{bucket}/ ===")
     return True
 
 if __name__ == "__main__":
-    b_name = sys.argv[1] if len(sys.argv) > 1 else os.getenv("AWS_S3_BUCKET", "fundnavigator-data-lake")
-    upload_local_lake_to_aws(b_name)
+    b_name = sys.argv[1] if len(sys.argv) > 1 else os.getenv("AWS_S3_BUCKET", "mutualfundlens-s3")
+    upload_local_lake_to_aws(bucket_name=b_name, purge_first=True)

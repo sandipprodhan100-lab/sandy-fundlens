@@ -61,28 +61,28 @@ def run_historical_ingestion(years: int = 3):
         cat = item["category"]
         house = item["house"]
         
-        print(f"Fetching NAV history for scheme {code} ({name})...")
+        print(f"Fetching all-time NAV history for scheme {code} ({name})...")
         points = fetch_nav_from_public_api(code)
-        
-        # Filter for requested years history
-        filtered_points = [p for p in points if p["date"] >= cutoff_date]
-        if not filtered_points:
+        if not points:
             print(f"Warning: No points found for scheme {code}")
             continue
             
-        print(f"Fetched {len(filtered_points)} points for scheme {code}.")
+        print(f"Fetched {len(points)} total historical points since inception for scheme {code}.")
         
-        # 2. Write to S3 Parquet Lake
+        # 2. Write FULL deep historical NAV series to S3 Parquet Lake
         write_nav_parquet(
             category=cat,
             scheme_code=code,
             scheme_name=name,
             fund_house=house,
-            points=filtered_points,
+            points=points,
             scheme_category=cat.capitalize() + " Cap"
         )
         
-        # 3. Seed Relational Database tables (Fund & NavHistory)
+        # 3. Filter configurable 1-3 year window for DB seeding
+        db_points = [p for p in points if p["date"] >= cutoff_date]
+        print(f"Seeding {len(db_points)} points (since {cutoff_date}) into DB for scheme {code}...")
+
         fund = db.query(Fund).filter(Fund.scheme_code == code).first()
         if not fund:
             fund = Fund(scheme_code=code, scheme_name=name, fund_house=house, category=cat)
@@ -96,7 +96,7 @@ def run_historical_ingestion(years: int = 3):
         )
         
         new_nav_objects = []
-        for p in filtered_points:
+        for p in db_points:
             dt = datetime.strptime(p["date"], "%Y-%m-%d").date()
             if dt not in existing_dates:
                 new_nav_objects.append(
@@ -107,7 +107,8 @@ def run_historical_ingestion(years: int = 3):
             db.bulk_save_objects(new_nav_objects)
             db.commit()
             
-        total_records += len(filtered_points)
+        total_records += len(db_points)
+
         
     db.close()
     print(f"=== Historical Ingestion Complete! Total NAV Records Seeded: {total_records} ===")

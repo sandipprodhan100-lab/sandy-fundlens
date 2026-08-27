@@ -4,29 +4,29 @@
     "schemeName": "Nifty 50 Index Proxy",
     "fundHouse": "Index Proxy AMC",
     "schemeCategory": "Index Cap",
-    "firstDate": "2023-08-28",
+    "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 738,
-    "updatedAt": "2026-08-27T23:12:34.192904Z"
-  },
-  {
-    "schemeCode": 148726,
-    "schemeName": "Nifty Midcap 150 Index Proxy",
-    "fundHouse": "Index Proxy AMC",
-    "schemeCategory": "Index Cap",
-    "firstDate": "2023-08-28",
-    "lastDate": "2026-08-27",
-    "rows": 738,
-    "updatedAt": "2026-08-27T23:12:34.826228Z"
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:38:27.960631Z"
   },
   {
     "schemeCode": 148519,
     "schemeName": "Nifty Smallcap 250 Index Proxy",
     "fundHouse": "Index Proxy AMC",
     "schemeCategory": "Index Cap",
-    "firstDate": "2023-08-28",
+    "firstDate": "2020-10-19",
     "lastDate": "2026-08-27",
-    "rows": 738,
-    "updatedAt": "2026-08-27T23:12:35.838758Z"
+    "rows": 1444,
+    "updatedAt": "2026-08-27T23:38:29.140576Z"
+  },
+  {
+    "schemeCode": 148726,
+    "schemeName": "Nifty Midcap 150 Index Proxy",
+    "fundHouse": "Index Proxy AMC",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-02-23",
+    "lastDate": "2026-08-27",
+    "rows": 1357,
+    "updatedAt": "2026-08-27T23:38:28.561750Z"
   }
 ]
