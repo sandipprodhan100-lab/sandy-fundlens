@@ -1,5 +1,25 @@
 [
   {
+    "schemeCode": 118525,
+    "schemeName": "Franklin India Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:54:57.225079Z"
+  },
+  {
+    "schemeCode": 118778,
+    "schemeName": "Nippon India Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:55:00.494287Z"
+  },
+  {
     "schemeCode": 152128,
     "schemeName": "Baroda BNP Paribas Small Cap Fund - Direct Plan - Growth Option",
     "fundHouse": "Baroda BNP Paribas Small Cap",

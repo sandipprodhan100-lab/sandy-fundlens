@@ -18,6 +18,7 @@ POPULAR_SCHEMES = [
     {"code": 120716, "name": "Nifty 50 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
     {"code": 148726, "name": "Nifty Midcap 150 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
     {"code": 148519, "name": "Nifty Smallcap 250 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
+    {"code": 152731, "name": "Nifty 500 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
 ]
 
 CATEGORY_KEYWORDS = {

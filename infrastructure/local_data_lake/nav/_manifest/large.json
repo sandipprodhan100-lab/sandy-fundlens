@@ -10,16 +10,6 @@
     "updatedAt": "2026-08-27T23:44:21.409696Z"
   },
   {
-    "schemeCode": 118479,
-    "schemeName": "BANDHAN LARGE CAP FUND - Direct Plan - Growth",
-    "fundHouse": "Mutual Fund",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3369,
-    "updatedAt": "2026-08-27T23:49:01.413068Z"
-  },
-  {
     "schemeCode": 119598,
     "schemeName": "SBI Large Cap Fund - Direct Plan - Growth",
     "fundHouse": "SBI Large Cap",
@@ -38,6 +28,16 @@
     "lastDate": "2026-08-27",
     "rows": 3369,
     "updatedAt": "2026-08-27T23:49:33.468759Z"
+  },
+  {
+    "schemeCode": 118479,
+    "schemeName": "BANDHAN LARGE CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:54:57.161953Z"
   },
   {
     "schemeCode": 120490,
@@ -70,16 +70,6 @@
     "updatedAt": "2026-08-27T23:44:22.291670Z"
   },
   {
-    "schemeCode": 119018,
-    "schemeName": "HDFC Large Cap Fund - Direct Plan - Growth Option",
-    "fundHouse": "HDFC Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-01",
-    "lastDate": "2026-08-27",
-    "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:11.779523Z"
-  },
-  {
     "schemeCode": 119133,
     "schemeName": "Groww Large Cap Fund - Direct Plan - Growth",
     "fundHouse": "Groww Large Cap",
@@ -90,44 +80,14 @@
     "updatedAt": "2026-08-27T23:49:13.446055Z"
   },
   {
-    "schemeCode": 118531,
-    "schemeName": "Franklin India Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Franklin India Large Cap",
+    "schemeCode": 119018,
+    "schemeName": "HDFC Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Large Cap",
     "schemeCategory": "Large Cap",
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:01.196307Z"
-  },
-  {
-    "schemeCode": 118632,
-    "schemeName": "Nippon India Large Cap Fund - Direct Plan - Growth Option",
-    "fundHouse": "Nippon India Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:06.029652Z"
-  },
-  {
-    "schemeCode": 118825,
-    "schemeName": "Mirae Asset Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Mirae Asset Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:07.816196Z"
-  },
-  {
-    "schemeCode": 118870,
-    "schemeName": "Taurus Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Taurus Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-03",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:07.919221Z"
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:55:02.575826Z"
   },
   {
     "schemeCode": 119160,
@@ -180,14 +140,44 @@
     "updatedAt": "2026-08-27T23:49:35.888844Z"
   },
   {
-    "schemeCode": 118269,
-    "schemeName": "Canara Robeco Large Cap Fund - Direct Plan - GROWTH OPTION",
-    "fundHouse": "Canara Robeco Large Cap",
+    "schemeCode": 118531,
+    "schemeName": "Franklin India Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:54:57.153839Z"
+  },
+  {
+    "schemeCode": 118632,
+    "schemeName": "Nippon India Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Large Cap",
     "schemeCategory": "Large Cap",
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:01.539042Z"
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:54:58.897326Z"
+  },
+  {
+    "schemeCode": 118825,
+    "schemeName": "Mirae Asset Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:55:00.592671Z"
+  },
+  {
+    "schemeCode": 118870,
+    "schemeName": "Taurus Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Taurus Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:55:00.891688Z"
   },
   {
     "schemeCode": 119528,
@@ -210,6 +200,16 @@
     "updatedAt": "2026-08-27T23:49:28.989833Z"
   },
   {
+    "schemeCode": 118269,
+    "schemeName": "Canara Robeco Large Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:54:55.265928Z"
+  },
+  {
     "schemeCode": 118617,
     "schemeName": "Edelweiss Large Cap Fund - Direct Plan - Growth",
     "fundHouse": "Edelweiss Large Cap",
@@ -217,7 +217,7 @@
     "firstDate": "2013-01-08",
     "lastDate": "2026-08-27",
     "rows": 3357,
-    "updatedAt": "2026-08-27T23:49:05.396224Z"
+    "updatedAt": "2026-08-27T23:54:58.487018Z"
   },
   {
     "schemeCode": 120267,
@@ -247,7 +247,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2023-07-27",
     "rows": 2602,
-    "updatedAt": "2026-08-27T23:48:59.427081Z"
+    "updatedAt": "2026-08-27T23:54:56.188366Z"
   },
   {
     "schemeCode": 138312,
@@ -367,7 +367,7 @@
     "firstDate": "2013-01-03",
     "lastDate": "2018-04-27",
     "rows": 1307,
-    "updatedAt": "2026-08-27T23:49:03.663753Z"
+    "updatedAt": "2026-08-27T23:54:57.675294Z"
   },
   {
     "schemeCode": 148980,

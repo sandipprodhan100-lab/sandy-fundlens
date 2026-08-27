@@ -7,7 +7,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:49:01.943090Z"
+    "updatedAt": "2026-08-27T23:54:57.212957Z"
   },
   {
     "schemeCode": 119718,
@@ -47,7 +47,7 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:02.169759Z"
+    "updatedAt": "2026-08-27T23:54:58.082881Z"
   },
   {
     "schemeCode": 118883,
@@ -57,7 +57,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:08.704643Z"
+    "updatedAt": "2026-08-27T23:55:01.393447Z"
   },
   {
     "schemeCode": 118955,
@@ -67,17 +67,7 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:09.258777Z"
-  },
-  {
-    "schemeCode": 118275,
-    "schemeName": "Canara Robeco Flexi Cap Fund - Direct Plan - GROWTH OPTION",
-    "fundHouse": "Canara Robeco Flexi Cap",
-    "schemeCategory": "Flexi Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:01.539042Z"
+    "updatedAt": "2026-08-27T23:55:02.059244Z"
   },
   {
     "schemeCode": 120046,
@@ -98,6 +88,16 @@
     "lastDate": "2026-08-27",
     "rows": 3360,
     "updatedAt": "2026-08-27T23:49:33.978399Z"
+  },
+  {
+    "schemeCode": 118275,
+    "schemeName": "Canara Robeco Flexi Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:54:55.758409Z"
   },
   {
     "schemeCode": 119292,

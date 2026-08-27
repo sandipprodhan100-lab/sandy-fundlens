@@ -7,17 +7,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:49:01.816696Z"
-  },
-  {
-    "schemeCode": 118581,
-    "schemeName": "Franklin India NSE Nifty 50 Index Fund - Direct Plan - Growth",
-    "fundHouse": "Franklin India NSE Nifty 50 Index",
-    "schemeCategory": "Index Cap",
-    "firstDate": "2013-01-01",
-    "lastDate": "2026-08-27",
-    "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:03.105235Z"
+    "updatedAt": "2026-08-27T23:54:57.191800Z"
   },
   {
     "schemeCode": 119063,
@@ -40,6 +30,16 @@
     "updatedAt": "2026-08-27T23:49:12.700140Z"
   },
   {
+    "schemeCode": 118581,
+    "schemeName": "Franklin India NSE Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India NSE Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:54:58.571545Z"
+  },
+  {
     "schemeCode": 120716,
     "schemeName": "Nifty 50 Index Proxy",
     "fundHouse": "Index Proxy AMC",
@@ -47,7 +47,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:00.836112Z"
+    "updatedAt": "2026-08-27T23:54:55.242637Z"
   },
   {
     "schemeCode": 118741,
@@ -57,7 +57,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:07.681213Z"
+    "updatedAt": "2026-08-27T23:55:00.456357Z"
   },
   {
     "schemeCode": 118791,
@@ -67,7 +67,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:07.729591Z"
+    "updatedAt": "2026-08-27T23:55:00.526041Z"
   },
   {
     "schemeCode": 118881,
@@ -77,7 +77,7 @@
     "firstDate": "2013-01-03",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:08.547182Z"
+    "updatedAt": "2026-08-27T23:55:01.393447Z"
   },
   {
     "schemeCode": 119648,
@@ -177,7 +177,7 @@
     "firstDate": "2020-10-19",
     "lastDate": "2026-08-27",
     "rows": 1444,
-    "updatedAt": "2026-08-27T23:48:18.918046Z"
+    "updatedAt": "2026-08-27T23:54:55.058438Z"
   },
   {
     "schemeCode": 148726,
