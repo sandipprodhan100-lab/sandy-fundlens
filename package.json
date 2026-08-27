@@ -1,0 +1,10 @@
+{
+  "name": "fundlens-monorepo",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend-node run dev",
+    "dev:backend": "python -m uvicorn main:app --app-dir backend-fastapi --reload --port 8000",
+    "docker:up": "docker-compose -f infrastructure/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker-compose.yml down"
+  }
+}

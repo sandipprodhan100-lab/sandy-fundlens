@@ -1,0 +1,689 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * MF Lens design system — lightweight analytical workspace.
+ * Cool white surfaces, deep teal signal accent, amber for sideways regimes.
+ * All colors are oklch tokens; never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: var(--radius);
+
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-sideways: var(--sideways);
+  --color-surface: var(--surface);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-bg-tint: var(--bg-tint);
+  --color-border-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-border: var(--accent-border);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-live: var(--live);
+  --color-series-1: var(--series-1);
+  --color-series-2: var(--series-2);
+  --color-grid: var(--grid);
+  --color-baseline: var(--baseline);
+  --color-crosshair: var(--crosshair);
+
+}
+
+/*
+ * MF Lens design system — light-first analytical workspace.
+ * White surfaces, indigo brand accent, hairline borders, no card shadows.
+ */
+:root,
+.light {
+  --radius: 0.625rem; /* 10px panels/cards */
+
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-alt: #f8f9fc;
+  --bg-tint: #f4f3ff;
+
+  /* Borders */
+  --border: #e6e8f0;
+  --border-strong: #d3d7e4;
+
+  /* Text */
+  --ink: #14172b;
+  --ink-2: #4a4f6b;
+  --ink-3: #767c96;
+
+  /* Brand */
+  --accent: #4338ca;
+  --accent-hover: #372fa8;
+  --accent-soft: #eeedfb;
+  --accent-border: #dddaf7;
+
+  /* Semantic — data values only */
+  --pos: #026a3d;
+  --neg: #c2333a;
+  --live: #12a150;
+
+  /* Chart */
+  --series-1: #4338ca;
+  --series-2: #eb6834;
+  --chart-wash: rgba(67, 56, 202, 0.07);
+  --grid: #eceef4;
+  --baseline: #c9cddc;
+  --crosshair: #aeb3c6;
+
+  /* Mapped shadcn tokens */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --surface: var(--bg-alt);
+  --card: var(--bg);
+  --card-foreground: var(--ink);
+  --popover: var(--bg);
+  --popover-foreground: var(--ink);
+  --primary: var(--accent);
+  --primary-foreground: #ffffff;
+  --secondary: var(--bg-alt);
+  --secondary-foreground: var(--ink);
+  --muted: var(--bg-alt);
+  --muted-foreground: var(--ink-3);
+  --accent-foreground: var(--ink);
+  --destructive: var(--neg);
+  --destructive-foreground: #ffffff;
+  --positive: var(--pos);
+  --negative: var(--neg);
+  --sideways: #b54708;
+  --input: var(--border-strong);
+  --ring: var(--accent);
+  --chart-1: var(--series-1);
+  --chart-2: var(--series-2);
+  --chart-3: #0e7490;
+  --chart-4: #b54708;
+  --chart-5: var(--ink-3);
+
+  --grid-line: var(--grid);
+  --axis-line: var(--baseline);
+  --card-shadow: none;
+  --popover-shadow: 0 8px 22px rgba(20, 23, 43, 0.13);
+  --panel-inset: var(--bg-alt);
+  --panel-shadow: rgba(20, 23, 43, 0.08);
+
+  --sidebar: var(--bg);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--accent);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--bg-alt);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--accent);
+  color-scheme: light;
+}
+
+/* Optional night mode — same structure, inverted surfaces */
+.dark {
+  --bg: #07080a;
+  --bg-alt: #0d0f14;
+  --bg-tint: #0f131a;
+  --border: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --ink: #f8fafc;
+  --ink-2: #e2e8f0;
+  --ink-3: #94a3b8;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-soft: rgba(16, 185, 129, 0.08);
+  --accent-border: rgba(16, 185, 129, 0.2);
+  --pos: #10b981;
+  --neg: #f43f5e;
+  --live: #10b981;
+  --series-1: #10b981;
+  --series-2: #f59e0b;
+  --chart-wash: rgba(16, 185, 129, 0.03);
+  --grid: rgba(255, 255, 255, 0.04);
+  --baseline: rgba(255, 255, 255, 0.08);
+  --crosshair: rgba(255, 255, 255, 0.2);
+
+  --card: var(--bg-alt);
+  --popover: #0d0f14;
+  --secondary: #0d0f14;
+  --muted: #0d0f14;
+  --panel-inset: rgba(255, 255, 255, 0.015);
+  --panel-shadow: rgba(0, 0, 0, 0.6);
+  --popover-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  --sidebar: var(--bg-alt);
+  --sidebar-accent: #0f131a;
+}
+
+
+
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-size: 15.5px;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    background-image: radial-gradient(
+      760px 340px at 20% 0%,
+      var(--bg-tint),
+      transparent
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--color-foreground);
+  }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    font-weight: 760;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: 29px;
+    font-weight: 730;
+    line-height: 1.2;
+  }
+
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 32%, transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-foreground) 14%, transparent);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+@utility panel {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+
+/* Frosted bar for sticky navigation */
+@utility glass {
+  background: color-mix(in oklab, var(--color-background) 90%, transparent);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Small uppercase section label */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.4px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+
+
+@utility text-gradient {
+  color: var(--color-primary);
+}
+
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--color-border) 100%, transparent),
+    transparent
+  );
+}
+
+
+
+/* Rank card flip — front shows the headline, back shows the metric sheet */
+@utility flip-shell {
+  perspective: 1400px;
+}
+
+@utility flip-inner {
+  position: relative;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+@utility flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  overflow: auto;
+}
+
+@utility is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Soft tinted stat tile used across the analytics panels */
+@utility stat-tile {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-foreground) 4%, transparent);
+  padding: 0.85rem 1rem;
+}
+
+
+/* ---------- terminal utilities ---------- */
+
+/* Tabular monospace figures for every number in the product */
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.01em;
+}
+
+/* Skeleton shimmer — never a spinner */
+@utility shimmer {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--color-foreground) 6%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+@keyframes mfl-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes mfl-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mfl-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer utilities {
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent),
+      transparent
+    );
+    animation: mfl-shimmer 1.4s infinite;
+  }
+
+  .draw-line {
+    stroke-dasharray: var(--dash, 2000);
+    stroke-dashoffset: var(--dash, 2000);
+    animation: mfl-draw 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .crossfade {
+    animation: mfl-fade-up 200ms ease-out;
+  }
+}
+
+/* Frosted paywall veil sitting over a real preview */
+@utility frost {
+  backdrop-filter: blur(6px) saturate(120%);
+  background: color-mix(in oklab, var(--color-background) 55%, transparent);
+}
+
+/* Inline heat bar behind a table figure */
+@utility heat {
+  position: absolute;
+  inset: 0 0 0 auto;
+  border-radius: 3px;
+  opacity: 0.18;
+}
+
+
+/* ---------- quant / high-tech chrome ---------- */
+
+/* Scanning accent beam on the sticky header — reads as a live feed */
+@utility tech-beam {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-primary) 85%, transparent),
+      transparent
+    );
+
+    background-size: 45% 100%;
+    background-repeat: no-repeat;
+    animation: mfl-scan 6s linear infinite;
+  }
+}
+
+@keyframes mfl-scan {
+  0% {
+    background-position: -50% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-beam::after {
+    animation: none;
+  }
+}
+
+/* ---------- shared component surfaces ---------- */
+
+/* Buttons — flat, no gradients */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  &:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@utility btn-primary-lg {
+  padding: 12px 22px;
+  font-size: 15.5px;
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  &:hover {
+    border-color: var(--ink-3);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+/* Alternating full-bleed section bands */
+@utility band {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+@utility band-alt {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Selector chips — fund category, benchmark index */
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 13.2px;
+  font-weight: 550;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  &:hover {
+    border-color: var(--ink-3);
+    color: var(--ink);
+  }
+  &[aria-pressed="true"],
+  &[aria-selected="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+/* Phase / list rows — detected sideways windows */
+@utility phase-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--ink-2);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  &:hover {
+    border-color: var(--ink-3);
+  }
+  &[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+}
+
+/* Data tables — fund leaderboards */
+@utility data-table {
+  width: 100%;
+  border-collapse: collapse;
+  & thead th {
+    font-size: 11.2px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 640;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+  }
+  & tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+  & tbody tr:hover {
+    background: var(--bg-alt);
+  }
+  & td {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 13.2px;
+    text-align: right;
+    padding: 10px 0;
+  }
+  & td.cell-name,
+  & th.cell-name {
+    font-family: var(--font-sans);
+    font-size: 14.3px;
+    font-weight: 560;
+    text-align: left;
+  }
+}
+
+/* Small bordered pill for AUM / tags */
+@utility tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1px 8px;
+  font-size: 10.8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* Chart chrome */
+@utility chart-tip {
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  box-shadow: var(--popover-shadow);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 8px 10px;
+  color: var(--ink);
+}
+
+@utility chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* FAQ rows — + / – indicator driven by the native details state */
+.faq-row .faq-minus,
+.faq-row[open] .faq-plus {
+  display: none;
+}
+.faq-row[open] .faq-minus {
+  display: inline;
+}

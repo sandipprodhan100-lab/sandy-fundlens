@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: timescale/timescaledb-ha:pg15
+    container_name: fundlens-db
+    environment:
+      - POSTGRES_DB=fundlens
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: fundlens-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    restart: always
+
+volumes:
+  pgdata:
+  redisdata:
