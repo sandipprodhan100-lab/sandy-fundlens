@@ -1,16 +1,26 @@
 import os
 import sys
 import boto3
+from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+# Load .env or .env.production.example
+env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
+if not os.path.exists(env_path):
+    env_path = os.path.join(os.path.dirname(__file__), "..", ".env.production.example")
+load_dotenv(dotenv_path=env_path)
+
 from app.data_lake.s3_connector import LOCAL_LAKE_DIR
 
-def upload_local_lake_to_aws(bucket_name: str, region: str = "ap-south-1", access_key: str = None, secret_key: str = None):
-    print(f"=== Syncing Local Parquet Data Lake to AWS S3 Bucket: {bucket_name} ({region}) ===")
-    
+def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access_key: str = None, secret_key: str = None):
     ak = access_key or os.getenv("AWS_ACCESS_KEY_ID")
     sk = secret_key or os.getenv("AWS_SECRET_ACCESS_KEY")
+    reg = region or os.getenv("AWS_REGION", "ap-south-1")
+    bucket = bucket_name or os.getenv("AWS_S3_BUCKET") or os.getenv("S3_BUCKET_NAME", "mutualfundlens-s3")
+    
+    print(f"=== Syncing Local Parquet Data Lake to AWS S3 Bucket: {bucket} ({reg}) ===")
+
     
     if not ak or not sk:
         print("Error: AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY not provided.")
