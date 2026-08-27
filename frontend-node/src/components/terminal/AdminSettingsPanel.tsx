@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { X, Loader2, Save } from "lucide-react";
+import { X, Loader2, Save, RefreshCw, Database } from "lucide-react";
 import { getAdminSettings, updateAdminSettings } from "@/lib/mf.functions";
+import { runIngestJob } from "@/lib/storage.functions";
 import { toast } from "sonner";
 
 export function AdminSettingsPanel({ onClose }: { onClose: () => void }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [ingesting, setIngesting] = useState(false);
   const [syncYears, setSyncYears] = useState("3");
 
   useEffect(() => {
@@ -26,7 +28,34 @@ export function AdminSettingsPanel({ onClose }: { onClose: () => void }) {
     };
   }, []);
 
+  async function handleDailyIngest() {
+    setIngesting(true);
+    try {
+      const report = await runIngestJob({ data: { job: "daily-nav" } });
+      toast.success(`Daily AMFI Ingest Complete: ${report.updatedSchemes} scheme(s) updated in S3 Parquet!`);
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Daily ingestion failed");
+    } finally {
+      setIngesting(false);
+    }
+  }
+
+  async function handleAllInceptionIngest() {
+    setIngesting(true);
+    try {
+      const report = await runIngestJob({ data: { job: "migrate", limit: 60 } });
+      toast.success(`Inception Ingest Complete: ${report.updatedSchemes} scheme(s) ingested since inception into S3!`);
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Inception ingestion failed");
+    } finally {
+      setIngesting(false);
+    }
+  }
+
   async function handleSave() {
+
     setSaving(true);
     try {
       await updateAdminSettings({ data: { timescaledb_sync_years: syncYears } });
@@ -102,6 +131,47 @@ export function AdminSettingsPanel({ onClose }: { onClose: () => void }) {
                   </button>
                 </div>
               </div>
+
+              {/* Daily Refresh & All-Time Data Lake Ingestion Section */}
+              <div className="border-t border-border pt-4 mt-4 space-y-3">
+                <label className="eyebrow text-xs text-ink-3 block">
+                  AWS S3 Data Lake Ingestion & Daily Refresh
+                </label>
+                <p className="text-xs text-ink-2 leading-relaxed">
+                  Download raw daily AMFI text files (`NAVAll.txt`), append new daily NAV points to S3 Parquet lake files, and update manifests.
+                </p>
+
+                <div className="flex flex-col gap-2.5">
+                  <button
+                    type="button"
+                    disabled={ingesting}
+                    onClick={handleDailyIngest}
+                    className="w-full flex items-center justify-center gap-2 p-2.5 rounded-lg bg-accent/15 border border-accent/30 text-accent font-display text-xs font-semibold hover:bg-accent/25 transition-all disabled:opacity-50"
+                  >
+                    {ingesting ? (
+                      <Loader2 className="size-3.5 animate-spin" />
+                    ) : (
+                      <RefreshCw className="size-3.5" />
+                    )}
+                    <span>Run Daily AMFI Ingestion & Update S3 Parquet</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={ingesting}
+                    onClick={handleAllInceptionIngest}
+                    className="w-full flex items-center justify-center gap-2 p-2.5 rounded-lg bg-primary/10 border border-primary/20 text-primary font-display text-xs font-semibold hover:bg-primary/20 transition-all disabled:opacity-50"
+                  >
+                    {ingesting ? (
+                      <Loader2 className="size-3.5 animate-spin" />
+                    ) : (
+                      <Database className="size-3.5" />
+                    )}
+                    <span>Ingest All Schemes in Category Since Inception</span>
+                  </button>
+                </div>
+              </div>
+
             </>
           )}
         </div>

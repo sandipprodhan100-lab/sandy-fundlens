@@ -2,7 +2,7 @@ import re
 import time
 import requests
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from .s3_connector import s3_lake
 from .parquet_manager import write_nav_parquet, read_manifest
 
@@ -125,23 +125,72 @@ def ingest_daily_nav() -> Dict[str, Any]:
     updated = 0
     skipped = 0
     
-    # List of categories to check
+def classify_scheme_category(scheme_name: str) -> Optional[str]:
+    """Classifies an AMFI scheme into a category key based on scheme name keywords."""
+    name = scheme_name.lower()
+    if "direct" not in name or "growth" not in name:
+        # Prefer Direct Plan - Growth options to avoid duplicates
+        return None
+        
+    if "large cap" in name or "bluechip" in name or "largecap" in name:
+        return "large"
+    if "mid cap" in name or "midcap" in name:
+        return "mid"
+    if "small cap" in name or "smallcap" in name:
+        return "small"
+    if "flexi cap" in name or "flexicap" in name:
+        return "flexi"
+    if "multi cap" in name or "multicap" in name:
+        return "multi"
+    if "hybrid" in name or "balanced" in name:
+        return "hybrid"
+    if "index" in name or "nifty" in name or "sensex" in name:
+        return "index"
+    return None
+
+def ingest_daily_nav() -> Dict[str, Any]:
+    """Downloads daily AMFI NAV text, saves raw copy, updates tracked Parquet partitions, and auto-discovers new schemes."""
+    started_at = datetime.utcnow().isoformat() + "Z"
+    errors = []
+    
+    try:
+        text = download_amfi_nav()
+        rows = parse_amfi_nav_txt(text)
+    except Exception as e:
+        return {
+            "job": "daily-nav",
+            "startedAt": started_at,
+            "finishedAt": datetime.utcnow().isoformat() + "Z",
+            "totalRows": 0,
+            "errors": [f"Download/parse failure: {e}"]
+        }
+        
+    as_of = rows[0]["date"] if rows else datetime.utcnow().strftime("%Y-%m-%d")
+    
+    # Save a raw copy to S3 data lake
+    raw_key = f"nav/raw/amfi/dt={as_of}/NAVAll.txt"
+    s3_lake.put_bytes(raw_key, text.encode("utf-8"), "text/plain")
+    
+    # Index rows by schemeCode
+    nav_map = {r["schemeCode"]: r for r in rows}
+    
+    tracked = 0
+    updated = 0
+    skipped = 0
+    
     categories = ["large", "mid", "small", "multi", "flexi", "hybrid", "index"]
     
     for category in categories:
         manifest = read_manifest(category)
+        manifest_codes = {e["schemeCode"] for e in manifest}
         tracked += len(manifest)
         
+        # 1. Update existing manifest entries
         for entry in manifest:
             scheme_code = entry["schemeCode"]
             row = nav_map.get(scheme_code)
             
-            if not row:
-                skipped += 1
-                continue
-                
-            # If AMFI date is older or same as the manifest's lastDate, skip
-            if row["date"] <= entry.get("lastDate", ""):
+            if not row or row["date"] <= entry.get("lastDate", ""):
                 skipped += 1
                 continue
                 
@@ -158,6 +207,26 @@ def ingest_daily_nav() -> Dict[str, Any]:
             except Exception as e:
                 errors.append(f"Scheme {scheme_code} write error: {e}")
                 
+        # 2. Auto-discover newly introduced schemes under this category
+        for row in rows:
+            if row["schemeCode"] in manifest_codes:
+                continue
+            detected_cat = classify_scheme_category(row["schemeName"])
+            if detected_cat == category:
+                try:
+                    write_nav_parquet(
+                        category=category,
+                        scheme_code=row["schemeCode"],
+                        scheme_name=row["schemeName"],
+                        fund_house=row["fundHouse"],
+                        points=[{"date": row["date"], "nav": row["nav"]}],
+                        scheme_category=category.capitalize() + " Cap"
+                    )
+                    updated += 1
+                    manifest_codes.add(row["schemeCode"])
+                except Exception as e:
+                    errors.append(f"Auto-discovery scheme {row['schemeCode']} error: {e}")
+
     return {
         "job": "daily-nav",
         "startedAt": started_at,
@@ -169,3 +238,4 @@ def ingest_daily_nav() -> Dict[str, Any]:
         "skipped": skipped,
         "errors": errors
     }
+
