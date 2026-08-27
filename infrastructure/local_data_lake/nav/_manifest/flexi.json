@@ -1,12 +1,482 @@
 [
   {
+    "schemeCode": 118424,
+    "schemeName": "BANDHAN Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "BANDHAN Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:01.943090Z"
+  },
+  {
+    "schemeCode": 119718,
+    "schemeName": "SBI FLEXICAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-26",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:49:24.797811Z"
+  },
+  {
+    "schemeCode": 120843,
+    "schemeName": "Quant Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Quant Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:49:39.512369Z"
+  },
+  {
+    "schemeCode": 119076,
+    "schemeName": "DSP Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3362,
+    "updatedAt": "2026-08-27T23:49:13.446055Z"
+  },
+  {
+    "schemeCode": 118535,
+    "schemeName": "Franklin India Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:02.169759Z"
+  },
+  {
+    "schemeCode": 118883,
+    "schemeName": "Taurus Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Taurus Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:08.704643Z"
+  },
+  {
+    "schemeCode": 118955,
+    "schemeName": "HDFC Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:09.258777Z"
+  },
+  {
+    "schemeCode": 118275,
+    "schemeName": "Canara Robeco Flexi Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:01.539042Z"
+  },
+  {
+    "schemeCode": 120046,
+    "schemeName": "HSBC Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:27.962637Z"
+  },
+  {
+    "schemeCode": 120492,
+    "schemeName": "JM Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:33.978399Z"
+  },
+  {
+    "schemeCode": 119292,
+    "schemeName": "Union Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Union Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:17.397133Z"
+  },
+  {
+    "schemeCode": 120564,
+    "schemeName": "Aditya Birla Sun Life Flexi Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:34.512644Z"
+  },
+  {
+    "schemeCode": 120662,
+    "schemeName": "UTI - Flexi Cap Fund. - Direct Plan - Growth",
+    "fundHouse": "UTI - Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:36.316955Z"
+  },
+  {
+    "schemeCode": 120166,
+    "schemeName": "Kotak Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-04",
+    "lastDate": "2026-08-27",
+    "rows": 3357,
+    "updatedAt": "2026-08-27T23:49:29.831005Z"
+  },
+  {
+    "schemeCode": 120264,
+    "schemeName": "LIC MF Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3350,
+    "updatedAt": "2026-08-27T23:49:30.612688Z"
+  },
+  {
     "schemeCode": 122639,
     "schemeName": "Parag Parikh Flexi Cap Fund - Direct Plan - Growth",
-    "fundHouse": "PPFAS Mutual Fund",
+    "fundHouse": "Parag Parikh Flexi Cap",
     "schemeCategory": "Flexi Cap",
     "firstDate": "2013-05-28",
     "lastDate": "2026-08-26",
     "rows": 3259,
-    "updatedAt": "2026-08-27T23:38:35.673802Z"
+    "updatedAt": "2026-08-27T23:49:41.133808Z"
+  },
+  {
+    "schemeCode": 129046,
+    "schemeName": "Motilal Oswal Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2014-04-29",
+    "lastDate": "2026-08-27",
+    "rows": 3035,
+    "updatedAt": "2026-08-27T23:49:43.832420Z"
+  },
+  {
+    "schemeCode": 133839,
+    "schemeName": "PGIM India Flexi Cap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "PGIM India Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2015-03-09",
+    "lastDate": "2026-08-27",
+    "rows": 2828,
+    "updatedAt": "2026-08-27T23:49:48.998007Z"
+  },
+  {
+    "schemeCode": 119291,
+    "schemeName": "L&T Flexicap Fund-Direct Plan-Growth",
+    "fundHouse": "L&T Flexicap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2435,
+    "updatedAt": "2026-08-27T23:49:15.265449Z"
+  },
+  {
+    "schemeCode": 140353,
+    "schemeName": "Edelweiss Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2016-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 2406,
+    "updatedAt": "2026-08-27T23:50:01.139064Z"
+  },
+  {
+    "schemeCode": 128236,
+    "schemeName": "IDBI FLEXI CAP FUND Growth Direct",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2014-04-04",
+    "lastDate": "2023-07-27",
+    "rows": 2290,
+    "updatedAt": "2026-08-27T23:49:42.495704Z"
+  },
+  {
+    "schemeCode": 141925,
+    "schemeName": "Axis Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2017-11-24",
+    "lastDate": "2026-08-27",
+    "rows": 2165,
+    "updatedAt": "2026-08-27T23:50:03.325059Z"
+  },
+  {
+    "schemeCode": 143793,
+    "schemeName": "Navi Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2018-07-10",
+    "lastDate": "2026-08-27",
+    "rows": 2003,
+    "updatedAt": "2026-08-27T23:50:06.722575Z"
+  },
+  {
+    "schemeCode": 144546,
+    "schemeName": "Tata Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2018-09-10",
+    "lastDate": "2026-08-27",
+    "rows": 1960,
+    "updatedAt": "2026-08-27T23:50:09.343257Z"
+  },
+  {
+    "schemeCode": 144905,
+    "schemeName": "Shriram Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Shriram Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2018-10-08",
+    "lastDate": "2026-08-27",
+    "rows": 1943,
+    "updatedAt": "2026-08-27T23:50:09.457231Z"
+  },
+  {
+    "schemeCode": 148404,
+    "schemeName": "BANK OF INDIA FLEXI CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2020-07-01",
+    "lastDate": "2026-08-27",
+    "rows": 1521,
+    "updatedAt": "2026-08-27T23:50:21.980898Z"
+  },
+  {
+    "schemeCode": 148990,
+    "schemeName": "ICICI Prudential Flexi Cap fund - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2021-07-19",
+    "lastDate": "2026-08-27",
+    "rows": 1259,
+    "updatedAt": "2026-08-27T23:50:24.975542Z"
+  },
+  {
+    "schemeCode": 149094,
+    "schemeName": "Nippon India Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2021-08-18",
+    "lastDate": "2026-08-27",
+    "rows": 1238,
+    "updatedAt": "2026-08-27T23:50:25.570333Z"
+  },
+  {
+    "schemeCode": 149104,
+    "schemeName": "Mahindra Manulife Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mahindra Manulife Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2021-08-25",
+    "lastDate": "2026-08-27",
+    "rows": 1234,
+    "updatedAt": "2026-08-27T23:50:25.812188Z"
+  },
+  {
+    "schemeCode": 149450,
+    "schemeName": "Samco Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Samco Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2022-02-09",
+    "lastDate": "2026-08-27",
+    "rows": 1118,
+    "updatedAt": "2026-08-27T23:50:28.950381Z"
+  },
+  {
+    "schemeCode": 149763,
+    "schemeName": "Invesco India Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2022-02-16",
+    "lastDate": "2026-08-27",
+    "rows": 1115,
+    "updatedAt": "2026-08-27T23:50:30.053235Z"
+  },
+  {
+    "schemeCode": 150346,
+    "schemeName": "WhiteOak Capital Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2022-08-03",
+    "lastDate": "2026-08-27",
+    "rows": 1000,
+    "updatedAt": "2026-08-27T23:50:32.128601Z"
+  },
+  {
+    "schemeCode": 150387,
+    "schemeName": "Baroda BNP Paribas Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Baroda BNP Paribas Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2022-08-22",
+    "lastDate": "2026-08-27",
+    "rows": 989,
+    "updatedAt": "2026-08-27T23:50:32.236037Z"
+  },
+  {
+    "schemeCode": 150571,
+    "schemeName": "Sundaram Flexicap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Flexicap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2022-09-07",
+    "lastDate": "2026-08-27",
+    "rows": 978,
+    "updatedAt": "2026-08-27T23:50:33.278129Z"
+  },
+  {
+    "schemeCode": 151379,
+    "schemeName": "ITI Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "ITI Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-02-22",
+    "lastDate": "2026-08-27",
+    "rows": 862,
+    "updatedAt": "2026-08-27T23:50:36.297662Z"
+  },
+  {
+    "schemeCode": 151412,
+    "schemeName": "Mirae Asset Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-02-27",
+    "lastDate": "2026-08-27",
+    "rows": 860,
+    "updatedAt": "2026-08-27T23:50:36.314761Z"
+  },
+  {
+    "schemeCode": 151796,
+    "schemeName": "360 ONE Flexicap Fund - Direct Plan - GROWTH Option",
+    "fundHouse": "360 ONE Flexicap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-07-06",
+    "lastDate": "2026-08-27",
+    "rows": 774,
+    "updatedAt": "2026-08-27T23:50:37.165074Z"
+  },
+  {
+    "schemeCode": 151895,
+    "schemeName": "Bajaj Finserv Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Bajaj Finserv Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-08-16",
+    "lastDate": "2026-08-27",
+    "rows": 746,
+    "updatedAt": "2026-08-27T23:50:38.018158Z"
+  },
+  {
+    "schemeCode": 151917,
+    "schemeName": "NJ Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "NJ Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-09-06",
+    "lastDate": "2026-08-27",
+    "rows": 731,
+    "updatedAt": "2026-08-27T23:50:38.130489Z"
+  },
+  {
+    "schemeCode": 152135,
+    "schemeName": "Helios Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Helios Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2023-11-15",
+    "lastDate": "2026-08-27",
+    "rows": 687,
+    "updatedAt": "2026-08-27T23:50:39.881480Z"
+  },
+  {
+    "schemeCode": 152584,
+    "schemeName": "TRUSTMF Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "TRUSTMF Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2024-04-29",
+    "lastDate": "2026-08-27",
+    "rows": 577,
+    "updatedAt": "2026-08-27T23:50:41.864655Z"
+  },
+  {
+    "schemeCode": 153543,
+    "schemeName": "UNIFI FLEXI CAP FUND - Direct Plan - GROWTH",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-06-09",
+    "lastDate": "2026-08-27",
+    "rows": 302,
+    "updatedAt": "2026-08-27T23:50:47.377913Z"
+  },
+  {
+    "schemeCode": 153738,
+    "schemeName": "Capitalmind Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Capitalmind Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-08-06",
+    "lastDate": "2026-08-27",
+    "rows": 261,
+    "updatedAt": "2026-08-27T23:50:48.003151Z"
+  },
+  {
+    "schemeCode": 153801,
+    "schemeName": "DSP Nifty500 Flexicap Quality 30 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty500 Flexicap Quality 30 Index",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-08-29",
+    "lastDate": "2026-08-27",
+    "rows": 245,
+    "updatedAt": "2026-08-27T23:50:49.055726Z"
+  },
+  {
+    "schemeCode": 153859,
+    "schemeName": "JioBlackRock Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JioBlackRock Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-10-17",
+    "lastDate": "2026-08-27",
+    "rows": 212,
+    "updatedAt": "2026-08-27T23:50:49.047153Z"
+  },
+  {
+    "schemeCode": 153872,
+    "schemeName": "The Wealth Company Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "The Wealth Company Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-10-17",
+    "lastDate": "2026-08-27",
+    "rows": 212,
+    "updatedAt": "2026-08-27T23:50:49.130185Z"
+  },
+  {
+    "schemeCode": 154043,
+    "schemeName": "Abakkus Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Abakkus Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-12-30",
+    "lastDate": "2026-08-27",
+    "rows": 164,
+    "updatedAt": "2026-08-27T23:50:49.564771Z"
+  },
+  {
+    "schemeCode": 154225,
+    "schemeName": "Old Bridge Flexi Cap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "Old Bridge Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2026-03-04",
+    "lastDate": "2026-08-27",
+    "rows": 121,
+    "updatedAt": "2026-08-27T23:50:50.611166Z"
   }
 ]

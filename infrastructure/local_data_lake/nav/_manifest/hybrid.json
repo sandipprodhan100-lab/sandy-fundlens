@@ -1,0 +1,734 @@
+[
+  {
+    "schemeCode": 119609,
+    "schemeName": "SBI AGGRESSIVE HYBRID FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3368,
+    "updatedAt": "2026-08-27T23:49:23.514874Z"
+  },
+  {
+    "schemeCode": 120484,
+    "schemeName": "JM Aggressive Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3365,
+    "updatedAt": "2026-08-27T23:49:33.548041Z"
+  },
+  {
+    "schemeCode": 119019,
+    "schemeName": "DSP Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:49:11.712738Z"
+  },
+  {
+    "schemeCode": 120819,
+    "schemeName": "Quant Aggressive Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "Quant Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:49:38.029250Z"
+  },
+  {
+    "schemeCode": 118968,
+    "schemeName": "HDFC Balanced Advantage Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:09.922451Z"
+  },
+  {
+    "schemeCode": 119062,
+    "schemeName": "HDFC Aggressive Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:12.046094Z"
+  },
+  {
+    "schemeCode": 119053,
+    "schemeName": "Tata Aggressive Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:11.996117Z"
+  },
+  {
+    "schemeCode": 120251,
+    "schemeName": "ICICI Prudential Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:30.042108Z"
+  },
+  {
+    "schemeCode": 120333,
+    "schemeName": "Invesco India Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:31.829067Z"
+  },
+  {
+    "schemeCode": 120377,
+    "schemeName": "ICICI Prudential Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:32.645803Z"
+  },
+  {
+    "schemeCode": 120517,
+    "schemeName": "Aditya Birla Sun Life Equity Hybrid '95 Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Equity Hybrid '95",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:34.195761Z"
+  },
+  {
+    "schemeCode": 120674,
+    "schemeName": "UTI Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:37.101929Z"
+  },
+  {
+    "schemeCode": 120771,
+    "schemeName": "UTI Children's Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Children's Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:37.531233Z"
+  },
+  {
+    "schemeCode": 118794,
+    "schemeName": "Nippon India Aggressive Hybrid Fund (Existing Number of Segregated Portfolios - 2) - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:07.762989Z"
+  },
+  {
+    "schemeCode": 119767,
+    "schemeName": "Kotak Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:25.174332Z"
+  },
+  {
+    "schemeCode": 118624,
+    "schemeName": "Edelweiss Aggressive Hybrid Fund - Direct Plan - growth",
+    "fundHouse": "Edelweiss Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-08",
+    "lastDate": "2026-08-27",
+    "rows": 3358,
+    "updatedAt": "2026-08-27T23:49:05.846192Z"
+  },
+  {
+    "schemeCode": 118736,
+    "schemeName": "Nippon India Balanced Advantage Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3358,
+    "updatedAt": "2026-08-27T23:49:07.239354Z"
+  },
+  {
+    "schemeCode": 120261,
+    "schemeName": "LIC MF Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3348,
+    "updatedAt": "2026-08-27T23:49:30.367662Z"
+  },
+  {
+    "schemeCode": 119839,
+    "schemeName": "SBI CONSERVATIVE HYBRID FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-08",
+    "lastDate": "2026-08-27",
+    "rows": 3301,
+    "updatedAt": "2026-08-27T23:49:25.728720Z"
+  },
+  {
+    "schemeCode": 120480,
+    "schemeName": "Axis Conservative Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3301,
+    "updatedAt": "2026-08-27T23:49:33.448294Z"
+  },
+  {
+    "schemeCode": 118994,
+    "schemeName": "DSP Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3298,
+    "updatedAt": "2026-08-27T23:49:10.348132Z"
+  },
+  {
+    "schemeCode": 119118,
+    "schemeName": "HDFC Conservative Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3298,
+    "updatedAt": "2026-08-27T23:49:13.281782Z"
+  },
+  {
+    "schemeCode": 118726,
+    "schemeName": "Nippon India Conservative Hybrid Fund (Existing number of Segregated Portfolios - 1) - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3295,
+    "updatedAt": "2026-08-27T23:49:06.479610Z"
+  },
+  {
+    "schemeCode": 120616,
+    "schemeName": "ICICI Prudential Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-04",
+    "lastDate": "2026-08-27",
+    "rows": 3294,
+    "updatedAt": "2026-08-27T23:49:35.662269Z"
+  },
+  {
+    "schemeCode": 120779,
+    "schemeName": "UTI Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3294,
+    "updatedAt": "2026-08-27T23:49:37.929034Z"
+  },
+  {
+    "schemeCode": 119635,
+    "schemeName": "Sundaram Conservative Hybrid Fund (Formerly Known as Sundaram Debt Oriented Hybrid Fund) - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3293,
+    "updatedAt": "2026-08-27T23:49:24.412560Z"
+  },
+  {
+    "schemeCode": 120276,
+    "schemeName": "LIC MF Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-09",
+    "lastDate": "2026-08-27",
+    "rows": 3293,
+    "updatedAt": "2026-08-27T23:49:31.014625Z"
+  },
+  {
+    "schemeCode": 120073,
+    "schemeName": "HSBC Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-11",
+    "lastDate": "2026-08-27",
+    "rows": 3289,
+    "updatedAt": "2026-08-27T23:49:28.062745Z"
+  },
+  {
+    "schemeCode": 119393,
+    "schemeName": "BANK OF INDIA CONSERVATIVE HYBRID FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-14",
+    "lastDate": "2026-08-27",
+    "rows": 3287,
+    "updatedAt": "2026-08-27T23:49:19.464826Z"
+  },
+  {
+    "schemeCode": 120154,
+    "schemeName": "Kotak Conservative Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-30",
+    "lastDate": "2026-08-27",
+    "rows": 3275,
+    "updatedAt": "2026-08-27T23:49:28.808284Z"
+  },
+  {
+    "schemeCode": 119156,
+    "schemeName": "Navi Conservative Hybrid Fund-Direct Plan-Growth Option",
+    "fundHouse": "Navi Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2024-11-14",
+    "rows": 2870,
+    "updatedAt": "2026-08-27T23:49:12.821226Z"
+  },
+  {
+    "schemeCode": 119298,
+    "schemeName": "L&T Balanced Advantage Fund-Direct Plan-Growth",
+    "fundHouse": "L&T Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2420,
+    "updatedAt": "2026-08-27T23:49:16.499337Z"
+  },
+  {
+    "schemeCode": 119347,
+    "schemeName": "L&T Hybrid Equity Fund - Direct Plan-Growth",
+    "fundHouse": "L&T Hybrid Equity",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2420,
+    "updatedAt": "2026-08-27T23:49:16.766513Z"
+  },
+  {
+    "schemeCode": 119852,
+    "schemeName": "L&T Conservative Hybrid Fund -Direct Plan- Growth",
+    "fundHouse": "L&T Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2386,
+    "updatedAt": "2026-08-27T23:49:24.914127Z"
+  },
+  {
+    "schemeCode": 119326,
+    "schemeName": "BARODA HYBRID EQUITY FUND - Plan B (Direct) - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-03-13",
+    "rows": 2262,
+    "updatedAt": "2026-08-27T23:49:16.285342Z"
+  },
+  {
+    "schemeCode": 120082,
+    "schemeName": "BNP Paribas Conservative Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "BNP Paribas Conservative Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-03-13",
+    "rows": 2219,
+    "updatedAt": "2026-08-27T23:49:27.314718Z"
+  },
+  {
+    "schemeCode": 119389,
+    "schemeName": "BARODA CONSERVATIVE HYBRID FUND - Plan B (Direct) - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-03-13",
+    "rows": 2217,
+    "updatedAt": "2026-08-27T23:49:17.283630Z"
+  },
+  {
+    "schemeCode": 119542,
+    "schemeName": "Sundaram Equity Hybrid Fund Direct Plan - Growth",
+    "fundHouse": "Sundaram Equity Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2021-12-31",
+    "rows": 2213,
+    "updatedAt": "2026-08-27T23:49:20.688955Z"
+  },
+  {
+    "schemeCode": 119482,
+    "schemeName": "Principal Balanced Advantage Fund - Direct Plan - Growth Option",
+    "fundHouse": "Principal Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2021-12-30",
+    "rows": 2211,
+    "updatedAt": "2026-08-27T23:49:19.579573Z"
+  },
+  {
+    "schemeCode": 119484,
+    "schemeName": "Principal Hybrid Equity Fund- Direct Plan - Growth Option",
+    "fundHouse": "Principal Hybrid Equity",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2021-12-30",
+    "rows": 2211,
+    "updatedAt": "2026-08-27T23:49:20.246096Z"
+  },
+  {
+    "schemeCode": 122951,
+    "schemeName": "Axis Hybrid Fund - Series 5 (1346 Days) - Direct Plan - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-07-30",
+    "lastDate": "2020-09-30",
+    "rows": 1728,
+    "updatedAt": "2026-08-27T23:49:39.295989Z"
+  },
+  {
+    "schemeCode": 123065,
+    "schemeName": "Axis Hybrid Fund Series 6 (1324 Days) - Direct - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-08-20",
+    "lastDate": "2020-09-30",
+    "rows": 1715,
+    "updatedAt": "2026-08-27T23:49:39.412441Z"
+  },
+  {
+    "schemeCode": 149717,
+    "schemeName": "Sundaram Balanced Advantage Fund (Formerly Known as Principal Balanced Advantage Fund) - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 1146,
+    "updatedAt": "2026-08-27T23:49:04.209022Z"
+  },
+  {
+    "schemeCode": 150260,
+    "schemeName": "BARODA BNP PARIBAS AGGRESSIVE HYBRID FUND - Direct Plan - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-03-14",
+    "lastDate": "2026-08-27",
+    "rows": 1098,
+    "updatedAt": "2026-08-27T23:49:05.367754Z"
+  },
+  {
+    "schemeCode": 150206,
+    "schemeName": "BARODA BNP PARIBAS CONSERVATIVE HYBRID FUND - Direct Plan - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-03-14",
+    "lastDate": "2026-08-27",
+    "rows": 1079,
+    "updatedAt": "2026-08-27T23:49:05.117517Z"
+  },
+  {
+    "schemeCode": 150470,
+    "schemeName": "Mirae Asset Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-08-12",
+    "lastDate": "2026-08-27",
+    "rows": 994,
+    "updatedAt": "2026-08-27T23:49:06.282984Z"
+  },
+  {
+    "schemeCode": 150481,
+    "schemeName": "Franklin India Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-09-06",
+    "lastDate": "2026-08-27",
+    "rows": 978,
+    "updatedAt": "2026-08-27T23:49:06.329737Z"
+  },
+  {
+    "schemeCode": 151122,
+    "schemeName": "HSBC Aggressive Hybrid Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Aggressive Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 924,
+    "updatedAt": "2026-08-27T23:49:08.535191Z"
+  },
+  {
+    "schemeCode": 151129,
+    "schemeName": "HSBC Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2022-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 924,
+    "updatedAt": "2026-08-27T23:49:08.687406Z"
+  },
+  {
+    "schemeCode": 151267,
+    "schemeName": "WhiteOak Capital Balanced Advantage Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2023-02-13",
+    "lastDate": "2026-08-27",
+    "rows": 870,
+    "updatedAt": "2026-08-27T23:49:09.029451Z"
+  },
+  {
+    "schemeCode": 129389,
+    "schemeName": "Axis Hybrid Fund - Series 11 - Direct Plan - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-05-15",
+    "lastDate": "2017-11-08",
+    "rows": 840,
+    "updatedAt": "2026-08-27T23:49:40.798181Z"
+  },
+  {
+    "schemeCode": 123980,
+    "schemeName": "Axis Hybrid Fund - Series 7 (1305 Day) - Direct Plan - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-09-10",
+    "lastDate": "2017-03-06",
+    "rows": 836,
+    "updatedAt": "2026-08-27T23:49:38.468325Z"
+  },
+  {
+    "schemeCode": 126356,
+    "schemeName": "Axis Hybrid Fund Series 8 (1279 days) - Direct Plan - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-01-28",
+    "lastDate": "2017-07-25",
+    "rows": 836,
+    "updatedAt": "2026-08-27T23:49:40.095755Z"
+  },
+  {
+    "schemeCode": 126956,
+    "schemeName": "Axis Hybrid Fund Series 9 (1282 days) -  Direct Plan - Growth",
+    "fundHouse": "Axis Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-02-20",
+    "lastDate": "2017-08-18",
+    "rows": 836,
+    "updatedAt": "2026-08-27T23:49:40.195827Z"
+  },
+  {
+    "schemeCode": 151885,
+    "schemeName": "UTI Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2023-08-17",
+    "lastDate": "2026-08-27",
+    "rows": 745,
+    "updatedAt": "2026-08-27T23:49:10.712821Z"
+  },
+  {
+    "schemeCode": 120907,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 11 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-02-12",
+    "lastDate": "2016-03-02",
+    "rows": 732,
+    "updatedAt": "2026-08-27T23:49:35.812356Z"
+  },
+  {
+    "schemeCode": 126497,
+    "schemeName": "Kotak Hybrid Fixed Term Plan Series 2 - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-01-30",
+    "lastDate": "2017-01-30",
+    "rows": 717,
+    "updatedAt": "2026-08-27T23:49:40.076287Z"
+  },
+  {
+    "schemeCode": 123218,
+    "schemeName": "Sundaram Hybrid Fund Series A Direct Plan Growth",
+    "fundHouse": "Sundaram Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-08-14",
+    "lastDate": "2016-08-08",
+    "rows": 715,
+    "updatedAt": "2026-08-27T23:49:37.829084Z"
+  },
+  {
+    "schemeCode": 125058,
+    "schemeName": "Sundaram Hybrid Fund Series C Direct Plan Growth",
+    "fundHouse": "Sundaram Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-11-11",
+    "lastDate": "2016-11-07",
+    "rows": 715,
+    "updatedAt": "2026-08-27T23:49:38.445815Z"
+  },
+  {
+    "schemeCode": 125651,
+    "schemeName": "Sundaram Hybrid Fund Series D Direct Plan Growth",
+    "fundHouse": "Sundaram Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-01-01",
+    "lastDate": "2016-12-23",
+    "rows": 712,
+    "updatedAt": "2026-08-27T23:49:39.445607Z"
+  },
+  {
+    "schemeCode": 121401,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 12 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-03-25",
+    "lastDate": "2016-03-02",
+    "rows": 704,
+    "updatedAt": "2026-08-27T23:49:36.429118Z"
+  },
+  {
+    "schemeCode": 152076,
+    "schemeName": "360 ONE Balanced Hybrid Fund - Direct Plan - GROWTH Option",
+    "fundHouse": "360 ONE Balanced Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2023-10-03",
+    "lastDate": "2026-08-27",
+    "rows": 702,
+    "updatedAt": "2026-08-27T23:49:11.564119Z"
+  },
+  {
+    "schemeCode": 121750,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 13 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-04-09",
+    "lastDate": "2016-03-02",
+    "rows": 696,
+    "updatedAt": "2026-08-27T23:49:36.812545Z"
+  },
+  {
+    "schemeCode": 152132,
+    "schemeName": "WhiteOak Capital Balanced Hybrid Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Balanced Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2023-10-30",
+    "lastDate": "2026-08-27",
+    "rows": 684,
+    "updatedAt": "2026-08-27T23:49:11.802242Z"
+  },
+  {
+    "schemeCode": 121635,
+    "schemeName": "JPMorgan India Hybrid Fund - Series 2 - Direct Plan - Growth Option",
+    "fundHouse": "JPMorgan India Hybrid",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-04-03",
+    "lastDate": "2016-01-15",
+    "rows": 669,
+    "updatedAt": "2026-08-27T23:49:36.510520Z"
+  },
+  {
+    "schemeCode": 152194,
+    "schemeName": "Bajaj Finserv Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "Bajaj Finserv Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2023-12-18",
+    "lastDate": "2026-08-27",
+    "rows": 664,
+    "updatedAt": "2026-08-27T23:49:12.579834Z"
+  },
+  {
+    "schemeCode": 122596,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 14 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-07-02",
+    "lastDate": "2016-03-02",
+    "rows": 641,
+    "updatedAt": "2026-08-27T23:49:36.878534Z"
+  },
+  {
+    "schemeCode": 152509,
+    "schemeName": "Helios Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "Helios Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2024-03-28",
+    "lastDate": "2026-08-27",
+    "rows": 596,
+    "updatedAt": "2026-08-27T23:49:14.006093Z"
+  },
+  {
+    "schemeCode": 124899,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 17 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-11-08",
+    "lastDate": "2016-03-02",
+    "rows": 554,
+    "updatedAt": "2026-08-27T23:49:38.145715Z"
+  },
+  {
+    "schemeCode": 125423,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 19 - Direct Plan - Growth",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2013-12-12",
+    "lastDate": "2016-03-02",
+    "rows": 531,
+    "updatedAt": "2026-08-27T23:49:38.973569Z"
+  },
+  {
+    "schemeCode": 152688,
+    "schemeName": "Canara Robeco Balanced Advantage Fund - Direct Plan - Growth Option",
+    "fundHouse": "Canara Robeco Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2024-08-06",
+    "lastDate": "2026-08-27",
+    "rows": 509,
+    "updatedAt": "2026-08-27T23:49:14.160151Z"
+  },
+  {
+    "schemeCode": 129154,
+    "schemeName": "DWS Hybrid Fixed Term Fund - Series 21  - DIRECT PLAN -GROWTH",
+    "fundHouse": "DWS Hybrid Fixed Term",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2014-05-08",
+    "lastDate": "2016-03-02",
+    "rows": 438,
+    "updatedAt": "2026-08-27T23:49:40.129025Z"
+  },
+  {
+    "schemeCode": 154185,
+    "schemeName": "The Wealth Company Balanced Advantage Fund - Direct Plan - Growth",
+    "fundHouse": "The Wealth Company Balanced Advantage",
+    "schemeCategory": "Hybrid Cap",
+    "firstDate": "2026-02-19",
+    "lastDate": "2026-08-27",
+    "rows": 129,
+    "updatedAt": "2026-08-27T23:49:21.884295Z"
+  }
+]9:21.884295Z"
+  }
+]

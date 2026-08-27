@@ -1,5 +1,45 @@
 [
   {
+    "schemeCode": 118482,
+    "schemeName": "BANDHAN Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "BANDHAN Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:01.816696Z"
+  },
+  {
+    "schemeCode": 118581,
+    "schemeName": "Franklin India NSE Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India NSE Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:03.105235Z"
+  },
+  {
+    "schemeCode": 119063,
+    "schemeName": "HDFC Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:12.128117Z"
+  },
+  {
+    "schemeCode": 119065,
+    "schemeName": "HDFC BSE Sensex Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:12.700140Z"
+  },
+  {
     "schemeCode": 120716,
     "schemeName": "Nifty 50 Index Proxy",
     "fundHouse": "Index Proxy AMC",
@@ -7,7 +47,127 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:38:27.960631Z"
+    "updatedAt": "2026-08-27T23:49:00.836112Z"
+  },
+  {
+    "schemeCode": 118741,
+    "schemeName": "Nippon India Index Fund - Nifty 50 Plan - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:07.681213Z"
+  },
+  {
+    "schemeCode": 118791,
+    "schemeName": "Nippon India Index Fund - BSE Sensex Plan - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:07.729591Z"
+  },
+  {
+    "schemeCode": 118881,
+    "schemeName": "Taurus Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Taurus Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:08.547182Z"
+  },
+  {
+    "schemeCode": 119648,
+    "schemeName": "Aditya Birla Sun Life Nifty 50 Index Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:24.203656Z"
+  },
+  {
+    "schemeCode": 120307,
+    "schemeName": "LIC MF Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3350,
+    "updatedAt": "2026-08-27T23:49:31.479093Z"
+  },
+  {
+    "schemeCode": 120308,
+    "schemeName": "LIC MF BSE Sensex Index Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3350,
+    "updatedAt": "2026-08-27T23:49:31.612431Z"
+  },
+  {
+    "schemeCode": 118347,
+    "schemeName": "IDBI NIFTY 50  Index Fund Growth Direct",
+    "fundHouse": "IDBI NIFTY 50  Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2023-07-27",
+    "rows": 2602,
+    "updatedAt": "2026-08-27T23:48:59.865352Z"
+  },
+  {
+    "schemeCode": 141877,
+    "schemeName": "DSP Nifty 50 Equal Weight Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty 50 Equal Weight Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2017-10-23",
+    "lastDate": "2026-08-27",
+    "rows": 2181,
+    "updatedAt": "2026-08-27T23:50:03.219327Z"
+  },
+  {
+    "schemeCode": 146376,
+    "schemeName": "DSP Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2019-02-22",
+    "lastDate": "2026-08-27",
+    "rows": 1849,
+    "updatedAt": "2026-08-27T23:50:12.686210Z"
+  },
+  {
+    "schemeCode": 146388,
+    "schemeName": "UTI - BSE Sensex Next 50 Exchange Traded Fund - Direct Plan - Growth",
+    "fundHouse": "UTI - BSE Sensex Next 50 Exchange Traded",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2019-03-12",
+    "lastDate": "2026-08-27",
+    "rows": 1842,
+    "updatedAt": "2026-08-27T23:50:13.425763Z"
+  },
+  {
+    "schemeCode": 147625,
+    "schemeName": "Motilal Oswal Nifty 500 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Nifty 500 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2019-09-11",
+    "lastDate": "2026-08-27",
+    "rows": 1717,
+    "updatedAt": "2026-08-27T23:50:16.655946Z"
+  },
+  {
+    "schemeCode": 147794,
+    "schemeName": "Motilal Oswal Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2019-12-26",
+    "lastDate": "2026-08-27",
+    "rows": 1647,
+    "updatedAt": "2026-08-27T23:50:18.214385Z"
   },
   {
     "schemeCode": 148519,
@@ -17,7 +177,7 @@
     "firstDate": "2020-10-19",
     "lastDate": "2026-08-27",
     "rows": 1444,
-    "updatedAt": "2026-08-27T23:38:29.140576Z"
+    "updatedAt": "2026-08-27T23:48:18.918046Z"
   },
   {
     "schemeCode": 148726,
@@ -27,6 +187,416 @@
     "firstDate": "2021-02-23",
     "lastDate": "2026-08-27",
     "rows": 1357,
-    "updatedAt": "2026-08-27T23:38:28.561750Z"
+    "updatedAt": "2026-08-27T23:48:57.311777Z"
+  },
+  {
+    "schemeCode": 148721,
+    "schemeName": "Nippon India Nifty 50 Value 20 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Nifty 50 Value 20 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-02-23",
+    "lastDate": "2026-08-27",
+    "rows": 1357,
+    "updatedAt": "2026-08-27T23:50:23.032201Z"
+  },
+  {
+    "schemeCode": 148962,
+    "schemeName": "Aditya Birla Sun Life Nifty 50 Equal Weight index Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Nifty 50 Equal Weight index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-06-10",
+    "lastDate": "2026-08-27",
+    "rows": 1286,
+    "updatedAt": "2026-08-27T23:50:24.274142Z"
+  },
+  {
+    "schemeCode": 148978,
+    "schemeName": "Kotak Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-06-24",
+    "lastDate": "2026-08-27",
+    "rows": 1276,
+    "updatedAt": "2026-08-27T23:50:24.062654Z"
+  },
+  {
+    "schemeCode": 149039,
+    "schemeName": "Navi Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-07-16",
+    "lastDate": "2026-08-27",
+    "rows": 1261,
+    "updatedAt": "2026-08-27T23:50:25.055130Z"
+  },
+  {
+    "schemeCode": 149250,
+    "schemeName": "Edelweiss Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-10-07",
+    "lastDate": "2026-08-27",
+    "rows": 1205,
+    "updatedAt": "2026-08-27T23:50:27.148245Z"
+  },
+  {
+    "schemeCode": 149373,
+    "schemeName": "Axis Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2021-12-08",
+    "lastDate": "2026-08-27",
+    "rows": 1172,
+    "updatedAt": "2026-08-27T23:50:28.570856Z"
+  },
+  {
+    "schemeCode": 149803,
+    "schemeName": "UTI BSE Sensex Index Fund - Direct Plan - Growth",
+    "fundHouse": "UTI BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2022-02-01",
+    "lastDate": "2026-08-27",
+    "rows": 1126,
+    "updatedAt": "2026-08-27T23:50:30.444065Z"
+  },
+  {
+    "schemeCode": 151157,
+    "schemeName": "HSBC NIFTY 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC NIFTY 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2022-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 924,
+    "updatedAt": "2026-08-27T23:50:35.428887Z"
+  },
+  {
+    "schemeCode": 151165,
+    "schemeName": "360 ONE ELSS Tax Saver Nifty 50 Index Fund - Direct Plan - GROWTH Option",
+    "fundHouse": "360 ONE ELSS Tax Saver Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2023-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 899,
+    "updatedAt": "2026-08-27T23:50:35.462262Z"
+  },
+  {
+    "schemeCode": 151739,
+    "schemeName": "UTI Nifty 500 Value 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Nifty 500 Value 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2023-05-12",
+    "lastDate": "2026-08-27",
+    "rows": 812,
+    "updatedAt": "2026-08-27T23:50:37.198020Z"
+  },
+  {
+    "schemeCode": 151769,
+    "schemeName": "SBI BSE Sensex Index Fund - Direct Plan - Growth",
+    "fundHouse": "SBI BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2023-05-31",
+    "lastDate": "2026-08-27",
+    "rows": 808,
+    "updatedAt": "2026-08-27T23:50:37.219405Z"
+  },
+  {
+    "schemeCode": 152062,
+    "schemeName": "NAVI BSE SENSEX INDEX FUND - Direct Plan - GROWTH",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2023-09-05",
+    "lastDate": "2026-08-27",
+    "rows": 733,
+    "updatedAt": "2026-08-27T23:50:38.734122Z"
+  },
+  {
+    "schemeCode": 148360,
+    "schemeName": "L&T Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "L&T Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2020-04-17",
+    "lastDate": "2022-11-24",
+    "rows": 647,
+    "updatedAt": "2026-08-27T23:50:19.011811Z"
+  },
+  {
+    "schemeCode": 148363,
+    "schemeName": "L&T Next Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "L&T Next Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2020-04-17",
+    "lastDate": "2022-11-24",
+    "rows": 647,
+    "updatedAt": "2026-08-27T23:50:19.278431Z"
+  },
+  {
+    "schemeCode": 152329,
+    "schemeName": "Baroda BNP Paribas Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Baroda BNP Paribas Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-01-30",
+    "lastDate": "2026-08-27",
+    "rows": 636,
+    "updatedAt": "2026-08-27T23:50:41.050715Z"
+  },
+  {
+    "schemeCode": 120306,
+    "schemeName": "LIC  MF Index Fund-Sensex Advantage-Direct Plan Growth Option",
+    "fundHouse": "LIC  MF Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2015-08-07",
+    "rows": 629,
+    "updatedAt": "2026-08-27T23:49:27.595361Z"
+  },
+  {
+    "schemeCode": 152422,
+    "schemeName": "Axis BSE Sensex Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-02-29",
+    "lastDate": "2026-08-27",
+    "rows": 622,
+    "updatedAt": "2026-08-27T23:50:41.299252Z"
+  },
+  {
+    "schemeCode": 152731,
+    "schemeName": "Axis Nifty 500 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Nifty 500 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-07-16",
+    "lastDate": "2026-08-27",
+    "rows": 531,
+    "updatedAt": "2026-08-27T23:50:42.713746Z"
+  },
+  {
+    "schemeCode": 152842,
+    "schemeName": "Nippon India Nifty 500 Equal Weight Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Nifty 500 Equal Weight Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-09-11",
+    "lastDate": "2026-08-27",
+    "rows": 484,
+    "updatedAt": "2026-08-27T23:50:43.521979Z"
+  },
+  {
+    "schemeCode": 152908,
+    "schemeName": "SBI Nifty 500 Index Fund - Direct Plan - Growth",
+    "fundHouse": "SBI Nifty 500 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-10-04",
+    "lastDate": "2026-08-27",
+    "rows": 475,
+    "updatedAt": "2026-08-27T23:50:44.377999Z"
+  },
+  {
+    "schemeCode": 152875,
+    "schemeName": "Motilal Oswal Nifty 500 Momentum 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Nifty 500 Momentum 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-09-30",
+    "lastDate": "2026-08-27",
+    "rows": 471,
+    "updatedAt": "2026-08-27T23:50:43.650621Z"
+  },
+  {
+    "schemeCode": 152881,
+    "schemeName": "Nippon India Nifty 500 Momentum 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Nifty 500 Momentum 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-10-01",
+    "lastDate": "2026-08-27",
+    "rows": 470,
+    "updatedAt": "2026-08-27T23:50:44.018675Z"
+  },
+  {
+    "schemeCode": 152990,
+    "schemeName": "Bandhan Nifty 500 Value 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Bandhan Nifty 500 Value 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-10-30",
+    "lastDate": "2026-08-27",
+    "rows": 457,
+    "updatedAt": "2026-08-27T23:50:45.364583Z"
+  },
+  {
+    "schemeCode": 153003,
+    "schemeName": "Bandhan Nifty 500 Momentum 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Bandhan Nifty 500 Momentum 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-10-30",
+    "lastDate": "2026-08-27",
+    "rows": 457,
+    "updatedAt": "2026-08-27T23:50:45.382897Z"
+  },
+  {
+    "schemeCode": 152972,
+    "schemeName": "Mirae Asset Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-10-25",
+    "lastDate": "2026-08-27",
+    "rows": 453,
+    "updatedAt": "2026-08-27T23:50:44.461373Z"
+  },
+  {
+    "schemeCode": 153161,
+    "schemeName": "ICICI Prudential Nifty 500 Index Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Nifty 500 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-12-23",
+    "lastDate": "2026-08-27",
+    "rows": 415,
+    "updatedAt": "2026-08-27T23:50:45.864682Z"
+  },
+  {
+    "schemeCode": 153150,
+    "schemeName": "Kotak Nifty 50 Equal Weight Index Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Nifty 50 Equal Weight Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2024-12-30",
+    "lastDate": "2026-08-27",
+    "rows": 411,
+    "updatedAt": "2026-08-27T23:50:45.781588Z"
+  },
+  {
+    "schemeCode": 153219,
+    "schemeName": "DSP BSE SENSEX Next 30 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP BSE SENSEX Next 30 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-01-30",
+    "lastDate": "2026-08-27",
+    "rows": 388,
+    "updatedAt": "2026-08-27T23:50:46.020643Z"
+  },
+  {
+    "schemeCode": 153286,
+    "schemeName": "Kotak BSE Sensex Index Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-02-20",
+    "lastDate": "2026-08-27",
+    "rows": 373,
+    "updatedAt": "2026-08-27T23:50:46.305058Z"
+  },
+  {
+    "schemeCode": 153474,
+    "schemeName": "Nippon India Nifty 500 Low Volatility 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Nifty 500 Low Volatility 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-05-08",
+    "lastDate": "2026-08-27",
+    "rows": 324,
+    "updatedAt": "2026-08-27T23:49:19.329440Z"
+  },
+  {
+    "schemeCode": 153470,
+    "schemeName": "Nippon India Nifty 500 Quality 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Nifty 500 Quality 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-05-08",
+    "lastDate": "2026-08-27",
+    "rows": 324,
+    "updatedAt": "2026-08-27T23:50:47.068337Z"
+  },
+  {
+    "schemeCode": 153506,
+    "schemeName": "Bajaj Finserv Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Bajaj Finserv Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-05-19",
+    "lastDate": "2026-08-27",
+    "rows": 317,
+    "updatedAt": "2026-08-27T23:50:47.146521Z"
+  },
+  {
+    "schemeCode": 153529,
+    "schemeName": "ANGEL ONE NIFTY 50 INDEX FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-05-28",
+    "lastDate": "2026-08-27",
+    "rows": 309,
+    "updatedAt": "2026-08-27T23:50:47.319307Z"
+  },
+  {
+    "schemeCode": 153567,
+    "schemeName": "Nippon India BSE Sensex Next 30 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India BSE Sensex Next 30 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-06-12",
+    "lastDate": "2026-08-27",
+    "rows": 299,
+    "updatedAt": "2026-08-27T23:50:47.468416Z"
+  },
+  {
+    "schemeCode": 153704,
+    "schemeName": "Groww Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-07-22",
+    "lastDate": "2026-08-27",
+    "rows": 271,
+    "updatedAt": "2026-08-27T23:50:47.823831Z"
+  },
+  {
+    "schemeCode": 153787,
+    "schemeName": "JioBlackRock Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "JioBlackRock Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-08-22",
+    "lastDate": "2026-08-27",
+    "rows": 249,
+    "updatedAt": "2026-08-27T23:50:48.051318Z"
+  },
+  {
+    "schemeCode": 153906,
+    "schemeName": "Zerodha Nifty 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Zerodha Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-10-17",
+    "lastDate": "2026-08-27",
+    "rows": 212,
+    "updatedAt": "2026-08-27T23:50:49.162150Z"
+  },
+  {
+    "schemeCode": 153932,
+    "schemeName": "Zerodha BSE SENSEX Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Zerodha BSE SENSEX Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2025-11-10",
+    "lastDate": "2026-08-27",
+    "rows": 199,
+    "updatedAt": "2026-08-27T23:50:49.215709Z"
+  },
+  {
+    "schemeCode": 154088,
+    "schemeName": "DSP Nifty 500 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty 500 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2026-01-05",
+    "lastDate": "2026-08-27",
+    "rows": 160,
+    "updatedAt": "2026-08-27T23:50:49.761808Z"
+  },
+  {
+    "schemeCode": 154301,
+    "schemeName": "Choice Nifty 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Choice Nifty 50 Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2026-04-09",
+    "lastDate": "2026-08-27",
+    "rows": 97,
+    "updatedAt": "2026-08-27T23:50:50.668373Z"
+  },
+  {
+    "schemeCode": 154340,
+    "schemeName": "Invesco India BSE Sensex Index Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India BSE Sensex Index",
+    "schemeCategory": "Index Cap",
+    "firstDate": "2026-05-15",
+    "lastDate": "2026-08-27",
+    "rows": 73,
+    "updatedAt": "2026-08-27T23:50:50.709656Z"
   }
 ]

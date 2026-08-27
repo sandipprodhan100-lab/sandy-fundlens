@@ -1,12 +1,102 @@
 [
   {
-    "schemeCode": 120847,
-    "schemeName": "Quant Active Fund - Direct Plan - Growth",
-    "fundHouse": "Quant Mutual Fund",
+    "schemeCode": 152751,
+    "schemeName": "Navi Nifty 500 Multicap 50:25:25 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Nifty 500 Multicap 50:25:25 Index",
     "schemeCategory": "Multi Cap",
-    "firstDate": "2013-01-07",
+    "firstDate": "2024-08-02",
     "lastDate": "2026-08-27",
-    "rows": 3363,
-    "updatedAt": "2026-08-27T23:38:36.493146Z"
+    "rows": 512,
+    "updatedAt": "2026-08-27T23:50:42.931572Z"
+  },
+  {
+    "schemeCode": 152778,
+    "schemeName": "HDFC NIFTY500 Multicap 50:25:25 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC NIFTY500 Multicap 50:25:25 Index",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2024-08-23",
+    "lastDate": "2026-08-27",
+    "rows": 497,
+    "updatedAt": "2026-08-27T23:50:43.131931Z"
+  },
+  {
+    "schemeCode": 152815,
+    "schemeName": "PGIM India Multi Cap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "PGIM India Multi Cap",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2024-09-13",
+    "lastDate": "2026-08-27",
+    "rows": 482,
+    "updatedAt": "2026-08-27T23:50:43.294747Z"
+  },
+  {
+    "schemeCode": 152985,
+    "schemeName": "Edelweiss Nifty500 Multicap Momentum Quality 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Nifty500 Multicap Momentum Quality 50 Index",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2024-11-05",
+    "lastDate": "2026-08-27",
+    "rows": 447,
+    "updatedAt": "2026-08-27T23:50:44.836237Z"
+  },
+  {
+    "schemeCode": 152847,
+    "schemeName": "Samco Multi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Samco Multi Cap",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2024-11-06",
+    "lastDate": "2026-08-27",
+    "rows": 446,
+    "updatedAt": "2026-08-27T23:50:43.459652Z"
+  },
+  {
+    "schemeCode": 153034,
+    "schemeName": "Groww Multicap Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Multicap",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2024-12-18",
+    "lastDate": "2026-08-27",
+    "rows": 418,
+    "updatedAt": "2026-08-27T23:50:45.515230Z"
+  },
+  {
+    "schemeCode": 153309,
+    "schemeName": "Bajaj Finserv Multi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Bajaj Finserv Multi Cap",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2025-03-03",
+    "lastDate": "2026-08-27",
+    "rows": 367,
+    "updatedAt": "2026-08-27T23:50:46.994608Z"
+  },
+  {
+    "schemeCode": 153515,
+    "schemeName": "UTI Multi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Multi Cap",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2025-05-20",
+    "lastDate": "2026-08-27",
+    "rows": 316,
+    "updatedAt": "2026-08-27T23:50:47.291682Z"
+  },
+  {
+    "schemeCode": 153644,
+    "schemeName": "TRUSTMF MULTI CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2025-07-25",
+    "lastDate": "2026-08-27",
+    "rows": 269,
+    "updatedAt": "2026-08-27T23:50:47.778991Z"
+  },
+  {
+    "schemeCode": 154066,
+    "schemeName": "Tata BSE Multicap Consumption 50:30:20 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata BSE Multicap Consumption 50:30:20 Index",
+    "schemeCategory": "Multi Cap",
+    "firstDate": "2026-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 161,
+    "updatedAt": "2026-08-27T23:50:49.712786Z"
   }
 ]

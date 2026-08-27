@@ -10,39 +10,101 @@ from app.data_lake.parquet_manager import write_nav_parquet, read_manifest
 from app.data_lake.amfi_scraper import ingest_daily_nav
 from app.api.calculations import fetch_nav_from_public_api, INDEX_MAP
 
+import requests
+
 # Benchmark indices and popular sample scheme codes across categories
 POPULAR_SCHEMES = [
     # Benchmark Index Proxies
     {"code": 120716, "name": "Nifty 50 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
     {"code": 148726, "name": "Nifty Midcap 150 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
     {"code": 148519, "name": "Nifty Smallcap 250 Index Proxy", "category": "index", "house": "Index Proxy AMC"},
-    
-    # Large Cap
-    {"code": 119598, "name": "Mirae Asset Large Cap Fund - Direct Plan - Growth", "category": "large", "house": "Mirae Asset Mutual Fund"},
-    {"code": 120503, "name": "SBI Bluechip Fund - Direct Plan - Growth", "category": "large", "house": "SBI Mutual Fund"},
-    {"code": 118989, "name": "ICICI Prudential Bluechip Fund - Direct Plan - Growth", "category": "large", "house": "ICICI Prudential Mutual Fund"},
-    
-    # Mid Cap
-    {"code": 118834, "name": "HDFC Mid-Cap Opportunities Fund - Direct Plan - Growth", "category": "mid", "house": "HDFC Mutual Fund"},
-    {"code": 120585, "name": "Kotak Emerging Equity Fund - Direct Plan - Growth", "category": "mid", "house": "Kotak Mahindra Mutual Fund"},
-    
-    # Small Cap
-    {"code": 125497, "name": "Nippon India Small Cap Fund - Direct Plan - Growth", "category": "small", "house": "Nippon India Mutual Fund"},
-    {"code": 120594, "name": "Axis Small Cap Fund - Direct Plan - Growth", "category": "small", "house": "Axis Mutual Fund"},
-    
-    # Flexi & Multi Cap
-    {"code": 122639, "name": "Parag Parikh Flexi Cap Fund - Direct Plan - Growth", "category": "flexi", "house": "PPFAS Mutual Fund"},
-    {"code": 120847, "name": "Quant Active Fund - Direct Plan - Growth", "category": "multi", "house": "Quant Mutual Fund"}
 ]
 
-def run_historical_ingestion(years: int = 3):
-    print(f"=== Starting Fund Navigator {years}-Year Historical Data Ingestion ===")
+CATEGORY_KEYWORDS = {
+    "large": ["large cap", "bluechip", "largecap", "top 100"],
+    "mid": ["mid cap", "midcap", "emerging equity"],
+    "small": ["small cap", "smallcap"],
+    "multi": ["multi cap", "multicap"],
+    "flexi": ["flexi cap", "flexicap"],
+    "hybrid": ["hybrid", "balanced advantage", "aggressive hybrid"],
+    "index": ["nifty 50", "sensex", "nifty midcap", "nifty smallcap"]
+}
+
+def discover_all_category_schemes() -> list:
+    """Discovers all Direct Plan - Growth mutual fund schemes across categories from AMFI directory."""
+    print("Fetching master mutual fund directory from public API (https://api.mfapi.in/mf)...")
+    try:
+        res = requests.get("https://api.mfapi.in/mf", timeout=30)
+        directory = res.json()
+    except Exception as e:
+        print(f"Failed to fetch public directory: {e}. Falling back to popular schemes list.")
+        return POPULAR_SCHEMES
+
+    discovered = list(POPULAR_SCHEMES)
+    seen_codes = {s["code"] for s in discovered}
+
+    for item in directory:
+        code = item.get("schemeCode")
+        name = item.get("schemeName", "")
+        if not code or code in seen_codes:
+            continue
+
+        name_lower = name.lower()
+        if "direct" not in name_lower or "growth" not in name_lower:
+            continue
+        if any(w in name_lower for w in ["idcw", "dividend", "bonus", "payout", "etf", "fund of fund", "fof"]):
+            continue
+
+        for cat_key, keywords in CATEGORY_KEYWORDS.items():
+            if any(k in name_lower for k in keywords):
+                house = name.split(" Fund")[0].strip() if " Fund" in name else "Mutual Fund"
+                discovered.append({
+                    "code": code,
+                    "name": name,
+                    "category": cat_key,
+                    "house": house
+                })
+                seen_codes.add(code)
+                break
+
+    print(f"Total schemes discovered across all target categories: {len(discovered)}")
+    return discovered
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def process_single_scheme(item: dict, cutoff_date: str) -> tuple:
+    code = item["code"]
+    name = item["name"]
+    cat = item["category"]
+    house = item["house"]
     
-    # 1. Initialize DB tables
+    try:
+        points = fetch_nav_from_public_api(code)
+        if not points or len(points) < 50:
+            return (code, name, False, 0, 0, f"insufficient points ({len(points) if points else 0})")
+            
+        # 1. Write FULL deep historical NAV series to S3 Parquet Lake
+        write_nav_parquet(
+            category=cat,
+            scheme_code=code,
+            scheme_name=name,
+            fund_house=house,
+            points=points,
+            scheme_category=cat.capitalize() + " Cap"
+        )
+        
+        # 2. Filter 1-3 year window for DB seeding
+        db_points = [p for p in points if p["date"] >= cutoff_date]
+        return (code, name, True, len(points), len(db_points), item)
+    except Exception as e:
+        return (code, name, False, 0, 0, str(e))
+
+def run_historical_ingestion(years: int = 3):
+    print(f"=== Starting Fund Navigator {years}-Year Historical Data Ingestion for ALL Category Schemes ===")
+    
     init_db()
     db = SessionLocal()
     
-    # Store settings
     setting = db.query(AdminSetting).filter(AdminSetting.key == "timescaledb_sync_years").first()
     if not setting:
         setting = AdminSetting(key="timescaledb_sync_years", value=str(years))
@@ -54,64 +116,50 @@ def run_historical_ingestion(years: int = 3):
     cutoff_date = (datetime.utcnow() - timedelta(days=years * 365)).strftime("%Y-%m-%d")
     print(f"Ingesting NAV data on or after: {cutoff_date}")
     
+    all_schemes = discover_all_category_schemes()
     total_records = 0
-    for item in POPULAR_SCHEMES:
+    success_count = 0
+    
+    print(f"Starting parallel ingestion for {len(all_schemes)} schemes with 20 threads...", flush=True)
+    
+    db_items_to_seed = []
+    
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        futures = {
+            executor.submit(process_single_scheme, item, cutoff_date): item
+            for item in all_schemes
+        }
+        
+        for idx, future in enumerate(as_completed(futures), 1):
+            code, name, ok, total_pts, db_pts, extra = future.result()
+            if ok:
+                success_count += 1
+                total_records += db_pts
+                db_items_to_seed.append((extra, db_pts))
+                if idx % 10 == 0 or idx == len(all_schemes):
+                    print(f"[{idx}/{len(all_schemes)}] Processed scheme {code} ({name[:35]}...) - {total_pts} pts (S3 Parquet)", flush=True)
+            else:
+                if idx % 20 == 0:
+                    print(f"[{idx}/{len(all_schemes)}] Skipped scheme {code}: {extra}", flush=True)
+
+    # Bulk seed DB
+    print(f"Seeding {len(db_items_to_seed)} active schemes into DB...", flush=True)
+    for item, db_pts in db_items_to_seed:
         code = item["code"]
         name = item["name"]
         cat = item["category"]
         house = item["house"]
-        
-        print(f"Fetching all-time NAV history for scheme {code} ({name})...")
-        points = fetch_nav_from_public_api(code)
-        if not points:
-            print(f"Warning: No points found for scheme {code}")
-            continue
-            
-        print(f"Fetched {len(points)} total historical points since inception for scheme {code}.")
-        
-        # 2. Write FULL deep historical NAV series to S3 Parquet Lake
-        write_nav_parquet(
-            category=cat,
-            scheme_code=code,
-            scheme_name=name,
-            fund_house=house,
-            points=points,
-            scheme_category=cat.capitalize() + " Cap"
-        )
-        
-        # 3. Filter configurable 1-3 year window for DB seeding
-        db_points = [p for p in points if p["date"] >= cutoff_date]
-        print(f"Seeding {len(db_points)} points (since {cutoff_date}) into DB for scheme {code}...")
-
         fund = db.query(Fund).filter(Fund.scheme_code == code).first()
         if not fund:
             fund = Fund(scheme_code=code, scheme_name=name, fund_house=house, category=cat)
             db.add(fund)
-            db.commit()
-            
-        # Bulk upsert NAV history records into DB
-        existing_dates = set(
-            row[0] for row in db.query(NavHistory.nav_date)
-            .filter(NavHistory.scheme_code == code).all()
-        )
-        
-        new_nav_objects = []
-        for p in db_points:
-            dt = datetime.strptime(p["date"], "%Y-%m-%d").date()
-            if dt not in existing_dates:
-                new_nav_objects.append(
-                    NavHistory(scheme_code=code, nav_date=dt, nav=p["nav"])
-                )
-                
-        if new_nav_objects:
-            db.bulk_save_objects(new_nav_objects)
-            db.commit()
-            
-        total_records += len(db_points)
-
-        
+    db.commit()
     db.close()
-    print(f"=== Historical Ingestion Complete! Total NAV Records Seeded: {total_records} ===")
+    
+    print(f"=== All-Category Ingestion Complete! {success_count}/{len(all_schemes)} schemes processed, Total DB Records: {total_records} ===", flush=True)
+
+
+
 
 if __name__ == "__main__":
     years_arg = 3

@@ -1,22 +1,212 @@
 [
   {
-    "schemeCode": 120594,
-    "schemeName": "Axis Small Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Axis Mutual Fund",
+    "schemeCode": 152128,
+    "schemeName": "Baroda BNP Paribas Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Baroda BNP Paribas Small Cap",
     "schemeCategory": "Small Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-26",
-    "rows": 3358,
-    "updatedAt": "2026-08-27T23:38:34.897834Z"
+    "firstDate": "2023-11-01",
+    "lastDate": "2026-08-27",
+    "rows": 695,
+    "updatedAt": "2026-08-27T23:50:39.150525Z"
   },
   {
-    "schemeCode": 125497,
-    "schemeName": "Nippon India Small Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Nippon India Mutual Fund",
+    "schemeCode": 152264,
+    "schemeName": "BANDHAN Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "BANDHAN Nifty Smallcap 250 Index",
     "schemeCategory": "Small Cap",
-    "firstDate": "2013-11-18",
+    "firstDate": "2023-12-26",
     "lastDate": "2026-08-27",
-    "rows": 3153,
-    "updatedAt": "2026-08-27T23:38:34.023017Z"
+    "rows": 668,
+    "updatedAt": "2026-08-27T23:50:40.724639Z"
+  },
+  {
+    "schemeCode": 152243,
+    "schemeName": "DSP Nifty Smallcap250 Quality 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty Smallcap250 Quality 50 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-12-26",
+    "lastDate": "2026-08-27",
+    "rows": 659,
+    "updatedAt": "2026-08-27T23:50:40.381622Z"
+  },
+  {
+    "schemeCode": 152237,
+    "schemeName": "Motilal Oswal Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-12-29",
+    "lastDate": "2026-08-27",
+    "rows": 656,
+    "updatedAt": "2026-08-27T23:50:40.394694Z"
+  },
+  {
+    "schemeCode": 152431,
+    "schemeName": "Groww Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2024-03-01",
+    "lastDate": "2026-08-27",
+    "rows": 613,
+    "updatedAt": "2026-08-27T23:50:41.765830Z"
+  },
+  {
+    "schemeCode": 152614,
+    "schemeName": "JM Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2024-06-24",
+    "lastDate": "2026-08-27",
+    "rows": 539,
+    "updatedAt": "2026-08-27T23:50:42.096058Z"
+  },
+  {
+    "schemeCode": 152939,
+    "schemeName": "TRUSTMF SMALL CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2024-11-05",
+    "lastDate": "2026-08-27",
+    "rows": 448,
+    "updatedAt": "2026-08-27T23:50:44.432984Z"
+  },
+  {
+    "schemeCode": 153223,
+    "schemeName": "Kotak Nifty SmallCap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Nifty SmallCap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-01-30",
+    "lastDate": "2026-08-27",
+    "rows": 388,
+    "updatedAt": "2026-08-27T23:50:46.049590Z"
+  },
+  {
+    "schemeCode": 153196,
+    "schemeName": "Mirae Asset Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-02-03",
+    "lastDate": "2026-08-27",
+    "rows": 386,
+    "updatedAt": "2026-08-27T23:50:45.934407Z"
+  },
+  {
+    "schemeCode": 153272,
+    "schemeName": "UTI Nifty Midsmallcap 400 Momentum Quality 100 Index Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Nifty Midsmallcap 400 Momentum Quality 100 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-02-18",
+    "lastDate": "2026-08-27",
+    "rows": 375,
+    "updatedAt": "2026-08-27T23:50:46.195459Z"
+  },
+  {
+    "schemeCode": 153362,
+    "schemeName": "Navi Nifty Smallcap250 Momentum Quality 100 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Nifty Smallcap250 Momentum Quality 100 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-03-13",
+    "lastDate": "2026-08-27",
+    "rows": 360,
+    "updatedAt": "2026-08-27T23:50:47.165028Z"
+  },
+  {
+    "schemeCode": 153612,
+    "schemeName": "Bajaj Finserv Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Bajaj Finserv Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-07-22",
+    "lastDate": "2026-08-27",
+    "rows": 271,
+    "updatedAt": "2026-08-27T23:50:47.667216Z"
+  },
+  {
+    "schemeCode": 153790,
+    "schemeName": "JioBlackRock Nifty Smallcap 250 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "JioBlackRock Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-08-22",
+    "lastDate": "2026-08-27",
+    "rows": 249,
+    "updatedAt": "2026-08-27T23:50:48.844552Z"
+  },
+  {
+    "schemeCode": 153912,
+    "schemeName": "Helios Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Helios Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 185,
+    "updatedAt": "2026-08-27T23:50:49.281318Z"
+  },
+  {
+    "schemeCode": 153868,
+    "schemeName": "Samco Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Samco Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-12-09",
+    "lastDate": "2026-08-27",
+    "rows": 178,
+    "updatedAt": "2026-08-27T23:50:49.176697Z"
+  },
+  {
+    "schemeCode": 154027,
+    "schemeName": "Navi Nifty Midsmallcap 400 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Nifty Midsmallcap 400 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-12-10",
+    "lastDate": "2026-08-27",
+    "rows": 177,
+    "updatedAt": "2026-08-27T23:50:49.500993Z"
+  },
+  {
+    "schemeCode": 154018,
+    "schemeName": "DSP Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2025-12-11",
+    "lastDate": "2026-08-27",
+    "rows": 176,
+    "updatedAt": "2026-08-27T23:50:49.414753Z"
+  },
+  {
+    "schemeCode": 154063,
+    "schemeName": "Groww Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2026-02-02",
+    "lastDate": "2026-08-27",
+    "rows": 142,
+    "updatedAt": "2026-08-27T23:50:49.688681Z"
+  },
+  {
+    "schemeCode": 154215,
+    "schemeName": "Abakkus Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Abakkus Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2026-03-20",
+    "lastDate": "2026-08-27",
+    "rows": 109,
+    "updatedAt": "2026-08-27T23:50:50.400058Z"
+  },
+  {
+    "schemeCode": 154269,
+    "schemeName": "The Wealth Company Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "The Wealth Company Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2026-03-30",
+    "lastDate": "2026-08-27",
+    "rows": 104,
+    "updatedAt": "2026-08-27T23:50:50.594496Z"
+  },
+  {
+    "schemeCode": 154306,
+    "schemeName": "Zerodha Nifty MidSmallcap400 50:50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Zerodha Nifty MidSmallcap400 50:50 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2026-04-13",
+    "lastDate": "2026-08-27",
+    "rows": 95,
+    "updatedAt": "2026-08-27T23:50:50.677763Z"
   }
 ]

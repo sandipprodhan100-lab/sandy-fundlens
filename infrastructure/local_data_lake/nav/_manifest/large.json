@@ -1,15 +1,5 @@
 [
   {
-    "schemeCode": 119598,
-    "schemeName": "Mirae Asset Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Mirae Asset Mutual Fund",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3369,
-    "updatedAt": "2026-08-27T23:38:29.923862Z"
-  },
-  {
     "schemeCode": 120503,
     "schemeName": "SBI Bluechip Fund - Direct Plan - Growth",
     "fundHouse": "SBI Mutual Fund",
@@ -17,7 +7,57 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:38:30.690394Z"
+    "updatedAt": "2026-08-27T23:44:21.409696Z"
+  },
+  {
+    "schemeCode": 118479,
+    "schemeName": "BANDHAN LARGE CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:01.413068Z"
+  },
+  {
+    "schemeCode": 119598,
+    "schemeName": "SBI Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "SBI Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:23.514874Z"
+  },
+  {
+    "schemeCode": 120465,
+    "schemeName": "Axis Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:33.468759Z"
+  },
+  {
+    "schemeCode": 120490,
+    "schemeName": "JM Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3364,
+    "updatedAt": "2026-08-27T23:49:33.649321Z"
+  },
+  {
+    "schemeCode": 119250,
+    "schemeName": "DSP Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3362,
+    "updatedAt": "2026-08-27T23:49:16.063456Z"
   },
   {
     "schemeCode": 118989,
@@ -27,6 +67,576 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:38:31.507423Z"
+    "updatedAt": "2026-08-27T23:44:22.291670Z"
+  },
+  {
+    "schemeCode": 119018,
+    "schemeName": "HDFC Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:11.779523Z"
+  },
+  {
+    "schemeCode": 119133,
+    "schemeName": "Groww Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:13.446055Z"
+  },
+  {
+    "schemeCode": 118531,
+    "schemeName": "Franklin India Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:01.196307Z"
+  },
+  {
+    "schemeCode": 118632,
+    "schemeName": "Nippon India Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:06.029652Z"
+  },
+  {
+    "schemeCode": 118825,
+    "schemeName": "Mirae Asset Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:07.816196Z"
+  },
+  {
+    "schemeCode": 118870,
+    "schemeName": "Taurus Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Taurus Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:07.919221Z"
+  },
+  {
+    "schemeCode": 119160,
+    "schemeName": "Tata Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:13.846051Z"
+  },
+  {
+    "schemeCode": 120030,
+    "schemeName": "HSBC Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:27.882046Z"
+  },
+  {
+    "schemeCode": 120392,
+    "schemeName": "Invesco India Largecap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Largecap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:32.779208Z"
+  },
+  {
+    "schemeCode": 120586,
+    "schemeName": "ICICI Prudential Large Cap Fund (erstwhile Bluechip Fund) - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:34.822408Z"
+  },
+  {
+    "schemeCode": 120656,
+    "schemeName": "UTI - Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI - Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:35.888844Z"
+  },
+  {
+    "schemeCode": 118269,
+    "schemeName": "Canara Robeco Large Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:01.539042Z"
+  },
+  {
+    "schemeCode": 119528,
+    "schemeName": "Aditya Birla Sun Life Large Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:21.612806Z"
+  },
+  {
+    "schemeCode": 120152,
+    "schemeName": "Kotak Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:49:28.989833Z"
+  },
+  {
+    "schemeCode": 118617,
+    "schemeName": "Edelweiss Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-08",
+    "lastDate": "2026-08-27",
+    "rows": 3357,
+    "updatedAt": "2026-08-27T23:49:05.396224Z"
+  },
+  {
+    "schemeCode": 120267,
+    "schemeName": "LIC MF Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3350,
+    "updatedAt": "2026-08-27T23:49:30.662581Z"
+  },
+  {
+    "schemeCode": 120186,
+    "schemeName": "ICICI Prudential US Bluechip Equity Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential US Bluechip Equity",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-26",
+    "rows": 3249,
+    "updatedAt": "2026-08-27T23:49:29.703420Z"
+  },
+  {
+    "schemeCode": 118344,
+    "schemeName": "IDBI India Top 100 Equity Fund Growth Direct",
+    "fundHouse": "IDBI India Top 100 Equity",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2023-07-27",
+    "rows": 2602,
+    "updatedAt": "2026-08-27T23:48:59.427081Z"
+  },
+  {
+    "schemeCode": 138312,
+    "schemeName": "PGIM India Large Cap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "PGIM India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2016-03-08",
+    "lastDate": "2026-08-27",
+    "rows": 2581,
+    "updatedAt": "2026-08-27T23:49:54.896744Z"
+  },
+  {
+    "schemeCode": 119308,
+    "schemeName": "L&T India Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "L&T India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2435,
+    "updatedAt": "2026-08-27T23:49:16.629476Z"
+  },
+  {
+    "schemeCode": 119148,
+    "schemeName": "Navi Large Cap Equity Fund-Direct Plan-Growth Option",
+    "fundHouse": "Navi Large Cap Equity",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-07-15",
+    "rows": 2348,
+    "updatedAt": "2026-08-27T23:49:11.812853Z"
+  },
+  {
+    "schemeCode": 141248,
+    "schemeName": "Union Largecap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Union Largecap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2017-05-18",
+    "lastDate": "2026-08-27",
+    "rows": 2286,
+    "updatedAt": "2026-08-27T23:50:02.284110Z"
+  },
+  {
+    "schemeCode": 119893,
+    "schemeName": "BNP Paribas LARGE CAP Fund - Direct Plan - Growth Option",
+    "fundHouse": "BNP Paribas LARGE CAP",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-03-13",
+    "rows": 2264,
+    "updatedAt": "2026-08-27T23:49:25.695833Z"
+  },
+  {
+    "schemeCode": 119367,
+    "schemeName": "Baroda Large cap Fund - Plan B (Direct) - Growth Option",
+    "fundHouse": "Baroda Large cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-04",
+    "lastDate": "2022-03-13",
+    "rows": 2260,
+    "updatedAt": "2026-08-27T23:49:16.984119Z"
+  },
+  {
+    "schemeCode": 119441,
+    "schemeName": "Principal Emerging Bluechip Fund - Direct Plan - Growth Option",
+    "fundHouse": "Principal Emerging Bluechip",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2021-12-30",
+    "rows": 2211,
+    "updatedAt": "2026-08-27T23:49:18.229458Z"
+  },
+  {
+    "schemeCode": 146549,
+    "schemeName": "Mahindra Manulife Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mahindra Manulife Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2019-03-19",
+    "lastDate": "2026-08-27",
+    "rows": 1834,
+    "updatedAt": "2026-08-27T23:50:13.543216Z"
+  },
+  {
+    "schemeCode": 148507,
+    "schemeName": "Sundaram Large Cap Fund ( Formerly Know as Sundaram Blue Chip Fund) - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2020-10-12",
+    "lastDate": "2026-08-27",
+    "rows": 1448,
+    "updatedAt": "2026-08-27T23:50:21.759105Z"
+  },
+  {
+    "schemeCode": 148353,
+    "schemeName": "ITI Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "ITI Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2020-12-29",
+    "lastDate": "2026-08-27",
+    "rows": 1395,
+    "updatedAt": "2026-08-27T23:50:20.529232Z"
+  },
+  {
+    "schemeCode": 120757,
+    "schemeName": "UTI Bluechip Flexicap Fund - Direct Plan - Growth Option",
+    "fundHouse": "UTI Bluechip Flexicap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2018-05-02",
+    "rows": 1309,
+    "updatedAt": "2026-08-27T23:49:34.985284Z"
+  },
+  {
+    "schemeCode": 118643,
+    "schemeName": "Reliance Focused Large Cap Fund - Direct Plan Growth Plan - Growth Option",
+    "fundHouse": "Reliance Focused Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2018-04-27",
+    "rows": 1307,
+    "updatedAt": "2026-08-27T23:49:03.663753Z"
+  },
+  {
+    "schemeCode": 148980,
+    "schemeName": "BANK OF INDIA LARGE CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2021-07-01",
+    "lastDate": "2026-08-27",
+    "rows": 1271,
+    "updatedAt": "2026-08-27T23:50:24.207656Z"
+  },
+  {
+    "schemeCode": 150187,
+    "schemeName": "BARODA BNP PARIBAS LARGE CAP FUND - Direct Plan - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2022-03-14",
+    "lastDate": "2026-08-27",
+    "rows": 1098,
+    "updatedAt": "2026-08-27T23:50:31.108783Z"
+  },
+  {
+    "schemeCode": 138991,
+    "schemeName": "PGIM India Large Cap Fund - Series 2 - Direct Plan - Growth",
+    "fundHouse": "PGIM India Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2016-03-08",
+    "lastDate": "2020-04-07",
+    "rows": 1004,
+    "updatedAt": "2026-08-27T23:49:54.867426Z"
+  },
+  {
+    "schemeCode": 150440,
+    "schemeName": "quant Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "quant Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2022-08-12",
+    "lastDate": "2026-08-27",
+    "rows": 994,
+    "updatedAt": "2026-08-27T23:50:32.612754Z"
+  },
+  {
+    "schemeCode": 150797,
+    "schemeName": "WhiteOak Capital Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2022-12-02",
+    "lastDate": "2026-08-27",
+    "rows": 920,
+    "updatedAt": "2026-08-27T23:50:33.990911Z"
+  },
+  {
+    "schemeCode": 120100,
+    "schemeName": "DHFL Pramerica Large Cap Equity Fund - Direct Plan-Growth Option",
+    "fundHouse": "DHFL Pramerica Large Cap Equity",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2016-03-03",
+    "rows": 779,
+    "updatedAt": "2026-08-27T23:49:25.884872Z"
+  },
+  {
+    "schemeCode": 133355,
+    "schemeName": "Sundaram Top 100 Series IV Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2015-02-04",
+    "lastDate": "2018-01-30",
+    "rows": 737,
+    "updatedAt": "2026-08-27T23:49:45.098059Z"
+  },
+  {
+    "schemeCode": 140751,
+    "schemeName": "Sundaram Top 100 Series VII DIRECT PLAN GROWTH",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2017-03-31",
+    "lastDate": "2020-03-30",
+    "rows": 737,
+    "updatedAt": "2026-08-27T23:49:56.950214Z"
+  },
+  {
+    "schemeCode": 133590,
+    "schemeName": "Sundaram Top 100 Series V Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2015-04-01",
+    "lastDate": "2018-03-26",
+    "rows": 736,
+    "updatedAt": "2026-08-27T23:49:45.564728Z"
+  },
+  {
+    "schemeCode": 140575,
+    "schemeName": "Sundaram Top 100 Series VI Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2017-03-15",
+    "lastDate": "2020-03-11",
+    "rows": 736,
+    "updatedAt": "2026-08-27T23:49:57.043265Z"
+  },
+  {
+    "schemeCode": 130346,
+    "schemeName": "Sundaram Top 100 Series III Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2014-08-05",
+    "lastDate": "2017-07-31",
+    "rows": 732,
+    "updatedAt": "2026-08-27T23:49:43.133626Z"
+  },
+  {
+    "schemeCode": 129887,
+    "schemeName": "Sundaram Top 100 Series II Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2014-06-30",
+    "lastDate": "2017-06-27",
+    "rows": 731,
+    "updatedAt": "2026-08-27T23:49:42.233720Z"
+  },
+  {
+    "schemeCode": 129693,
+    "schemeName": "Sundaram Top 100 Series I Direct Plan Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2014-06-13",
+    "lastDate": "2017-06-06",
+    "rows": 730,
+    "updatedAt": "2026-08-27T23:49:41.129800Z"
+  },
+  {
+    "schemeCode": 139017,
+    "schemeName": "DHFL Pramerica Large Cap Fund - Series 3 - Direct Plan - Growth",
+    "fundHouse": "DHFL Pramerica Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2016-03-08",
+    "lastDate": "2018-10-29",
+    "rows": 652,
+    "updatedAt": "2026-08-27T23:49:54.176634Z"
+  },
+  {
+    "schemeCode": 138986,
+    "schemeName": "DHFL Pramerica Large Cap Fund - Series 1 - Direct Plan - Growth",
+    "fundHouse": "DHFL Pramerica Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2016-03-08",
+    "lastDate": "2018-09-24",
+    "rows": 629,
+    "updatedAt": "2026-08-27T23:49:53.329264Z"
+  },
+  {
+    "schemeCode": 129987,
+    "schemeName": "JPMorgan India Top 100 Fund - Direct Plan - Growth Option",
+    "fundHouse": "JPMorgan India Top 100",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2014-06-25",
+    "lastDate": "2016-11-24",
+    "rows": 590,
+    "updatedAt": "2026-08-27T23:49:41.979232Z"
+  },
+  {
+    "schemeCode": 149349,
+    "schemeName": "Motilal Oswal MSCI EAFE Top 100 Select Index Fund - Direct Plan Growth",
+    "fundHouse": "Motilal Oswal MSCI EAFE Top 100 Select Index",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2021-12-07",
+    "lastDate": "2024-01-12",
+    "rows": 519,
+    "updatedAt": "2026-08-27T23:50:26.030495Z"
+  },
+  {
+    "schemeCode": 152783,
+    "schemeName": "BAJAJ FINSERV LARGE CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2024-08-23",
+    "lastDate": "2026-08-27",
+    "rows": 497,
+    "updatedAt": "2026-08-27T23:50:43.161283Z"
+  },
+  {
+    "schemeCode": 119914,
+    "schemeName": "ING Large Cap Equity Fund - Direct Plan - Growth Option",
+    "fundHouse": "ING Large Cap Equity",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2014-10-09",
+    "rows": 436,
+    "updatedAt": "2026-08-27T23:49:24.328376Z"
+  },
+  {
+    "schemeCode": 153239,
+    "schemeName": "Samco Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Samco Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2025-03-28",
+    "lastDate": "2026-08-27",
+    "rows": 349,
+    "updatedAt": "2026-08-27T23:50:45.981087Z"
+  },
+  {
+    "schemeCode": 148524,
+    "schemeName": "Principal Large Cap Fund - Direct Growth",
+    "fundHouse": "Principal Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2020-10-20",
+    "lastDate": "2021-12-30",
+    "rows": 295,
+    "updatedAt": "2026-08-27T23:50:19.190427Z"
+  },
+  {
+    "schemeCode": 134001,
+    "schemeName": "DWS Large Cap Fund - Series 1 - Direct Plan - Growth",
+    "fundHouse": "DWS Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2015-03-26",
+    "lastDate": "2016-03-02",
+    "rows": 229,
+    "updatedAt": "2026-08-27T23:49:45.531659Z"
+  },
+  {
+    "schemeCode": 134134,
+    "schemeName": "DWS Large Cap Fund - Series 2 - Direct Plan - Growth",
+    "fundHouse": "DWS Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2015-04-13",
+    "lastDate": "2016-03-02",
+    "rows": 220,
+    "updatedAt": "2026-08-27T23:49:45.814741Z"
+  },
+  {
+    "schemeCode": 134413,
+    "schemeName": "DWS Large Cap Fund - Series 3 - Direct Plan - Growth",
+    "fundHouse": "DWS Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2015-04-30",
+    "lastDate": "2016-03-02",
+    "rows": 208,
+    "updatedAt": "2026-08-27T23:49:46.264395Z"
+  },
+  {
+    "schemeCode": 154155,
+    "schemeName": "Parag Parikh Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Parag Parikh Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2026-02-06",
+    "lastDate": "2026-08-27",
+    "rows": 138,
+    "updatedAt": "2026-08-27T23:50:49.912976Z"
+  },
+  {
+    "schemeCode": 154307,
+    "schemeName": "JioBlackRock Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JioBlackRock Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2026-04-16",
+    "lastDate": "2026-08-27",
+    "rows": 93,
+    "updatedAt": "2026-08-27T23:50:50.688469Z"
+  },
+  {
+    "schemeCode": 120347,
+    "schemeName": "LIC NOMURA MF TOP 100 FUND - Direct Plan GROWTH OPTION",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2013-05-06",
+    "rows": 81,
+    "updatedAt": "2026-08-27T23:49:28.332900Z"
   }
 ]

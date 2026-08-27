@@ -1,13 +1,113 @@
 [
   {
-    "schemeCode": 118834,
-    "schemeName": "HDFC Mid-Cap Opportunities Fund - Direct Plan - Growth",
-    "fundHouse": "HDFC Mutual Fund",
+    "schemeCode": 119716,
+    "schemeName": "SBI MIDCAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
     "schemeCategory": "Mid Cap",
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:38:32.376995Z"
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:48:28.615476Z"
+  },
+  {
+    "schemeCode": 120505,
+    "schemeName": "Axis Midcap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:48:33.665491Z"
+  },
+  {
+    "schemeCode": 118419,
+    "schemeName": "Bandhan Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Bandhan Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:49:02.085507Z"
+  },
+  {
+    "schemeCode": 119721,
+    "schemeName": "SBI LARGE & MIDCAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-26",
+    "rows": 3366,
+    "updatedAt": "2026-08-27T23:48:28.779685Z"
+  },
+  {
+    "schemeCode": 120826,
+    "schemeName": "Quant Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Quant Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:48:37.768444Z"
+  },
+  {
+    "schemeCode": 120841,
+    "schemeName": "Quant Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Quant Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3363,
+    "updatedAt": "2026-08-27T23:48:37.848913Z"
+  },
+  {
+    "schemeCode": 119218,
+    "schemeName": "DSP Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3362,
+    "updatedAt": "2026-08-27T23:48:25.582295Z"
+  },
+  {
+    "schemeCode": 119071,
+    "schemeName": "DSP Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3362,
+    "updatedAt": "2026-08-27T23:49:12.647979Z"
+  },
+  {
+    "schemeCode": 118533,
+    "schemeName": "Franklin India Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:01.922881Z"
+  },
+  {
+    "schemeCode": 118872,
+    "schemeName": "Taurus Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Taurus Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:08.358209Z"
+  },
+  {
+    "schemeCode": 118989,
+    "schemeName": "HDFC Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:49:10.979356Z"
   },
   {
     "schemeCode": 120585,
@@ -17,6 +117,720 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:38:33.123683Z"
+    "updatedAt": "2026-08-27T23:44:24.101255Z"
+  },
+  {
+    "schemeCode": 119178,
+    "schemeName": "Tata Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:25.049900Z"
+  },
+  {
+    "schemeCode": 119202,
+    "schemeName": "Tata Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:25.199993Z"
+  },
+  {
+    "schemeCode": 119350,
+    "schemeName": "BANK OF INDIA LARGE & MID CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:26.548734Z"
+  },
+  {
+    "schemeCode": 120357,
+    "schemeName": "Invesco India Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:32.379915Z"
+  },
+  {
+    "schemeCode": 120381,
+    "schemeName": "ICICI Prudential Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:32.530010Z"
+  },
+  {
+    "schemeCode": 120403,
+    "schemeName": "Invesco India Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:32.783460Z"
+  },
+  {
+    "schemeCode": 120596,
+    "schemeName": "ICICI Prudential Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:33.482549Z"
+  },
+  {
+    "schemeCode": 120665,
+    "schemeName": "UTI Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:36.181223Z"
+  },
+  {
+    "schemeCode": 120726,
+    "schemeName": "UTI - Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI - Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:36.483343Z"
+  },
+  {
+    "schemeCode": 118278,
+    "schemeName": "Canara Robeco Large and Mid Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Large and Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:48:57.486097Z"
+  },
+  {
+    "schemeCode": 118510,
+    "schemeName": "Franklin India Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Franklin India Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:02.182935Z"
+  },
+  {
+    "schemeCode": 118668,
+    "schemeName": "Nippon India Growth Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Growth Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:06.382568Z"
+  },
+  {
+    "schemeCode": 118678,
+    "schemeName": "Nippon India Vision Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Nippon India Vision Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:06.686349Z"
+  },
+  {
+    "schemeCode": 118834,
+    "schemeName": "Mirae Asset Large & Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Large & Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:49:07.967661Z"
+  },
+  {
+    "schemeCode": 119436,
+    "schemeName": "Aditya Birla Sun Life Large & Mid Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:48:26.948361Z"
+  },
+  {
+    "schemeCode": 119581,
+    "schemeName": "Sundaram Mid Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:48:27.547374Z"
+  },
+  {
+    "schemeCode": 119620,
+    "schemeName": "Aditya Birla Sun Life Midcap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:48:28.132975Z"
+  },
+  {
+    "schemeCode": 120158,
+    "schemeName": "Kotak Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:48:30.696692Z"
+  },
+  {
+    "schemeCode": 119566,
+    "schemeName": "Sundaram Large and Midcap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Large and Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3358,
+    "updatedAt": "2026-08-27T23:48:27.482707Z"
+  },
+  {
+    "schemeCode": 119775,
+    "schemeName": "Kotak Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3358,
+    "updatedAt": "2026-08-27T23:48:28.997334Z"
+  },
+  {
+    "schemeCode": 125307,
+    "schemeName": "PGIM India Midcap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "PGIM India Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-12-05",
+    "lastDate": "2026-08-27",
+    "rows": 3132,
+    "updatedAt": "2026-08-27T23:48:40.134458Z"
+  },
+  {
+    "schemeCode": 130498,
+    "schemeName": "HDFC Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2014-06-30",
+    "lastDate": "2026-08-27",
+    "rows": 2992,
+    "updatedAt": "2026-08-27T23:48:44.213745Z"
+  },
+  {
+    "schemeCode": 133710,
+    "schemeName": "LIC MF Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2015-02-26",
+    "lastDate": "2026-08-27",
+    "rows": 2832,
+    "updatedAt": "2026-08-27T23:48:45.979787Z"
+  },
+  {
+    "schemeCode": 135677,
+    "schemeName": "Navi Large & Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "Navi Large & Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2015-12-08",
+    "lastDate": "2026-08-27",
+    "rows": 2643,
+    "updatedAt": "2026-08-27T23:48:48.442997Z"
+  },
+  {
+    "schemeCode": 119397,
+    "schemeName": "L&T Large and Midcap Fund-Direct Plan-Growth",
+    "fundHouse": "L&T Large and Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2435,
+    "updatedAt": "2026-08-27T23:48:26.413069Z"
+  },
+  {
+    "schemeCode": 119807,
+    "schemeName": "L&T Mid Cap Fund-Direct Plan-Growth",
+    "fundHouse": "L&T Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-24",
+    "rows": 2435,
+    "updatedAt": "2026-08-27T23:48:28.523200Z"
+  },
+  {
+    "schemeCode": 140228,
+    "schemeName": "Edelweiss Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2016-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 2406,
+    "updatedAt": "2026-08-27T23:48:50.678752Z"
+  },
+  {
+    "schemeCode": 140175,
+    "schemeName": "Edelweiss Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2016-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 2406,
+    "updatedAt": "2026-08-27T23:48:50.701541Z"
+  },
+  {
+    "schemeCode": 120002,
+    "schemeName": "BNP Paribas Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "BNP Paribas Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-03-13",
+    "rows": 2264,
+    "updatedAt": "2026-08-27T23:48:29.330050Z"
+  },
+  {
+    "schemeCode": 142110,
+    "schemeName": "Mahindra Manulife Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mahindra Manulife Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2018-02-06",
+    "lastDate": "2026-08-27",
+    "rows": 2108,
+    "updatedAt": "2026-08-27T23:48:52.399375Z"
+  },
+  {
+    "schemeCode": 141950,
+    "schemeName": "BANK OF INDIA MID CAP TAX FUND SERIES 1 - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2018-02-26",
+    "lastDate": "2026-08-27",
+    "rows": 2094,
+    "updatedAt": "2026-08-27T23:48:52.114621Z"
+  },
+  {
+    "schemeCode": 145110,
+    "schemeName": "Axis Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2018-10-26",
+    "lastDate": "2026-08-26",
+    "rows": 1935,
+    "updatedAt": "2026-08-27T23:48:54.100092Z"
+  },
+  {
+    "schemeCode": 144315,
+    "schemeName": "BANK OF INDIA MID CAP TAX FUND Series 2 - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2018-10-26",
+    "lastDate": "2026-08-27",
+    "rows": 1930,
+    "updatedAt": "2026-08-27T23:48:53.365405Z"
+  },
+  {
+    "schemeCode": 146772,
+    "schemeName": "HSBC Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-04-04",
+    "lastDate": "2026-08-27",
+    "rows": 1822,
+    "updatedAt": "2026-08-27T23:48:55.746515Z"
+  },
+  {
+    "schemeCode": 120297,
+    "schemeName": "Sahara Midcap Fund-Growth Option - Direct",
+    "fundHouse": "Sahara Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-01",
+    "lastDate": "2020-04-03",
+    "rows": 1783,
+    "updatedAt": "2026-08-27T23:48:30.661354Z"
+  },
+  {
+    "schemeCode": 147445,
+    "schemeName": "Mirae Asset Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "Mirae Asset Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-07-30",
+    "lastDate": "2026-08-27",
+    "rows": 1744,
+    "updatedAt": "2026-08-27T23:48:55.931910Z"
+  },
+  {
+    "schemeCode": 147622,
+    "schemeName": "Motilal Oswal Nifty Midcap 150 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Nifty Midcap 150 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-09-11",
+    "lastDate": "2026-08-27",
+    "rows": 1717,
+    "updatedAt": "2026-08-27T23:48:56.254685Z"
+  },
+  {
+    "schemeCode": 147704,
+    "schemeName": "Motilal Oswal Large and Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Large and Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-10-22",
+    "lastDate": "2026-08-27",
+    "rows": 1691,
+    "updatedAt": "2026-08-27T23:48:56.864237Z"
+  },
+  {
+    "schemeCode": 147750,
+    "schemeName": "Union Large & Midcap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Union Large & Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-12-13",
+    "lastDate": "2026-08-27",
+    "rows": 1654,
+    "updatedAt": "2026-08-27T23:48:57.105014Z"
+  },
+  {
+    "schemeCode": 147840,
+    "schemeName": "Mahindra Manulife Large & Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mahindra Manulife Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2020-01-01",
+    "lastDate": "2026-08-27",
+    "rows": 1643,
+    "updatedAt": "2026-08-27T23:48:57.646038Z"
+  },
+  {
+    "schemeCode": 140461,
+    "schemeName": "IDBI Midcap Fund Growth Direct",
+    "fundHouse": "IDBI Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2017-02-02",
+    "lastDate": "2023-07-27",
+    "rows": 1599,
+    "updatedAt": "2026-08-27T23:48:50.399672Z"
+  },
+  {
+    "schemeCode": 148073,
+    "schemeName": "Union Midcap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Union Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2020-03-30",
+    "lastDate": "2026-08-27",
+    "rows": 1581,
+    "updatedAt": "2026-08-27T23:48:57.914106Z"
+  },
+  {
+    "schemeCode": 148474,
+    "schemeName": "Baroda BNP Paribas Large and Mid Cap fund - Direct Plan - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2020-09-11",
+    "lastDate": "2026-08-27",
+    "rows": 1470,
+    "updatedAt": "2026-08-27T23:48:58.596496Z"
+  },
+  {
+    "schemeCode": 148733,
+    "schemeName": "ITI Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "ITI Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-03-10",
+    "lastDate": "2026-08-27",
+    "rows": 1345,
+    "updatedAt": "2026-08-27T23:48:59.599198Z"
+  },
+  {
+    "schemeCode": 148807,
+    "schemeName": "Aditya Birla Sun Life Nifty Midcap 150 Index Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Nifty Midcap 150 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-04-06",
+    "lastDate": "2026-08-27",
+    "rows": 1330,
+    "updatedAt": "2026-08-27T23:49:00.117325Z"
+  },
+  {
+    "schemeCode": 149343,
+    "schemeName": "Edelweiss NIFTY Large Midcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss NIFTY Large Midcap 250 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-12-03",
+    "lastDate": "2026-08-27",
+    "rows": 1168,
+    "updatedAt": "2026-08-27T23:49:02.323393Z"
+  },
+  {
+    "schemeCode": 149389,
+    "schemeName": "ICICI Prudential Nifty Midcap 150 Index Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Nifty Midcap 150 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-12-23",
+    "lastDate": "2026-08-27",
+    "rows": 1153,
+    "updatedAt": "2026-08-27T23:49:03.246977Z"
+  },
+  {
+    "schemeCode": 150212,
+    "schemeName": "Baroda BNP Paribas Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Baroda BNP Paribas Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-03-14",
+    "lastDate": "2026-08-27",
+    "rows": 1098,
+    "updatedAt": "2026-08-27T23:49:05.296443Z"
+  },
+  {
+    "schemeCode": 149936,
+    "schemeName": "Axis Nifty Midcap 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Nifty Midcap 50 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-03-31",
+    "lastDate": "2026-08-27",
+    "rows": 1094,
+    "updatedAt": "2026-08-27T23:49:05.162889Z"
+  },
+  {
+    "schemeCode": 150313,
+    "schemeName": "UTI Nifty Midcap 150 Quality 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Nifty Midcap 150 Quality 50 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-04-13",
+    "lastDate": "2026-08-27",
+    "rows": 1077,
+    "updatedAt": "2026-08-27T23:49:05.756118Z"
+  },
+  {
+    "schemeCode": 150428,
+    "schemeName": "DSP Nifty Midcap 150 Quality 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Nifty Midcap 150 Quality 50 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-08-04",
+    "lastDate": "2026-08-27",
+    "rows": 999,
+    "updatedAt": "2026-08-27T23:49:05.905350Z"
+  },
+  {
+    "schemeCode": 150404,
+    "schemeName": "BANDHAN MID CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-08-19",
+    "lastDate": "2026-08-27",
+    "rows": 999,
+    "updatedAt": "2026-08-27T23:49:05.918063Z"
+  },
+  {
+    "schemeCode": 150584,
+    "schemeName": "WhiteOak Capital Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-09-08",
+    "lastDate": "2026-08-27",
+    "rows": 977,
+    "updatedAt": "2026-08-27T23:49:06.518546Z"
+  },
+  {
+    "schemeCode": 150673,
+    "schemeName": "SBI Nifty Midcap 150 Index Fund - Direct Plan - Growth",
+    "fundHouse": "SBI Nifty Midcap 150 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-10-11",
+    "lastDate": "2026-08-27",
+    "rows": 964,
+    "updatedAt": "2026-08-27T23:49:07.025453Z"
+  },
+  {
+    "schemeCode": 150738,
+    "schemeName": "Tata Nifty Midcap 150 Momentum 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Nifty Midcap 150 Momentum 50 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-10-31",
+    "lastDate": "2026-08-27",
+    "rows": 943,
+    "updatedAt": "2026-08-27T23:49:07.096953Z"
+  },
+  {
+    "schemeCode": 150815,
+    "schemeName": "JM Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-11-25",
+    "lastDate": "2026-08-27",
+    "rows": 925,
+    "updatedAt": "2026-08-27T23:49:07.753156Z"
+  },
+  {
+    "schemeCode": 151036,
+    "schemeName": "HSBC Midcap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-11-28",
+    "lastDate": "2026-08-27",
+    "rows": 924,
+    "updatedAt": "2026-08-27T23:49:08.473031Z"
+  },
+  {
+    "schemeCode": 150902,
+    "schemeName": "Edelweiss Nifty Midcap150 Momentum 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Nifty Midcap150 Momentum 50 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-12-02",
+    "lastDate": "2026-08-27",
+    "rows": 921,
+    "updatedAt": "2026-08-27T23:49:08.016630Z"
+  },
+  {
+    "schemeCode": 150817,
+    "schemeName": "Canara Robeco Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Canara Robeco Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2022-12-06",
+    "lastDate": "2026-08-27",
+    "rows": 918,
+    "updatedAt": "2026-08-27T23:49:07.749128Z"
+  },
+  {
+    "schemeCode": 151724,
+    "schemeName": "HDFC NIFTY Midcap 150 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC NIFTY Midcap 150 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2023-04-21",
+    "lastDate": "2026-08-27",
+    "rows": 826,
+    "updatedAt": "2026-08-27T23:49:09.562851Z"
+  },
+  {
+    "schemeCode": 152002,
+    "schemeName": "LIC MF Mid Cap Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2023-07-31",
+    "lastDate": "2026-08-27",
+    "rows": 757,
+    "updatedAt": "2026-08-27T23:49:11.012853Z"
+  },
+  {
+    "schemeCode": 129725,
+    "schemeName": "Principal Index Fund- Midcap- Direct Plan - Growth",
+    "fundHouse": "Principal Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2014-05-13",
+    "lastDate": "2017-06-09",
+    "rows": 756,
+    "updatedAt": "2026-08-27T23:48:39.551732Z"
+  },
+  {
+    "schemeCode": 152050,
+    "schemeName": "UTI Nifty Midcap 150 Exchange Traded Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Nifty Midcap 150 Exchange Traded",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2023-09-01",
+    "lastDate": "2026-08-27",
+    "rows": 738,
+    "updatedAt": "2026-08-27T23:49:11.096063Z"
+  },
+  {
+    "schemeCode": 152156,
+    "schemeName": "Zerodha Nifty LargeMidcap 250 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Zerodha Nifty LargeMidcap 250 Index",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2023-11-10",
+    "lastDate": "2026-08-27",
+    "rows": 688,
+    "updatedAt": "2026-08-27T23:49:12.455472Z"
+  },
+  {
+    "schemeCode": 152226,
+    "schemeName": "WhiteOak Capital Large & Mid Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "WhiteOak Capital Large & Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2023-12-26",
+    "lastDate": "2026-08-27",
+    "rows": 659,
+    "updatedAt": "2026-08-27T23:49:12.583384Z"
+  },
+  {
+    "schemeCode": 147778,
+    "schemeName": "Principal Midcap Fund - Direct Plan- Growth",
+    "fundHouse": "Principal Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2019-12-31",
+    "lastDate": "2021-12-30",
+    "rows": 496,
+    "updatedAt": "2026-08-27T23:48:56.098939Z"
+  },
+  {
+    "schemeCode": 138950,
+    "schemeName": "DHFL Pramerica Mid Cap Fund - Series 1 - Direct Plan - Growth",
+    "fundHouse": "DHFL Pramerica Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2016-03-08",
+    "lastDate": "2017-12-18",
+    "rows": 440,
+    "updatedAt": "2026-08-27T23:48:48.083064Z"
+  },
+  {
+    "schemeCode": 119909,
+    "schemeName": "ING Midcap Fund - Direct Plan - Growth Option",
+    "fundHouse": "ING Midcap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2014-10-09",
+    "rows": 436,
+    "updatedAt": "2026-08-27T23:48:28.164123Z"
+  },
+  {
+    "schemeCode": 133144,
+    "schemeName": "DWS Mid Cap Fund - Series 1 - Direct Plan - Growth",
+    "fundHouse": "DWS Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2014-12-23",
+    "lastDate": "2016-03-02",
+    "rows": 291,
+    "updatedAt": "2026-08-27T23:48:42.426222Z"
+  },
+  {
+    "schemeCode": 149154,
+    "schemeName": "HSBC Mid Cap Fund - Direct - Growth",
+    "fundHouse": "HSBC Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-09-29",
+    "lastDate": "2022-11-25",
+    "rows": 286,
+    "updatedAt": "2026-08-27T23:49:00.151221Z"
+  }
+]te": "2016-03-02",
+    "rows": 291,
+    "updatedAt": "2026-08-27T23:48:42.426222Z"
+  },
+  {
+    "schemeCode": 149154,
+    "schemeName": "HSBC Mid Cap Fund - Direct - Growth",
+    "fundHouse": "HSBC Mid Cap",
+    "schemeCategory": "Mid Cap",
+    "firstDate": "2021-09-29",
+    "lastDate": "2022-11-25",
+    "rows": 286,
+    "updatedAt": "2026-08-27T23:49:00.151221Z"
   }
 ]
