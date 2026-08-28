@@ -10,6 +10,16 @@
     "updatedAt": "2026-08-27T23:44:21.409696Z"
   },
   {
+    "schemeCode": 118479,
+    "schemeName": "BANDHAN LARGE CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3369,
+    "updatedAt": "2026-08-27T23:56:26.788757Z"
+  },
+  {
     "schemeCode": 119598,
     "schemeName": "SBI Large Cap Fund - Direct Plan - Growth",
     "fundHouse": "SBI Large Cap",
@@ -17,7 +27,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:49:23.514874Z"
+    "updatedAt": "2026-08-27T23:56:43.597198Z"
   },
   {
     "schemeCode": 120465,
@@ -27,17 +37,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:49:33.468759Z"
-  },
-  {
-    "schemeCode": 118479,
-    "schemeName": "BANDHAN LARGE CAP FUND - Direct Plan - Growth",
-    "fundHouse": "Mutual Fund",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3369,
-    "updatedAt": "2026-08-27T23:54:57.161953Z"
+    "updatedAt": "2026-08-27T23:56:53.592865Z"
   },
   {
     "schemeCode": 120490,
@@ -47,7 +47,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3364,
-    "updatedAt": "2026-08-27T23:49:33.649321Z"
+    "updatedAt": "2026-08-27T23:56:54.307754Z"
   },
   {
     "schemeCode": 119250,
@@ -57,7 +57,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3362,
-    "updatedAt": "2026-08-27T23:49:16.063456Z"
+    "updatedAt": "2026-08-27T23:56:37.384754Z"
   },
   {
     "schemeCode": 118989,
@@ -70,16 +70,6 @@
     "updatedAt": "2026-08-27T23:44:22.291670Z"
   },
   {
-    "schemeCode": 119133,
-    "schemeName": "Groww Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Groww Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3361,
-    "updatedAt": "2026-08-27T23:49:13.446055Z"
-  },
-  {
     "schemeCode": 119018,
     "schemeName": "HDFC Large Cap Fund - Direct Plan - Growth Option",
     "fundHouse": "HDFC Large Cap",
@@ -87,57 +77,17 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:55:02.575826Z"
+    "updatedAt": "2026-08-27T23:56:33.041849Z"
   },
   {
-    "schemeCode": 119160,
-    "schemeName": "Tata Large Cap Fund - Direct Plan - Growth Option",
-    "fundHouse": "Tata Large Cap",
+    "schemeCode": 119133,
+    "schemeName": "Groww Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Groww Large Cap",
     "schemeCategory": "Large Cap",
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:13.846051Z"
-  },
-  {
-    "schemeCode": 120030,
-    "schemeName": "HSBC Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "HSBC Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:27.882046Z"
-  },
-  {
-    "schemeCode": 120392,
-    "schemeName": "Invesco India Largecap Fund - Direct Plan - Growth",
-    "fundHouse": "Invesco India Largecap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:32.779208Z"
-  },
-  {
-    "schemeCode": 120586,
-    "schemeName": "ICICI Prudential Large Cap Fund (erstwhile Bluechip Fund) - Direct Plan - Growth",
-    "fundHouse": "ICICI Prudential Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:34.822408Z"
-  },
-  {
-    "schemeCode": 120656,
-    "schemeName": "UTI - Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "UTI - Large Cap",
-    "schemeCategory": "Large Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:35.888844Z"
+    "rows": 3361,
+    "updatedAt": "2026-08-27T23:56:34.638637Z"
   },
   {
     "schemeCode": 118531,
@@ -147,7 +97,7 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:54:57.153839Z"
+    "updatedAt": "2026-08-27T23:56:27.405406Z"
   },
   {
     "schemeCode": 118632,
@@ -157,7 +107,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:54:58.897326Z"
+    "updatedAt": "2026-08-27T23:56:29.941543Z"
   },
   {
     "schemeCode": 118825,
@@ -167,7 +117,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:55:00.592671Z"
+    "updatedAt": "2026-08-27T23:56:31.391019Z"
   },
   {
     "schemeCode": 118870,
@@ -177,27 +127,57 @@
     "firstDate": "2013-01-03",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:55:00.891688Z"
+    "updatedAt": "2026-08-27T23:56:31.424381Z"
   },
   {
-    "schemeCode": 119528,
-    "schemeName": "Aditya Birla Sun Life Large Cap Fund - Direct Plan - GROWTH",
-    "fundHouse": "Aditya Birla Sun Life Large Cap",
+    "schemeCode": 119160,
+    "schemeName": "Tata Large Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Large Cap",
     "schemeCategory": "Large Cap",
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:21.612806Z"
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:35.673956Z"
   },
   {
-    "schemeCode": 120152,
-    "schemeName": "Kotak Large Cap Fund - Direct Plan - Growth",
-    "fundHouse": "Kotak Large Cap",
+    "schemeCode": 120030,
+    "schemeName": "HSBC Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Large Cap",
     "schemeCategory": "Large Cap",
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
-    "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:28.989833Z"
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:48.805056Z"
+  },
+  {
+    "schemeCode": 120392,
+    "schemeName": "Invesco India Largecap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Largecap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:53.105461Z"
+  },
+  {
+    "schemeCode": 120586,
+    "schemeName": "ICICI Prudential Large Cap Fund (erstwhile Bluechip Fund) - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:55.359474Z"
+  },
+  {
+    "schemeCode": 120656,
+    "schemeName": "UTI - Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI - Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:56.625989Z"
   },
   {
     "schemeCode": 118269,
@@ -207,7 +187,27 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3359,
-    "updatedAt": "2026-08-27T23:54:55.265928Z"
+    "updatedAt": "2026-08-27T23:56:26.505433Z"
+  },
+  {
+    "schemeCode": 119528,
+    "schemeName": "Aditya Birla Sun Life Large Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:56:42.277129Z"
+  },
+  {
+    "schemeCode": 120152,
+    "schemeName": "Kotak Large Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Large Cap",
+    "schemeCategory": "Large Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:56:49.721554Z"
   },
   {
     "schemeCode": 118617,
@@ -217,7 +217,7 @@
     "firstDate": "2013-01-08",
     "lastDate": "2026-08-27",
     "rows": 3357,
-    "updatedAt": "2026-08-27T23:54:58.487018Z"
+    "updatedAt": "2026-08-27T23:56:29.257528Z"
   },
   {
     "schemeCode": 120267,
@@ -227,7 +227,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3350,
-    "updatedAt": "2026-08-27T23:49:30.662581Z"
+    "updatedAt": "2026-08-27T23:56:51.338913Z"
   },
   {
     "schemeCode": 120186,
@@ -237,7 +237,7 @@
     "firstDate": "2013-01-03",
     "lastDate": "2026-08-26",
     "rows": 3249,
-    "updatedAt": "2026-08-27T23:49:29.703420Z"
+    "updatedAt": "2026-08-27T23:56:50.390144Z"
   },
   {
     "schemeCode": 118344,
@@ -247,7 +247,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2023-07-27",
     "rows": 2602,
-    "updatedAt": "2026-08-27T23:54:56.188366Z"
+    "updatedAt": "2026-08-27T23:56:24.790767Z"
   },
   {
     "schemeCode": 138312,
@@ -257,7 +257,7 @@
     "firstDate": "2016-03-08",
     "lastDate": "2026-08-27",
     "rows": 2581,
-    "updatedAt": "2026-08-27T23:49:54.896744Z"
+    "updatedAt": "2026-08-27T23:57:14.538859Z"
   },
   {
     "schemeCode": 119308,
@@ -267,7 +267,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2022-11-24",
     "rows": 2435,
-    "updatedAt": "2026-08-27T23:49:16.629476Z"
+    "updatedAt": "2026-08-27T23:56:37.138656Z"
   },
   {
     "schemeCode": 119148,
@@ -277,7 +277,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2022-07-15",
     "rows": 2348,
-    "updatedAt": "2026-08-27T23:49:11.812853Z"
+    "updatedAt": "2026-08-27T23:56:34.872053Z"
   },
   {
     "schemeCode": 141248,
@@ -287,7 +287,7 @@
     "firstDate": "2017-05-18",
     "lastDate": "2026-08-27",
     "rows": 2286,
-    "updatedAt": "2026-08-27T23:50:02.284110Z"
+    "updatedAt": "2026-08-27T23:57:18.167993Z"
   },
   {
     "schemeCode": 119893,
@@ -297,7 +297,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2022-03-13",
     "rows": 2264,
-    "updatedAt": "2026-08-27T23:49:25.695833Z"
+    "updatedAt": "2026-08-27T23:56:46.815205Z"
   },
   {
     "schemeCode": 119367,
@@ -307,7 +307,7 @@
     "firstDate": "2013-01-04",
     "lastDate": "2022-03-13",
     "rows": 2260,
-    "updatedAt": "2026-08-27T23:49:16.984119Z"
+    "updatedAt": "2026-08-27T23:56:37.991599Z"
   },
   {
     "schemeCode": 119441,
@@ -317,7 +317,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2021-12-30",
     "rows": 2211,
-    "updatedAt": "2026-08-27T23:49:18.229458Z"
+    "updatedAt": "2026-08-27T23:56:39.142012Z"
   },
   {
     "schemeCode": 146549,
@@ -327,7 +327,7 @@
     "firstDate": "2019-03-19",
     "lastDate": "2026-08-27",
     "rows": 1834,
-    "updatedAt": "2026-08-27T23:50:13.543216Z"
+    "updatedAt": "2026-08-27T23:57:24.937776Z"
   },
   {
     "schemeCode": 148507,
@@ -337,7 +337,7 @@
     "firstDate": "2020-10-12",
     "lastDate": "2026-08-27",
     "rows": 1448,
-    "updatedAt": "2026-08-27T23:50:21.759105Z"
+    "updatedAt": "2026-08-27T23:57:29.804297Z"
   },
   {
     "schemeCode": 148353,
@@ -347,7 +347,7 @@
     "firstDate": "2020-12-29",
     "lastDate": "2026-08-27",
     "rows": 1395,
-    "updatedAt": "2026-08-27T23:50:20.529232Z"
+    "updatedAt": "2026-08-27T23:57:29.159085Z"
   },
   {
     "schemeCode": 120757,
@@ -357,7 +357,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2018-05-02",
     "rows": 1309,
-    "updatedAt": "2026-08-27T23:49:34.985284Z"
+    "updatedAt": "2026-08-27T23:56:55.802343Z"
   },
   {
     "schemeCode": 118643,
@@ -367,7 +367,7 @@
     "firstDate": "2013-01-03",
     "lastDate": "2018-04-27",
     "rows": 1307,
-    "updatedAt": "2026-08-27T23:54:57.675294Z"
+    "updatedAt": "2026-08-27T23:56:28.303024Z"
   },
   {
     "schemeCode": 148980,
@@ -377,7 +377,7 @@
     "firstDate": "2021-07-01",
     "lastDate": "2026-08-27",
     "rows": 1271,
-    "updatedAt": "2026-08-27T23:50:24.207656Z"
+    "updatedAt": "2026-08-27T23:57:32.520960Z"
   },
   {
     "schemeCode": 150187,
@@ -387,7 +387,7 @@
     "firstDate": "2022-03-14",
     "lastDate": "2026-08-27",
     "rows": 1098,
-    "updatedAt": "2026-08-27T23:50:31.108783Z"
+    "updatedAt": "2026-08-27T23:57:42.798481Z"
   },
   {
     "schemeCode": 138991,
@@ -397,7 +397,7 @@
     "firstDate": "2016-03-08",
     "lastDate": "2020-04-07",
     "rows": 1004,
-    "updatedAt": "2026-08-27T23:49:54.867426Z"
+    "updatedAt": "2026-08-27T23:57:14.723754Z"
   },
   {
     "schemeCode": 150440,
@@ -407,7 +407,7 @@
     "firstDate": "2022-08-12",
     "lastDate": "2026-08-27",
     "rows": 994,
-    "updatedAt": "2026-08-27T23:50:32.612754Z"
+    "updatedAt": "2026-08-27T23:57:45.307693Z"
   },
   {
     "schemeCode": 150797,
@@ -417,7 +417,7 @@
     "firstDate": "2022-12-02",
     "lastDate": "2026-08-27",
     "rows": 920,
-    "updatedAt": "2026-08-27T23:50:33.990911Z"
+    "updatedAt": "2026-08-27T23:57:50.173176Z"
   },
   {
     "schemeCode": 120100,
@@ -427,7 +427,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2016-03-03",
     "rows": 779,
-    "updatedAt": "2026-08-27T23:49:25.884872Z"
+    "updatedAt": "2026-08-27T23:56:46.790885Z"
   },
   {
     "schemeCode": 133355,
@@ -437,7 +437,7 @@
     "firstDate": "2015-02-04",
     "lastDate": "2018-01-30",
     "rows": 737,
-    "updatedAt": "2026-08-27T23:49:45.098059Z"
+    "updatedAt": "2026-08-27T23:57:06.754584Z"
   },
   {
     "schemeCode": 140751,
@@ -447,7 +447,7 @@
     "firstDate": "2017-03-31",
     "lastDate": "2020-03-30",
     "rows": 737,
-    "updatedAt": "2026-08-27T23:49:56.950214Z"
+    "updatedAt": "2026-08-27T23:57:16.054575Z"
   },
   {
     "schemeCode": 133590,
@@ -457,7 +457,7 @@
     "firstDate": "2015-04-01",
     "lastDate": "2018-03-26",
     "rows": 736,
-    "updatedAt": "2026-08-27T23:49:45.564728Z"
+    "updatedAt": "2026-08-27T23:57:06.973480Z"
   },
   {
     "schemeCode": 140575,
@@ -467,7 +467,7 @@
     "firstDate": "2017-03-15",
     "lastDate": "2020-03-11",
     "rows": 736,
-    "updatedAt": "2026-08-27T23:49:57.043265Z"
+    "updatedAt": "2026-08-27T23:57:16.021107Z"
   },
   {
     "schemeCode": 130346,
@@ -477,7 +477,7 @@
     "firstDate": "2014-08-05",
     "lastDate": "2017-07-31",
     "rows": 732,
-    "updatedAt": "2026-08-27T23:49:43.133626Z"
+    "updatedAt": "2026-08-27T23:57:04.621365Z"
   },
   {
     "schemeCode": 129887,
@@ -487,7 +487,7 @@
     "firstDate": "2014-06-30",
     "lastDate": "2017-06-27",
     "rows": 731,
-    "updatedAt": "2026-08-27T23:49:42.233720Z"
+    "updatedAt": "2026-08-27T23:57:03.321306Z"
   },
   {
     "schemeCode": 129693,
@@ -497,7 +497,7 @@
     "firstDate": "2014-06-13",
     "lastDate": "2017-06-06",
     "rows": 730,
-    "updatedAt": "2026-08-27T23:49:41.129800Z"
+    "updatedAt": "2026-08-27T23:57:02.712797Z"
   },
   {
     "schemeCode": 139017,
@@ -507,7 +507,7 @@
     "firstDate": "2016-03-08",
     "lastDate": "2018-10-29",
     "rows": 652,
-    "updatedAt": "2026-08-27T23:49:54.176634Z"
+    "updatedAt": "2026-08-27T23:57:14.220752Z"
   },
   {
     "schemeCode": 138986,
@@ -517,7 +517,7 @@
     "firstDate": "2016-03-08",
     "lastDate": "2018-09-24",
     "rows": 629,
-    "updatedAt": "2026-08-27T23:49:53.329264Z"
+    "updatedAt": "2026-08-27T23:57:14.036561Z"
   },
   {
     "schemeCode": 129987,
@@ -527,7 +527,7 @@
     "firstDate": "2014-06-25",
     "lastDate": "2016-11-24",
     "rows": 590,
-    "updatedAt": "2026-08-27T23:49:41.979232Z"
+    "updatedAt": "2026-08-27T23:57:03.390282Z"
   },
   {
     "schemeCode": 149349,
@@ -537,7 +537,7 @@
     "firstDate": "2021-12-07",
     "lastDate": "2024-01-12",
     "rows": 519,
-    "updatedAt": "2026-08-27T23:50:26.030495Z"
+    "updatedAt": "2026-08-27T23:57:34.370772Z"
   },
   {
     "schemeCode": 152783,
@@ -547,7 +547,7 @@
     "firstDate": "2024-08-23",
     "lastDate": "2026-08-27",
     "rows": 497,
-    "updatedAt": "2026-08-27T23:50:43.161283Z"
+    "updatedAt": "2026-08-27T23:58:12.390651Z"
   },
   {
     "schemeCode": 119914,
@@ -557,7 +557,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2014-10-09",
     "rows": 436,
-    "updatedAt": "2026-08-27T23:49:24.328376Z"
+    "updatedAt": "2026-08-27T23:56:44.849531Z"
   },
   {
     "schemeCode": 153239,
@@ -567,7 +567,7 @@
     "firstDate": "2025-03-28",
     "lastDate": "2026-08-27",
     "rows": 349,
-    "updatedAt": "2026-08-27T23:50:45.981087Z"
+    "updatedAt": "2026-08-27T23:58:20.686269Z"
   },
   {
     "schemeCode": 148524,
@@ -577,7 +577,7 @@
     "firstDate": "2020-10-20",
     "lastDate": "2021-12-30",
     "rows": 295,
-    "updatedAt": "2026-08-27T23:50:19.190427Z"
+    "updatedAt": "2026-08-27T23:57:28.570937Z"
   },
   {
     "schemeCode": 134001,
@@ -587,7 +587,7 @@
     "firstDate": "2015-03-26",
     "lastDate": "2016-03-02",
     "rows": 229,
-    "updatedAt": "2026-08-27T23:49:45.531659Z"
+    "updatedAt": "2026-08-27T23:57:07.120008Z"
   },
   {
     "schemeCode": 134134,
@@ -597,7 +597,7 @@
     "firstDate": "2015-04-13",
     "lastDate": "2016-03-02",
     "rows": 220,
-    "updatedAt": "2026-08-27T23:49:45.814741Z"
+    "updatedAt": "2026-08-27T23:57:07.523746Z"
   },
   {
     "schemeCode": 134413,
@@ -607,7 +607,7 @@
     "firstDate": "2015-04-30",
     "lastDate": "2016-03-02",
     "rows": 208,
-    "updatedAt": "2026-08-27T23:49:46.264395Z"
+    "updatedAt": "2026-08-27T23:57:08.185995Z"
   },
   {
     "schemeCode": 154155,
@@ -617,7 +617,7 @@
     "firstDate": "2026-02-06",
     "lastDate": "2026-08-27",
     "rows": 138,
-    "updatedAt": "2026-08-27T23:50:49.912976Z"
+    "updatedAt": "2026-08-27T23:58:43.231955Z"
   },
   {
     "schemeCode": 154307,
@@ -627,7 +627,7 @@
     "firstDate": "2026-04-16",
     "lastDate": "2026-08-27",
     "rows": 93,
-    "updatedAt": "2026-08-27T23:50:50.688469Z"
+    "updatedAt": "2026-08-27T23:58:45.108247Z"
   },
   {
     "schemeCode": 120347,
@@ -637,6 +637,6 @@
     "firstDate": "2013-01-02",
     "lastDate": "2013-05-06",
     "rows": 81,
-    "updatedAt": "2026-08-27T23:49:28.332900Z"
+    "updatedAt": "2026-08-27T23:56:49.279534Z"
   }
 ]

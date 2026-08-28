@@ -28,7 +28,7 @@ CATEGORY_KEYWORDS = {
     "multi": ["multi cap", "multicap"],
     "flexi": ["flexi cap", "flexicap"],
     "hybrid": ["hybrid", "balanced advantage", "aggressive hybrid"],
-    "index": ["nifty 50", "sensex", "nifty midcap", "nifty smallcap"]
+    "index": ["nifty", "sensex", "index fund", "index", "bse", "equal weight", "midcap 150", "smallcap 250", "nifty 500"]
 }
 
 def discover_all_category_schemes() -> list:

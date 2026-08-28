@@ -7,7 +7,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3369,
-    "updatedAt": "2026-08-27T23:54:57.212957Z"
+    "updatedAt": "2026-08-27T23:56:26.804880Z"
   },
   {
     "schemeCode": 119718,
@@ -17,7 +17,7 @@
     "firstDate": "2013-01-07",
     "lastDate": "2026-08-26",
     "rows": 3363,
-    "updatedAt": "2026-08-27T23:49:24.797811Z"
+    "updatedAt": "2026-08-27T23:56:45.357610Z"
   },
   {
     "schemeCode": 120843,
@@ -27,7 +27,7 @@
     "firstDate": "2013-01-07",
     "lastDate": "2026-08-27",
     "rows": 3363,
-    "updatedAt": "2026-08-27T23:49:39.512369Z"
+    "updatedAt": "2026-08-27T23:57:01.437966Z"
   },
   {
     "schemeCode": 119076,
@@ -37,7 +37,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3362,
-    "updatedAt": "2026-08-27T23:49:13.446055Z"
+    "updatedAt": "2026-08-27T23:56:34.557867Z"
   },
   {
     "schemeCode": 118535,
@@ -47,7 +47,7 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:54:58.082881Z"
+    "updatedAt": "2026-08-27T23:56:27.521632Z"
   },
   {
     "schemeCode": 118883,
@@ -57,7 +57,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:55:01.393447Z"
+    "updatedAt": "2026-08-27T23:56:32.091060Z"
   },
   {
     "schemeCode": 118955,
@@ -67,27 +67,7 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:55:02.059244Z"
-  },
-  {
-    "schemeCode": 120046,
-    "schemeName": "HSBC Flexi Cap Fund - Direct Plan - Growth",
-    "fundHouse": "HSBC Flexi Cap",
-    "schemeCategory": "Flexi Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:27.962637Z"
-  },
-  {
-    "schemeCode": 120492,
-    "schemeName": "JM Flexi Cap Fund - Direct Plan - Growth Option",
-    "fundHouse": "JM Flexi Cap",
-    "schemeCategory": "Flexi Cap",
-    "firstDate": "2013-01-02",
-    "lastDate": "2026-08-27",
-    "rows": 3360,
-    "updatedAt": "2026-08-27T23:49:33.978399Z"
+    "updatedAt": "2026-08-27T23:56:32.391364Z"
   },
   {
     "schemeCode": 118275,
@@ -97,7 +77,27 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3360,
-    "updatedAt": "2026-08-27T23:54:55.758409Z"
+    "updatedAt": "2026-08-27T23:56:26.637377Z"
+  },
+  {
+    "schemeCode": 120046,
+    "schemeName": "HSBC Flexi Cap Fund - Direct Plan - Growth",
+    "fundHouse": "HSBC Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:49.088493Z"
+  },
+  {
+    "schemeCode": 120492,
+    "schemeName": "JM Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JM Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:54.404414Z"
   },
   {
     "schemeCode": 119292,
@@ -107,7 +107,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:17.397133Z"
+    "updatedAt": "2026-08-27T23:56:37.907279Z"
   },
   {
     "schemeCode": 120564,
@@ -117,7 +117,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:34.512644Z"
+    "updatedAt": "2026-08-27T23:56:55.176276Z"
   },
   {
     "schemeCode": 120662,
@@ -127,7 +127,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3359,
-    "updatedAt": "2026-08-27T23:49:36.316955Z"
+    "updatedAt": "2026-08-27T23:56:56.984278Z"
   },
   {
     "schemeCode": 120166,
@@ -137,7 +137,7 @@
     "firstDate": "2013-01-04",
     "lastDate": "2026-08-27",
     "rows": 3357,
-    "updatedAt": "2026-08-27T23:49:29.831005Z"
+    "updatedAt": "2026-08-27T23:56:50.320356Z"
   },
   {
     "schemeCode": 120264,
@@ -147,7 +147,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3350,
-    "updatedAt": "2026-08-27T23:49:30.612688Z"
+    "updatedAt": "2026-08-27T23:56:51.122139Z"
   },
   {
     "schemeCode": 122639,
@@ -157,7 +157,7 @@
     "firstDate": "2013-05-28",
     "lastDate": "2026-08-26",
     "rows": 3259,
-    "updatedAt": "2026-08-27T23:49:41.133808Z"
+    "updatedAt": "2026-08-27T23:57:02.438014Z"
   },
   {
     "schemeCode": 129046,
@@ -167,7 +167,7 @@
     "firstDate": "2014-04-29",
     "lastDate": "2026-08-27",
     "rows": 3035,
-    "updatedAt": "2026-08-27T23:49:43.832420Z"
+    "updatedAt": "2026-08-27T23:57:05.454901Z"
   },
   {
     "schemeCode": 133839,
@@ -177,7 +177,7 @@
     "firstDate": "2015-03-09",
     "lastDate": "2026-08-27",
     "rows": 2828,
-    "updatedAt": "2026-08-27T23:49:48.998007Z"
+    "updatedAt": "2026-08-27T23:57:11.187876Z"
   },
   {
     "schemeCode": 119291,
@@ -187,7 +187,7 @@
     "firstDate": "2013-01-02",
     "lastDate": "2022-11-24",
     "rows": 2435,
-    "updatedAt": "2026-08-27T23:49:15.265449Z"
+    "updatedAt": "2026-08-27T23:56:36.559439Z"
   },
   {
     "schemeCode": 140353,
@@ -197,7 +197,7 @@
     "firstDate": "2016-11-28",
     "lastDate": "2026-08-27",
     "rows": 2406,
-    "updatedAt": "2026-08-27T23:50:01.139064Z"
+    "updatedAt": "2026-08-27T23:57:17.641518Z"
   },
   {
     "schemeCode": 128236,
@@ -207,7 +207,7 @@
     "firstDate": "2014-04-04",
     "lastDate": "2023-07-27",
     "rows": 2290,
-    "updatedAt": "2026-08-27T23:49:42.495704Z"
+    "updatedAt": "2026-08-27T23:57:03.971029Z"
   },
   {
     "schemeCode": 141925,
@@ -217,7 +217,7 @@
     "firstDate": "2017-11-24",
     "lastDate": "2026-08-27",
     "rows": 2165,
-    "updatedAt": "2026-08-27T23:50:03.325059Z"
+    "updatedAt": "2026-08-27T23:57:19.625254Z"
   },
   {
     "schemeCode": 143793,
@@ -227,7 +227,7 @@
     "firstDate": "2018-07-10",
     "lastDate": "2026-08-27",
     "rows": 2003,
-    "updatedAt": "2026-08-27T23:50:06.722575Z"
+    "updatedAt": "2026-08-27T23:57:21.256887Z"
   },
   {
     "schemeCode": 144546,
@@ -237,7 +237,7 @@
     "firstDate": "2018-09-10",
     "lastDate": "2026-08-27",
     "rows": 1960,
-    "updatedAt": "2026-08-27T23:50:09.343257Z"
+    "updatedAt": "2026-08-27T23:57:22.954330Z"
   },
   {
     "schemeCode": 144905,
@@ -247,7 +247,7 @@
     "firstDate": "2018-10-08",
     "lastDate": "2026-08-27",
     "rows": 1943,
-    "updatedAt": "2026-08-27T23:50:09.457231Z"
+    "updatedAt": "2026-08-27T23:57:23.104487Z"
   },
   {
     "schemeCode": 148404,
@@ -257,7 +257,7 @@
     "firstDate": "2020-07-01",
     "lastDate": "2026-08-27",
     "rows": 1521,
-    "updatedAt": "2026-08-27T23:50:21.980898Z"
+    "updatedAt": "2026-08-27T23:57:29.854822Z"
   },
   {
     "schemeCode": 148990,
@@ -267,7 +267,7 @@
     "firstDate": "2021-07-19",
     "lastDate": "2026-08-27",
     "rows": 1259,
-    "updatedAt": "2026-08-27T23:50:24.975542Z"
+    "updatedAt": "2026-08-27T23:57:32.570972Z"
   },
   {
     "schemeCode": 149094,
@@ -277,7 +277,7 @@
     "firstDate": "2021-08-18",
     "lastDate": "2026-08-27",
     "rows": 1238,
-    "updatedAt": "2026-08-27T23:50:25.570333Z"
+    "updatedAt": "2026-08-27T23:57:33.320979Z"
   },
   {
     "schemeCode": 149104,
@@ -287,7 +287,7 @@
     "firstDate": "2021-08-25",
     "lastDate": "2026-08-27",
     "rows": 1234,
-    "updatedAt": "2026-08-27T23:50:25.812188Z"
+    "updatedAt": "2026-08-27T23:57:33.204446Z"
   },
   {
     "schemeCode": 149450,
@@ -297,7 +297,7 @@
     "firstDate": "2022-02-09",
     "lastDate": "2026-08-27",
     "rows": 1118,
-    "updatedAt": "2026-08-27T23:50:28.950381Z"
+    "updatedAt": "2026-08-27T23:57:36.606394Z"
   },
   {
     "schemeCode": 149763,
@@ -307,7 +307,7 @@
     "firstDate": "2022-02-16",
     "lastDate": "2026-08-27",
     "rows": 1115,
-    "updatedAt": "2026-08-27T23:50:30.053235Z"
+    "updatedAt": "2026-08-27T23:57:38.556377Z"
   },
   {
     "schemeCode": 150346,
@@ -317,7 +317,7 @@
     "firstDate": "2022-08-03",
     "lastDate": "2026-08-27",
     "rows": 1000,
-    "updatedAt": "2026-08-27T23:50:32.128601Z"
+    "updatedAt": "2026-08-27T23:57:44.090671Z"
   },
   {
     "schemeCode": 150387,
@@ -327,7 +327,7 @@
     "firstDate": "2022-08-22",
     "lastDate": "2026-08-27",
     "rows": 989,
-    "updatedAt": "2026-08-27T23:50:32.236037Z"
+    "updatedAt": "2026-08-27T23:57:44.159544Z"
   },
   {
     "schemeCode": 150571,
@@ -337,7 +337,7 @@
     "firstDate": "2022-09-07",
     "lastDate": "2026-08-27",
     "rows": 978,
-    "updatedAt": "2026-08-27T23:50:33.278129Z"
+    "updatedAt": "2026-08-27T23:57:46.564710Z"
   },
   {
     "schemeCode": 151379,
@@ -347,7 +347,7 @@
     "firstDate": "2023-02-22",
     "lastDate": "2026-08-27",
     "rows": 862,
-    "updatedAt": "2026-08-27T23:50:36.297662Z"
+    "updatedAt": "2026-08-27T23:57:56.280548Z"
   },
   {
     "schemeCode": 151412,
@@ -357,7 +357,7 @@
     "firstDate": "2023-02-27",
     "lastDate": "2026-08-27",
     "rows": 860,
-    "updatedAt": "2026-08-27T23:50:36.314761Z"
+    "updatedAt": "2026-08-27T23:57:57.036705Z"
   },
   {
     "schemeCode": 151796,
@@ -367,7 +367,7 @@
     "firstDate": "2023-07-06",
     "lastDate": "2026-08-27",
     "rows": 774,
-    "updatedAt": "2026-08-27T23:50:37.165074Z"
+    "updatedAt": "2026-08-27T23:58:01.619049Z"
   },
   {
     "schemeCode": 151895,
@@ -377,7 +377,7 @@
     "firstDate": "2023-08-16",
     "lastDate": "2026-08-27",
     "rows": 746,
-    "updatedAt": "2026-08-27T23:50:38.018158Z"
+    "updatedAt": "2026-08-27T23:58:02.187127Z"
   },
   {
     "schemeCode": 151917,
@@ -387,7 +387,7 @@
     "firstDate": "2023-09-06",
     "lastDate": "2026-08-27",
     "rows": 731,
-    "updatedAt": "2026-08-27T23:50:38.130489Z"
+    "updatedAt": "2026-08-27T23:58:02.159008Z"
   },
   {
     "schemeCode": 152135,
@@ -397,7 +397,7 @@
     "firstDate": "2023-11-15",
     "lastDate": "2026-08-27",
     "rows": 687,
-    "updatedAt": "2026-08-27T23:50:39.881480Z"
+    "updatedAt": "2026-08-27T23:58:05.969861Z"
   },
   {
     "schemeCode": 152584,
@@ -407,7 +407,7 @@
     "firstDate": "2024-04-29",
     "lastDate": "2026-08-27",
     "rows": 577,
-    "updatedAt": "2026-08-27T23:50:41.864655Z"
+    "updatedAt": "2026-08-27T23:58:10.175805Z"
   },
   {
     "schemeCode": 153543,
@@ -417,7 +417,7 @@
     "firstDate": "2025-06-09",
     "lastDate": "2026-08-27",
     "rows": 302,
-    "updatedAt": "2026-08-27T23:50:47.377913Z"
+    "updatedAt": "2026-08-27T23:58:26.414975Z"
   },
   {
     "schemeCode": 153738,
@@ -427,7 +427,7 @@
     "firstDate": "2025-08-06",
     "lastDate": "2026-08-27",
     "rows": 261,
-    "updatedAt": "2026-08-27T23:50:48.003151Z"
+    "updatedAt": "2026-08-27T23:58:30.308389Z"
   },
   {
     "schemeCode": 153801,
@@ -437,17 +437,7 @@
     "firstDate": "2025-08-29",
     "lastDate": "2026-08-27",
     "rows": 245,
-    "updatedAt": "2026-08-27T23:50:49.055726Z"
-  },
-  {
-    "schemeCode": 153859,
-    "schemeName": "JioBlackRock Flexi Cap Fund - Direct Plan - Growth Option",
-    "fundHouse": "JioBlackRock Flexi Cap",
-    "schemeCategory": "Flexi Cap",
-    "firstDate": "2025-10-17",
-    "lastDate": "2026-08-27",
-    "rows": 212,
-    "updatedAt": "2026-08-27T23:50:49.047153Z"
+    "updatedAt": "2026-08-27T23:58:33.560180Z"
   },
   {
     "schemeCode": 153872,
@@ -457,7 +447,17 @@
     "firstDate": "2025-10-17",
     "lastDate": "2026-08-27",
     "rows": 212,
-    "updatedAt": "2026-08-27T23:50:49.130185Z"
+    "updatedAt": "2026-08-27T23:58:35.534524Z"
+  },
+  {
+    "schemeCode": 153859,
+    "schemeName": "JioBlackRock Flexi Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JioBlackRock Flexi Cap",
+    "schemeCategory": "Flexi Cap",
+    "firstDate": "2025-10-17",
+    "lastDate": "2026-08-27",
+    "rows": 212,
+    "updatedAt": "2026-08-27T23:58:35.616859Z"
   },
   {
     "schemeCode": 154043,
@@ -467,7 +467,7 @@
     "firstDate": "2025-12-30",
     "lastDate": "2026-08-27",
     "rows": 164,
-    "updatedAt": "2026-08-27T23:50:49.564771Z"
+    "updatedAt": "2026-08-27T23:58:38.598107Z"
   },
   {
     "schemeCode": 154225,
@@ -477,6 +477,6 @@
     "firstDate": "2026-03-04",
     "lastDate": "2026-08-27",
     "rows": 121,
-    "updatedAt": "2026-08-27T23:50:50.611166Z"
+    "updatedAt": "2026-08-27T23:58:44.416207Z"
   }
 ]

@@ -1,5 +1,15 @@
 [
   {
+    "schemeCode": 119212,
+    "schemeName": "DSP Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "DSP Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3362,
+    "updatedAt": "2026-08-27T23:56:36.404732Z"
+  },
+  {
     "schemeCode": 118525,
     "schemeName": "Franklin India Small Cap Fund - Direct Plan - Growth",
     "fundHouse": "Franklin India Small Cap",
@@ -7,7 +17,17 @@
     "firstDate": "2013-01-01",
     "lastDate": "2026-08-27",
     "rows": 3361,
-    "updatedAt": "2026-08-27T23:54:57.225079Z"
+    "updatedAt": "2026-08-27T23:56:26.688742Z"
+  },
+  {
+    "schemeCode": 120164,
+    "schemeName": "Kotak Small Cap Fund - Direct Plan - Growth\t",
+    "fundHouse": "Kotak Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3360,
+    "updatedAt": "2026-08-27T23:56:50.354497Z"
   },
   {
     "schemeCode": 118778,
@@ -17,7 +37,437 @@
     "firstDate": "2013-01-02",
     "lastDate": "2026-08-27",
     "rows": 3359,
-    "updatedAt": "2026-08-27T23:55:00.494287Z"
+    "updatedAt": "2026-08-27T23:56:30.657853Z"
+  },
+  {
+    "schemeCode": 119588,
+    "schemeName": "Sundaram Small Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:56:43.240419Z"
+  },
+  {
+    "schemeCode": 119589,
+    "schemeName": "Sundaram Small Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Sundaram Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:56:43.290217Z"
+  },
+  {
+    "schemeCode": 120828,
+    "schemeName": "Quant Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Quant Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3359,
+    "updatedAt": "2026-08-27T23:57:00.361816Z"
+  },
+  {
+    "schemeCode": 119556,
+    "schemeName": "Aditya Birla Sun Life Small Cap Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-07",
+    "lastDate": "2026-08-27",
+    "rows": 3356,
+    "updatedAt": "2026-08-27T23:56:42.511369Z"
+  },
+  {
+    "schemeCode": 120591,
+    "schemeName": "ICICI Prudential Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-03",
+    "lastDate": "2026-08-27",
+    "rows": 3331,
+    "updatedAt": "2026-08-27T23:56:55.746301Z"
+  },
+  {
+    "schemeCode": 125497,
+    "schemeName": "SBI SMALL CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-11-18",
+    "lastDate": "2026-08-27",
+    "rows": 3153,
+    "updatedAt": "2026-08-27T23:57:04.104873Z"
+  },
+  {
+    "schemeCode": 125354,
+    "schemeName": "Axis Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-12-05",
+    "lastDate": "2026-08-27",
+    "rows": 3139,
+    "updatedAt": "2026-08-27T23:57:03.704415Z"
+  },
+  {
+    "schemeCode": 129649,
+    "schemeName": "Union Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Union Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2014-06-17",
+    "lastDate": "2026-08-27",
+    "rows": 3000,
+    "updatedAt": "2026-08-27T23:57:06.133835Z"
+  },
+  {
+    "schemeCode": 130503,
+    "schemeName": "HDFC Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2014-06-30",
+    "lastDate": "2026-08-27",
+    "rows": 2992,
+    "updatedAt": "2026-08-27T23:57:07.989543Z"
+  },
+  {
+    "schemeCode": 120069,
+    "schemeName": "HSBC Small Cap Equity Fund - Growth Direct",
+    "fundHouse": "HSBC Small Cap Equity",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2022-11-25",
+    "rows": 2436,
+    "updatedAt": "2026-08-27T23:56:48.224035Z"
+  },
+  {
+    "schemeCode": 145137,
+    "schemeName": "Invesco India Smallcap Fund - Direct Plan - Growth",
+    "fundHouse": "Invesco India Smallcap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-11-02",
+    "lastDate": "2026-08-27",
+    "rows": 1925,
+    "updatedAt": "2026-08-27T23:57:23.346440Z"
+  },
+  {
+    "schemeCode": 145206,
+    "schemeName": "Tata Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Tata Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-11-13",
+    "lastDate": "2026-08-27",
+    "rows": 1920,
+    "updatedAt": "2026-08-27T23:57:23.471016Z"
+  },
+  {
+    "schemeCode": 145678,
+    "schemeName": "BANK OF INDIA SMALL CAP FUND - Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-12-27",
+    "lastDate": "2026-08-27",
+    "rows": 1890,
+    "updatedAt": "2026-08-27T23:57:24.004415Z"
+  },
+  {
+    "schemeCode": 146196,
+    "schemeName": "Edelweiss Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2019-02-14",
+    "lastDate": "2026-08-27",
+    "rows": 1857,
+    "updatedAt": "2026-08-27T23:57:24.554285Z"
+  },
+  {
+    "schemeCode": 146130,
+    "schemeName": "Canara Robeco Small Cap Fund - Direct Plan - GROWTH OPTION",
+    "fundHouse": "Canara Robeco Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2019-02-19",
+    "lastDate": "2026-08-27",
+    "rows": 1852,
+    "updatedAt": "2026-08-27T23:57:24.454396Z"
+  },
+  {
+    "schemeCode": 147623,
+    "schemeName": "Motilal Oswal Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Motilal Oswal Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2019-09-11",
+    "lastDate": "2026-08-27",
+    "rows": 1717,
+    "updatedAt": "2026-08-27T23:57:26.904249Z"
+  },
+  {
+    "schemeCode": 147946,
+    "schemeName": "BANDHAN Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "BANDHAN Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2020-02-26",
+    "lastDate": "2026-08-27",
+    "rows": 1612,
+    "updatedAt": "2026-08-27T23:57:28.704321Z"
+  },
+  {
+    "schemeCode": 147919,
+    "schemeName": "ITI Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "ITI Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2020-02-19",
+    "lastDate": "2026-08-27",
+    "rows": 1607,
+    "updatedAt": "2026-08-27T23:57:28.687670Z"
+  },
+  {
+    "schemeCode": 141475,
+    "schemeName": "IDBI Small Cap Fund - Growth Direct",
+    "fundHouse": "IDBI Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2017-06-29",
+    "lastDate": "2023-07-27",
+    "rows": 1500,
+    "updatedAt": "2026-08-27T23:57:18.071296Z"
+  },
+  {
+    "schemeCode": 148618,
+    "schemeName": "UTI Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "UTI Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2020-12-23",
+    "lastDate": "2026-08-27",
+    "rows": 1399,
+    "updatedAt": "2026-08-27T23:57:30.504256Z"
+  },
+  {
+    "schemeCode": 148815,
+    "schemeName": "Aditya Birla Sun Life Nifty Smallcap 50 Index Fund - Direct Plan - GROWTH",
+    "fundHouse": "Aditya Birla Sun Life Nifty Smallcap 50 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2021-04-06",
+    "lastDate": "2026-08-27",
+    "rows": 1330,
+    "updatedAt": "2026-08-27T23:57:31.970976Z"
+  },
+  {
+    "schemeCode": 149019,
+    "schemeName": "PGIM India Small Cap Fund - Direct Plan - Direct Growth",
+    "fundHouse": "PGIM India Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2021-08-02",
+    "lastDate": "2026-08-27",
+    "rows": 1250,
+    "updatedAt": "2026-08-27T23:57:33.237510Z"
+  },
+  {
+    "schemeCode": 142533,
+    "schemeName": "Sundaram Emerging Small Cap Series I Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-03-12",
+    "lastDate": "2023-03-09",
+    "rows": 1233,
+    "updatedAt": "2026-08-27T23:57:18.934489Z"
+  },
+  {
+    "schemeCode": 143010,
+    "schemeName": "Sundaram Emerging Small Cap Series II Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-04-12",
+    "lastDate": "2023-04-10",
+    "rows": 1231,
+    "updatedAt": "2026-08-27T23:57:18.954601Z"
+  },
+  {
+    "schemeCode": 144988,
+    "schemeName": "Sundaram Emerging Small Cap VII Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-10-03",
+    "lastDate": "2023-09-29",
+    "rows": 1231,
+    "updatedAt": "2026-08-27T23:57:22.574255Z"
+  },
+  {
+    "schemeCode": 143506,
+    "schemeName": "Sundaram Emerging Small Cap Series IV Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-06-14",
+    "lastDate": "2023-06-12",
+    "rows": 1230,
+    "updatedAt": "2026-08-27T23:57:19.921202Z"
+  },
+  {
+    "schemeCode": 144437,
+    "schemeName": "Sundaram Emerging Small Cap Series V Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-08-17",
+    "lastDate": "2023-08-14",
+    "rows": 1229,
+    "updatedAt": "2026-08-27T23:57:21.536347Z"
+  },
+  {
+    "schemeCode": 144728,
+    "schemeName": "Sundaram Emerging Small Cap Series VI Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-09-12",
+    "lastDate": "2023-09-07",
+    "rows": 1229,
+    "updatedAt": "2026-08-27T23:57:22.045101Z"
+  },
+  {
+    "schemeCode": 134297,
+    "schemeName": "Sundaram Select Small Cap Series III Direct Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2015-04-08",
+    "lastDate": "2020-03-31",
+    "rows": 1227,
+    "updatedAt": "2026-08-27T23:57:09.079513Z"
+  },
+  {
+    "schemeCode": 134373,
+    "schemeName": "Sundaram Select Small Cap Series IV - Direct Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2015-04-22",
+    "lastDate": "2020-04-17",
+    "rows": 1227,
+    "updatedAt": "2026-08-27T23:57:09.909205Z"
+  },
+  {
+    "schemeCode": 143226,
+    "schemeName": "Sundaram Emerging Small Cap Series III Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2018-05-17",
+    "lastDate": "2023-05-10",
+    "rows": 1227,
+    "updatedAt": "2026-08-27T23:57:19.291419Z"
+  },
+  {
+    "schemeCode": 149283,
+    "schemeName": "ICICI Prudential Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "ICICI Prudential Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2021-11-03",
+    "lastDate": "2026-08-27",
+    "rows": 1186,
+    "updatedAt": "2026-08-27T23:57:35.206376Z"
+  },
+  {
+    "schemeCode": 149894,
+    "schemeName": "Axis Nifty Smallcap 50 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "Axis Nifty Smallcap 50 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2022-03-15",
+    "lastDate": "2026-08-27",
+    "rows": 1105,
+    "updatedAt": "2026-08-27T23:57:41.260001Z"
+  },
+  {
+    "schemeCode": 141561,
+    "schemeName": "Sundaram Select Small Cap Series VI Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2017-07-20",
+    "lastDate": "2021-07-19",
+    "rows": 985,
+    "updatedAt": "2026-08-27T23:57:17.487745Z"
+  },
+  {
+    "schemeCode": 141499,
+    "schemeName": "Sundaram Select Small Cap Series V Direct Plan - Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2017-06-30",
+    "lastDate": "2021-06-23",
+    "rows": 981,
+    "updatedAt": "2026-08-27T23:57:17.428316Z"
+  },
+  {
+    "schemeCode": 150677,
+    "schemeName": "SBI Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "SBI Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2022-10-11",
+    "lastDate": "2026-08-27",
+    "rows": 964,
+    "updatedAt": "2026-08-27T23:57:47.970646Z"
+  },
+  {
+    "schemeCode": 119869,
+    "schemeName": "JPMorgan India Mid and Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "JPMorgan India Mid and Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2016-11-24",
+    "rows": 955,
+    "updatedAt": "2026-08-27T23:56:44.713310Z"
+  },
+  {
+    "schemeCode": 132985,
+    "schemeName": "Sundaram Select Small Cap Series II Direct Growth",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2014-11-26",
+    "lastDate": "2018-09-21",
+    "rows": 944,
+    "updatedAt": "2026-08-27T23:57:06.787996Z"
+  },
+  {
+    "schemeCode": 150892,
+    "schemeName": "Edelweiss Nifty Smallcap 250 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Edelweiss Nifty Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2022-12-02",
+    "lastDate": "2026-08-27",
+    "rows": 921,
+    "updatedAt": "2026-08-27T23:57:52.246915Z"
+  },
+  {
+    "schemeCode": 150915,
+    "schemeName": "Mahindra Manulife Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "Mahindra Manulife Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2022-12-14",
+    "lastDate": "2026-08-27",
+    "rows": 912,
+    "updatedAt": "2026-08-27T23:57:52.611239Z"
+  },
+  {
+    "schemeCode": 151649,
+    "schemeName": "Kotak Nifty Smallcap 50 Index Fund - Direct Plan - Growth",
+    "fundHouse": "Kotak Nifty Smallcap 50 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-04-18",
+    "lastDate": "2026-08-27",
+    "rows": 829,
+    "updatedAt": "2026-08-27T23:57:59.872191Z"
+  },
+  {
+    "schemeCode": 151727,
+    "schemeName": "HDFC NIFTY Smallcap 250 Index Fund - Direct Plan - Growth Option",
+    "fundHouse": "HDFC NIFTY Smallcap 250 Index",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-04-21",
+    "lastDate": "2026-08-27",
+    "rows": 826,
+    "updatedAt": "2026-08-27T23:58:00.637050Z"
+  },
+  {
+    "schemeCode": 152004,
+    "schemeName": "LIC MF Small Cap Fund - Direct Plan - Growth",
+    "fundHouse": "LIC MF Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-07-31",
+    "lastDate": "2026-08-27",
+    "rows": 757,
+    "updatedAt": "2026-08-27T23:58:02.708919Z"
   },
   {
     "schemeCode": 152128,
@@ -27,7 +477,17 @@
     "firstDate": "2023-11-01",
     "lastDate": "2026-08-27",
     "rows": 695,
-    "updatedAt": "2026-08-27T23:50:39.150525Z"
+    "updatedAt": "2026-08-27T23:58:05.136557Z"
+  },
+  {
+    "schemeCode": 152107,
+    "schemeName": "QUANTUM SMALL CAP FUND - Direct Plan - Growth Option",
+    "fundHouse": "Mutual Fund",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2023-11-03",
+    "lastDate": "2026-08-27",
+    "rows": 690,
+    "updatedAt": "2026-08-27T23:58:05.606204Z"
   },
   {
     "schemeCode": 152264,
@@ -37,7 +497,7 @@
     "firstDate": "2023-12-26",
     "lastDate": "2026-08-27",
     "rows": 668,
-    "updatedAt": "2026-08-27T23:50:40.724639Z"
+    "updatedAt": "2026-08-27T23:58:06.339672Z"
   },
   {
     "schemeCode": 152243,
@@ -47,7 +507,7 @@
     "firstDate": "2023-12-26",
     "lastDate": "2026-08-27",
     "rows": 659,
-    "updatedAt": "2026-08-27T23:50:40.381622Z"
+    "updatedAt": "2026-08-27T23:58:06.222864Z"
   },
   {
     "schemeCode": 152237,
@@ -57,7 +517,17 @@
     "firstDate": "2023-12-29",
     "lastDate": "2026-08-27",
     "rows": 656,
-    "updatedAt": "2026-08-27T23:50:40.394694Z"
+    "updatedAt": "2026-08-27T23:58:06.140089Z"
+  },
+  {
+    "schemeCode": 147131,
+    "schemeName": "Principal Small Cap Fund - Direct Plan - Growth Option",
+    "fundHouse": "Principal Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2019-05-14",
+    "lastDate": "2021-12-30",
+    "rows": 650,
+    "updatedAt": "2026-08-27T23:57:24.254417Z"
   },
   {
     "schemeCode": 152431,
@@ -67,7 +537,7 @@
     "firstDate": "2024-03-01",
     "lastDate": "2026-08-27",
     "rows": 613,
-    "updatedAt": "2026-08-27T23:50:41.765830Z"
+    "updatedAt": "2026-08-27T23:58:08.710120Z"
   },
   {
     "schemeCode": 152614,
@@ -77,7 +547,7 @@
     "firstDate": "2024-06-24",
     "lastDate": "2026-08-27",
     "rows": 539,
-    "updatedAt": "2026-08-27T23:50:42.096058Z"
+    "updatedAt": "2026-08-27T23:58:10.194984Z"
   },
   {
     "schemeCode": 152939,
@@ -87,7 +557,7 @@
     "firstDate": "2024-11-05",
     "lastDate": "2026-08-27",
     "rows": 448,
-    "updatedAt": "2026-08-27T23:50:44.432984Z"
+    "updatedAt": "2026-08-27T23:58:15.649186Z"
   },
   {
     "schemeCode": 153223,
@@ -97,7 +567,7 @@
     "firstDate": "2025-01-30",
     "lastDate": "2026-08-27",
     "rows": 388,
-    "updatedAt": "2026-08-27T23:50:46.049590Z"
+    "updatedAt": "2026-08-27T23:58:20.395040Z"
   },
   {
     "schemeCode": 153196,
@@ -107,7 +577,7 @@
     "firstDate": "2025-02-03",
     "lastDate": "2026-08-27",
     "rows": 386,
-    "updatedAt": "2026-08-27T23:50:45.934407Z"
+    "updatedAt": "2026-08-27T23:58:20.159889Z"
   },
   {
     "schemeCode": 153272,
@@ -117,7 +587,7 @@
     "firstDate": "2025-02-18",
     "lastDate": "2026-08-27",
     "rows": 375,
-    "updatedAt": "2026-08-27T23:50:46.195459Z"
+    "updatedAt": "2026-08-27T23:58:21.753491Z"
   },
   {
     "schemeCode": 153362,
@@ -127,7 +597,17 @@
     "firstDate": "2025-03-13",
     "lastDate": "2026-08-27",
     "rows": 360,
-    "updatedAt": "2026-08-27T23:50:47.165028Z"
+    "updatedAt": "2026-08-27T23:58:22.723570Z"
+  },
+  {
+    "schemeCode": 120077,
+    "schemeName": "HSBC - Small Cap Fund - Growth Direct",
+    "fundHouse": "HSBC - Small Cap",
+    "schemeCategory": "Small Cap",
+    "firstDate": "2013-01-02",
+    "lastDate": "2014-04-25",
+    "rows": 324,
+    "updatedAt": "2026-08-27T23:56:45.897564Z"
   },
   {
     "schemeCode": 153612,
@@ -137,7 +617,7 @@
     "firstDate": "2025-07-22",
     "lastDate": "2026-08-27",
     "rows": 271,
-    "updatedAt": "2026-08-27T23:50:47.667216Z"
+    "updatedAt": "2026-08-27T23:58:28.792866Z"
   },
   {
     "schemeCode": 153790,
@@ -147,7 +627,7 @@
     "firstDate": "2025-08-22",
     "lastDate": "2026-08-27",
     "rows": 249,
-    "updatedAt": "2026-08-27T23:50:48.844552Z"
+    "updatedAt": "2026-08-27T23:58:32.798889Z"
   },
   {
     "schemeCode": 153912,
@@ -157,7 +637,7 @@
     "firstDate": "2025-11-28",
     "lastDate": "2026-08-27",
     "rows": 185,
-    "updatedAt": "2026-08-27T23:50:49.281318Z"
+    "updatedAt": "2026-08-27T23:58:35.091888Z"
   },
   {
     "schemeCode": 153868,
@@ -167,7 +647,7 @@
     "firstDate": "2025-12-09",
     "lastDate": "2026-08-27",
     "rows": 178,
-    "updatedAt": "2026-08-27T23:50:49.176697Z"
+    "updatedAt": "2026-08-27T23:58:35.666541Z"
   },
   {
     "schemeCode": 154027,
@@ -177,7 +657,7 @@
     "firstDate": "2025-12-10",
     "lastDate": "2026-08-27",
     "rows": 177,
-    "updatedAt": "2026-08-27T23:50:49.500993Z"
+    "updatedAt": "2026-08-27T23:58:37.677437Z"
   },
   {
     "schemeCode": 154018,
@@ -187,7 +667,7 @@
     "firstDate": "2025-12-11",
     "lastDate": "2026-08-27",
     "rows": 176,
-    "updatedAt": "2026-08-27T23:50:49.414753Z"
+    "updatedAt": "2026-08-27T23:58:39.151649Z"
   },
   {
     "schemeCode": 154063,
@@ -197,7 +677,7 @@
     "firstDate": "2026-02-02",
     "lastDate": "2026-08-27",
     "rows": 142,
-    "updatedAt": "2026-08-27T23:50:49.688681Z"
+    "updatedAt": "2026-08-27T23:58:39.194506Z"
   },
   {
     "schemeCode": 154215,
@@ -207,7 +687,7 @@
     "firstDate": "2026-03-20",
     "lastDate": "2026-08-27",
     "rows": 109,
-    "updatedAt": "2026-08-27T23:50:50.400058Z"
+    "updatedAt": "2026-08-27T23:58:41.350152Z"
   },
   {
     "schemeCode": 154269,
@@ -217,7 +697,7 @@
     "firstDate": "2026-03-30",
     "lastDate": "2026-08-27",
     "rows": 104,
-    "updatedAt": "2026-08-27T23:50:50.594496Z"
+    "updatedAt": "2026-08-27T23:58:46.373280Z"
   },
   {
     "schemeCode": 154306,
@@ -227,6 +707,6 @@
     "firstDate": "2026-04-13",
     "lastDate": "2026-08-27",
     "rows": 95,
-    "updatedAt": "2026-08-27T23:50:50.677763Z"
+    "updatedAt": "2026-08-27T23:58:45.151833Z"
   }
 ]
