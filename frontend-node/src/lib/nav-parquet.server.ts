@@ -23,17 +23,26 @@ export function isNavLakeConfigured() {
   return isS3Configured();
 }
 
-/** Map of scheme code -> parquet key, built from a single bucket listing. */
+/** Map of scheme code -> parquet key, built instantly from category manifests instead of full S3 XML bucket listings. */
 async function schemeKeyIndex(): Promise<Map<number, string>> {
   if (keyIndex && Date.now() - keyIndex.at < TTL) return keyIndex.value;
   const map = new Map<number, string>();
   try {
-    for (const obj of await s3List(S3_PATHS.navParquetPrefix())) {
-      const code = Number(obj.key.match(/scheme_code=(\d+)/)?.[1]);
-      if (Number.isFinite(code) && obj.key.endsWith(".parquet")) map.set(code, obj.key);
+    const manifests = await Promise.all(
+      LAKE_CATEGORIES.map(async (category) => {
+        const entries = await readManifest(category).catch(() => []);
+        return { category, entries };
+      })
+    );
+    for (const { category, entries } of manifests) {
+      for (const entry of entries) {
+        if (entry.schemeCode) {
+          map.set(entry.schemeCode, S3_PATHS.navParquet(category, entry.schemeCode));
+        }
+      }
     }
   } catch {
-    /* listing failures fall back to the daily feed */
+    /* fallback */
   }
   keyIndex = { at: Date.now(), value: map };
   return map;

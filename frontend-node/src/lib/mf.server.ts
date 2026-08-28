@@ -536,10 +536,9 @@ async function analyseUncached(input: {
     (Date.parse(indexWin[indexWin.length - 1]!.date) - Date.parse(indexWin[0]!.date)) / 86400000,
   );
 
-  const candidates = await categoryCandidates(input.category);
+  const candidates = await categoryCandidates(input.category, 45);
 
-
-  const fetched = await pool(candidates, 10, async (code) => ({ code, scheme: await fetchScheme(code) }));
+  const fetched = await pool(candidates, 20, async (code) => ({ code, scheme: await fetchScheme(code) }));
 
   // trailing 3-year window ending at the analysis end date, for style/size scoring
   const styleEnd = input.end;
