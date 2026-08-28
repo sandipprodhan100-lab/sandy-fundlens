@@ -50,40 +50,6 @@ def get_category_manifest(category: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to read category manifest: {e}")
 
-@router.get("/schemes/{code}", summary="Get historical NAV series for a scheme")
-def get_scheme_nav(code: int):
-    points = get_nav_series(code)
-    if not points:
-        raise HTTPException(status_code=404, detail=f"Scheme {code} NAV data not found")
-    return {"schemeCode": code, "points": points}
-
-@router.get("/schemes/{code}/analysis", summary="Analyze fund metrics over custom window")
-def get_scheme_analysis(
-    code: int,
-    start: str = Query(..., description="Start date in YYYY-MM-DD format"),
-    end: str = Query(..., description="End date in YYYY-MM-DD format")
-):
-    points = get_nav_series(code)
-    if not points:
-        raise HTTPException(status_code=404, detail=f"Scheme {code} NAV data not found")
-        
-    # Slice points
-    sliced = [p for p in points if start <= p["date"] <= end]
-    if len(sliced) < 2:
-        return {
-            "schemeCode": code,
-            "ret": 0.0,
-            "annualised": 0.0,
-            "maxDD": 0.0,
-            "volatility": 0.0,
-            "days": 0,
-            "error": "Insufficient NAV points in the selected range"
-        }
-        
-    analysis = calculate_metrics(sliced)
-    analysis["schemeCode"] = code
-    return analysis
-
 @router.get("/schemes/analysis", summary="Analyze all funds in a category over a window")
 def get_category_analysis(
     category: str = Query(..., description="Fund category (large, mid, small, multi, flexi, hybrid)"),
@@ -137,6 +103,40 @@ def get_category_analysis(
         "funds": results,
         "analysed": len(results),
     }
+
+@router.get("/schemes/{code}", summary="Get historical NAV series for a scheme")
+def get_scheme_nav(code: int):
+    points = get_nav_series(code)
+    if not points:
+        raise HTTPException(status_code=404, detail=f"Scheme {code} NAV data not found")
+    return {"schemeCode": code, "points": points}
+
+@router.get("/schemes/{code}/analysis", summary="Analyze fund metrics over custom window")
+def get_scheme_analysis(
+    code: int,
+    start: str = Query(..., description="Start date in YYYY-MM-DD format"),
+    end: str = Query(..., description="End date in YYYY-MM-DD format")
+):
+    points = get_nav_series(code)
+    if not points:
+        raise HTTPException(status_code=404, detail=f"Scheme {code} NAV data not found")
+
+    # Slice points
+    sliced = [p for p in points if start <= p["date"] <= end]
+    if len(sliced) < 2:
+        return {
+            "schemeCode": code,
+            "ret": 0.0,
+            "annualised": 0.0,
+            "maxDD": 0.0,
+            "volatility": 0.0,
+            "days": 0,
+            "error": "Insufficient NAV points in the selected range"
+        }
+
+    analysis = calculate_metrics(sliced)
+    analysis["schemeCode"] = code
+    return analysis
 
 from pydantic import BaseModel
 from typing import List, Optional
