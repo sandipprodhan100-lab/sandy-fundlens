@@ -1,14 +1,13 @@
 /** Shared, client-safe analyst quota constants. */
+export const FREE_MONTHLY_TURNS = 5;
 export const FREE_DAILY_TURNS = 5;
-/** Pro daily allowance. Extra questions come from purchased top-up packs. */
 export const PRO_DAILY_TURNS = 10;
 
+/** Extra question pack: ₹299 flat for 30 AI analysis queries */
 export const TOPUP_PACKS = [
-  { priceId: "analyst_pack_10" as const, questions: 10, label: "10 extra questions" },
-  { priceId: "analyst_pack_20" as const, questions: 20, label: "20 extra questions" },
+  { priceId: "analyst_pack_30" as const, questions: 30, price: 299, label: "30 extra questions (₹299)" },
 ];
 
 export const PACK_CREDITS: Record<string, number> = {
-  analyst_pack_10: 10,
-  analyst_pack_20: 20,
+  analyst_pack_30: 30,
 };
