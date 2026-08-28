@@ -47,12 +47,17 @@ export const analyseFunds = createServerFn({ method: "GET" })
   .handler(async ({ data }) => {
     // Fast path: check pre-computed snapshot from S3
     const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
-    const snapshot = (await readAnalysisSnapshot(data.category, data.indexKey)) as {
+    const snapshot = (await readAnalysisSnapshot(
+      data.category,
+      data.indexKey,
+      data.start,
+      data.end,
+    )) as {
       start?: string;
       end?: string;
     } | null;
 
-    if (snapshot && snapshot.start === data.start && snapshot.end === data.end) {
+    if (snapshot) {
       return snapshot as any;
     }
 

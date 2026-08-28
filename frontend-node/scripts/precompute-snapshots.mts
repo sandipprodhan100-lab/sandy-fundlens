@@ -96,33 +96,35 @@ async function main() {
         continue;
       }
 
-      // Use the most recent sideways window for that index
-      const latestWindow = sidewaysData.windows[0]!;
-      const t0 = Date.now();
-      try {
-        console.log(`  [${cat.key} × ${idx.key}] computing window (${latestWindow.start} → ${latestWindow.end})...`);
-        const result = await analyse({
-          category: cat.key,
-          indexKey: idx.key,
-          start: latestWindow.start,
-          end: latestWindow.end,
-        });
-        const envelope = {
-          _meta: {
-            refreshedAt: new Date().toISOString(),
-            version: VERSION,
-            durationMs: Date.now() - t0,
-          },
-          data: result,
-        };
-        await s3PutJSON(S3_PATHS.analysisSnapshot(cat.key, idx.key), envelope);
-        console.log(
-          `  [${cat.key} × ${idx.key}] ✓ ${result.analysed} funds, top score ${result.funds[0]?.score?.toFixed(1) ?? "-"}, ${((Date.now() - t0) / 1000).toFixed(1)}s`,
-        );
-      } catch (err) {
-        const msg = `analysis/${cat.key}_${idx.key}: ${err instanceof Error ? err.message : String(err)}`;
-        errors.push(msg);
-        console.error(`  [${cat.key} × ${idx.key}] ✗ ${msg}`);
+      for (const w of sidewaysData.windows) {
+        const t0 = Date.now();
+        try {
+          const result = await analyse({
+            category: cat.key,
+            indexKey: idx.key,
+            start: w.start,
+            end: w.end,
+          });
+          const envelope = {
+            _meta: {
+              refreshedAt: new Date().toISOString(),
+              version: VERSION,
+              durationMs: Date.now() - t0,
+            },
+            data: result,
+          };
+          await s3PutJSON(S3_PATHS.analysisSnapshotWindow(cat.key, idx.key, w.start, w.end), envelope);
+          if (w === sidewaysData.windows[0]) {
+            await s3PutJSON(S3_PATHS.analysisSnapshot(cat.key, idx.key), envelope);
+          }
+          console.log(
+            `  [${cat.key} × ${idx.key} (${w.start} → ${w.end})] ✓ ${result.analysed} funds, top score ${result.funds[0]?.score?.toFixed(1) ?? "-"}, ${((Date.now() - t0) / 1000).toFixed(1)}s`,
+          );
+        } catch (err) {
+          const msg = `analysis/${cat.key}_${idx.key}_${w.start}_${w.end}: ${err instanceof Error ? err.message : String(err)}`;
+          errors.push(msg);
+          console.error(`  [${cat.key} × ${idx.key} (${w.start})] ✗ ${msg}`);
+        }
       }
 
       // Pre-compute Combined Analysis Snapshot

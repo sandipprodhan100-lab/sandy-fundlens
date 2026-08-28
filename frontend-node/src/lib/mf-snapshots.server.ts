@@ -47,10 +47,23 @@ export async function readSidewaysSnapshot(indexKey: string): Promise<unknown | 
  * Read a pre-computed full analysis snapshot for a category+index pair.
  * Returns null if S3 is not configured, the snapshot doesn't exist, or is stale.
  */
-export async function readAnalysisSnapshot(category: string, indexKey: string): Promise<unknown | null> {
+export async function readAnalysisSnapshot(
+  category: string,
+  indexKey: string,
+  start?: string,
+  end?: string,
+): Promise<unknown | null> {
   if (!isS3Configured()) return null;
   try {
-    const envelope = await s3GetJSON<SnapshotEnvelope<unknown>>(S3_PATHS.analysisSnapshot(category, indexKey));
+    if (start && end) {
+      const winEnvelope = await s3GetJSON<SnapshotEnvelope<unknown>>(
+        S3_PATHS.analysisSnapshotWindow(category, indexKey, start, end),
+      ).catch(() => null);
+      if (winEnvelope?.data) return winEnvelope.data;
+    }
+    const envelope = await s3GetJSON<SnapshotEnvelope<unknown>>(
+      S3_PATHS.analysisSnapshot(category, indexKey),
+    );
     if (!envelope?._meta?.refreshedAt) return null;
     const age = Date.now() - new Date(envelope._meta.refreshedAt).getTime();
     if (age > MAX_AGE_MS) return null;

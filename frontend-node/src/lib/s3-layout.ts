@@ -38,6 +38,9 @@ export const S3_PATHS = {
   /** Pre-computed full analysis snapshot */
   analysisSnapshot: (category: string, indexKey: string) =>
     `analysis/_snapshots/results/${category}_${indexKey}.json`,
+  /** Pre-computed window-specific analysis snapshot */
+  analysisSnapshotWindow: (category: string, indexKey: string, start: string, end: string) =>
+    `analysis/_snapshots/results/${category}_${indexKey}_${start}_${end}.json`,
   /** Pre-computed combined multi-window analysis snapshot */
   combinedSnapshot: (category: string, indexKey: string) =>
     `analysis/_snapshots/combined/${category}_${indexKey}.json`,

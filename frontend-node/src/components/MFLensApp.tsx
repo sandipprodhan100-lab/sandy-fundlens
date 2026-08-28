@@ -204,9 +204,13 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
 
   useEffect(() => {
     const w = windows[0];
-    if (w && !submitted) {
+    if (
+      w &&
+      (!submitted || !windows.some((win: any) => win.start === submitted.start && win.end === submitted.end))
+    ) {
       autoWindow.current = true;
       setSubmitted({ start: w.start, end: w.end });
+      setRange({ start: w.start, end: w.end });
     }
   }, [submitted, windows]);
 
