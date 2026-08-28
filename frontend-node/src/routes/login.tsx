@@ -39,9 +39,25 @@ function Login() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // 1. Check existing session
     void supabase.auth.getSession().then(({ data }) => {
-      if (data.session) window.location.replace(next);
+      if (data.session) {
+        window.location.replace(next);
+      }
     });
+
+    // 2. Listen for auth state changes (OAuth redirects, token refresh, email confirm)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        window.location.replace(next);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [next]);
 
   async function handleGoogleSignIn() {
@@ -84,7 +100,7 @@ function Login() {
       return setError(otpError.message);
     }
     setMagicLinkSent(true);
-    setMsg(`We've sent a sign-in link to ${email}. Click the link in your email to sign in.`);
+    setMsg(`We have sent a sign-in link to ${email}. Check your email and click the link to sign in.`);
   }
 
   async function handlePasswordAuth(e: React.FormEvent) {
@@ -104,7 +120,7 @@ function Login() {
       if (data.session) {
         window.location.replace(next);
       } else {
-        setMsg("Account created! Check your email to confirm your sign up.");
+        setMsg("Account created! Please check your email to confirm your account.");
       }
     } else {
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
@@ -143,7 +159,7 @@ function Login() {
         <button
           type="button"
           onClick={handleGoogleSignIn}
-          className="w-full flex items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-2xs"
+          className="w-full flex items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-2xs cursor-pointer"
         >
           <svg className="size-4" viewBox="0 0 24 24">
             <path
@@ -185,7 +201,7 @@ function Login() {
                 setMagicLinkSent(false);
                 setMsg(null);
               }}
-              className="text-xs text-slate-700 underline font-medium hover:text-slate-900 pt-1 block mx-auto"
+              className="text-xs text-slate-700 underline font-medium hover:text-slate-900 pt-1 block mx-auto cursor-pointer"
             >
               Use a different email
             </button>
@@ -193,7 +209,7 @@ function Login() {
         ) : usePassword ? (
           <form onSubmit={handlePasswordAuth} className="space-y-3">
             <div>
-              <label className="text-xs font-semibold text-slate-700 mb-1 block">Email</label>
+              <label className="text-xs font-semibold text-slate-700 mb-1 block">Email Address</label>
               <input
                 type="email"
                 required
@@ -217,22 +233,22 @@ function Login() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm disabled:opacity-60"
+              className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
             >
-              {busy ? "Signing in…" : isSignUp ? "Sign Up" : "Sign In"}
+              {busy ? "Please wait…" : isSignUp ? "Create Account" : "Sign In"}
             </button>
             <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1">
               <button
                 type="button"
                 onClick={() => setIsSignUp((v) => !v)}
-                className="underline hover:text-slate-800"
+                className="underline hover:text-slate-800 cursor-pointer"
               >
                 {isSignUp ? "Already have an account? Sign in" : "Need an account? Sign up"}
               </button>
               <button
                 type="button"
                 onClick={() => setUsePassword(false)}
-                className="underline hover:text-slate-800"
+                className="underline hover:text-slate-800 cursor-pointer"
               >
                 Use Magic Link
               </button>
@@ -241,7 +257,7 @@ function Login() {
         ) : (
           <form onSubmit={handleMagicLink} className="space-y-3">
             <div>
-              <label className="text-xs font-semibold text-slate-700 mb-1 block">Email</label>
+              <label className="text-xs font-semibold text-slate-700 mb-1 block">Email Address</label>
               <input
                 type="email"
                 required
@@ -254,7 +270,7 @@ function Login() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm disabled:opacity-60"
+              className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
             >
               {busy ? "Sending link…" : "Send Sign-in Link"}
             </button>
@@ -262,7 +278,7 @@ function Login() {
               <button
                 type="button"
                 onClick={() => setUsePassword(true)}
-                className="text-[11px] text-slate-500 underline hover:text-slate-800"
+                className="text-[11px] text-slate-500 underline hover:text-slate-800 cursor-pointer"
               >
                 Or sign in with password
               </button>

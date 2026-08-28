@@ -55,7 +55,7 @@ export function PortfolioConsultationForm() {
 
             <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               Know Your Portfolio-Level{" "}
-              <span className="text-primary underline decoration-primary/40 decoration-wavy">
+              <span className="text-slate-950 font-extrabold">
                 Sharpe, Sortino & Treynor
               </span>{" "}
               Ratios

@@ -106,7 +106,7 @@ export function SandipPortfolio() {
                 </span>
               </h1>
               <p className="text-[11px] text-slate-500 font-medium">
-                Integration Consultant &amp; AI Enabler
+                Enterprise Integration Consultant, Cloud Data Engineer &amp; AI Reliability Practitioner
               </p>
             </div>
           </div>
@@ -126,9 +126,6 @@ export function SandipPortfolio() {
             </a>
             <a href="#research" className="hover:text-slate-950 transition-colors text-slate-900">
               Research (MF Lens)
-            </a>
-            <a href="#contact" className="hover:text-slate-950 transition-colors">
-              Contact
             </a>
           </nav>
 
@@ -152,7 +149,7 @@ export function SandipPortfolio() {
         </div>
       </header>
 
-      {/* ── SECTION 1: HERO ── */}
+      {/* ── SECTION 1: HERO (TWO-LINE ADJUSTABLE HEADING, NO PERIOD) ── */}
       <section className="relative bg-white border-b border-slate-200 py-16 sm:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40 pointer-events-none" />
         
@@ -163,14 +160,14 @@ export function SandipPortfolio() {
           </div>
 
           <div className="space-y-4 max-w-4xl">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
-              Enterprise Integration, Cloud Data Pipelines &amp;{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800">
-                AI Enablement.
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.14]">
+              Enterprise Integration &amp; Cloud Data Pipelines
+              <span className="block text-slate-900">
+                &amp; AI Enablement
               </span>
             </h1>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal max-w-3xl">
-              15+ years of experience delivering mission-critical enterprise integration programs. Specialized in <strong className="text-slate-900 font-semibold">Oracle Middleware Integrations (OIC, SOA, ODI)</strong>, modern data engineering on <strong className="text-slate-900 font-semibold">AWS &amp; Azure (dbt, Databricks, Medallion Architecture)</strong>, and hooking data pipelines into production <strong className="text-slate-900 font-semibold">AI Enablement &amp; Agentic Systems</strong>.
+              15+ years delivering mission-critical enterprise integration programs. Specialized as an <strong className="text-slate-900 font-semibold">Enterprise Integration Consultant, Cloud Data Engineer &amp; Enterprise AI Reliability Practitioner and Adoption Agent</strong>. Architecting <strong className="text-slate-900 font-semibold">Oracle Middleware (OIC, SOA, ODI)</strong>, <strong className="text-slate-900 font-semibold">AWS &amp; Azure Integration Services</strong>, <strong className="text-slate-900 font-semibold">API-Led &amp; Microservices</strong> architectures, and Medallion Lakehouses powering agentic AI.
             </p>
           </div>
 
@@ -293,7 +290,7 @@ export function SandipPortfolio() {
         </div>
       </section>
 
-      {/* ── SECTION 3: CORE WORK & TECH AREAS ── */}
+      {/* ── SECTION 3: CORE WORK & TECH AREAS (ORACLE, AWS, AZURE, API-LED) ── */}
       <section id="expertise" className="relative bg-white border-b border-slate-200 py-16 sm:py-20">
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-10">
           
@@ -307,103 +304,147 @@ export function SandipPortfolio() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-md">
-              Simple, reliable, and enterprise-proven technical capabilities.
+              Enterprise-proven architecture across Oracle Middleware, AWS &amp; Azure integration services, and API-led microservices.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Card 1: Oracle Middleware */}
-            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-7 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
               <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
                 <Network className="size-5" />
               </div>
               <div className="space-y-1">
                 <div className="text-xs font-bold font-mono text-slate-600 uppercase">10+ Projects Delivered</div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-base font-bold text-slate-900">
                   Oracle Middleware Integration Products
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Architecting, deploying, and governing mission-critical enterprise integration pipelines across cloud and on-premises Oracle landscapes with guaranteed high availability.
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Architecting, deploying, and governing mission-critical enterprise integration pipelines across cloud and on-premises Oracle landscapes.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-800">
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Oracle Integration Cloud (OIC)</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">SOA Suite 12c</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">ODI 12c</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Oracle Service Bus (OSB)</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">PL/SQL Optimization</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">XML / XSLT</span>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Oracle Integration Cloud (OIC)</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">SOA Suite 12c</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">ODI 12c</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Oracle Service Bus (OSB)</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">PL/SQL Optimization</span>
               </div>
             </div>
 
-            {/* Card 2: Data Engineering AWS & Azure */}
-            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-7 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+            {/* Card 2: AWS & Azure Integration Services */}
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+              <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
+                <Workflow className="size-5" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">Cloud Native Integration</div>
+                <h3 className="text-base font-bold text-slate-900">
+                  AWS &amp; Azure Integration Services
+                </h3>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Serverless event routing, asynchronous messaging, workflow state machines, and enterprise SaaS connectors on AWS &amp; Azure.
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">AWS EventBridge</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">AWS AppFlow</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Amazon SQS/SNS</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">AWS Step Functions</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Azure Service Bus</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Azure Logic Apps</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Azure Event Grid</span>
+              </div>
+            </div>
+
+            {/* Card 3: API-Led & Microservices */}
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+              <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
+                <Code2 className="size-5" />
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">API &amp; Architecture</div>
+                <h3 className="text-base font-bold text-slate-900">
+                  API-Led &amp; Microservices Practitioner
+                </h3>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                System, Process, and Experience API decomposition, contract-first design, API Gateways, OAuth2/OIDC, and Domain-Driven Design (DDD).
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">API Gateway / APIM</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">REST / JSON</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">GraphQL &amp; gRPC</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">OpenAPI 3.0 / Swagger</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">OAuth2 / OIDC</span>
+              </div>
+            </div>
+
+            {/* Card 4: Data Engineering AWS & Azure */}
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
               <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
                 <Database className="size-5" />
               </div>
               <div className="space-y-1">
                 <div className="text-xs font-bold font-mono text-slate-600 uppercase">5+ Projects Delivered</div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-base font-bold text-slate-900">
                   Data Engineering with AWS &amp; Azure (dbt, Databricks)
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Implementing multi-tier Medallion Lakehouses, analytical data planes, and high-throughput transformation pipelines for enterprise data science and real-time BI.
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Multi-tier Medallion Lakehouses, analytical data planes, and high-throughput transformation pipelines for enterprise data science and real-time BI.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-800">
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">dbt (Data Build Tool)</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Databricks</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Apache Spark</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">AWS (S3, Glue, Lambda, Athena)</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Azure Data Factory</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Delta Lake / Parquet</span>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">dbt (Data Build Tool)</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Databricks</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Apache Spark</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">AWS (S3, Glue, Athena)</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Delta Lake / Parquet</span>
               </div>
             </div>
 
-            {/* Card 3: Python & SQL */}
-            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-7 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
-              <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
-                <Code2 className="size-5" />
-              </div>
-              <div className="space-y-1">
-                <div className="text-xs font-bold font-mono text-slate-600 uppercase">Core Development</div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  Python &amp; Advanced SQL Proficiencies
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Developing high-performance asynchronous data services, financial statistical models, complex window functions, and sub-second SQL analytical queries.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-800">
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Python 3.11+ / FastAPI</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Pandas &amp; NumPy</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Complex Analytical SQL</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">PostgreSQL</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Execution Plan Optimization</span>
-              </div>
-            </div>
-
-            {/* Card 4: CI/CD & YAML IaC */}
-            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-7 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+            {/* Card 5: Python & SQL */}
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
               <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
                 <FileCode className="size-5" />
               </div>
               <div className="space-y-1">
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">Core Development</div>
+                <h3 className="text-base font-bold text-slate-900">
+                  Python &amp; Advanced SQL Proficiencies
+                </h3>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Asynchronous data services, statistical modeling, analytical window functions, query plan optimization, and robust PostgreSQL schemas.
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Python 3.11+ / FastAPI</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Pandas &amp; NumPy</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Analytical SQL</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">PostgreSQL</span>
+              </div>
+            </div>
+
+            {/* Card 6: CI/CD & YAML IaC */}
+            <div className="rounded-2xl bg-[#f8fafc] border border-slate-200 p-6 space-y-4 hover:border-slate-400 hover:shadow-sm transition-all shadow-2xs">
+              <div className="size-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 font-bold">
+                <GitBranch className="size-5" />
+              </div>
+              <div className="space-y-1">
                 <div className="text-xs font-bold font-mono text-slate-600 uppercase">DevOps &amp; Automation</div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-base font-bold text-slate-900">
                   CI/CD Implementation &amp; YAML-based IaC
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Building automated release pipelines, multi-environment deployments, container orchestration, and configuration governance with YAML Infrastructure-as-Code.
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Automated release pipelines, multi-environment deployments, container orchestration, and configuration governance with YAML Infrastructure-as-Code.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-800">
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">GitHub Actions (YAML)</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Jenkins Pipelines</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">YAML-based IaC</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Docker &amp; Containers</span>
-                <span className="px-2.5 py-1 rounded bg-white border border-slate-200 shadow-2xs">Cloudflare Workers</span>
+              <div className="flex flex-wrap gap-1.5 pt-2 text-[10px] font-mono text-slate-800">
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">GitHub Actions (YAML)</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Jenkins Pipelines</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Docker</span>
+                <span className="px-2 py-0.5 rounded bg-white border border-slate-200">Cloudflare Workers</span>
               </div>
             </div>
 
@@ -855,7 +896,7 @@ export function SandipPortfolio() {
       <footer className="border-t border-slate-200 bg-white py-8 px-5 sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            <span className="font-bold text-slate-900">Sandip Prodhan</span> · Integration Consultant &amp; AI Enabler · Cambridge, UK
+            <span className="font-bold text-slate-900">Sandip Prodhan</span> · Enterprise Integration Consultant, Cloud Data Engineer &amp; AI Reliability Practitioner · Cambridge, UK
           </div>
           <div className="flex items-center gap-6">
             <a
