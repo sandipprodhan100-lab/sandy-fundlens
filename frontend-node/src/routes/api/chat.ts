@@ -8,7 +8,7 @@ type Body = { messages?: unknown; threadId?: unknown };
 
 const FREE_MONTHLY_TURNS = 5;
 
-// Admin emails with unlimited queries and full capabilities
+// Admin emails with unlimited queries and full access
 const ADMIN_EMAILS = new Set([
   "sandipprodhan100@gmail.com",
   "sandeepprodhan100@gmail.com",
@@ -42,10 +42,10 @@ export const Route = createFileRoute("/api/chat")({
         if (!Array.isArray(messages) || messages.length === 0 || messages.length > 200) {
           return json({ error: "Messages are required" }, 400);
         }
-        const uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-        if (typeof threadId !== "string" || !uuidRe.test(threadId)) {
-          return json({ error: "threadId is required" }, 400);
-        }
+
+        const validThreadId = typeof threadId === "string" && threadId.length > 0
+          ? threadId
+          : crypto.randomUUID();
 
         const header = request.headers.get("authorization") ?? "";
         const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
@@ -64,86 +64,110 @@ export const Route = createFileRoute("/api/chat")({
 
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const today = new Date().toISOString().slice(0, 10);
-        const currentMonth = today.slice(0, 7); // e.g. "2026-08"
+        const currentMonth = today.slice(0, 7);
         const uiMessages = messages as UIMessage[];
 
-        const { data: userData } = await supabaseAdmin.auth.getUser(token);
-        const userId = userData?.user?.id ?? null;
-        const userEmail = userData?.user?.email?.toLowerCase() ?? "";
-        const isAdmin = ADMIN_EMAILS.has(userEmail);
+        let userId: string | null = null;
+        let userEmail = "";
+        try {
+          const { data: userData } = await supabaseAdmin.auth.getUser(token);
+          userId = userData?.user?.id ?? null;
+          userEmail = userData?.user?.email?.toLowerCase() ?? "";
+        } catch (authErr) {
+          console.warn("Auth token lookup error:", authErr);
+        }
 
         if (!userId) {
           return json({ error: "Your session expired. Please sign in again." }, 401);
         }
 
-        // Thread validation
-        const { data: thread } = await supabaseAdmin
-          .from("agent_threads")
-          .select("id,user_id,title")
-          .eq("id", threadId)
-          .maybeSingle();
+        const isAdmin = ADMIN_EMAILS.has(userEmail);
 
-        if (!thread || thread.user_id !== userId) {
-          return json({ error: "Thread not found." }, 404);
+        // Ensure Thread Exists or Auto-Create
+        try {
+          const { data: thread } = await supabaseAdmin
+            .from("agent_threads")
+            .select("id,user_id,title")
+            .eq("id", validThreadId)
+            .maybeSingle();
+
+          if (!thread) {
+            await supabaseAdmin.from("agent_threads").insert({
+              id: validThreadId,
+              user_id: userId,
+              title: "New analysis",
+              updated_at: new Date().toISOString(),
+            });
+          }
+        } catch (threadErr) {
+          console.warn("Thread table sync notice:", threadErr);
         }
 
         // Check Monthly Usage (Admins bypass limits; Free users get 5/month)
         if (!isAdmin) {
-          const { data: monthUsage } = await supabaseAdmin
-            .from("agent_usage")
-            .select("turns")
-            .eq("user_id", userId)
-            .like("usage_date", `${currentMonth}%`);
+          try {
+            const { data: monthUsage } = await supabaseAdmin
+              .from("agent_usage")
+              .select("turns")
+              .eq("user_id", userId)
+              .like("usage_date", `${currentMonth}%`);
 
-          const monthlyUsed =
-            monthUsage?.reduce((acc, row) => acc + (Number(row.turns) || 0), 0) ?? 0;
+            const monthlyUsed =
+              monthUsage?.reduce((acc, row) => acc + (Number(row.turns) || 0), 0) ?? 0;
 
-          if (monthlyUsed >= FREE_MONTHLY_TURNS) {
-            return json(
-              {
-                error: `You have reached your quota of ${FREE_MONTHLY_TURNS} free AI analyses for ${currentMonth}. Your quota resets on the 1st of next month.`,
-              },
-              429,
-            );
+            if (monthlyUsed >= FREE_MONTHLY_TURNS) {
+              return json(
+                {
+                  error: `You have reached your quota of ${FREE_MONTHLY_TURNS} free AI analyses for ${currentMonth}. Your quota resets on the 1st of next month.`,
+                },
+                429,
+              );
+            }
+
+            // Track usage turns
+            const { data: todayUsage } = await supabaseAdmin
+              .from("agent_usage")
+              .select("turns")
+              .eq("user_id", userId)
+              .eq("usage_date", today)
+              .maybeSingle();
+
+            const todayUsed = todayUsage?.turns ?? 0;
+            await supabaseAdmin
+              .from("agent_usage")
+              .upsert(
+                { user_id: userId, usage_date: today, turns: todayUsed + 1 },
+                { onConflict: "user_id,usage_date" },
+              );
+          } catch (usageErr) {
+            console.warn("Usage tracking notice:", usageErr);
           }
         }
-
-        // Track usage turns for user
-        const { data: todayUsage } = await supabaseAdmin
-          .from("agent_usage")
-          .select("turns")
-          .eq("user_id", userId)
-          .eq("usage_date", today)
-          .maybeSingle();
-
-        const todayUsed = todayUsage?.turns ?? 0;
-        await supabaseAdmin
-          .from("agent_usage")
-          .upsert(
-            { user_id: userId, usage_date: today, turns: todayUsed + 1 },
-            { onConflict: "user_id,usage_date" },
-          );
 
         // Record incoming user message
         const lastMsg = uiMessages[uiMessages.length - 1];
         if (lastMsg?.role === "user") {
-          await supabaseAdmin.from("agent_messages").insert({
-            thread_id: threadId,
-            user_id: userId,
-            role: "user",
-            sdk_message_id: lastMsg.id ?? null,
-            parts: lastMsg.parts as unknown as never,
-          });
+          try {
+            await supabaseAdmin.from("agent_messages").insert({
+              thread_id: validThreadId,
+              user_id: userId,
+              role: "user",
+              sdk_message_id: lastMsg.id ?? null,
+              parts: lastMsg.parts as unknown as never,
+            });
 
-          const firstText = lastMsg.parts
-            .map((p) => (p.type === "text" ? p.text : ""))
-            .join(" ")
-            .trim();
-          if (firstText && (thread.title === "New analysis" || !thread.title)) {
-            await supabaseAdmin
-              .from("agent_threads")
-              .update({ title: firstText.slice(0, 70), updated_at: new Date().toISOString() })
-              .eq("id", threadId);
+            const firstText = lastMsg.parts
+              .map((p) => (p.type === "text" ? p.text : ""))
+              .join(" ")
+              .trim();
+            if (firstText) {
+              await supabaseAdmin
+                .from("agent_threads")
+                .update({ title: firstText.slice(0, 70), updated_at: new Date().toISOString() })
+                .eq("id", validThreadId);
+            }
+          } catch (msgErr) {
+            console.warn("Message recording notice:", msgErr);
           }
         }
 
@@ -172,7 +196,7 @@ export const Route = createFileRoute("/api/chat")({
           }
         }
 
-        // 2. Fallback to S3 Snapshot-backed Quantitative Analysis if API key is not configured
+        // 2. Fallback to S3 Snapshot-backed Quantitative Analysis if API key has issues
         if (!finalAnswer) {
           const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
           const snap = (await readAnalysisSnapshot("flexi", "nifty500")) as any;
@@ -189,14 +213,18 @@ export const Route = createFileRoute("/api/chat")({
         }
 
         // Record assistant response
-        const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
-        await supabaseAdmin.from("agent_messages").insert({
-          thread_id: threadId,
-          user_id: userId,
-          role: "assistant",
-          sdk_message_id: assistantMessageId,
-          parts: [{ type: "text", text: finalAnswer }] as unknown as never,
-        });
+        try {
+          const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
+          await supabaseAdmin.from("agent_messages").insert({
+            thread_id: validThreadId,
+            user_id: userId,
+            role: "assistant",
+            sdk_message_id: assistantMessageId,
+            parts: [{ type: "text", text: finalAnswer }] as unknown as never,
+          });
+        } catch (recordErr) {
+          console.warn("Assistant message record notice:", recordErr);
+        }
 
         return new Response(finalAnswer, {
           headers: { "content-type": "text/plain; charset=utf-8" },

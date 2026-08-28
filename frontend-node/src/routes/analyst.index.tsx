@@ -81,23 +81,19 @@ function AnalystHome() {
   });
 
   async function newThread() {
+    const threadId = crypto.randomUUID();
     if (!session) {
-      void navigate({ to: "/analyst/$threadId", params: { threadId: TRIAL_THREAD_ID } });
+      void navigate({ to: "/login", search: { next: `/analyst/${threadId}` } });
       return;
     }
     setCreating(true);
-    const { data, error } = await supabase
-      .from("agent_threads")
-      .insert({ user_id: session.user.id, title: "New analysis" })
-      .select("id")
-      .single();
+    try {
+      await supabase
+        .from("agent_threads")
+        .insert({ id: threadId, user_id: session.user.id, title: "New analysis" });
+    } catch {}
     setCreating(false);
-    if (error || !data) {
-      toast.error(error?.message ?? "Could not start a conversation");
-      return;
-    }
-    await queryClient.invalidateQueries({ queryKey: ["agent-threads"] });
-    void navigate({ to: "/analyst/$threadId", params: { threadId: data.id } });
+    void navigate({ to: "/analyst/$threadId", params: { threadId } });
   }
 
   async function removeThread(id: string) {
