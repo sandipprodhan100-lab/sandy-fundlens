@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Briefcase, Loader2, Lock } from "lucide-react";
+import { Briefcase, Loader2, Lock, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 
 import { getModelPortfolio } from "@/lib/analysis-extras.functions";
 import { MODEL_DISCLAIMER, MODELS, type RiskProfile } from "@/lib/portfolio-model";
@@ -9,10 +9,6 @@ import { Input } from "@/components/ui/input";
 
 const inr = (v: number) => `₹${Math.round(v).toLocaleString("en-IN")}`;
 
-/**
- * One fixed, clearly separable hue per fund category so the allocation bar,
- * the legend and the table all read the same way.
- */
 const CATEGORY_COLORS: Record<string, string> = {
   large: "#2f7d76", // deep teal
   flexi: "#3f6fb0", // blue
@@ -24,7 +20,6 @@ const CATEGORY_COLORS: Record<string, string> = {
 const FALLBACK_COLORS = ["#2f7d76", "#3f6fb0", "#8a6bbd", "#c98a2b", "#c05a5a", "#6f8f4a"];
 const sleeveColor = (category: string, i: number) =>
   CATEGORY_COLORS[category] ?? FALLBACK_COLORS[i % FALLBACK_COLORS.length]!;
-
 
 type PlanMode = "sip" | "lumpsum" | "both";
 
@@ -39,7 +34,6 @@ const parseAmount = (v: string) => Math.max(0, Number(v.replace(/[^\d.]/g, "")) 
 export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
   const [profile, setProfile] = useState<RiskProfile>("balanced");
   const [mode, setMode] = useState<PlanMode>("sip");
-  // free-text amounts: the user types whatever they want, parsed on use
   const [monthly, setMonthly] = useState("25000");
   const [lumpsum, setLumpsum] = useState("500000");
 
@@ -48,8 +42,6 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
   const showSip = mode === "sip" || mode === "both";
   const showLumpsum = mode === "lumpsum" || mode === "both";
 
-  // The allocation weights don't depend on the amount, so a lumpsum-only plan
-  // still asks the server with a neutral monthly figure.
   const monthlyForQuery = showSip ? monthlyNum : 500;
   const validMonthly = monthlyForQuery >= 500 && monthlyForQuery <= 10_000_000;
   const validLumpsum = !showLumpsum || (lumpsumNum >= 500 && lumpsumNum <= 100_000_000);
@@ -64,147 +56,168 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
   const data = query.data;
 
   return (
-    <section className="panel p-5 sm:p-6">
-      <div className="flex flex-wrap items-start justify-between gap-3">
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 border-b border-slate-100 pb-5">
         <div>
-          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-            <Briefcase className="size-4 text-primary" /> Model MF portfolio
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold mb-2">
+            <Briefcase className="size-3.5" /> Quantitative Allocation Engine
+          </div>
+          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+            Model Mutual Fund Portfolio
           </h2>
-          <p className="mt-2 max-w-2xl text-xs text-muted-foreground">
-            Allocation weights follow mainstream global and emerging-market practice: a
-            market-cap-weighted core, satellites capped per category, mid + small held inside the
-            usual EM liquidity limits, and a debt-bearing sleeve sized to the horizon.
+          <p className="mt-1.5 max-w-2xl text-xs text-slate-600 leading-relaxed">
+            Market-cap-weighted core with category satellite ceilings, liquidity protection, and risk-managed downside buffers.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+
+        {/* Risk Profile Switcher */}
+        <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
           {MODELS.map((m) => (
-            <Button
+            <button
               key={m.key}
-              size="sm"
-              variant={profile === m.key ? "default" : "secondary"}
               onClick={() => setProfile(m.key)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                profile === m.key
+                  ? "bg-white text-slate-950 shadow-2xs"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
             >
               {m.label}
-            </Button>
+            </button>
           ))}
         </div>
       </div>
 
-      <div className="mt-4 grid gap-3 sm:flex sm:flex-wrap sm:items-end">
-        <div className="flex flex-wrap gap-2">
-          {PLAN_MODES.map((m) => (
-            <Button
-              key={m.key}
-              size="sm"
-              variant={mode === m.key ? "default" : "secondary"}
-              onClick={() => setMode(m.key)}
-            >
-              {m.label}
-            </Button>
-          ))}
+      {/* Plan Mode & Inputs */}
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center rounded-lg border border-slate-200 bg-white p-1">
+            {PLAN_MODES.map((m) => (
+              <button
+                key={m.key}
+                onClick={() => setMode(m.key)}
+                className={`px-3 py-1 text-xs font-bold rounded-md transition-all cursor-pointer ${
+                  mode === m.key
+                    ? "bg-slate-900 text-white shadow-2xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                {m.label}
+              </button>
+            ))}
+          </div>
+
+          {showSip && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-700">SIP:</span>
+              <div className="relative">
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">₹</span>
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  className="w-32 rounded-lg border border-slate-300 bg-white pl-6 pr-3 py-1.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-slate-900 shadow-2xs"
+                  placeholder="25000"
+                  value={monthly}
+                  onChange={(e) => setMonthly(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
+
+          {showLumpsum && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-700">Lumpsum:</span>
+              <div className="relative">
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">₹</span>
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  className="w-36 rounded-lg border border-slate-300 bg-white pl-6 pr-3 py-1.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-slate-900 shadow-2xs"
+                  placeholder="500000"
+                  value={lumpsum}
+                  onChange={(e) => setLumpsum(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
-        {showSip && (
-          <div>
-            <label className="eyebrow">Monthly SIP (₹)</label>
-            <Input
-              type="text"
-              inputMode="decimal"
-              className="num mt-1 w-full sm:w-40"
-              placeholder="e.g. 25000"
-              value={monthly}
-              onChange={(e) => setMonthly(e.target.value)}
-            />
-          </div>
-        )}
-        {showLumpsum && (
-          <div>
-            <label className="eyebrow">Lumpsum (₹)</label>
-            <Input
-              type="text"
-              inputMode="decimal"
-              className="num mt-1 w-full sm:w-40"
-              placeholder="e.g. 500000"
-              value={lumpsum}
-              onChange={(e) => setLumpsum(e.target.value)}
-            />
-          </div>
-        )}
-
         {data && (
-          <p className="text-xs text-muted-foreground">
-            {data.horizon} horizon · {data.equityPct}% equity ·{" "}
-            {100 - data.equityPct}% debt-bearing
-          </p>
+          <div className="text-xs font-medium text-slate-500">
+            <span className="font-bold text-slate-900">{data.horizon}</span> horizon ·{" "}
+            <span className="font-bold text-slate-900">{data.equityPct}%</span> equity ·{" "}
+            <span className="font-bold text-slate-900">{100 - data.equityPct}%</span> debt-bearing
+          </div>
         )}
       </div>
 
       {(!validMonthly || !validLumpsum) && (
-        <p className="num mt-2 text-xs text-sideways">
-          Enter an amount of ₹500 or more to build the sleeve split.
+        <p className="mt-3 text-xs font-medium text-amber-600">
+          Enter an amount of ₹500 or more to build the allocation split.
         </p>
       )}
 
-
       {query.isPending ? (
-        <div className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
-          <Loader2 className="size-4 animate-spin text-primary" /> Building the sleeve mix…
+        <div className="mt-8 flex items-center justify-center gap-2 py-12 text-sm text-slate-500">
+          <Loader2 className="size-5 animate-spin text-slate-900" /> Building quantitative sleeve mix…
         </div>
       ) : query.isError ? (
-        <p className="mt-5 text-sm text-destructive">{(query.error as Error).message}</p>
+        <p className="mt-5 text-sm text-red-600">{(query.error as Error).message}</p>
       ) : data ? (
-        <>
-          <p className="mt-4 text-sm">{data.summary}</p>
+        <div className="mt-6 space-y-6">
+          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+            {data.summary}
+          </p>
 
-          <div className="mt-4 flex h-3 w-full overflow-hidden rounded-full border border-border">
-            {data.sleeves.map((s, i) => (
-              <div
-                key={s.category}
-                title={`${s.categoryLabel} ${s.weight}%`}
-                style={{
-                  width: `${s.weight}%`,
-                  background: sleeveColor(s.category, i),
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
-            {data.sleeves.map((s, i) => (
-              <span key={s.category} className="inline-flex items-center gap-1.5">
-                <span
-                  className="size-2.5 rounded-full"
-                  style={{ background: sleeveColor(s.category, i) }}
+          {/* Allocation Progress Bar */}
+          <div className="space-y-2">
+            <div className="flex h-3.5 w-full overflow-hidden rounded-full border border-slate-200 shadow-inner">
+              {data.sleeves.map((s, i) => (
+                <div
+                  key={s.category}
+                  title={`${s.categoryLabel} ${s.weight}%`}
+                  style={{
+                    width: `${s.weight}%`,
+                    background: sleeveColor(s.category, i),
+                  }}
+                  className="transition-all"
                 />
-                {s.categoryLabel} <span className="num">{s.weight}%</span>
-              </span>
-            ))}
+              ))}
+            </div>
+
+            {/* Legend */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-xs text-slate-600">
+              {data.sleeves.map((s, i) => (
+                <span key={s.category} className="inline-flex items-center gap-1.5">
+                  <span
+                    className="size-2.5 rounded-full shrink-0"
+                    style={{ background: sleeveColor(s.category, i) }}
+                  />
+                  <span>{s.categoryLabel}</span>
+                  <span className="font-bold text-slate-900">{s.weight}%</span>
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[900px] table-fixed text-sm">
-              <colgroup>
-                <col className="w-[13%]" />
-                <col className="w-[8%]" />
-                {showSip && <col className="w-[12%]" />}
-                {showLumpsum && <col className="w-[12%]" />}
-                <col className="w-[28%]" />
-                <col />
-              </colgroup>
-              <thead className="text-left text-xs uppercase tracking-widest text-muted-foreground">
-                <tr>
-                  <th className="pb-2 font-medium">Sleeve</th>
-                  <th className="pb-2 text-right font-medium">Weight</th>
-                  {showSip && <th className="pb-2 text-right font-medium">Monthly SIP</th>}
-                  {showLumpsum && <th className="pb-2 text-right font-medium">Lumpsum</th>}
-                  <th className="pb-2 font-medium">Role &amp; standard</th>
-                  <th className="pb-2 font-medium">Fund pick</th>
+          {/* ── DESKTOP TABLE VIEW (hidden on small mobile) ── */}
+          <div className="hidden md:block overflow-hidden rounded-xl border border-slate-200 shadow-2xs">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-slate-100/80 border-b border-slate-200 text-slate-700 font-bold uppercase tracking-wider text-[11px]">
+                  <th className="py-3.5 px-4">Sleeve</th>
+                  <th className="py-3.5 px-4 text-center">Weight</th>
+                  {showSip && <th className="py-3.5 px-4 text-right">Monthly SIP</th>}
+                  {showLumpsum && <th className="py-3.5 px-4 text-right">Lumpsum</th>}
+                  <th className="py-3.5 px-5">Role &amp; Standard</th>
+                  <th className="py-3.5 px-5">Fund Pick</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-100 bg-white">
                 {data.sleeves.map((s, i) => (
-                  <tr key={s.category} className="border-t border-border/70 align-top">
-                    <td className="py-3 font-medium">
+                  <tr key={s.category} className="hover:bg-slate-50/60 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">
                       <span className="inline-flex items-center gap-2">
                         <span
                           className="size-2.5 shrink-0 rounded-full"
@@ -214,43 +227,50 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
                       </span>
                     </td>
 
-                    <td className="num py-3 text-right font-semibold">{s.weight}%</td>
+                    <td className="py-3.5 px-4 text-center font-bold text-slate-900 whitespace-nowrap">
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200">
+                        {s.weight}%
+                      </span>
+                    </td>
+
                     {showSip && (
-                      <td className="num py-3 text-right text-muted-foreground">
+                      <td className="py-3.5 px-4 text-right font-bold text-indigo-700 font-mono whitespace-nowrap">
                         {inr((monthlyNum * s.weight) / 100)}
                       </td>
                     )}
+
                     {showLumpsum && (
-                      <td className="num py-3 text-right text-muted-foreground">
+                      <td className="py-3.5 px-4 text-right font-bold text-emerald-700 font-mono whitespace-nowrap">
                         {inr((lumpsumNum * s.weight) / 100)}
                       </td>
                     )}
 
-                    <td className="py-3 pr-5">
-                      <span className="font-medium">{s.role}</span>
-                      <p className="mt-1 max-w-sm text-xs text-muted-foreground">{s.standard}</p>
+                    <td className="py-3.5 px-5 max-w-xs">
+                      <div className="font-bold text-slate-900">{s.role}</div>
+                      <p className="mt-0.5 text-[11px] text-slate-500 leading-relaxed">{s.standard}</p>
                     </td>
-                    <td className="py-3 break-words">
+
+                    <td className="py-3.5 px-5 max-w-sm">
                       {data.locked ? (
-                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                        <span className="inline-flex items-center gap-1 text-xs text-slate-400 font-medium">
                           <Lock className="size-3" /> Pro
                         </span>
                       ) : s.primary ? (
-                        <>
-                          <span className="font-medium">{s.primary.name}</span>
-                          <p className="num mt-1 text-xs text-muted-foreground">
+                        <div>
+                          <div className="font-bold text-slate-900">{s.primary.name}</div>
+                          <p className="mt-0.5 text-[11px] text-slate-500">
                             Alpha {s.primary.alpha >= 0 ? "+" : ""}
-                            {s.primary.alpha.toFixed(2)}% in the latest flat phase
+                            {s.primary.alpha.toFixed(2)}% in flat phase
                             {s.primary.cagr3y != null && ` · 3Y ${s.primary.cagr3y.toFixed(1)}%`}
                           </p>
                           {s.alternate && (
-                            <p className="mt-1 text-xs text-muted-foreground">
+                            <p className="mt-0.5 text-[11px] text-slate-400">
                               Alternate: {s.alternate.name}
                             </p>
                           )}
-                        </>
+                        </div>
                       ) : (
-                        <span className="text-xs text-muted-foreground">{s.note ?? "—"}</span>
+                        <span className="text-xs text-slate-400">{s.note ?? "—"}</span>
                       )}
                     </td>
                   </tr>
@@ -259,35 +279,78 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
             </table>
           </div>
 
-          <p className="mt-4 text-xs text-muted-foreground">{data.rebalance}</p>
+          {/* ── MOBILE CARD VIEW (visible on small screens) ── */}
+          <div className="md:hidden space-y-3">
+            {data.sleeves.map((s, i) => (
+              <div
+                key={s.category}
+                className="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                  <span className="inline-flex items-center gap-2 font-bold text-slate-900 text-sm">
+                    <span
+                      className="size-3 shrink-0 rounded-full"
+                      style={{ background: sleeveColor(s.category, i) }}
+                    />
+                    {s.categoryLabel}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-slate-900">
+                    {s.weight}% Weight
+                  </span>
+                </div>
 
-          {data.locked ? (
-            <div className="mt-4 rounded-xl border border-dashed border-primary/40 bg-primary/5 p-4">
-              <p className="flex items-center gap-2 text-sm font-semibold">
-                <Lock className="size-4 text-primary" /> Fund picks for every sleeve
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Free shows the target allocation. Pro fills each sleeve with the current top ranked
-                fund from that category's latest sideways window, plus an alternate.
-              </p>
-              {onUnlock}
-            </div>
-          ) : (
-            data.blendedAlpha != null && (
-              <p className="num mt-3 text-sm">
-                Weighted alpha of the picked funds during their flat phases:{" "}
-                <span className="font-semibold">
-                  {data.blendedAlpha >= 0 ? "+" : ""}
-                  {data.blendedAlpha.toFixed(2)}%
-                </span>
-              </p>
-            )
-          )}
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  {showSip && (
+                    <div className="bg-indigo-50/60 border border-indigo-100 p-2 rounded-lg">
+                      <span className="text-[10px] uppercase font-bold text-indigo-600 block">Monthly SIP</span>
+                      <span className="font-mono font-bold text-indigo-900 text-sm">
+                        {inr((monthlyNum * s.weight) / 100)}
+                      </span>
+                    </div>
+                  )}
+                  {showLumpsum && (
+                    <div className="bg-emerald-50/60 border border-emerald-100 p-2 rounded-lg">
+                      <span className="text-[10px] uppercase font-bold text-emerald-600 block">Lumpsum</span>
+                      <span className="font-mono font-bold text-emerald-900 text-sm">
+                        {inr((lumpsumNum * s.weight) / 100)}
+                      </span>
+                    </div>
+                  )}
+                </div>
 
-          <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
+                <div className="text-xs space-y-1">
+                  <span className="font-bold text-slate-900 block">{s.role}</span>
+                  <p className="text-slate-500 leading-relaxed">{s.standard}</p>
+                </div>
+
+                {s.primary && (
+                  <div className="pt-2 border-t border-slate-100 text-xs">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Top Quantitative Pick</span>
+                    <span className="font-bold text-slate-900">{s.primary.name}</span>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Alpha {s.primary.alpha >= 0 ? "+" : ""}{s.primary.alpha.toFixed(2)}% in flat phase
+                      {s.primary.cagr3y != null && ` · 3Y ${s.primary.cagr3y.toFixed(1)}%`}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-slate-100 text-xs text-slate-600">
+            <p>{data.rebalance}</p>
+            {data.blendedAlpha != null && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold">
+                <TrendingUp className="size-3.5" />
+                <span>Weighted Flat Phase Alpha: {data.blendedAlpha >= 0 ? "+" : ""}{data.blendedAlpha.toFixed(2)}%</span>
+              </div>
+            )}
+          </div>
+
+          <p className="text-[11px] leading-relaxed text-slate-400">
             {MODEL_DISCLAIMER}
           </p>
-        </>
+        </div>
       ) : null}
     </section>
   );

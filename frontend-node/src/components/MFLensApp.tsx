@@ -349,8 +349,8 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
 
 
 
-        {/* Control bar — sticky so analysis stays in view */}
-        <div className="sticky top-12 z-30 mt-3">
+        {/* Control bar — sticky on desktop, natural scroll on mobile */}
+        <div className="md:sticky md:top-12 z-30 mt-3">
           <ControlBar
             category={category}
             onCategory={pickCategory}
