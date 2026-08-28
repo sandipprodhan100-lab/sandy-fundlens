@@ -31,7 +31,7 @@ export async function ingestDocumentFromUrl(input: {
   fileName?: string;
 }): Promise<DocumentEntry> {
   const res = await fetch(input.sourceUrl, {
-    headers: { "user-agent": "MFLens/1.0 (+https://mutualfundlens.lovable.app)" },
+    headers: { "user-agent": "MFLens/1.0 (+https://fundlens.sandipprodhan.in)" },
     signal: AbortSignal.timeout(120000),
   });
   if (!res.ok) throw new Error(`Document download failed [${res.status}] for ${input.sourceUrl}`);

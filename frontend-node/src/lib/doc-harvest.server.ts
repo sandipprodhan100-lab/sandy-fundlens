@@ -13,7 +13,7 @@
 import { FUND_HOUSES, type FundHouseDef } from "./fund-houses";
 import { S3_PATHS, type DocType } from "./s3-layout";
 
-const UA = "Mozilla/5.0 (compatible; MFLens/1.0; +https://mutualfundlens.lovable.app)";
+const UA = "Mozilla/5.0 (compatible; MFLens/1.0; +https://fundlens.sandipprodhan.in)";
 
 export type HarvestReport = {
   job: "harvest-docs";

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://mutualfundlens.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://fundlens.sandipprodhan.in/terms" }],
   }),
   component: Terms,
 });

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://mutualfundlens.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://fundlens.sandipprodhan.in/privacy" }],
   }),
   component: Privacy,
 });

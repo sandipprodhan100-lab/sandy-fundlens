@@ -40,7 +40,7 @@ export async function downloadNavAll(): Promise<string> {
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
         const res = await fetch(url, {
-          headers: { accept: "text/plain", "user-agent": "MFLens/1.0 (+https://mutualfundlens.lovable.app)" },
+          headers: { accept: "text/plain", "user-agent": "MFLens/1.0 (+https://fundlens.sandipprodhan.in)" },
           signal: AbortSignal.timeout(60000),
         });
         if (!res.ok) throw new Error(`AMFI responded ${res.status}`);

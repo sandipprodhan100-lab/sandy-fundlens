@@ -49,7 +49,7 @@ export const Route = createFileRoute("/pricing")({
       { property: "og:image", content: "https://mutualfundlens.lovable.app/og-cover.png" },
       { name: "twitter:image", content: "https://mutualfundlens.lovable.app/og-cover.png" },
     ],
-    links: [{ rel: "canonical", href: "https://mutualfundlens.lovable.app/pricing" }],
+    links: [{ rel: "canonical", href: "https://fundlens.sandipprodhan.in/pricing" }],
   }),
 
   component: PricingPage,

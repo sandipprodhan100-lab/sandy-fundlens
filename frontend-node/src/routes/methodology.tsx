@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/LegalPage";
 const TITLE = "How MF Lens Detects Sideways Markets — Methodology";
 const DESC =
   "The full MF Lens methodology: how sideways index phases are detected, how the fund universe is screened, and how alpha, drawdown, Sharpe, Sortino and Treynor feed the ranking.";
-const URL = "https://mutualfundlens.lovable.app/methodology";
+const URL = "https://fundlens.sandipprodhan.in/methodology";
 
 const FAQ = [
   {

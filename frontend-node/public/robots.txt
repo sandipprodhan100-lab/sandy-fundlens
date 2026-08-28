@@ -15,5 +15,5 @@ Allow: /
 Disallow: /account
 Disallow: /admin
 
-Sitemap: https://mutualfundlens.lovable.app/sitemap.xml
+Sitemap: https://fundlens.sandipprodhan.in/sitemap.xml
 

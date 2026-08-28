@@ -20,10 +20,10 @@ export const Route = createFileRoute("/analysis")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: "https://mutualfundlens.lovable.app/og-cover.png" },
-      { name: "twitter:image", content: "https://mutualfundlens.lovable.app/og-cover.png" },
+      { property: "og:image", content: "https://fundlens.sandipprodhan.in/og-cover.png" },
+      { name: "twitter:image", content: "https://fundlens.sandipprodhan.in/og-cover.png" },
     ],
-    links: [{ rel: "canonical", href: "https://mutualfundlens.lovable.app/analysis" }],
+    links: [{ rel: "canonical", href: "https://fundlens.sandipprodhan.in/analysis" }],
   }),
   component: MFLensApp,
 });
