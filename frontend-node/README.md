@@ -30,8 +30,14 @@ npx wrangler secret put AWS_ACCESS_KEY_ID
 npx wrangler secret put AWS_SECRET_ACCESS_KEY
 npx wrangler secret put AWS_REGION
 npx wrangler secret put AWS_S3_BUCKET
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put CONTACT_FROM_EMAIL
 npm run deploy
 ```
+
+`CONTACT_FROM_EMAIL` must be an address verified in Resend. Contact form submissions
+are delivered to `sandip.prodhan@pabtechnologies.com`; the submitter's email is used
+as the reply-to address.
 
 The AWS identity needs `s3:ListBucket` on the bucket and `s3:GetObject` and
 `s3:PutObject` on the bucket objects. `HEAD` requests use the `s3:GetObject`

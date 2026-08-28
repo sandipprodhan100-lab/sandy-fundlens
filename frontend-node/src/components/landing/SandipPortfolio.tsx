@@ -61,28 +61,15 @@ export function SandipPortfolio() {
           name: name.trim(),
           email: email.trim(),
           phone: subject.trim() || "Consulting & Project Inquiry",
-          allocations: `Contact Message: ${message.trim() || "Enterprise Integration & AI Enablement"}`,
-          horizon: "Direct Inquiry",
+          portfolioDetails: `Contact Message: ${message.trim() || "Enterprise Integration & AI Enablement"}`,
+          investmentHorizon: "Direct Inquiry",
         },
       });
 
-      // 2. Trigger direct mailto link to sandip.prodhan@pabtechnologies.com
-      const mailtoUrl = `mailto:sandip.prodhan@pabtechnologies.com?subject=${encodeURIComponent(
-        subject.trim() || `Inquiry from ${name.trim()}`,
-      )}&body=${encodeURIComponent(
-        `Name: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`,
-      )}`;
-      
-      window.location.href = mailtoUrl;
-
       setSubmitted(true);
       toast.success("Thank you! Your inquiry has been sent to sandip.prodhan@pabtechnologies.com.");
-    } catch {
-      // Fallback direct mailto
-      window.location.href = `mailto:sandip.prodhan@pabtechnologies.com?subject=${encodeURIComponent(
-        subject.trim() || "Consulting Inquiry",
-      )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-      setSubmitted(true);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "We could not send your message. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -589,7 +576,7 @@ export function SandipPortfolio() {
                   <div className="font-bold text-slate-900 text-sm">
                     Bachelor of Technology (B.Tech)
                   </div>
-                  <div className="text-slate-600 font-medium">Computer Science &amp; Engineering</div>
+                  <div className="text-slate-600 font-medium">Computer Science &amp; Engineering, University of Calcutta</div>
                   <p className="text-[11px] text-slate-500 pt-1">
                     Strong foundational training in data structures, algorithms, relational database theory, and enterprise software engineering.
                   </p>
@@ -613,16 +600,6 @@ export function SandipPortfolio() {
                 <div className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1 shadow-2xs">
                   <div className="font-bold text-slate-900">Oracle Certified Specialist</div>
                   <div className="text-[11px] text-slate-600 font-mono">SOA Suite 12c Implementation</div>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1 shadow-2xs">
-                  <div className="font-bold text-slate-900">AWS Certified</div>
-                  <div className="text-[11px] text-slate-600 font-mono">Solutions Architecture / Cloud</div>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1 shadow-2xs">
-                  <div className="font-bold text-slate-900">Oracle Certified Associate</div>
-                  <div className="text-[11px] text-slate-600 font-mono">Database PL/SQL Developer</div>
                 </div>
               </div>
 
@@ -775,7 +752,7 @@ export function SandipPortfolio() {
         </div>
       </section>
 
-      {/* ── SECTION 8: CONTACT FORM (DISPATCHES DIRECT TO sandipprodhan100@gmail.com) ── */}
+      {/* ── SECTION 8: CONTACT FORM ── */}
       <section id="contact" className="relative bg-[#f1f5f9] py-16 sm:py-20">
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-8">
           
@@ -789,7 +766,7 @@ export function SandipPortfolio() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-md">
-              Send a direct message to Sandip Prodhan. All submissions dispatch directly to sandipprodhan100@gmail.com.
+              Send a direct message to Sandip Prodhan. All submissions dispatch directly to sandip.prodhan@pabtechnologies.com.
             </p>
           </div>
 
@@ -798,11 +775,11 @@ export function SandipPortfolio() {
               <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm space-y-3">
                 <p className="font-bold text-base text-emerald-800">✓ Message Sent to Sandip</p>
                 <p className="text-xs text-slate-600">
-                  Thank you, {name}. Your inquiry has been dispatched to <strong>sandipprodhan100@gmail.com</strong> and archived in our secure inquiry store. Sandip will reply to <strong>{email}</strong> shortly.
+                  Thank you, {name}. Your inquiry has been dispatched to <strong>sandip.prodhan@pabtechnologies.com</strong> and archived in our secure inquiry store. Sandip will reply to <strong>{email}</strong> shortly.
                 </p>
                 <div className="pt-2">
                   <a
-                    href={`mailto:sandipprodhan100@gmail.com?subject=${encodeURIComponent(
+                    href={`mailto:sandip.prodhan@pabtechnologies.com?subject=${encodeURIComponent(
                       subject || `Follow-up from ${name}`,
                     )}`}
                     className="inline-flex items-center gap-1 text-xs font-bold text-slate-900 underline hover:text-slate-700"

@@ -77,17 +77,8 @@ function DataTable({ block }: { block: TableBlock }) {
     });
   }, [block]);
 
-  const chartCol = numeric.findIndex((n) => n !== null);
-  const chart =
-    chartCol > 0
-      ? block.rows
-          .map((r) => ({ label: r[0] ?? "", value: toNumber(r[chartCol] ?? "") }))
-          .filter((d): d is { label: string; value: number } => d.value !== null)
-      : [];
-  const chartSpan = Math.max(...chart.map((d) => Math.abs(d.value)), 0.0001);
-
   return (
-    <div className="space-y-3">
+    <div>
       <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-xs">
           <thead>
@@ -136,29 +127,6 @@ function DataTable({ block }: { block: TableBlock }) {
         </table>
       </div>
 
-      {chart.length > 1 && (
-        <div className="rounded-lg border border-border p-3">
-          <p className="eyebrow">{block.head[chartCol]}</p>
-          <div className="mt-2 space-y-1.5">
-            {chart.map((d, i) => (
-              <div key={i} className="flex items-center gap-2 text-[11px]">
-                <span className="w-40 shrink-0 truncate text-muted-foreground">{d.label}</span>
-                <span className="relative h-3 flex-1 rounded bg-muted/50">
-                  <span
-                    className="absolute inset-y-0 left-0 rounded"
-                    style={{
-                      width: `${(Math.abs(d.value) / chartSpan) * 100}%`,
-                      background:
-                        d.value < 0 ? "var(--color-negative)" : "var(--color-chart-1)",
-                    }}
-                  />
-                </span>
-                <span className="num w-16 text-right">{d.value.toFixed(2)}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
