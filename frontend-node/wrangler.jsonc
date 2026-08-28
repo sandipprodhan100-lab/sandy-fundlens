@@ -17,7 +17,6 @@
   "vars": {
     "AWS_REGION": "ap-south-1",
     "AWS_S3_BUCKET": "mutualfundlens-s3",
-    "BACKEND_API_URL": "https://sandy-fundlens.onrender.com",
     "VITE_APP_EDITION": "open",
     "SUPABASE_URL": "https://svwmenagvnvmburdwvpl.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_3hyE2cYN2FM2vYNv1Ft3lw_W5hJ1XSE",

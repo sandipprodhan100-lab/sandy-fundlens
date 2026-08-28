@@ -164,34 +164,6 @@ export const Route = createFileRoute("/api/chat")({
           }
         }
 
-        // 2. Fallback to Backend API if direct AI did not produce an answer
-        if (!finalAnswer) {
-          const backendUrl = process.env["BACKEND_API_URL"];
-          if (backendUrl) {
-            try {
-              const formattedHistory = uiMessages.slice(0, -1).map((m: any) => ({
-                role: m.role,
-                content: m.parts.map((p: any) => (p.type === "text" ? p.text : "")).join(" "),
-              }));
-
-              const response = await fetch(`${backendUrl}/api/v1/analyst`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  prompt: latestPrompt,
-                  history: formattedHistory,
-                }),
-              });
-
-              if (response.ok) {
-                const agentResult = (await response.json()) as { final_report: string };
-                finalAnswer = agentResult.final_report;
-              }
-            } catch (backendErr) {
-              console.warn("Backend agent proxy error:", backendErr);
-            }
-          }
-        }
 
         // 3. Fallback to Snapshot-backed Quantitative Analysis
         if (!finalAnswer) {
