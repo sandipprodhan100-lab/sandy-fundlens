@@ -23,28 +23,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: 'frontend-node/package-lock.json'
 
       - name: Install Frontend Dependencies
-        run: |
-          cd frontend-node
-          npm ci
+        working-directory: frontend-node
+        run: npm install
 
       - name: Build Frontend (TanStack Start + Nitro SSR)
-        run: |
-          cd frontend-node
-          npm run build
+        working-directory: frontend-node
+        env:
+          VITE_SUPABASE_URL: "https://zjdrkfawfhgystldlpww.supabase.co"
+          VITE_SUPABASE_PUBLISHABLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqZHJrZmF3ZmhneXN0bGRscHd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NTI4NjIsImV4cCI6MjEwMzQyODg2Mn0.5f-QK6dfgInsWe01YS7PpVscqWyBMcGvipYYHLZp7kk"
+          SUPABASE_URL: "https://zjdrkfawfhgystldlpww.supabase.co"
+          SUPABASE_PUBLISHABLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqZHJrZmF3ZmhneXN0bGRscHd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NTI4NjIsImV4cCI6MjEwMzQyODg2Mn0.5f-QK6dfgInsWe01YS7PpVscqWyBMcGvipYYHLZp7kk"
+        run: npm run build
 
       - name: Deploy to Cloudflare Workers (if token configured)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        working-directory: frontend-node
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          cd frontend-node
           if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
             npx wrangler deploy --config wrangler.jsonc
           else
-            echo "CLOUDFLARE_API_TOKEN not set in GitHub Secrets — build passed successfully. (Deploys are managed via local wrangler deploy)"
+            echo "CLOUDFLARE_API_TOKEN not configured in GitHub Secrets. Build & SSR validation succeeded! (Deploys are managed via local wrangler deploy)"
           fi

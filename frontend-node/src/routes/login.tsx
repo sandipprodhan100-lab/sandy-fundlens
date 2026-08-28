@@ -157,15 +157,16 @@ function Login() {
           </div>
           <h1 className="text-xl font-bold tracking-tight text-slate-900">
             {mode === "signup"
-              ? "Create Free Account"
+              ? "Create MF Lens Account"
               : mode === "magiclink"
-              ? "Sign in with Magic Link"
-              : "Sign in to MF Lens"}
+              ? "MF Lens Magic Link Login"
+              : "MF Lens Login"}
           </h1>
-          <p className="text-xs text-slate-500 max-w-xs mx-auto">
-            {mode === "signup"
-              ? "Sign up with email to unlock 5 free AI Analyst queries every month."
-              : "Access the conversational AI Analyst grounded in verified S3 NAV data."}
+          <p className="text-xs text-slate-600 max-w-xs mx-auto font-medium">
+            Mutual Fund AI Data-Backed Analysis
+          </p>
+          <p className="text-[11px] text-slate-400 max-w-xs mx-auto">
+            Conversational analytics grounded in verified AWS S3 Delta Lake NAV data.
           </p>
         </div>
 
