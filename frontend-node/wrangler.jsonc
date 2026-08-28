@@ -19,9 +19,9 @@
     "AWS_S3_BUCKET": "mutualfundlens-s3",
     "VITE_APP_EDITION": "open",
     "SUPABASE_URL": "https://zjdrkfawfhgystldlpww.supabase.co",
-    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_8NbENyyUDUqo_aKK4xIy7A_IH31NPq8",
+    "SUPABASE_PUBLISHABLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqZHJrZmF3ZmhneXN0bGRscHd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NTI4NjIsImV4cCI6MjEwMzQyODg2Mn0.5f-QK6dfgInsWe01YS7PpVscqWyBMcGvipYYHLZp7kk",
     "VITE_SUPABASE_URL": "https://zjdrkfawfhgystldlpww.supabase.co",
-    "VITE_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_8NbENyyUDUqo_aKK4xIy7A_IH31NPq8",
+    "VITE_SUPABASE_PUBLISHABLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqZHJrZmF3ZmhneXN0bGRscHd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NTI4NjIsImV4cCI6MjEwMzQyODg2Mn0.5f-QK6dfgInsWe01YS7PpVscqWyBMcGvipYYHLZp7kk",
     "VITE_SUPABASE_PROJECT_ID": "zjdrkfawfhgystldlpww"
   }
 }
