@@ -548,15 +548,17 @@ async function analyseUncached(input: {
 
   const needsSizeInference = input.category === "multi" || input.category === "flexi" || input.category === "hybrid";
   const proxyReturns = new Map<SizeBucket, Map<string, number>>();
-  for (const proxy of SIZE_PROXIES) {
-    const def = INDEXES.find((i) => i.key === proxy.key)!;
-    try {
-      const scheme = await fetchSchemeWithFallback([def.code, ...(def.fallbacks ?? [])]);
-      proxyReturns.set(proxy.bucket, returnMap(scheme.points, styleStart, styleEnd));
-    } catch {
-      /* proxy unavailable */
-    }
-  }
+  await Promise.all(
+    SIZE_PROXIES.map(async (proxy) => {
+      const def = INDEXES.find((i) => i.key === proxy.key)!;
+      try {
+        const scheme = await fetchSchemeWithFallback([def.code, ...(def.fallbacks ?? [])]);
+        proxyReturns.set(proxy.bucket, returnMap(scheme.points, styleStart, styleEnd));
+      } catch {
+        /* proxy unavailable */
+      }
+    })
+  );
   const styleIndexReturns = returnMap(indexScheme.points, styleStart, styleEnd);
 
   const staticSize: SizeBucket =

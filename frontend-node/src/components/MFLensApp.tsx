@@ -336,32 +336,22 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
       </div>
 
       <main className="mx-auto w-full max-w-6xl px-5 py-4 sm:px-8">
-        {/* Compliance notice — kept at the very top, always visible */}
-        <div className="rounded-lg border-2 border-sideways/60 bg-sideways/10 p-4">
-          <p className="text-sm font-bold uppercase tracking-wide text-sideways">
-            For analysis only — this is NOT investment advice
-          </p>
-          <p className="mt-2 text-sm font-medium leading-relaxed text-foreground">
-            MF Lens is an independent quantitative research tool and is{" "}
-            <strong>not a SEBI-registered investment adviser or distributor</strong>. Nothing shown
-            here is a recommendation to buy, hold or sell any scheme.{" "}
-            <strong>
-              Mutual fund investments are subject to market risks — read all scheme related
-              documents carefully.
-            </strong>{" "}
-            Past performance is not indicative of future returns.
-          </p>
-        </div>
-
-        {/* Data freshness — sits directly under the disclaimer */}
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <LivePill />
+        {/* Compact compliance notice — one-liner on top */}
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-sideways/30 bg-sideways/5 px-3 py-1.5 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-foreground">Research & Analysis:</span>
+            <span>Not investment advice or a SEBI recommendation. Mutual fund investments are subject to market risks.</span>
+          </div>
           {sideways.data?.last && (
-            <span className="num text-[11px] text-muted-foreground">
-              NAV through {prettyDate(sideways.data.last)}
-            </span>
+            <div className="flex items-center gap-2">
+              <LivePill />
+              <span className="num text-[11px] text-muted-foreground/80">
+                NAV through {prettyDate(sideways.data.last)}
+              </span>
+            </div>
           )}
         </div>
+
 
 
         {/* Control bar — sticky so analysis stays in view */}

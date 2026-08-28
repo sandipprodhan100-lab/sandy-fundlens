@@ -16,12 +16,19 @@ export const getSidewaysWindows = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    // Fast path: read pre-computed snapshot from S3 (single GET, ~50ms)
-    const { readSidewaysSnapshot } = await import("./mf-snapshots.server");
-    const snapshot = await readSidewaysSnapshot(data.indexKey);
-    if (snapshot) return snapshot;
+    const isDefaultParams =
+      (data.bandPct === undefined || data.bandPct === 3.0) &&
+      (data.minDays === undefined || data.minDays === 90) &&
+      (data.maxDrift === undefined || data.maxDrift === 5.0);
 
-    // Slow fallback: live computation (only if snapshot is missing/stale)
+    if (isDefaultParams) {
+      // Fast path: read pre-computed snapshot from S3 (single GET, ~50ms)
+      const { readSidewaysSnapshot } = await import("./mf-snapshots.server");
+      const snapshot = await readSidewaysSnapshot(data.indexKey);
+      if (snapshot) return snapshot as any;
+    }
+
+    // Fast live computation on S3 data lake for custom band/drift parameters
     const { detectSideways } = await import("./mf.server");
     return detectSideways(data.indexKey);
   });
@@ -38,12 +45,18 @@ export const analyseFunds = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    // Fast path: read pre-computed snapshot from S3 (single GET, ~50ms)
+    // Fast path: check pre-computed snapshot from S3
     const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
-    const snapshot = await readAnalysisSnapshot(data.category, data.indexKey);
-    if (snapshot) return snapshot;
+    const snapshot = (await readAnalysisSnapshot(data.category, data.indexKey)) as {
+      start?: string;
+      end?: string;
+    } | null;
 
-    // Slow fallback: live computation (only if snapshot is missing/stale)
+    if (snapshot && snapshot.start === data.start && snapshot.end === data.end) {
+      return snapshot as any;
+    }
+
+    // Fast live computation for custom date ranges using in-process Parquet reads
     const { analyse } = await import("./mf.server");
     return analyse(data);
   });
