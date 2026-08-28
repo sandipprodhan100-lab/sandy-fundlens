@@ -33,6 +33,13 @@ export const S3_PATHS = {
   configPrefix: "app/config/",
   ingestLog: (job: string, iso: string) => `app/logs/ingest/${slug(job)}/${iso}.json`,
   ingestLogPrefix: (job?: string) => (job ? `app/logs/ingest/${slug(job)}/` : "app/logs/ingest/"),
+  /** Pre-computed sideways-window snapshot */
+  sidewaysSnapshot: (indexKey: string) => `analysis/_snapshots/sideways/${indexKey}.json`,
+  /** Pre-computed full analysis snapshot */
+  analysisSnapshot: (category: string, indexKey: string) =>
+    `analysis/_snapshots/results/${category}_${indexKey}.json`,
+  /** Snapshot metadata (last refresh timestamp, version) */
+  snapshotMeta: "analysis/_snapshots/_meta.json",
 } as const;
 
 export function slug(value: string) {

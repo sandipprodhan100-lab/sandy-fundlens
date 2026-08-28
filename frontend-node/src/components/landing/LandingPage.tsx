@@ -196,14 +196,8 @@ export function LandingPage() {
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link
-              to="/analysis"
-              className="text-[14px] text-[var(--ink-2)] hover:text-[var(--ink)]"
-            >
-              Sign in
-            </Link>
             <Link to="/analysis" className="btn-primary">
-              Get started
+              Try Analysis
             </Link>
           </div>
         </div>

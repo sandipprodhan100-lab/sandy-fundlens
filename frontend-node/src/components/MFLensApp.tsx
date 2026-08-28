@@ -587,29 +587,7 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
                               <Download className="size-3.5" />
                               {exporting ? "Building…" : "PDF report"}
                             </Button>
-                          ) : demo ? (
-                            <Link
-                              to="/login"
-                              search={{ next: "/analysis" }}
-                              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
-                            >
-                              <Lock className="size-3.5" /> PDF report
-                            </Link>
-                          ) : (
-                            <Button
-                              size="sm"
-                              onClick={() =>
-                                openCheckout({
-                                  priceId: "funslense_pro_annual",
-                                  userId: userId!,
-                                  customerEmail: userEmail,
-                                  successUrl: `${window.location.origin}/analysis?checkout=success`,
-                                })
-                              }
-                            >
-                              <Lock className="size-3.5" /> Unlock PDF
-                            </Button>
-                          )}
+                          ) : null}
                         </div>
                       </div>
 

@@ -16,19 +16,15 @@ export const getSidewaysWindows = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    // Proxy to the FastAPI backend — the Worker's 10ms CPU limit can't handle
-    // the full sideways-window detection across all schemes.
-    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
-    const url = new URL(`${backendUrl}/api/v1/sideways/${data.indexKey}`);
-    if (data.bandPct !== undefined) url.searchParams.set("band_pct", String(data.bandPct));
-    if (data.minDays !== undefined) url.searchParams.set("min_days", String(data.minDays));
-    if (data.maxDrift !== undefined) url.searchParams.set("max_drift", String(data.maxDrift));
+    // Fast path: read pre-computed snapshot from S3 (single GET, ~50ms)
+    const { readSidewaysSnapshot } = await import("./mf-snapshots.server");
+    const snapshot = await readSidewaysSnapshot(data.indexKey);
+    if (snapshot) return snapshot;
 
-    const res = await fetch(url.toString());
-    if (!res.ok) throw new Error(`Backend sideways request failed: ${res.status}`);
-    return await res.json();
+    // Slow fallback: live computation (only if snapshot is missing/stale)
+    const { detectSideways } = await import("./mf.server");
+    return detectSideways(data.indexKey);
   });
-
 
 export const analyseFunds = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) =>
@@ -42,17 +38,14 @@ export const analyseFunds = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    // Proxy to the FastAPI backend — heavy fund analysis can't run in a Worker.
-    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
-    const url = new URL(`${backendUrl}/api/v1/schemes/analysis`);
-    url.searchParams.set("category", data.category);
-    url.searchParams.set("index_key", data.indexKey);
-    url.searchParams.set("start", data.start);
-    url.searchParams.set("end", data.end);
+    // Fast path: read pre-computed snapshot from S3 (single GET, ~50ms)
+    const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
+    const snapshot = await readAnalysisSnapshot(data.category, data.indexKey);
+    if (snapshot) return snapshot;
 
-    const res = await fetch(url.toString());
-    if (!res.ok) throw new Error(`Backend analysis request failed: ${res.status}`);
-    return await res.json();
+    // Slow fallback: live computation (only if snapshot is missing/stale)
+    const { analyse } = await import("./mf.server");
+    return analyse(data);
   });
 
 export const getHoldings = createServerFn({ method: "GET" })
@@ -129,10 +122,11 @@ export const scanDipFunds = createServerFn({ method: "GET" })
 
 export const getAdminSettings = createServerFn({ method: "GET" })
   .handler(async () => {
-    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
-    const res = await fetch(`${backendUrl}/api/v1/admin/settings`);
-    if (!res.ok) throw new Error("Failed to get admin settings from backend");
-    return await res.json();
+    // Read from S3 config instead of Render backend
+    const { s3GetJSON } = await import("./s3.server");
+    const { S3_PATHS } = await import("./s3-layout");
+    const settings = await s3GetJSON<{ timescaledb_sync_years: string }>(S3_PATHS.config("admin-settings"));
+    return settings ?? { timescaledb_sync_years: "3" };
   });
 
 export const updateAdminSettings = createServerFn({ method: "POST" })
@@ -140,13 +134,8 @@ export const updateAdminSettings = createServerFn({ method: "POST" })
     z.object({ timescaledb_sync_years: z.string() }).parse(input),
   )
   .handler(async ({ data }) => {
-    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
-    const res = await fetch(`${backendUrl}/api/v1/admin/settings`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update admin settings on backend");
-    return await res.json();
+    const { s3PutJSON } = await import("./s3.server");
+    const { S3_PATHS } = await import("./s3-layout");
+    await s3PutJSON(S3_PATHS.config("admin-settings"), data);
+    return { status: "success", ...data };
   });
-
