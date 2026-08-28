@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException, Query, Depends
+from fastapi import APIRouter, HTTPException, Query, Depends, Header
 from typing import List, Dict, Any, Optional
 from sqlalchemy.orm import Session
+import os
 from ..data_lake.parquet_manager import read_manifest, read_nav_parquet
 from ..data_lake.amfi_scraper import ingest_daily_nav
 from .calculations import detect_sideways_windows, calculate_metrics, get_nav_series
@@ -8,8 +9,13 @@ from ..database import get_db, AdminSetting
 
 router = APIRouter(prefix="/api/v1")
 
+INGEST_SECRET = os.getenv("INGEST_SECRET")
+
 @router.post("/ingest", summary="Run daily AMFI data lake ingest")
-def run_ingest():
+def run_ingest(x_ingest_secret: Optional[str] = Header(None)):
+    # If INGEST_SECRET is set, require it; otherwise allow (backward compat).
+    if INGEST_SECRET and x_ingest_secret != INGEST_SECRET:
+        raise HTTPException(status_code=401, detail="Invalid or missing ingest secret")
     try:
         report = ingest_daily_nav()
         return report
