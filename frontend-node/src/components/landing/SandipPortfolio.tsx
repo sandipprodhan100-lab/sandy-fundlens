@@ -778,7 +778,7 @@ export function SandipPortfolio() {
             </div>
 
             <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1 shadow-2xs">
-              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-slate-900">250+</div>
+              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-slate-900">500+</div>
               <div className="text-xs font-bold text-slate-900">Pipelines Governed</div>
               <p className="text-[11px] text-slate-500">Oracle, AWS &amp; Azure</p>
             </div>
