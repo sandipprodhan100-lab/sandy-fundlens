@@ -564,11 +564,11 @@ export function SandipPortfolio() {
               <div className="space-y-4 text-xs">
                 <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-1 shadow-2xs">
                   <div className="font-bold text-slate-900 text-sm">
-                    Advanced Executive Program in Cloud Computing &amp; DevOps
+                    Advanced Certification in Software Engineering for Cloud (AWS)
                   </div>
                   <div className="text-slate-600 font-medium">Indian Institute of Technology (IIT) Madras</div>
                   <p className="text-[11px] text-slate-500 pt-1">
-                    Specialized in enterprise cloud architecture, distributed systems, container orchestration, and automated CI/CD engineering.
+                    Advanced study in cloud software engineering, Internet of Things (IoT), and Blockchain technologies.
                   </p>
                 </div>
 
