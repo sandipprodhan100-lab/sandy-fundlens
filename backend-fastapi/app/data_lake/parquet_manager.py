@@ -55,8 +55,31 @@ def write_nav_parquet(
     # 1. Read existing points to merge
     existing = read_nav_parquet(scheme_code)
     
+    # Check if incoming points add any new dates
+    existing_dates = {p["date"]: p["nav"] for p in existing}
+    has_new_data = False
+    for p in points:
+        d = p["date"]
+        if d not in existing_dates or existing_dates[d] != float(p["nav"]):
+            has_new_data = True
+            break
+
+    # If all points are already synced, skip re-writing Parquet file
+    if existing and not has_new_data:
+        existing_sorted = sorted(existing, key=lambda x: x["date"])
+        return {
+            "schemeCode": int(scheme_code),
+            "schemeName": scheme_name,
+            "fundHouse": fund_house,
+            "schemeCategory": scheme_category,
+            "firstDate": existing_sorted[0]["date"],
+            "lastDate": existing_sorted[-1]["date"],
+            "rows": len(existing_sorted),
+            "updatedAt": datetime.utcnow().isoformat() + "Z"
+        }
+
     # 2. Merge points on date unique keys
-    merged_map = {p["date"]: p["nav"] for p in existing}
+    merged_map = dict(existing_dates)
     for p in points:
         merged_map[p["date"]] = float(p["nav"])
         
@@ -65,6 +88,7 @@ def write_nav_parquet(
     
     if not merged_points:
         raise ValueError(f"No NAV points to store for scheme {scheme_code}")
+
         
     # 3. Create DataFrame and convert to Parquet
     df = pd.DataFrame(merged_points)

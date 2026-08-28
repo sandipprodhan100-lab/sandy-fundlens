@@ -48,20 +48,38 @@ def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access
     if purge_first:
         purge_s3_bucket(s3, bucket, prefix="nav/")
 
+    # Build existing S3 object size map for incremental sync
+    existing_s3_objects = {}
+    try:
+        paginator = s3.get_paginator("list_objects_v2")
+        for page in paginator.paginate(Bucket=bucket, Prefix="nav/"):
+            if "Contents" in page:
+                for obj in page["Contents"]:
+                    existing_s3_objects[obj["Key"]] = obj["Size"]
+    except Exception as e:
+        print(f"Warning: Could not list existing S3 objects ({e}). Will perform full sync.", flush=True)
+
     uploaded_count = 0
+    skipped_count = 0
+
     for root, _, files in os.walk(LOCAL_LAKE_DIR):
         for file in files:
             full_path = os.path.join(root, file)
             rel_path = os.path.relpath(full_path, LOCAL_LAKE_DIR)
             s3_key = rel_path.replace(os.sep, "/")
             
+            local_size = os.path.getsize(full_path)
+            
+            # Skip if already synced with exact same size
+            if s3_key in existing_s3_objects and existing_s3_objects[s3_key] == local_size:
+                skipped_count += 1
+                continue
+
             content_type = "application/json" if file.endswith(".json") else "application/vnd.apache.parquet"
             if file.endswith(".txt"):
                 content_type = "text/plain"
 
-            if uploaded_count % 25 == 0:
-                print(f"Uploading fresh object [{uploaded_count}]: {s3_key} ...", flush=True)
-
+            print(f"Uploading new/updated object [{uploaded_count + 1}]: {s3_key} ...", flush=True)
             with open(full_path, "rb") as f:
                 s3.put_object(
                     Bucket=bucket,
@@ -71,10 +89,10 @@ def upload_local_lake_to_aws(bucket_name: str = None, region: str = None, access
                 )
             uploaded_count += 1
 
-    print(f"=== Upload Complete! {uploaded_count} clean fresh files synced to s3://{bucket}/ ===", flush=True)
+    print(f"=== Sync Complete! {uploaded_count} new/updated files uploaded, {skipped_count} unchanged files preserved in s3://{bucket}/ ===", flush=True)
     return True
-
 
 if __name__ == "__main__":
     b_name = sys.argv[1] if len(sys.argv) > 1 else os.getenv("AWS_S3_BUCKET", "mutualfundlens-s3")
-    upload_local_lake_to_aws(bucket_name=b_name, purge_first=True)
+    upload_local_lake_to_aws(bucket_name=b_name, purge_first=False)
+
