@@ -165,11 +165,11 @@ export function SandipPortfolio() {
             </div>
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-lg shadow-2xs">
               <ShieldCheck className="size-4 text-slate-700" />
-              <span>10+ Oracle Integration Projects Delivered</span>
+              <span>450+ Integrations Built &amp; Delivered</span>
             </div>
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-lg shadow-2xs">
               <Award className="size-4 text-slate-700" />
-              <span>5+ Medallion Data Engineering Projects</span>
+              <span>60+ Data Pipelines Created</span>
             </div>
           </div>
         </div>
@@ -303,7 +303,7 @@ export function SandipPortfolio() {
                 <Network className="size-5" />
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-bold font-mono text-slate-600 uppercase">10+ Projects Delivered</div>
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">450+ Integrations Built &amp; Delivered</div>
                 <h3 className="text-base font-bold text-slate-900">
                   Oracle Middleware Integration Products
                 </h3>
@@ -374,7 +374,7 @@ export function SandipPortfolio() {
                 <Database className="size-5" />
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-bold font-mono text-slate-600 uppercase">5+ Projects Delivered</div>
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">60+ Data Pipelines Created</div>
                 <h3 className="text-base font-bold text-slate-900">
                   Data Engineering with AWS &amp; Azure (dbt, Databricks)
                 </h3>
