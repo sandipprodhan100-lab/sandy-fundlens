@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { generateText, type UIMessage } from "ai";
+import { streamText, type UIMessage } from "ai";
 
 import { getAiModel } from "@/lib/ai-gateway.server";
 import { ANALYST_SYSTEM_PROMPT, buildAnalystTools } from "@/lib/agent-tools.server";
@@ -123,25 +123,29 @@ export const Route = createFileRoute("/api/chat")({
                 429,
               );
             }
-
-            // Track usage turns
-            const { data: todayUsage } = await supabaseAdmin
-              .from("agent_usage")
-              .select("turns")
-              .eq("user_id", userId)
-              .eq("usage_date", today)
-              .maybeSingle();
-
-            const todayUsed = todayUsage?.turns ?? 0;
-            await supabaseAdmin
-              .from("agent_usage")
-              .upsert(
-                { user_id: userId, usage_date: today, turns: todayUsed + 1 },
-                { onConflict: "user_id,usage_date" },
-              );
           } catch (usageErr) {
-            console.warn("Usage tracking notice:", usageErr);
+            console.warn("Usage tracking check notice:", usageErr);
           }
+        }
+
+        // Track usage turns
+        try {
+          const { data: todayUsage } = await supabaseAdmin
+            .from("agent_usage")
+            .select("turns")
+            .eq("user_id", userId)
+            .eq("usage_date", today)
+            .maybeSingle();
+
+          const todayUsed = todayUsage?.turns ?? 0;
+          await supabaseAdmin
+            .from("agent_usage")
+            .upsert(
+              { user_id: userId, usage_date: today, turns: todayUsed + 1 },
+              { onConflict: "user_id,usage_date" },
+            );
+        } catch (turnErr) {
+          console.warn("Turn recording notice:", turnErr);
         }
 
         // Record incoming user message
@@ -177,57 +181,57 @@ export const Route = createFileRoute("/api/chat")({
             .join(" ")
             .trim() || "";
 
-        let finalAnswer = "";
-
-        // 1. Direct AI Generation using Gemini with S3-backed tools
+        // Stream AI Generation using Gemini with S3-backed tools via streamText
         const model = getAiModel();
         if (model) {
           try {
-            const result = await generateText({
+            const result = streamText({
               model,
               system: ANALYST_SYSTEM_PROMPT,
               prompt: latestPrompt,
               tools: buildAnalystTools({ isPro: true }),
               maxSteps: 5,
+              onFinish: async ({ text }) => {
+                try {
+                  const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
+                  await supabaseAdmin.from("agent_messages").insert({
+                    thread_id: validThreadId,
+                    user_id: userId,
+                    role: "assistant",
+                    sdk_message_id: assistantMessageId,
+                    parts: [{ type: "text", text }] as unknown as never,
+                  });
+                } catch (recordErr) {
+                  console.warn("Assistant record error:", recordErr);
+                }
+              },
             });
-            finalAnswer = result.text;
+
+            return result.toDataStreamResponse();
           } catch (aiErr) {
-            console.warn("Direct Gemini AI generation error:", aiErr);
+            console.warn("StreamText generation error:", aiErr);
           }
         }
 
-        // 2. Fallback to S3 Snapshot-backed Quantitative Analysis if API key has issues
-        if (!finalAnswer) {
-          const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
-          const snap = (await readAnalysisSnapshot("flexi", "nifty500")) as any;
-          const topFunds = snap?.funds?.slice(0, 5) ?? [];
+        // Fallback: S3 Snapshot Quantitative Screening
+        const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
+        const snap = (await readAnalysisSnapshot("mid", "nifty_midcap_150")) as any;
+        const topFunds = snap?.funds?.slice(0, 5) ?? [];
 
-          finalAnswer = `## Answer\nHere is the latest quantitative screening based on verified AMFI NAV data during the active sideways market regime.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
-            topFunds
-              .map(
-                (f: any) =>
-                  `| ${f.name} | ${f.score?.toFixed(1) ?? "—"} | ${f.return?.toFixed(2) ?? "—"} | ${f.maxDrawdown?.toFixed(2) ?? "—"} | ${f.sharpe?.toFixed(2) ?? "—"} | ${f.sortino?.toFixed(2) ?? "—"} |`,
-              )
-              .join("\n") +
-            `\n\n## What it means\n- Schemes with positive Sharpe and Sortino ratios generated superior risk-adjusted alpha when the benchmark stayed range-bound.\n- Lower maximum drawdowns reflect strict capital protection.\n\n## Context\nCategory: Flexi Cap · Benchmark: Nifty 500 · Source: AWS S3 AMFI NAV Dataset.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
-        }
+        const fallbackText = `## Answer\nHere is the quantitative screening for mid-cap funds during the active sideways market phase based on verified NAV data.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
+          topFunds
+            .map(
+              (f: any) =>
+                `| ${f.name} | ${f.score?.toFixed(1) ?? "—"} | ${f.return?.toFixed(2) ?? "—"} | ${f.maxDrawdown?.toFixed(2) ?? "—"} | ${f.sharpe?.toFixed(2) ?? "—"} | ${f.sortino?.toFixed(2) ?? "—"} |`,
+            )
+            .join("\n") +
+          `\n\n## What it means\n- Schemes with positive Sharpe and Sortino ratios demonstrated resilient downside protection when the benchmark drifted flat.\n- Low maximum drawdown indicates disciplined risk management.\n\n## Context\nCategory: Mid Cap · Benchmark: Nifty Midcap 150 · Source: AWS S3 AMFI NAV Dataset.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
 
-        // Record assistant response
-        try {
-          const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
-          await supabaseAdmin.from("agent_messages").insert({
-            thread_id: validThreadId,
-            user_id: userId,
-            role: "assistant",
-            sdk_message_id: assistantMessageId,
-            parts: [{ type: "text", text: finalAnswer }] as unknown as never,
-          });
-        } catch (recordErr) {
-          console.warn("Assistant message record notice:", recordErr);
-        }
-
-        return new Response(finalAnswer, {
-          headers: { "content-type": "text/plain; charset=utf-8" },
+        return new Response(`0:${JSON.stringify(fallbackText)}\n`, {
+          headers: {
+            "content-type": "text/plain; charset=utf-8",
+            "x-vercel-ai-data-stream": "v1",
+          },
         });
       },
     },
