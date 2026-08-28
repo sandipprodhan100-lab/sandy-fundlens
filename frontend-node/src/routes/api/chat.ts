@@ -409,8 +409,10 @@ export const Route = createFileRoute("/api/chat")({
           2,
         );
 
-        // 3. AI Generation with Gemini 2.5 Flash
-        const model = getAiModel();
+        // 3. AI Generation with Intelligent LLM Gateway & Task Routing
+        const { classifyPromptTask } = await import("@/lib/ai-gateway.server");
+        const taskDecision = classifyPromptTask(latestPrompt);
+        const model = getAiModel(taskDecision);
         let finalAnswer = "";
 
         if (model) {

@@ -457,7 +457,48 @@ export function SandipPortfolio() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             
-            {/* Skill 1: Prompt & Context Engineering */}
+            {/* Skill 1: Intelligent LLM Gateway & Task Routing */}
+            <div className="p-6 rounded-2xl bg-white border-2 border-indigo-200/80 shadow-xs space-y-3 hover:border-indigo-400 hover:shadow-sm transition-all relative overflow-hidden sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-white via-indigo-50/20 to-white">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="size-9 rounded-lg bg-indigo-900 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
+                    <Cpu className="size-4.5" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-700">Cost Optimization &amp; Task Dispatcher</div>
+                    <h3 className="text-base font-bold text-slate-950">
+                      Intelligent LLM Gateway &amp; Adaptive Task Routing
+                    </h3>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-1.5 text-[10px] font-mono font-bold">
+                  <span className="px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200">Task-Based Routing</span>
+                  <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200">60-80% Cost Reduction</span>
+                  <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-800 border border-slate-200">Circuit-Breaker Failover</span>
+                </div>
+              </div>
+
+              <p className="text-xs text-slate-600 leading-relaxed max-w-4xl">
+                Architecting multi-provider LLM Gateways that evaluate incoming user requests and dynamically dispatch them to the model best suited for the specific task — routing high-volume structured data extraction to ultra-fast, cost-efficient models (e.g. Gemini 2.5 Flash), complex multi-step reasoning to frontier models (Claude 3.5 Sonnet / GPT-4o), and classification to lightweight local SLMs. Integrated with semantic caching, token budget guardrails, and automated failover.
+              </p>
+
+              <div className="grid sm:grid-cols-3 gap-3 pt-1 text-xs">
+                <div className="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <span className="font-bold text-slate-900 text-[11px] block">1. Task Intent Classification</span>
+                  <p className="text-[10px] text-slate-500">Separates fast extraction, mathematical screening, deep reasoning, and general Q&amp;A in &lt;10ms.</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <span className="font-bold text-slate-900 text-[11px] block">2. Cost &amp; Latency Optimization</span>
+                  <p className="text-[10px] text-slate-500">Dynamic model selection &amp; token budget caps reducing inference expenses while meeting tight SLAs.</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1">
+                  <span className="font-bold text-slate-900 text-[11px] block">3. Multi-Provider Fallback</span>
+                  <p className="text-[10px] text-slate-500">Zero-downtime failover across direct APIs and enterprise AI gateways with exponential backoff.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Skill 2: Prompt & Context Engineering */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Sparkles className="size-4" />
@@ -470,7 +511,7 @@ export function SandipPortfolio() {
               </p>
             </div>
 
-            {/* Skill 2: RAG */}
+            {/* Skill 3: RAG */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Database className="size-4" />
@@ -483,7 +524,7 @@ export function SandipPortfolio() {
               </p>
             </div>
 
-            {/* Skill 3: Model Context Protocol (MCP) */}
+            {/* Skill 4: Model Context Protocol (MCP) */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Workflow className="size-4" />
@@ -496,7 +537,7 @@ export function SandipPortfolio() {
               </p>
             </div>
 
-            {/* Skill 4: Customized SKILL.md Agent Systems */}
+            {/* Skill 5: Customized SKILL.md Agent Systems */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Bot className="size-4" />
@@ -509,7 +550,7 @@ export function SandipPortfolio() {
               </p>
             </div>
 
-            {/* Skill 5: AI Loop Engineering */}
+            {/* Skill 6: AI Loop Engineering */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Brain className="size-4" />
@@ -522,7 +563,7 @@ export function SandipPortfolio() {
               </p>
             </div>
 
-            {/* Skill 6: Data Pipeline Hooking */}
+            {/* Skill 7: Data Pipeline Hooking */}
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5 hover:border-slate-400 hover:shadow-2xs transition-all">
               <div className="size-9 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
                 <Zap className="size-4" />
