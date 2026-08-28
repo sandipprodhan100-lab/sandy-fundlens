@@ -36,7 +36,9 @@ function AccountPage() {
 
   const userEmail = session?.user?.email?.toLowerCase() ?? "";
   const isAdmin =
-    userEmail === "sandipprodhan100@gmail.com" || userEmail === "sandeepprodhan100@gmail.com";
+    userEmail === "sandipprodhan100@gmail.com" ||
+    userEmail === "sandeepprodhan100@gmail.com" ||
+    userEmail === "sandip.prodhan@pabtechnologies.com";
 
   // Query usage counts for user
   const usageQuery = useQuery({

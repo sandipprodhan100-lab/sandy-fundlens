@@ -12,6 +12,7 @@ const FREE_MONTHLY_TURNS = 5;
 const ADMIN_EMAILS = new Set([
   "sandipprodhan100@gmail.com",
   "sandeepprodhan100@gmail.com",
+  "sandip.prodhan@pabtechnologies.com",
 ]);
 
 function json(body: unknown, status: number) {

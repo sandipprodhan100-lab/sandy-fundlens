@@ -11,7 +11,9 @@ export function AnalystQuota() {
 
   const userEmail = session?.user?.email?.toLowerCase() ?? "";
   const isAdmin =
-    userEmail === "sandipprodhan100@gmail.com" || userEmail === "sandeepprodhan100@gmail.com";
+    userEmail === "sandipprodhan100@gmail.com" ||
+    userEmail === "sandeepprodhan100@gmail.com" ||
+    userEmail === "sandip.prodhan@pabtechnologies.com";
 
   const usageQuery = useQuery({
     queryKey: ["user-analyst-usage", session?.user?.id],
