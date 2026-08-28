@@ -52,7 +52,6 @@ import { PortfolioConsultationForm } from "@/components/PortfolioConsultationFor
 const CombinedRanking = lazy(() =>
   import("@/components/CombinedRanking").then((m) => ({ default: m.CombinedRanking })),
 );
-const DipRadar = lazy(() => import("@/components/DipRadar").then((m) => ({ default: m.DipRadar })));
 const CalculatorSection = lazy(() =>
   import("@/components/CalculatorSection").then((m) => ({ default: m.CalculatorSection })),
 );
@@ -68,12 +67,10 @@ import { LockedPreview, SkeletonRows } from "@/components/terminal/LockedPreview
 import { RankTable } from "@/components/terminal/RankTable";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AdminSettingsPanel } from "@/components/terminal/AdminSettingsPanel";
 
 const ALL_ANALYSIS_VIEWS: { key: ModeKey; label: string; hint: string }[] = [
   { key: "single", label: "Single phase", hint: "One flat window or a custom range" },
   { key: "combined", label: "Combined · last 3", hint: "Blended across recent flat phases" },
-  { key: "dips", label: "Dip radar", hint: "Ranked funds 5–10% off peak" },
   { key: "calc", label: "Calculators", hint: "SIP · lumpsum · both" },
   { key: "model", label: "Model portfolio", hint: "Standards-based allocation" },
 ];
@@ -111,7 +108,6 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
   const [bandPct, setBandPct] = useState(3.0);
   const [minDays, setMinDays] = useState(90);
   const [maxDrift, setMaxDrift] = useState(5.0);
-  const [showAdminSettings, setShowAdminSettings] = useState(false);
 
   const { session } = useSession();
   const userId = session?.user?.id;
@@ -384,7 +380,6 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
               setMaxDrift(v);
               setSubmitted(null);
             }}
-            onOpenSettings={() => setShowAdminSettings(true)}
           />
 
         </div>
@@ -844,25 +839,6 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
           </div>
         )}
 
-        {view === "dips" && (
-          <div className="mt-3">
-            {limited ? (
-              <LockedPreview
-                title="Dip radar — ranked funds 5–10% off their peak"
-                hint="Track top-ranked schemes trading just below their 1-year NAV high."
-                action={unlockAction}
-                minHeight={260}
-              >
-                <SkeletonRows rows={6} />
-              </LockedPreview>
-            ) : (
-              <Suspense fallback={<div className="panel"><SkeletonRows rows={6} /></div>}>
-                <DipRadar category={category} categoryLabel={catDef.label} indexKey={indexKey} />
-              </Suspense>
-            )}
-          </div>
-        )}
-
         {view === "calc" && (
           <div className="mt-3">
             {submitted && analysis.data ? (
@@ -951,12 +927,7 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
             <span className="ml-auto">© {new Date().getFullYear()} MF Lens</span>
           </div>
         </footer>
-
       </main>
-
-      {showAdminSettings && (
-        <AdminSettingsPanel onClose={() => setShowAdminSettings(false)} />
-      )}
     </>
   );
 }

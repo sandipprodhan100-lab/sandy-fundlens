@@ -7,7 +7,7 @@ import {
   type IndexKey,
 } from "@/lib/mf-catalog";
 import type { ModeKey } from "@/components/terminal/ModeCards";
-import { ArrowLeft, ArrowRight, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 /**
  * Compact terminal control bar: everything the analysis needs — module,
@@ -29,7 +29,6 @@ export function ControlBar({
   onMinDays,
   maxDrift,
   onMaxDrift,
-  onOpenSettings,
 }: {
   category: CategoryKey;
   onCategory: (k: CategoryKey) => void;
@@ -46,7 +45,6 @@ export function ControlBar({
   onMinDays: (v: number) => void;
   maxDrift: number;
   onMaxDrift: (v: number) => void;
-  onOpenSettings?: () => void;
 }) {
   const activeMode = modes.find((m) => m.key === mode);
 
@@ -98,17 +96,6 @@ export function ControlBar({
           </div>
         </div>
 
-        {onOpenSettings && (
-          <button
-            type="button"
-            onClick={onOpenSettings}
-            className="chip hover:bg-accent-soft inline-flex items-center gap-1 py-1.5 px-3 text-xs text-ink-2 font-semibold"
-            title="Admin System Settings"
-          >
-            <Wrench className="size-3.5" />
-            <span>Admin Settings</span>
-          </button>
-        )}
       </div>
 
       {/* Bottom row: benchmark, detected phase, custom parameters */}

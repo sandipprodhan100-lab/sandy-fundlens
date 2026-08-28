@@ -38,6 +38,9 @@ export const S3_PATHS = {
   /** Pre-computed full analysis snapshot */
   analysisSnapshot: (category: string, indexKey: string) =>
     `analysis/_snapshots/results/${category}_${indexKey}.json`,
+  /** Pre-computed combined multi-window analysis snapshot */
+  combinedSnapshot: (category: string, indexKey: string) =>
+    `analysis/_snapshots/combined/${category}_${indexKey}.json`,
   /** Snapshot metadata (last refresh timestamp, version) */
   snapshotMeta: "analysis/_snapshots/_meta.json",
   /** User portfolio audit contact submissions */

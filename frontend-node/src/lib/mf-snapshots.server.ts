@@ -59,3 +59,20 @@ export async function readAnalysisSnapshot(category: string, indexKey: string): 
     return null;
   }
 }
+
+/**
+ * Read a pre-computed combined multi-window analysis snapshot for a category+index pair.
+ * Returns null if S3 is not configured, the snapshot doesn't exist, or is stale.
+ */
+export async function readCombinedSnapshot(category: string, indexKey: string): Promise<unknown | null> {
+  if (!isS3Configured()) return null;
+  try {
+    const envelope = await s3GetJSON<SnapshotEnvelope<unknown>>(S3_PATHS.combinedSnapshot(category, indexKey));
+    if (!envelope?._meta?.refreshedAt) return null;
+    const age = Date.now() - new Date(envelope._meta.refreshedAt).getTime();
+    if (age > MAX_AGE_MS) return null;
+    return envelope.data;
+  } catch {
+    return null;
+  }
+}

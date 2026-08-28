@@ -359,14 +359,21 @@ async function categorySipUncached(input: {
   limit: number;
 }): Promise<CategorySipResult> {
   const idx = INDEXES.find((i) => i.key === input.indexKey)!;
-  const result = await analyse({
-    category: input.category,
-    indexKey: input.indexKey,
-    start: input.start,
-    end: input.end,
-  });
+  const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
+  const snap = (await readAnalysisSnapshot(input.category, input.indexKey)) as any;
+  let result: any = null;
+  if (snap && snap.start === input.start && snap.end === input.end) {
+    result = snap;
+  } else {
+    result = await analyse({
+      category: input.category,
+      indexKey: input.indexKey,
+      start: input.start,
+      end: input.end,
+    });
+  }
 
-  const eligible = result.funds.filter((f) => f.eligible);
+  const eligible = result.funds.filter((f: any) => f.eligible);
   const pool = (input.basis === "ranked" ? eligible.slice(0, 5) : eligible).slice(0, input.limit);
 
   const index = await fetchScheme(idx.code);

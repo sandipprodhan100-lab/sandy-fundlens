@@ -40,6 +40,7 @@ const { CATEGORIES, INDEXES } = await import("../src/lib/mf-catalog.js");
 const { S3_PATHS } = await import("../src/lib/s3-layout.js");
 const { s3PutJSON, isS3Configured } = await import("../src/lib/s3.server.js");
 const { detectSideways, analyse } = await import("../src/lib/mf.server.js");
+const { analyseCombined } = await import("../src/lib/mf-multi.server.js");
 
 const VERSION = "v1";
 
@@ -122,6 +123,31 @@ async function main() {
         const msg = `analysis/${cat.key}_${idx.key}: ${err instanceof Error ? err.message : String(err)}`;
         errors.push(msg);
         console.error(`  [${cat.key} × ${idx.key}] ✗ ${msg}`);
+      }
+
+      // Pre-compute Combined Analysis Snapshot
+      const tCombined = Date.now();
+      try {
+        const combinedResult = await analyseCombined({
+          category: cat.key,
+          indexKey: idx.key,
+        });
+        const combinedEnvelope = {
+          _meta: {
+            refreshedAt: new Date().toISOString(),
+            version: VERSION,
+            durationMs: Date.now() - tCombined,
+          },
+          data: combinedResult,
+        };
+        await s3PutJSON(S3_PATHS.combinedSnapshot(cat.key, idx.key), combinedEnvelope);
+        console.log(
+          `  [${cat.key} × ${idx.key} (Combined)] ✓ ${combinedResult.funds.length} funds, ${((Date.now() - tCombined) / 1000).toFixed(1)}s`,
+        );
+      } catch (err) {
+        const msg = `combined/${cat.key}_${idx.key}: ${err instanceof Error ? err.message : String(err)}`;
+        errors.push(msg);
+        console.error(`  [${cat.key} × ${idx.key} (Combined)] ✗ ${msg}`);
       }
     }
   }

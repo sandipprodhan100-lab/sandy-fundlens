@@ -120,9 +120,18 @@ export const analyseCombinedWindows = createServerFn({ method: "GET" })
   .handler(async ({ data }) => {
     const { requirePro } = await import("./entitlement.server");
     await requirePro();
+
+    // Fast-path: S3 pre-computed combined snapshot (sub-50ms)
+    const { readCombinedSnapshot } = await import("./mf-snapshots.server");
+    const snapshot = await readCombinedSnapshot(data.category, data.indexKey);
+    if (snapshot) {
+      return snapshot as import("./mf-catalog").CombinedResult;
+    }
+
     const { analyseCombined } = await import("./mf-multi.server");
     return analyseCombined(data);
   });
+
 
 export const scanDipFunds = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) => z.object({ category: categoryKey, indexKey }).parse(input))

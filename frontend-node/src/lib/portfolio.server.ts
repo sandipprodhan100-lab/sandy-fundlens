@@ -66,16 +66,20 @@ async function buildPortfolioUncached(input: {
       };
       if (!input.withPicks) return base;
       try {
-        const { windows } = await detectSideways(def.defaultIndex);
-        const w = windows[0];
-        if (!w) return { ...base, note: "No qualifying flat phase for this benchmark." };
-        const result = await analyse({
-          category: s.category,
-          indexKey: def.defaultIndex,
-          start: w.start,
-          end: w.end,
-        });
-        const ranked = result.funds.filter((f) => f.eligible);
+        const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
+        let result = (await readAnalysisSnapshot(s.category, def.defaultIndex)) as any;
+        if (!result) {
+          const { windows } = await detectSideways(def.defaultIndex);
+          const w = windows[0];
+          if (!w) return { ...base, note: "No qualifying flat phase for this benchmark." };
+          result = await analyse({
+            category: s.category,
+            indexKey: def.defaultIndex,
+            start: w.start,
+            end: w.end,
+          });
+        }
+        const ranked = result.funds.filter((f: any) => f.eligible);
         const [first, second] = ranked;
         return {
           ...base,

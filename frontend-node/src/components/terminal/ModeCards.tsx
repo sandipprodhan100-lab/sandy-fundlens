@@ -2,7 +2,7 @@
  * Mode selector: four cards, each with a 40px inline vector glyph drawn in the
  * accent colour. No imagery, no emoji.
  */
-export type ModeKey = "single" | "combined" | "dips" | "calc" | "model";
+export type ModeKey = "single" | "combined" | "calc" | "model";
 
 const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
 
@@ -24,14 +24,6 @@ function Glyph({ mode }: { mode: ModeKey }) {
             <path d={`M4 ${y} L14 ${y - 3} L22 ${y + 2} L30 ${y - 2} L36 ${y}`} {...stroke} />
           </g>
         ))}
-      </svg>
-    );
-  if (mode === "dips")
-    return (
-      <svg viewBox="0 0 40 40" className={common} aria-hidden>
-        <path d="M3 30 L13 12 L21 22 L29 16 L36 26" {...stroke} />
-        <path d="M36 26 l0 -7 m0 7 l-7 0" {...stroke} />
-        <circle cx="13" cy="12" r="2" fill="currentColor" />
       </svg>
     );
   if (mode === "calc")
