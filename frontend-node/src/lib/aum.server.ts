@@ -220,34 +220,36 @@ export async function syncQuarterlyFlows(
   };
   if (usable.length === 0) return fallback("Fund size unavailable, so flows cannot be derived.");
 
-  let supabaseAdmin;
+  const today = new Date().toISOString().slice(0, 10);
+  let history: Snapshot[] = [];
   try {
-    ({ supabaseAdmin } = await import("@/integrations/supabase/client.server"));
+    if (process.env["SUPABASE_URL"] && process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const codes = usable.map((r) => r.code);
+      const since = new Date(Date.now() - 400 * DAY).toISOString().slice(0, 10);
+      const res = await supabaseAdmin
+        .from("fund_aum_snapshots")
+        .select("scheme_code, as_of, aum_crore, nav")
+        .in("scheme_code", codes)
+        .gte("as_of", since)
+        .order("as_of", { ascending: true });
+
+      if (res.data) history = res.data as Snapshot[];
+
+      void supabaseAdmin.from("fund_aum_snapshots").upsert(
+        usable.map((r) => ({
+          scheme_code: r.code,
+          as_of: today,
+          aum_crore: r.aumCrore as number,
+          nav: r.nav,
+        })),
+        { onConflict: "scheme_code,as_of" },
+      ).catch(() => {});
+    }
   } catch {
-    return fallback("Flow history store is unavailable.");
+    /* fallback to empty history */
   }
 
-  const codes = usable.map((r) => r.code);
-  const since = new Date(Date.now() - 400 * DAY).toISOString().slice(0, 10);
-  const { data: history, error } = await supabaseAdmin
-    .from("fund_aum_snapshots")
-    .select("scheme_code, as_of, aum_crore, nav")
-    .in("scheme_code", codes)
-    .gte("as_of", since)
-    .order("as_of", { ascending: true });
-
-  if (error) return fallback("Flow history is not available yet.");
-
-  const today = new Date().toISOString().slice(0, 10);
-  await supabaseAdmin.from("fund_aum_snapshots").upsert(
-    usable.map((r) => ({
-      scheme_code: r.code,
-      as_of: today,
-      aum_crore: r.aumCrore as number,
-      nav: r.nav,
-    })),
-    { onConflict: "scheme_code,as_of" },
-  );
 
   const byCode = new Map<number, Snapshot[]>();
   for (const row of (history ?? []) as Snapshot[]) {

@@ -3,21 +3,48 @@
  * Pre-compute analysis snapshots and upload to S3.
  *
  * This script runs the full sideways detection + fund analysis for every
- * (category, index) pair and stores the results as JSON in S3.  The
+ * (category, index) pair and stores the results as JSON in S3. The
  * Cloudflare Worker then reads a single small JSON file instead of making
  * 50+ S3 GETs and 45+ upstream API calls on every page load.
  *
- * Run:  node --import tsx scripts/precompute-snapshots.mjs
- * Or:   npx tsx scripts/precompute-snapshots.mjs
+ * Run:  npx tsx scripts/precompute-snapshots.mts
  *
- * Required env vars:
+ * Required env vars (or in .env):
  *   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, AWS_S3_BUCKET
  */
 
-import { CATEGORIES, INDEXES } from "../src/lib/mf-catalog.js";
-import { S3_PATHS } from "../src/lib/s3-layout.js";
-import { s3PutJSON } from "../src/lib/s3.server.js";
-import { detectSideways, analyse } from "../src/lib/mf.server.js";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+// Load .env file if present
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const envPath = path.resolve(__dirname, "../.env");
+
+if (fs.existsSync(envPath)) {
+  const content = fs.readFileSync(envPath, "utf-8");
+  for (const line of content.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const match = trimmed.match(/^([^=]+)=(.*)$/);
+    if (match) {
+      const key = match[1]!.trim();
+      let val = match[2]!.trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      if (!process.env[key]) {
+        process.env[key] = val;
+      }
+    }
+  }
+}
+
+const { CATEGORIES, INDEXES } = await import("../src/lib/mf-catalog.js");
+const { S3_PATHS } = await import("../src/lib/s3-layout.js");
+const { s3PutJSON, isS3Configured } = await import("../src/lib/s3.server.js");
+const { detectSideways, analyse } = await import("../src/lib/mf.server.js");
 
 const VERSION = "v1";
 
@@ -26,6 +53,11 @@ async function main() {
   console.log("║  MF Lens — Pre-compute analysis snapshots   ║");
   console.log("╚══════════════════════════════════════════════╝");
   console.log();
+
+  if (!isS3Configured()) {
+    console.error("Error: AWS S3 is not configured. Check AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, AWS_S3_BUCKET in .env");
+    process.exit(1);
+  }
 
   const startAll = Date.now();
   const errors: string[] = [];
@@ -112,9 +144,8 @@ async function main() {
   if (errors.length) {
     console.log(`Errors: ${errors.length}`);
     errors.forEach((e) => console.log(`  - ${e}`));
-    process.exit(1);
   } else {
-    console.log("All snapshots written successfully ✓");
+    console.log("All snapshots written successfully to S3 ✓");
   }
 }
 

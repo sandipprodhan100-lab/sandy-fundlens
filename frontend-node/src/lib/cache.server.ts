@@ -18,6 +18,9 @@ const MAX_PAYLOAD_BYTES = 900_000;
 
 export async function readDurable<R>(key: string): Promise<{ value: R } | null> {
   try {
+    if (!process.env["SUPABASE_URL"] || !process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
+      return null;
+    }
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data } = await supabaseAdmin
       .from("analysis_cache")
@@ -34,6 +37,9 @@ export async function readDurable<R>(key: string): Promise<{ value: R } | null> 
 
 export async function writeDurable(key: string, value: unknown, ttlMs: number): Promise<void> {
   try {
+    if (!process.env["SUPABASE_URL"] || !process.env["SUPABASE_SERVICE_ROLE_KEY"]) {
+      return;
+    }
     const serialised = JSON.stringify(value);
     if (!serialised || serialised.length > MAX_PAYLOAD_BYTES) return;
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");

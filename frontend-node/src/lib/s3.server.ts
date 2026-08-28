@@ -22,8 +22,15 @@ type AwsConfig = {
   sessionToken?: string;
 };
 
-function env(name: string) {
-  return process.env[name]?.trim();
+function env(name: string): string | undefined {
+  if (typeof process !== "undefined" && process.env?.[name]) {
+    return process.env[name]!.trim();
+  }
+  const metaEnv = (import.meta as unknown as { env?: Record<string, string> })?.env;
+  if (metaEnv?.[name]) {
+    return metaEnv[name]!.trim();
+  }
+  return undefined;
 }
 
 function awsConfig(): AwsConfig | null {
