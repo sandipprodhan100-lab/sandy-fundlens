@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { safeNextPath } from "@/lib/auth";
-import { Bot, CheckCircle2, Lock, Mail } from "lucide-react";
+import { Bot, CheckCircle2, Lock, Mail, Sparkles, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   ssr: false,
@@ -13,12 +13,12 @@ export const Route = createFileRoute("/login")({
       {
         name: "description",
         content:
-          "Sign in to MF Lens with your email to access the conversational AI Analyst.",
+          "Sign in or register with your email to access the conversational AI Analyst with 5 free analyses per month.",
       },
       { property: "og:title", content: "Sign in — MF Lens" },
       {
         property: "og:description",
-        content: "Sign in to MF Lens with your email to access the conversational AI Analyst.",
+        content: "Sign in or register with your email to access the conversational AI Analyst.",
       },
       { property: "og:type", content: "website" },
       { name: "robots", content: "noindex, follow" },
@@ -30,6 +30,8 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const { next } = Route.useSearch();
+  const targetDestination = next && next !== "/" && next !== "/login" ? next : "/analyst";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"signin" | "signup" | "magiclink">("signin");
@@ -38,26 +40,41 @@ function Login() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // 1. Check existing session
+    // 1. Handle PKCE code in query if present
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get("code");
+      if (code) {
+        setBusy(true);
+        void supabase.auth.exchangeCodeForSession(code).then(({ data, error: codeErr }) => {
+          setBusy(false);
+          if (!codeErr && data.session) {
+            window.location.replace(targetDestination);
+          }
+        });
+      }
+    }
+
+    // 2. Check existing active session
     void supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
-        window.location.replace(next);
+        window.location.replace(targetDestination);
       }
     });
 
-    // 2. Listen for auth state changes (Magic link, login, token refresh)
+    // 3. Listen for auth state changes (Magic link, signup confirmation, login)
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
-        window.location.replace(next);
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session && (event === "SIGNED_IN" || event === "USER_UPDATED" || event === "TOKEN_REFRESHED")) {
+        window.location.replace(targetDestination);
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [next]);
+  }, [targetDestination]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -73,15 +90,17 @@ function Login() {
     setBusy(true);
 
     try {
+      const redirectUrl = `${window.location.origin}/login?next=${encodeURIComponent(targetDestination)}`;
+
       if (mode === "magiclink") {
         const { error: otpErr } = await supabase.auth.signInWithOtp({
           email: cleanEmail,
           options: {
-            emailRedirectTo: `${window.location.origin}/login?next=${encodeURIComponent(next)}`,
+            emailRedirectTo: redirectUrl,
           },
         });
         if (otpErr) throw otpErr;
-        setMsg(`Sign-in link sent to ${cleanEmail}. Check your inbox and click the link to sign in.`);
+        setMsg(`We have sent a sign-in link to ${cleanEmail}. Click the link in your email to open the Fund Analyst.`);
       } else if (mode === "signup") {
         if (!password || password.length < 6) {
           throw new Error("Password must be at least 6 characters.");
@@ -90,15 +109,17 @@ function Login() {
           email: cleanEmail,
           password: password.trim(),
           options: {
-            emailRedirectTo: `${window.location.origin}/login?next=${encodeURIComponent(next)}`,
+            emailRedirectTo: redirectUrl,
           },
         });
         if (signUpErr) throw signUpErr;
 
         if (data.session) {
-          window.location.replace(next);
+          window.location.replace(targetDestination);
         } else {
-          setMsg("Account created! If email confirmation is enabled, please check your inbox to confirm.");
+          setMsg(
+            `Verification email sent to ${cleanEmail}. Please click the confirmation link in your email to activate your account and access the Fund Analyst.`,
+          );
         }
       } else {
         // Sign in with password
@@ -112,7 +133,7 @@ function Login() {
         if (signInErr) throw signInErr;
 
         if (data.session) {
-          window.location.replace(next);
+          window.location.replace(targetDestination);
         }
       }
     } catch (err: any) {
@@ -136,13 +157,15 @@ function Login() {
           </div>
           <h1 className="text-xl font-bold tracking-tight text-slate-900">
             {mode === "signup"
-              ? "Create your account"
+              ? "Create Free Account"
               : mode === "magiclink"
               ? "Sign in with Magic Link"
               : "Sign in to MF Lens"}
           </h1>
           <p className="text-xs text-slate-500 max-w-xs mx-auto">
-            Access the conversational AI Analyst with 5 free analyses every month.
+            {mode === "signup"
+              ? "Sign up with email to unlock 5 free AI Analyst queries every month."
+              : "Access the conversational AI Analyst grounded in verified S3 NAV data."}
           </p>
         </div>
 
@@ -240,9 +263,9 @@ function Login() {
             {busy
               ? "Please wait…"
               : mode === "signup"
-              ? "Create Free Account"
+              ? "Send Verification Email & Sign Up"
               : mode === "magiclink"
-              ? "Send Sign-in Link"
+              ? "Send Magic Link"
               : "Sign In"}
           </button>
 
@@ -257,7 +280,7 @@ function Login() {
                 }}
                 className="text-[11px] text-slate-500 underline hover:text-slate-900 cursor-pointer"
               >
-                Back to Sign in with Password
+                Back to Sign In with Password
               </button>
             </div>
           )}
@@ -265,9 +288,10 @@ function Login() {
 
         {/* Success message */}
         {msg && (
-          <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 text-center space-y-1.5">
-            <CheckCircle2 className="size-5 text-emerald-600 mx-auto" />
-            <p className="text-xs text-slate-700 font-medium leading-relaxed">{msg}</p>
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-2">
+            <CheckCircle2 className="size-6 text-emerald-600 mx-auto" />
+            <p className="text-xs text-slate-900 font-bold">Email Sent</p>
+            <p className="text-xs text-slate-600 leading-relaxed">{msg}</p>
           </div>
         )}
 
@@ -277,6 +301,12 @@ function Login() {
             {error}
           </p>
         )}
+
+        {/* Admin notice hint */}
+        <div className="flex items-center gap-2 p-3 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600">
+          <ShieldCheck className="size-4 text-slate-700 shrink-0" />
+          <span>Admin accounts (e.g. <strong>sandipprodhan100@gmail.com</strong>) have unlimited prompts.</span>
+        </div>
 
         {/* Footer legal */}
         <p className="text-[11px] text-slate-500 text-center leading-relaxed">

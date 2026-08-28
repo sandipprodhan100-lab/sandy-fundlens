@@ -8,6 +8,12 @@ type Body = { messages?: unknown; threadId?: unknown };
 
 const FREE_MONTHLY_TURNS = 5;
 
+// Admin emails with unlimited queries and full capabilities
+const ADMIN_EMAILS = new Set([
+  "sandipprodhan100@gmail.com",
+  "sandeepprodhan100@gmail.com",
+]);
+
 function json(body: unknown, status: number) {
   return new Response(JSON.stringify(body), {
     status,
@@ -45,7 +51,7 @@ export const Route = createFileRoute("/api/chat")({
         const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
         const signedIn = !!token && token.split(".").length === 3;
 
-        // User must be signed in with email / Google
+        // User must be signed in with email
         if (!signedIn) {
           return json(
             {
@@ -63,6 +69,9 @@ export const Route = createFileRoute("/api/chat")({
 
         const { data: userData } = await supabaseAdmin.auth.getUser(token);
         const userId = userData?.user?.id ?? null;
+        const userEmail = userData?.user?.email?.toLowerCase() ?? "";
+        const isAdmin = ADMIN_EMAILS.has(userEmail);
+
         if (!userId) {
           return json({ error: "Your session expired. Please sign in again." }, 401);
         }
@@ -78,26 +87,28 @@ export const Route = createFileRoute("/api/chat")({
           return json({ error: "Thread not found." }, 404);
         }
 
-        // Check Monthly Usage (5 free analyses per month)
-        const { data: monthUsage } = await supabaseAdmin
-          .from("agent_usage")
-          .select("turns")
-          .eq("user_id", userId)
-          .like("usage_date", `${currentMonth}%`);
+        // Check Monthly Usage (Admins bypass limits; Free users get 5/month)
+        if (!isAdmin) {
+          const { data: monthUsage } = await supabaseAdmin
+            .from("agent_usage")
+            .select("turns")
+            .eq("user_id", userId)
+            .like("usage_date", `${currentMonth}%`);
 
-        const monthlyUsed =
-          monthUsage?.reduce((acc, row) => acc + (Number(row.turns) || 0), 0) ?? 0;
+          const monthlyUsed =
+            monthUsage?.reduce((acc, row) => acc + (Number(row.turns) || 0), 0) ?? 0;
 
-        if (monthlyUsed >= FREE_MONTHLY_TURNS) {
-          return json(
-            {
-              error: `You have reached your quota of ${FREE_MONTHLY_TURNS} free AI analyses for ${currentMonth}. Your quota resets at the start of next month.`,
-            },
-            429,
-          );
+          if (monthlyUsed >= FREE_MONTHLY_TURNS) {
+            return json(
+              {
+                error: `You have reached your quota of ${FREE_MONTHLY_TURNS} free AI analyses for ${currentMonth}. Your quota resets on the 1st of next month.`,
+              },
+              429,
+            );
+          }
         }
 
-        // Increment today's turns for this user
+        // Track usage turns for user
         const { data: todayUsage } = await supabaseAdmin
           .from("agent_usage")
           .select("turns")
