@@ -7,12 +7,11 @@ import {
   type IndexKey,
 } from "@/lib/mf-catalog";
 import type { ModeKey } from "@/components/terminal/ModeCards";
-import { Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight, Wrench } from "lucide-react";
 
 /**
  * Compact terminal control bar: everything the analysis needs — module,
- * fund category, benchmark, detected phase, and custom parameters — on a
- * single sticky row.
+ * fund category, benchmark, detected phase, custom parameters, and history navigation.
  */
 export function ControlBar({
   category,
@@ -52,10 +51,33 @@ export function ControlBar({
   const activeMode = modes.find((m) => m.key === mode);
 
   return (
-    <div className="panel flex flex-col gap-2.5 p-3.5 bg-card/65 backdrop-blur-md border border-border shadow-lg transition-all">
-      {/* Top row: module badge + category tabs shown one-by-one + Admin Settings button */}
+    <div className="panel flex flex-col gap-2.5 p-3.5 bg-card/75 backdrop-blur-md border border-border shadow-lg transition-all">
+      {/* Top row: History navigation + module badge + category tabs + Admin Settings */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
+          {/* History Back / Forward Navigation Controls */}
+          <div className="flex items-center gap-0.5 rounded-md border border-border/80 bg-background/80 p-0.5 shadow-sm">
+            <button
+              type="button"
+              onClick={() => window.history.back()}
+              className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              title="Navigate Back (←)"
+              aria-label="Back"
+            >
+              <ArrowLeft className="size-3.5" />
+            </button>
+            <div className="h-3 w-px bg-border" />
+            <button
+              type="button"
+              onClick={() => window.history.forward()}
+              className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              title="Navigate Forward (→)"
+              aria-label="Forward"
+            >
+              <ArrowRight className="size-3.5" />
+            </button>
+          </div>
+
           <span className="num rounded-md border border-accent/25 bg-accent/10 px-2.5 py-1.5 text-xs font-semibold text-accent tracking-wide uppercase">
             {activeMode?.label ?? "Module"}
           </span>

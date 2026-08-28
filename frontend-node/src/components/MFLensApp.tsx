@@ -46,7 +46,7 @@ import { RankCard } from "@/components/RankCard";
 import { RankVisuals } from "@/components/RankVisuals";
 import { SectorDrift } from "@/components/SectorDrift";
 import { OverlapPanel } from "@/components/OverlapPanel";
-
+import { PortfolioConsultationForm } from "@/components/PortfolioConsultationForm";
 // Mode-scoped modules are heavy (charts + tables) and only one is on screen at
 // a time, so they are fetched on demand instead of shipping in the first load.
 const CombinedRanking = lazy(() =>
@@ -902,27 +902,36 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
           </div>
         )}
 
+        {/* Portfolio Sharpe/Sortino/Treynor Consultation Section */}
+        <PortfolioConsultationForm />
+
         <footer className="mt-8 -mx-5 border-t border-border bg-[var(--bg-alt)] px-5 pb-6 pt-4 text-[11px] text-muted-foreground sm:-mx-8 sm:px-8">
-          <details className="rounded-md border border-border">
-            <summary className="flex cursor-pointer list-none items-center justify-between px-3 py-2 font-medium text-foreground">
-              Disclaimer & data notes
-              <ChevronDown className="size-3.5 text-muted-foreground" />
+          {/* Catchy, prominent Disclaimer & Data Notes */}
+          <details className="overflow-hidden rounded-lg border-2 border-amber-500/50 bg-amber-500/10 shadow-sm dark:border-amber-500/40 dark:bg-amber-950/30">
+            <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 font-bold tracking-wide text-amber-900 dark:text-amber-300">
+              <span className="flex items-center gap-2">
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-black uppercase text-amber-900 dark:text-amber-200">
+                  Important Notice
+                </span>
+                Disclaimer & Data Notes
+              </span>
+              <ChevronDown className="size-4 text-amber-700 dark:text-amber-400" />
             </summary>
-            <div className="space-y-2 border-t border-border px-3 py-3">
+            <div className="space-y-2.5 border-t border-amber-500/30 px-4 py-3 text-xs leading-relaxed text-amber-950 dark:text-amber-200/90">
               <p>
-                Mutual fund investments are subject to market risks. Read all scheme related
-                documents carefully before investing. Past performance is not indicative of future
-                returns, and the NAV of schemes may go up or down depending on market conditions.
+                <strong>Statutory Warning:</strong> Mutual fund investments are subject to market risks.
+                Read all scheme related documents carefully before investing. Past performance is not
+                indicative of future returns, and the NAV of schemes may go up or down depending on market conditions.
               </p>
               <p>
-                MF Lens is an independent research and analytics tool. It does not offer investment,
-                legal or tax advice, does not recommend any scheme, and is not a SEBI-registered
-                investment adviser or distributor. Rankings are quantitative outputs of publicly
-                available NAV data and may contain errors or omissions.
+                <strong>Research Tool Scope:</strong> MF Lens is an independent quantitative research and
+                analytics tool. It does not offer investment, legal, or tax advice, does not recommend any scheme,
+                and is not a SEBI-registered investment adviser or distributor. Rankings are algorithmic outputs
+                of publicly available NAV data.
               </p>
-              <p className="num">
-                Universe: direct plan, growth option only; one scheme per fund house. Source: AMFI
-                daily NAV, refreshed every business day.
+              <p className="num text-[11px] font-medium text-amber-900/80 dark:text-amber-300/80">
+                Universe: Direct plan, growth option only; one representative scheme per fund house.
+                Source: AMFI daily NAV dataset refreshed every business day.
               </p>
             </div>
           </details>

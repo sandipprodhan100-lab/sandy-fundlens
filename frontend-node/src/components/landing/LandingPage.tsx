@@ -23,6 +23,7 @@ import {
 import { RankTable } from "@/components/terminal/RankTable";
 import { SkeletonRows } from "@/components/terminal/LockedPreview";
 import { FundChartPanel } from "@/components/FundChartPanel";
+import { PortfolioConsultationForm } from "@/components/PortfolioConsultationForm";
 
 /* ------------------------------------------------------------------ */
 /* Small presentational helpers                                        */
@@ -46,23 +47,23 @@ function Wordmark() {
   return (
     <Link to="/" className="flex items-center gap-2">
       <span
-        className="grid size-[25px] place-items-center rounded-[7px]"
-        style={{ background: "var(--accent)" }}
+        className="grid size-[30px] place-items-center rounded-[7px] text-[var(--accent)]"
+        style={{ background: "var(--accent-soft)" }}
       >
-        <Search className="size-3.5 text-white" strokeWidth={2.4} />
+        <Search className="size-4" />
       </span>
-      <span className="text-[15.5px] font-bold tracking-[-0.02em] text-[var(--ink)]">
-        MF <span className="text-[var(--accent)]">Lens</span>
+      <span className="font-display text-[15.5px] font-semibold text-[var(--ink)]">
+        MF Lens
       </span>
     </Link>
   );
 }
 
 const NAV_LINKS = [
-  { to: "/analysis", label: "Analysis" },
-  { to: "/analyst", label: "Analyst" },
-  { to: "/methodology", label: "Methodology" },
-  { to: "/pricing", label: "Pricing" },
+  { label: "Analysis", to: "/analysis" },
+  { label: "Analyst", to: "/analyst" },
+  { label: "Methodology", to: "/methodology" },
+  { label: "Pricing", to: "/pricing" },
 ] as const;
 
 const FEATURE_ITEMS = [
@@ -188,18 +189,13 @@ export function LandingPage() {
       >
         <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
           <Wordmark />
-          <nav className="hidden items-center gap-6 text-[14px] text-[var(--ink-2)] md:flex">
+          <nav className="flex items-center gap-6 text-[14px] text-[var(--ink-2)]">
             {NAV_LINKS.map((l) => (
               <Link key={l.to} to={l.to} className="hover:text-[var(--ink)]">
                 {l.label}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <Link to="/analysis" className="btn-primary">
-              Try Analysis
-            </Link>
-          </div>
         </div>
       </header>
 
@@ -358,43 +354,21 @@ export function LandingPage() {
                   <RankTable
                     funds={top}
                     series={analysis.data?.series ?? []}
-                    locked
                     onFocusFund={setFocusFund}
                   />
                 )}
 
-                {/* locked rail */}
-                <div
-                  className="mt-5 rounded-[10px] border p-4"
-                  style={{ background: "var(--bg-alt)", borderColor: "var(--border)" }}
-                >
-                  <p className="eyebrow">Unlock with a free account</p>
-                  <ul className="mt-3 grid gap-2">
-                    {[
-                      "All funds in the category, plus Sortino, Treynor and rolling volatility",
-                      "Holdings, manager profiles and custom date ranges",
-                      "Combined phases, dip radar, model portfolio and PDF reports",
-                    ].map((t) => (
-                      <li
-                        key={t}
-                        className="flex items-start gap-2 text-[13.5px] leading-snug text-[var(--ink-2)]"
-                      >
-                        <Lock className="mt-0.5 size-3.5 shrink-0 text-[var(--ink-3)]" />
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <Link
-                      to="/analysis"
-                      className="btn-primary"
-                    >
-                      Start analysing
-                    </Link>
-                    <span className="num text-[11.5px] text-[var(--ink-3)]">
-                      Free · no account needed
-                    </span>
-                  </div>
+                {/* Clean direct link to full interactive terminal */}
+                <div className="mt-4 flex items-center justify-between rounded-lg border border-primary/25 bg-primary/5 p-3.5 shadow-sm">
+                  <span className="text-xs font-medium text-foreground">
+                    Access all funds, 3Y rolling windows & model portfolios:
+                  </span>
+                  <Link
+                    to="/analysis"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
+                  >
+                    Open Analysis →
+                  </Link>
                 </div>
               </div>
 
@@ -502,6 +476,11 @@ export function LandingPage() {
           </div>
         </section>
 
+        {/* Portfolio Sharpe / Sortino / Treynor Audit Section */}
+        <section className="mx-auto max-w-6xl px-5 sm:px-8">
+          <PortfolioConsultationForm />
+        </section>
+
         {/* 7 — CTA BAND -------------------------------------------- */}
         <section className="px-5 py-16 sm:px-8" style={{ background: "var(--accent)" }}>
           <div className="mx-auto max-w-3xl text-center">
@@ -583,20 +562,23 @@ export function LandingPage() {
           ))}
         </div>
 
-        <div
-          className="mx-auto mt-10 max-w-6xl border-t pt-6"
-          style={{ borderColor: "var(--border)" }}
-        >
-          <p className="text-[12.6px] leading-[1.7] text-[var(--ink-3)]">
-            MF Lens is an analytics tool and is not an investment adviser. We hold no SEBI
-            registration as an investment adviser, research analyst or distributor. Nothing on this
-            site is investment advice or a recommendation to buy, hold or sell any scheme. Past
-            performance during sideways windows does not guarantee future results. Mutual fund
-            investments are subject to market risks — read all scheme related documents carefully.
-            NAV data sourced from AMFI.
+        {/* Catchy, eye-catching disclaimer banner in footer */}
+        <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-lg border-2 border-amber-500/50 bg-amber-500/10 p-4 shadow-sm dark:border-amber-500/40 dark:bg-amber-950/30">
+          <div className="flex items-center gap-2 font-bold text-amber-950 dark:text-amber-300">
+            <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-900 dark:text-amber-200">
+              Disclaimer &amp; Risk Warning
+            </span>
+            <span className="text-xs">SEBI Statutory Notice</span>
+          </div>
+          <p className="mt-2 text-xs leading-relaxed text-amber-950/90 dark:text-amber-200/90">
+            MF Lens is an analytics tool and is not an investment adviser. We hold no SEBI registration
+            as an investment adviser, research analyst or distributor. Nothing on this site is investment
+            advice or a recommendation to buy, hold or sell any scheme. Past performance during sideways
+            windows does not guarantee future results. Mutual fund investments are subject to market
+            risks — read all scheme related documents carefully. NAV data sourced from AMFI.
           </p>
-          <p className="num mt-3 text-[12.6px] text-[var(--ink-3)]">
-            © {new Date().getFullYear()} MF Lens
+          <p className="num mt-2 text-[11px] font-medium text-amber-900/75 dark:text-amber-300/75">
+            © {new Date().getFullYear()} MF Lens · Independent Mutual Fund Quantitative Research
           </p>
         </div>
       </footer>

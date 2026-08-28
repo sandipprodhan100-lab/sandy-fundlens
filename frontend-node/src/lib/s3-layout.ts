@@ -40,6 +40,10 @@ export const S3_PATHS = {
     `analysis/_snapshots/results/${category}_${indexKey}.json`,
   /** Snapshot metadata (last refresh timestamp, version) */
   snapshotMeta: "analysis/_snapshots/_meta.json",
+  /** User portfolio audit contact submissions */
+  portfolioRequest: (slugName: string, timestamp: string) =>
+    `requests/portfolio-audit/${timestamp}_${slug(slugName)}.json`,
+  portfolioRequestPrefix: "requests/portfolio-audit/",
 } as const;
 
 export function slug(value: string) {

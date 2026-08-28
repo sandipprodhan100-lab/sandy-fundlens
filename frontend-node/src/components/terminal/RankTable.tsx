@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Lock } from "lucide-react";
 
 import {
   SERIES_KEYS,
@@ -15,16 +14,15 @@ type Col = {
   format: (v: number | null) => string;
   signed?: boolean;
   invert?: boolean;
-  pro?: boolean;
 };
 
 const COLS: Col[] = [
   { key: "return", label: "Return", value: (f) => f.return, format: pct, signed: true },
   { key: "alpha", label: "Alpha", value: (f) => f.alpha, format: pct, signed: true },
   { key: "dd", label: "Max DD", value: (f) => f.maxDrawdown, format: pct1, invert: true },
-  { key: "sharpe", label: "Sharpe", value: (f) => f.sharpe, format: ratio, pro: true },
-  { key: "sortino", label: "Sortino", value: (f) => f.sortino, format: ratio, pro: true },
-  { key: "treynor", label: "Treynor", value: (f) => f.treynor, format: ratio, pro: true },
+  { key: "sharpe", label: "Sharpe", value: (f) => f.sharpe, format: ratio },
+  { key: "sortino", label: "Sortino", value: (f) => f.sortino, format: ratio },
+  { key: "treynor", label: "Treynor", value: (f) => f.treynor, format: ratio },
 ];
 
 function pct(v: number | null) {
@@ -63,10 +61,6 @@ function Spark({ points }: { points: number[] }) {
   );
 }
 
-/**
- * Top-N ranked table. Every figure carries an inline heat bar so relative
- * strength reads at a glance; Pro-only columns are blurred, not hidden.
- */
 export function RankTable({
   funds,
   series,
@@ -75,7 +69,7 @@ export function RankTable({
 }: {
   funds: FundResult[];
   series: SeriesPoint[];
-  locked: boolean;
+  locked?: boolean;
   onFocusFund: (f: { code: number; name: string }) => void;
 }) {
   const [hover, setHover] = useState<number | null>(null);
@@ -95,8 +89,7 @@ export function RankTable({
             <th className="cell-name">Fund</th>
             {COLS.map((c) => (
               <th key={c.key} className="pl-4 text-right">
-                <span className="inline-flex items-center gap-1">
-                  {c.pro && locked && <Lock className="size-3" />}
+                <span className="inline-flex items-center gap-1 font-semibold text-foreground/80">
                   {c.label}
                 </span>
               </th>
@@ -142,7 +135,6 @@ export function RankTable({
                   const span = Math.max(Math.abs(r.min), Math.abs(r.max)) || 1;
                   const width = v === null ? 0 : (Math.abs(v) / span) * 100;
                   const good = c.invert ? (v ?? 0) <= 0 : (v ?? 0) >= 0;
-                  const blur = c.pro && locked;
                   return (
                     <td key={c.key} className="py-2.5 pl-4 align-middle text-right">
                       <span className="relative inline-flex h-6 min-w-[74px] items-center justify-end rounded px-1.5">
@@ -154,15 +146,15 @@ export function RankTable({
                           }}
                         />
                         <span
-                          className={`num relative text-[13px] ${
+                          className={`num relative text-[13px] font-medium ${
                             c.signed || c.invert
                               ? good
                                 ? "text-positive"
                                 : "text-negative"
                               : "text-foreground"
-                          } ${blur ? "blur-[5px] select-none" : ""}`}
+                          }`}
                         >
-                          {blur ? "0.00" : c.format(v)}
+                          {c.format(v)}
                         </span>
                       </span>
                     </td>

@@ -1,16 +1,11 @@
 #!/usr/bin/env node
 /**
- * Pre-compute analysis snapshots and upload to S3.
+ * Pre-compute analysis snapshots for ALL combinations and upload to S3.
  *
- * This script runs the full sideways detection + fund analysis for every
- * (category, index) pair and stores the results as JSON in S3. The
- * Cloudflare Worker then reads a single small JSON file instead of making
- * 50+ S3 GETs and 45+ upstream API calls on every page load.
+ * Runs full sideways detection (4 indexes) + fund analysis for all 24 (category × index)
+ * combinations, uploading small pre-computed JSON snapshots to AWS S3.
  *
  * Run:  npx tsx scripts/precompute-snapshots.mts
- *
- * Required env vars (or in .env):
- *   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, AWS_S3_BUCKET
  */
 
 import fs from "node:fs";
@@ -49,26 +44,26 @@ const { detectSideways, analyse } = await import("../src/lib/mf.server.js");
 const VERSION = "v1";
 
 async function main() {
-  console.log("╔══════════════════════════════════════════════╗");
-  console.log("║  MF Lens — Pre-compute analysis snapshots   ║");
-  console.log("╚══════════════════════════════════════════════╝");
+  console.log("╔═════════════════════════════════════════════════════════════╗");
+  console.log("║  MF Lens — Pre-compute all 24 Category × Index Snapshots    ║");
+  console.log("╚═════════════════════════════════════════════════════════════╝");
   console.log();
 
   if (!isS3Configured()) {
-    console.error("Error: AWS S3 is not configured. Check AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, AWS_S3_BUCKET in .env");
+    console.error("Error: AWS S3 is not configured in .env");
     process.exit(1);
   }
 
   const startAll = Date.now();
   const errors: string[] = [];
 
-  // 1. Pre-compute sideways windows for each index
-  console.log("── Sideways windows ──");
+  // 1. Pre-compute sideways windows for each of the 4 benchmark indexes
+  console.log("── Sideways windows (4 Indexes) ──");
   const sidewaysResults = new Map<string, Awaited<ReturnType<typeof detectSideways>>>();
   for (const idx of INDEXES) {
     const t0 = Date.now();
     try {
-      console.log(`  [${idx.key}] computing...`);
+      console.log(`  [${idx.key}] computing sideways windows...`);
       const result = await detectSideways(idx.key);
       sidewaysResults.set(idx.key, result);
       const envelope = {
@@ -90,43 +85,44 @@ async function main() {
     }
   }
 
-  // 2. Pre-compute full analysis for each (category, defaultIndex) pair
-  console.log("\n── Fund analysis ──");
+  // 2. Pre-compute full analysis for ALL 24 (Category × Index) combinations
+  console.log("\n── Fund analysis for ALL 24 combinations (6 Categories × 4 Benchmarks) ──");
   for (const cat of CATEGORIES) {
-    const idx = INDEXES.find((i) => i.key === cat.defaultIndex)!;
-    const sidewaysData = sidewaysResults.get(idx.key);
-    if (!sidewaysData || sidewaysData.windows.length === 0) {
-      console.log(`  [${cat.key}/${idx.key}] skipped — no sideways windows`);
-      continue;
-    }
+    for (const idx of INDEXES) {
+      const sidewaysData = sidewaysResults.get(idx.key);
+      if (!sidewaysData || sidewaysData.windows.length === 0) {
+        console.log(`  [${cat.key}/${idx.key}] skipped — no sideways windows`);
+        continue;
+      }
 
-    // Use the most recent sideways window as the analysis window
-    const latestWindow = sidewaysData.windows[0]!;
-    const t0 = Date.now();
-    try {
-      console.log(`  [${cat.key}/${idx.key}] computing (${latestWindow.start} → ${latestWindow.end})...`);
-      const result = await analyse({
-        category: cat.key,
-        indexKey: idx.key,
-        start: latestWindow.start,
-        end: latestWindow.end,
-      });
-      const envelope = {
-        _meta: {
-          refreshedAt: new Date().toISOString(),
-          version: VERSION,
-          durationMs: Date.now() - t0,
-        },
-        data: result,
-      };
-      await s3PutJSON(S3_PATHS.analysisSnapshot(cat.key, idx.key), envelope);
-      console.log(
-        `  [${cat.key}/${idx.key}] ✓ ${result.analysed} funds, top score ${result.funds[0]?.score?.toFixed(1) ?? "-"}, ${((Date.now() - t0) / 1000).toFixed(1)}s`,
-      );
-    } catch (err) {
-      const msg = `analysis/${cat.key}_${idx.key}: ${err instanceof Error ? err.message : String(err)}`;
-      errors.push(msg);
-      console.error(`  [${cat.key}/${idx.key}] ✗ ${msg}`);
+      // Use the most recent sideways window for that index
+      const latestWindow = sidewaysData.windows[0]!;
+      const t0 = Date.now();
+      try {
+        console.log(`  [${cat.key} × ${idx.key}] computing window (${latestWindow.start} → ${latestWindow.end})...`);
+        const result = await analyse({
+          category: cat.key,
+          indexKey: idx.key,
+          start: latestWindow.start,
+          end: latestWindow.end,
+        });
+        const envelope = {
+          _meta: {
+            refreshedAt: new Date().toISOString(),
+            version: VERSION,
+            durationMs: Date.now() - t0,
+          },
+          data: result,
+        };
+        await s3PutJSON(S3_PATHS.analysisSnapshot(cat.key, idx.key), envelope);
+        console.log(
+          `  [${cat.key} × ${idx.key}] ✓ ${result.analysed} funds, top score ${result.funds[0]?.score?.toFixed(1) ?? "-"}, ${((Date.now() - t0) / 1000).toFixed(1)}s`,
+        );
+      } catch (err) {
+        const msg = `analysis/${cat.key}_${idx.key}: ${err instanceof Error ? err.message : String(err)}`;
+        errors.push(msg);
+        console.error(`  [${cat.key} × ${idx.key}] ✗ ${msg}`);
+      }
     }
   }
 
@@ -139,17 +135,17 @@ async function main() {
   };
   await s3PutJSON(S3_PATHS.snapshotMeta, meta);
 
-  console.log(`\n═══════════════════════════════════════`);
-  console.log(`Total: ${((Date.now() - startAll) / 1000).toFixed(1)}s`);
+  console.log(`\n═══════════════════════════════════════════════════════════════`);
+  console.log(`Total duration: ${((Date.now() - startAll) / 1000).toFixed(1)}s`);
   if (errors.length) {
-    console.log(`Errors: ${errors.length}`);
+    console.log(`Errors encountered: ${errors.length}`);
     errors.forEach((e) => console.log(`  - ${e}`));
   } else {
-    console.log("All snapshots written successfully to S3 ✓");
+    console.log("All 24 Category × Index snapshots written successfully to S3 ✓");
   }
 }
 
 main().catch((err) => {
-  console.error("Fatal error:", err);
+  console.error("Fatal error in precompute:", err);
   process.exit(1);
 });
