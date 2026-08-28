@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import {
   Activity,
   ArrowRight,
@@ -7,7 +6,6 @@ import {
   Bot,
   Brain,
   CheckCircle2,
-  ChevronRight,
   Code2,
   Cpu,
   Database,
@@ -39,15 +37,15 @@ export function SandipPortfolio() {
       window.location.hostname.includes("192.168."));
   const fundLensAppUrl = isLocal ? "/?app=fundlens" : "https://fundlens.sandipprodhan.in";
 
-  // Quick Consultation State
+  // Contact Form State
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  async function handleConsultationSubmit(e: React.FormEvent) {
+  async function handleContactSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !email.trim()) {
       toast.error("Please provide your name and email.");
@@ -59,13 +57,13 @@ export function SandipPortfolio() {
         data: {
           name: name.trim(),
           email: email.trim(),
-          phone: company.trim() || "Consulting Inquiry",
-          allocations: `Enterprise Consulting Inquiry: ${message.trim() || "General Architecture Advisory"}`,
-          horizon: "Consulting Engagement",
+          phone: subject.trim() || "General Inquiry",
+          allocations: `Contact Message: ${message.trim() || "Consulting & Collaboration Inquiry"}`,
+          horizon: "Direct Inquiry",
         },
       });
       setSubmitted(true);
-      toast.success("Thank you! Your consultation request has been received. Sandip will contact you shortly.");
+      toast.success("Thank you! Your message has been received. Sandip will get back to you shortly.");
     } catch {
       toast.error("Could not send request right now. Please email directly to sandipprodhan100@gmail.com");
     } finally {
@@ -75,16 +73,9 @@ export function SandipPortfolio() {
 
   return (
     <div className="min-h-screen bg-[#07090e] text-slate-100 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
-      {/* Dynamic Ambient Background Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[20%] w-[600px] h-[600px] rounded-full bg-emerald-600/10 blur-[140px]" />
-        <div className="absolute top-[35%] right-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-600/10 blur-[150px]" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] rounded-full bg-teal-600/10 blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25" />
-      </div>
-
-      {/* Floating Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#07090e]/85 border-b border-slate-800/60">
+      
+      {/* ── STICKY TOP NAVIGATION ── */}
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#07090e]/85 border-b border-slate-800/70">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
           <div className="flex items-center gap-3">
             <div className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/35 text-emerald-400 font-bold text-sm shadow-sm shadow-emerald-950/40">
@@ -94,291 +85,229 @@ export function SandipPortfolio() {
               <h1 className="text-sm font-semibold tracking-tight text-white flex items-center gap-2">
                 Sandip Prodhan
                 <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400 border border-emerald-500/25">
-                  Available for Advisory
+                  Available
                 </span>
               </h1>
               <p className="text-[11px] text-slate-400 font-mono">
-                Enterprise Integration &amp; AI Solutions Advisory
+                Integration Consultant &amp; AI Enabler
               </p>
             </div>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-7 text-xs text-slate-300 font-medium">
-            <a href="#offerings" className="hover:text-emerald-400 transition-colors">
-              Consulting Offerings
+          <nav className="hidden md:flex items-center gap-7 text-xs text-slate-300 font-medium">
+            <a href="#expertise" className="hover:text-emerald-400 transition-colors">
+              Core Tech Areas
+            </a>
+            <a href="#research" className="hover:text-emerald-400 transition-colors text-emerald-300 font-semibold">
+              Research (MF Lens)
             </a>
             <a href="#impact" className="hover:text-emerald-400 transition-colors">
-              Measurable ROI
+              Impact &amp; ROI
             </a>
-            <a href="#flagship" className="hover:text-emerald-400 transition-colors text-emerald-300 font-semibold">
-              Live Flagship App
-            </a>
-            <a href="#landscape" className="hover:text-emerald-400 transition-colors">
-              Tech Landscape
-            </a>
-            <a href="#consultation" className="hover:text-emerald-400 transition-colors">
-              Engage Advisory
+            <a href="#contact" className="hover:text-emerald-400 transition-colors">
+              Contact
             </a>
           </nav>
 
           <div className="flex items-center gap-3">
             <a
-              href="#consultation"
+              href="#contact"
               className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/90 border border-slate-700/80 px-3.5 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-700 transition-all shadow-sm"
             >
-              <MessageSquare className="size-3.5 text-emerald-400" />
-              <span>Book Advisory</span>
+              <Mail className="size-3.5 text-emerald-400" />
+              <span>Contact</span>
             </a>
 
             <a
               href={fundLensAppUrl}
               className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 hover:from-emerald-400 hover:to-teal-400 shadow-md shadow-emerald-950/50 transition-all"
             >
-              <span>MF Lens Platform</span>
+              <span>MF Lens App</span>
               <ArrowUpRight className="size-3.5" />
             </a>
           </div>
         </div>
       </header>
 
-      {/* Main Container */}
-      <main className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 space-y-24">
+      {/* ── SECTION 1: HERO (THEME 1 - DEEP OBSIDIAN #07090e) ── */}
+      <section className="relative bg-[#07090e] border-b border-slate-800/60 py-16 sm:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_0%,rgba(16,185,129,0.08),rgba(255,255,255,0))] pointer-events-none" />
         
-        {/* 1. HERO — STRATEGIC CONSULTING PROPOSITION */}
-        <section className="relative space-y-6 pt-4">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-7">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-400 shadow-inner">
             <Sparkles className="size-3.5 animate-pulse" />
-            <span>Strategic Architecture Consulting &amp; AI Enablement Practice</span>
+            <span>Integration Consultant &amp; AI Enabler</span>
           </div>
 
           <div className="space-y-4 max-w-4xl">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.12]">
-              Architecting Resilient, High-Throughput{" "}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.14]">
+              Reliable Enterprise Integration, Modern Data Engineering &amp;{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                Enterprise Integration &amp; Agentic AI
-              </span>{" "}
-              Ecosystems.
+                AI Enablement.
+              </span>
             </h1>
-            <p className="text-base sm:text-xl text-slate-300 leading-relaxed font-normal">
-              Empowering enterprise leaders to modernize legacy middleware, unify hybrid multi-cloud landscapes (Oracle OIC/SOA, AWS, Azure), and operationalize autonomous GenAI agentic workflows with guaranteed uptime and institutional governance.
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-3xl">
+              14+ years of hands-on expertise delivering mission-critical <strong className="text-white font-semibold">Oracle Middleware Integrations</strong>, building scalable data pipelines across <strong className="text-white font-semibold">AWS &amp; Azure</strong> (dbt, Databricks), automating release governance with <strong className="text-white font-semibold">CI/CD &amp; DevOps</strong>, and enabling agentic AI workflows.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-2">
-            <div className="flex items-center gap-2 bg-slate-900/80 border border-slate-800/90 px-3.5 py-2 rounded-lg shadow-sm">
+          <div className="flex flex-wrap items-center gap-3.5 text-xs font-mono text-slate-400 pt-2">
+            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3.5 py-2 rounded-lg shadow-sm">
               <ShieldCheck className="size-4 text-emerald-400" />
               <span>Former Sole Integration Authority for Selfridges (8+ Years)</span>
             </div>
-            <div className="flex items-center gap-2 bg-slate-900/80 border border-slate-800/90 px-3.5 py-2 rounded-lg shadow-sm">
+            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3.5 py-2 rounded-lg shadow-sm">
               <Award className="size-4 text-teal-400" />
-              <span>250+ Enterprise Pipelines Delivered (98%+ Go-Live Success)</span>
+              <span>Oracle Certified OIC &amp; SOA Specialist</span>
             </div>
-            <div className="flex items-center gap-2 bg-slate-900/80 border border-slate-800/90 px-3.5 py-2 rounded-lg shadow-sm">
+            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3.5 py-2 rounded-lg shadow-sm">
               <MapPin className="size-4 text-cyan-400" />
-              <span>UK Based · Global Consulting Reach</span>
+              <span>Leicester, UK</span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 2. CORE CONSULTING SERVICE OFFERINGS (FLOATING CARDS) */}
-        <section id="offerings" className="space-y-8">
+      {/* ── SECTION 2: CORE TECH & WORK AREAS (THEME 2 - MIDNIGHT NAVY #0b111e) ── */}
+      <section id="expertise" className="relative bg-[#0b111e] border-b border-slate-800/80 py-16 sm:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-10">
+          
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800/80 pb-4">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                Advisory &amp; Execution
+                Core Specializations
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-                Strategic Consulting Offerings
+                Work &amp; Technology Areas
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-              Specialized advisory designed to eliminate architectural debt, accelerate delivery velocity, and unlock GenAI automation.
+              Focused, reliable, and enterprise-proven technical capabilities.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Offering 1 */}
-            <div className="group relative rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/80 border border-slate-800/90 p-7 hover:border-emerald-500/40 transition-all duration-300 shadow-xl hover:shadow-emerald-950/20 space-y-4">
-              <div className="size-12 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-                <Network className="size-6" />
+            
+            {/* Card 1: Oracle Middleware */}
+            <div className="rounded-2xl bg-slate-900/85 border border-slate-800 p-7 space-y-4 hover:border-emerald-500/40 transition-all shadow-xl">
+              <div className="size-11 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+                <Network className="size-5" />
               </div>
               <h3 className="text-lg font-bold text-white">
-                Enterprise Integration Strategy &amp; Cloud Modernization
+                Oracle Middleware Integration Products
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Complete architectural overhaul and modernization of fragmented enterprise systems. Seamless orchestration across <strong>Oracle Integration Cloud (OIC)</strong>, <strong>SOA Suite</strong>, <strong>ODI</strong>, <strong>AWS</strong>, and <strong>Azure</strong>.
+                Deep expertise architecting, developing, and governing high-volume enterprise integration workflows across Oracle Cloud and on-prem landscapes.
               </p>
-              <ul className="space-y-2 pt-2 border-t border-slate-800/60 text-xs text-slate-400">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0" />
-                  <span>Legacy middleware decoupling &amp; cloud migration roadmaps</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0" />
-                  <span>Canonical data models &amp; reusable API interface frameworks</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0" />
-                  <span>Zero-downtime cutovers for mission-critical trading &amp; retail hubs</span>
-                </li>
-              </ul>
+              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-300">
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Oracle Integration Cloud (OIC)</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">SOA Suite 12c</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">ODI 12c</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Oracle Service Bus (OSB)</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">PL/SQL Optimization</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">XML / XSLT</span>
+              </div>
             </div>
 
-            {/* Offering 2 */}
-            <div className="group relative rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/80 border border-slate-800/90 p-7 hover:border-cyan-500/40 transition-all duration-300 shadow-xl hover:shadow-cyan-950/20 space-y-4">
-              <div className="size-12 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
-                <Brain className="size-6" />
+            {/* Card 2: Data Engineering AWS & Azure */}
+            <div className="rounded-2xl bg-slate-900/85 border border-slate-800 p-7 space-y-4 hover:border-cyan-500/40 transition-all shadow-xl">
+              <div className="size-11 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400">
+                <Database className="size-5" />
               </div>
               <h3 className="text-lg font-bold text-white">
-                AI-Native Integration &amp; Agentic System Orchestration
+                Data Engineering with AWS &amp; Azure (dbt, Databricks)
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Transforming traditional static pipelines into intelligent, autonomous event networks using <strong>Model Context Protocol (MCP)</strong>, <strong>ReAct loops</strong>, and <strong>LangGraph multi-agent systems</strong>.
+                Building scalable, governed analytical data planes, columnar lakehouses, and real-time streaming ingestion pipelines across multi-cloud environments.
               </p>
-              <ul className="space-y-2 pt-2 border-t border-slate-800/60 text-xs text-slate-400">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" />
-                  <span>Autonomous exception triage &amp; self-healing integration pipelines</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" />
-                  <span>Enterprise RAG &amp; LLM tool orchestration with strict compliance guardrails</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" />
-                  <span>Agentic message dispatchers with real-time auditability</span>
-                </li>
-              </ul>
+              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-300">
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">dbt (Data Build Tool)</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Databricks</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Apache Spark</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">AWS (S3, Glue, Lambda, Athena)</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Azure Data Factory</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Parquet Lakehouse</span>
+              </div>
             </div>
 
-            {/* Offering 3 */}
-            <div className="group relative rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/80 border border-slate-800/90 p-7 hover:border-teal-500/40 transition-all duration-300 shadow-xl hover:shadow-teal-950/20 space-y-4">
-              <div className="size-12 rounded-xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform">
-                <Database className="size-6" />
+            {/* Card 3: Python & SQL */}
+            <div className="rounded-2xl bg-slate-900/85 border border-slate-800 p-7 space-y-4 hover:border-teal-500/40 transition-all shadow-xl">
+              <div className="size-11 rounded-xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400">
+                <Code2 className="size-5" />
               </div>
               <h3 className="text-lg font-bold text-white">
-                High-Velocity Streaming &amp; Data Lake Architectures
+                Python &amp; Advanced SQL Proficiencies
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Architecting sub-second analytical and operational data planes. High-throughput ingestion pipelines converting raw feeds into columnar <strong>Parquet Lakehouses</strong> and <strong>TimescaleDB</strong> time-series engines.
+                Production-grade backend services, asynchronous workers, mathematical risk models, and complex analytical SQL for sub-second query performance.
               </p>
-              <ul className="space-y-2 pt-2 border-t border-slate-800/60 text-xs text-slate-400">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-teal-400 shrink-0" />
-                  <span>Sub-50ms query latency over terabyte-scale financial and order logs</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-teal-400 shrink-0" />
-                  <span>Event-driven streaming with Kafka, SQS, and Cloudflare edge workers</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-teal-400 shrink-0" />
-                  <span>Data lake schema enforcement and automated snapshot lifecycle</span>
-                </li>
-              </ul>
+              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-300">
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Python 3.11+ / FastAPI</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Pandas &amp; NumPy</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Complex Analytical SQL</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">TimescaleDB / PostgreSQL</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Query Plan Tuning</span>
+              </div>
             </div>
 
-            {/* Offering 4 */}
-            <div className="group relative rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/80 border border-slate-800/90 p-7 hover:border-amber-500/40 transition-all duration-300 shadow-xl hover:shadow-amber-950/20 space-y-4">
-              <div className="size-12 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
-                <ShieldCheck className="size-6" />
+            {/* Card 4: CI/CD & DevOps */}
+            <div className="rounded-2xl bg-slate-900/85 border border-slate-800 p-7 space-y-4 hover:border-amber-500/40 transition-all shadow-xl">
+              <div className="size-11 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400">
+                <GitBranch className="size-5" />
               </div>
               <h3 className="text-lg font-bold text-white">
-                Architecture Health Audits &amp; Critical Project Rescue
+                CI/CD Implementation &amp; DevOps Practice
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Objective evaluation of enterprise middleware health, throughput bottlenecks, payload vulnerabilities, and delivery risk. Fast turnaround stabilization for distressed IT transformations.
+                Automating end-to-end integration deployments, test automation, infrastructure-as-code provisioning, and zero-downtime release pipelines.
               </p>
-              <ul className="space-y-2 pt-2 border-t border-slate-800/60 text-xs text-slate-400">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-amber-400 shrink-0" />
-                  <span>Thorough latency, concurrency, and security vulnerability analysis</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-amber-400 shrink-0" />
-                  <span>Actionable remediation roadmap with prioritized high-ROI milestones</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="size-3.5 text-amber-400 shrink-0" />
-                  <span>Architecture review board (ARB) governance standards setup</span>
-                </li>
-              </ul>
+              <div className="flex flex-wrap gap-2 pt-2 text-[11px] font-mono text-slate-300">
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">GitHub Actions</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Jenkins Pipelines</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Docker &amp; Containers</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Terraform (IaC)</span>
+                <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800">Cloudflare Workers</span>
+              </div>
             </div>
+
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 3. MEASURABLE CLIENT IMPACT & PROVEN ROI */}
-        <section id="impact" className="space-y-6">
-          <div className="p-8 rounded-2xl bg-gradient-to-r from-slate-900/95 via-[#0b1019] to-slate-900/95 border border-slate-800/90 shadow-2xl space-y-8">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                Track Record
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-                Measurable Enterprise ROI &amp; Outcomes
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400">250+</div>
-                <div className="text-xs font-semibold text-slate-200">Pipelines Governed</div>
-                <p className="text-[11px] text-slate-400">Across Oracle Cloud, AWS, &amp; Azure</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold font-mono text-teal-400">98.4%</div>
-                <div className="text-xs font-semibold text-slate-200">First-Time Go-Live Success</div>
-                <p className="text-[11px] text-slate-400">Zero critical production rollbacks</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-400">53%</div>
-                <div className="text-xs font-semibold text-slate-200">Component Reuse</div>
-                <p className="text-[11px] text-slate-400">Halved new interface build time</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400">&lt;50ms</div>
-                <div className="text-xs font-semibold text-slate-200">Edge Analytics Latency</div>
-                <p className="text-[11px] text-slate-400">Optimized S3 Lakehouse query engine</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. FEATURED LIVE FLAGSHIP PLATFORM (LIVE PROOF OF WORK) */}
-        <section id="flagship" className="space-y-6">
+      {/* ── SECTION 3: RESEARCH PROJECT — MF LENS & MEDALLION ARCHITECTURE (THEME 1 - DEEP OBSIDIAN #07090e) ── */}
+      <section id="research" className="relative bg-[#07090e] border-b border-slate-800/60 py-16 sm:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-10">
+          
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800/80 pb-4">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                Live Flagship Proof of Work
+                Independent Research Project
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-                MF Lens Intelligence Platform
+                DevOps &amp; AI Enablement with Medallion Architecture
               </h2>
             </div>
             <a
               href={fundLensAppUrl}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
             >
-              <span>Explore Live Platform</span>
+              <span>Explore Live Research Platform</span>
               <ArrowRight className="size-3.5" />
             </a>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#090d14] border-2 border-emerald-500/35 p-7 sm:p-9 space-y-6 shadow-2xl shadow-emerald-950/30">
+          <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#090e17] border-2 border-emerald-500/35 p-7 sm:p-9 space-y-8 shadow-2xl shadow-emerald-950/30">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-slate-800/80 pb-6">
-              <div className="space-y-2">
+              <div className="space-y-2 max-w-2xl">
                 <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-md">
                   <Activity className="size-3.5" />
-                  <span>Production Quantitative Engine</span>
+                  <span>Featured Case Study: Mutual Fund Lens Platform</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                  Institutional Mutual Fund Analytics &amp; AI Screening
+                  Quantitative Screener &amp; AI Analyst Engine
                 </h3>
-                <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
-                  A high-throughput quantitative intelligence tool tracking flat market regimes across all 24 AMFI fund categories &amp; benchmark combinations with sub-50ms retrieval via AWS S3 data lake.
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  A high-throughput quantitative platform that detects sideways market regimes and ranks funds on risk-adjusted alpha (Sharpe, Sortino, Treynor, Drawdown) with sub-50ms query latency over AWS S3.
                 </p>
               </div>
 
@@ -391,271 +320,191 @@ export function SandipPortfolio() {
               </a>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-5 text-xs">
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/70 space-y-1.5">
-                <div className="font-semibold text-white flex items-center gap-2">
-                  <Bot className="size-4 text-emerald-400" />
-                  <span>GenAI Analyst Agent</span>
+            {/* Medallion Architecture Steps */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                Implemented Medallion Data Lake Pipeline
+              </h4>
+              
+              <div className="grid sm:grid-cols-3 gap-4">
+                
+                {/* Bronze */}
+                <div className="p-5 rounded-xl bg-slate-950/80 border border-amber-500/30 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-amber-400 uppercase">Bronze Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">Raw Ingestion</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white">Daily Automated Ingest</div>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Automated GitHub Actions cron jobs pulling daily raw AMFI NAV feeds and official factsheets directly into raw S3 buckets.
+                  </p>
                 </div>
-                <p className="text-slate-400 text-[11.5px] leading-snug">
-                  Autonomous ReAct synthesis loop generating structured markdown analysis from AMFI NAV data points.
-                </p>
-              </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/70 space-y-1.5">
-                <div className="font-semibold text-white flex items-center gap-2">
-                  <Database className="size-4 text-teal-400" />
-                  <span>S3 Columnar Lakehouse</span>
+                {/* Silver */}
+                <div className="p-5 rounded-xl bg-slate-950/80 border border-slate-400/30 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-slate-300 uppercase">Silver Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">Cleaned Parquet</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white">Columnar Partitioning</div>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Hyparquet transform pipeline standardizing scheme history, cleansing missing dates, and building partitioned columnar parquet tables.
+                  </p>
                 </div>
-                <p className="text-slate-400 text-[11.5px] leading-snug">
-                  Direct Parquet readers and precomputed snapshot caches for instantaneous multi-window evaluations.
-                </p>
-              </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/70 space-y-1.5">
-                <div className="font-semibold text-white flex items-center gap-2">
-                  <Zap className="size-4 text-cyan-400" />
-                  <span>Institutional Risk Models</span>
+                {/* Gold */}
+                <div className="p-5 rounded-xl bg-slate-950/80 border border-emerald-500/35 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-emerald-400 uppercase">Gold Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">AI &amp; Analytics</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white">Precomputed Snapshots &amp; AI</div>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Precomputed multi-window metrics (&lt;50ms) paired with autonomous ReAct Gemini AI analyst agents for verifiable quantitative insights.
+                  </p>
                 </div>
-                <p className="text-slate-400 text-[11.5px] leading-snug">
-                  Sharpe, Sortino, Treynor ratios, maximum drawdown, and portfolio-level risk allocation modules.
-                </p>
+
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* 5. TECHNOLOGY LANDSCAPE & ADVISORY COMPETENCIES */}
-        <section id="landscape" className="space-y-6">
-          <div className="space-y-1 border-b border-slate-800/80 pb-4">
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 4: IMPACT & ROI (THEME 2 - MIDNIGHT NAVY #0b111e) ── */}
+      <section id="impact" className="relative bg-[#0b111e] border-b border-slate-800/80 py-16 sm:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-8">
+          
+          <div className="space-y-1">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-              Technology Stack
+              Proven Track Record
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Enterprise Technology Landscape
+              Measurable Enterprise Delivery &amp; Reliability
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {/* Tech 1 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-emerald-400 uppercase font-mono">
-                Oracle Ecosystem
-              </div>
-              <div className="text-sm font-semibold text-white">
-                Oracle Integration Cloud (OIC) · SOA Suite 12c · ODI 12c
-              </div>
-              <p className="text-xs text-slate-400">
-                EBS R12, Fusion ERP, WMS, Retail (MOM/RMS), PL/SQL optimization, XML/XSLT transformations.
-              </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            
+            <div className="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400">250+</div>
+              <div className="text-xs font-semibold text-slate-200">Integration Pipelines</div>
+              <p className="text-[11px] text-slate-400">Governed across Oracle, AWS &amp; Azure</p>
             </div>
 
-            {/* Tech 2 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-teal-400 uppercase font-mono">
-                Cloud &amp; Messaging
-              </div>
-              <div className="text-sm font-semibold text-white">
-                AWS (S3, Lambda, SQS, Glue) · Azure · Kafka · IBM MQ
-              </div>
-              <p className="text-xs text-slate-400">
-                High-concurrency pub/sub event hubs, dead-letter routing, and multi-region failover.
-              </p>
+            <div className="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-teal-400">98.4%</div>
+              <div className="text-xs font-semibold text-slate-200">First-Time Go-Live Success</div>
+              <p className="text-[11px] text-slate-400">Zero critical production rollbacks</p>
             </div>
 
-            {/* Tech 3 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-cyan-400 uppercase font-mono">
-                AI &amp; Agentic Stack
-              </div>
-              <div className="text-sm font-semibold text-white">
-                Model Context Protocol (MCP) · LangGraph · ReAct · Gemini
-              </div>
-              <p className="text-xs text-slate-400">
-                Enterprise agent tools, schema validation, structured function calling, and RAG pipelines.
-              </p>
+            <div className="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-400">8+ Yrs</div>
+              <div className="text-xs font-semibold text-slate-200">Selfridges Integration Lead</div>
+              <p className="text-[11px] text-slate-400">Sole integration authority</p>
             </div>
 
-            {/* Tech 4 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-emerald-400 uppercase font-mono">
-                Data Lakehouse &amp; DBs
-              </div>
-              <div className="text-sm font-semibold text-white">
-                Apache Parquet · TimescaleDB · PostgreSQL · Hyparquet
-              </div>
-              <p className="text-xs text-slate-400">
-                Columnar storage design, partitioning, compression algorithms, and streaming sync.
-              </p>
+            <div className="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+              <div className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400">53%</div>
+              <div className="text-xs font-semibold text-slate-200">Component Reuse</div>
+              <p className="text-[11px] text-slate-400">Reduced enterprise interface costs</p>
             </div>
 
-            {/* Tech 5 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-teal-400 uppercase font-mono">
-                Modern Full-Stack
-              </div>
-              <div className="text-sm font-semibold text-white">
-                TypeScript · Python (FastAPI) · React · Cloudflare Workers
-              </div>
-              <p className="text-xs text-slate-400">
-                High-performance edge APIs, micro-frontends, Nitro SSR, and serverless compute.
-              </p>
-            </div>
-
-            {/* Tech 6 */}
-            <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-2">
-              <div className="text-xs font-bold text-cyan-400 uppercase font-mono">
-                Governance &amp; CI/CD
-              </div>
-              <div className="text-sm font-semibold text-white">
-                Enterprise ARB · GitHub Actions · Docker · Terraform
-              </div>
-              <p className="text-xs text-slate-400">
-                Automated release pipelines, regression test suites, and compliance documentation.
-              </p>
-            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 6. ENGAGEMENT MODELS & CONSULTATION BOOKING */}
-        <section id="consultation" className="space-y-8">
+      {/* ── SECTION 5: CONTACT & COLLABORATION (THEME 1 - DEEP OBSIDIAN #07090e) ── */}
+      <section id="contact" className="relative bg-[#07090e] py-16 sm:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-8">
+          
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800/80 pb-4">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
-                Initiate Advisory
+                Get in Touch
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-                Consulting Engagement Options
+                Contact &amp; Collaboration
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-              Flexible engagement models tailored for strategic leadership, enterprise project delivery, and architecture audits.
+              Reach out for integration consulting, data engineering projects, or technical inquiries.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
-            {/* Engagement Card 1 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/90 space-y-3">
-              <div className="text-xs font-mono font-bold text-emerald-400 uppercase">
-                Phase 1 Advisory
-              </div>
-              <h3 className="text-base font-bold text-white">
-                Architecture &amp; Health Audit
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                2 to 4 week comprehensive review of existing integration topology, throughput bottlenecks, security posture, and modernization roadmap.
-              </p>
-            </div>
-
-            {/* Engagement Card 2 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-emerald-500/40 space-y-3 relative shadow-lg shadow-emerald-950/20">
-              <div className="inline-flex rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-bold text-emerald-300 uppercase">
-                Most Requested
-              </div>
-              <h3 className="text-base font-bold text-white">
-                Fractional Integration Authority
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Strategic technical leadership for ongoing major transformation programs, vendor evaluation, design approvals, and team governance.
-              </p>
-            </div>
-
-            {/* Engagement Card 3 */}
-            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/90 space-y-3">
-              <div className="text-xs font-mono font-bold text-cyan-400 uppercase">
-                Targeted Delivery
-              </div>
-              <h3 className="text-base font-bold text-white">
-                GenAI &amp; Event Pipeline Build
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Hands-on delivery of production-grade agentic AI workflows, MCP server integrations, or streaming data lake implementations.
-              </p>
-            </div>
-          </div>
-
-          {/* Interactive Consultation Form */}
-          <div className="rounded-2xl bg-gradient-to-b from-slate-900/95 to-[#0b0f17] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-2xl">
-            <div className="space-y-1">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Mail className="size-5 text-emerald-400" />
-                <span>Book an Initial Strategic Discussion</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-400">
-                Direct inquiry with Sandip Prodhan. Response within 24 hours.
-              </p>
-            </div>
-
+          <div className="rounded-2xl bg-gradient-to-b from-slate-900/95 to-[#0b0f17] border border-slate-800 p-6 sm:p-8 space-y-6 shadow-2xl max-w-3xl">
             {submitted ? (
               <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm space-y-2">
-                <p className="font-bold">✓ Consultation Request Received</p>
+                <p className="font-bold">✓ Message Received</p>
                 <p className="text-xs text-emerald-400/90">
-                  Thank you, {name}. Sandip will review your project requirements and follow up shortly at {email}.
+                  Thank you, {name}. Sandip has received your note and will follow up shortly at {email}.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleConsultationSubmit} className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-medium text-slate-300 mb-1.5 block">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. David Sterling"
-                    className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
-                  />
+              <form onSubmit={handleContactSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-slate-300 mb-1.5 block">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Your name"
+                      className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-medium text-slate-300 mb-1.5 block">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@company.com"
+                      className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <label className="text-xs font-medium text-slate-300 mb-1.5 block">
-                    Business Email *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="e.g. david@enterprise.com"
-                    className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
-                  />
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label className="text-xs font-medium text-slate-300 mb-1.5 block">
-                    Company / Organization
+                    Subject / Area of Interest
                   </label>
                   <input
                     type="text"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    placeholder="e.g. Global Retail Group / FinTech Corp"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    placeholder="e.g. Oracle OIC Integration / Cloud Data Lake / DevOps CI/CD"
                     className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
 
-                <div className="sm:col-span-2">
+                <div>
                   <label className="text-xs font-medium text-slate-300 mb-1.5 block">
-                    Key Challenges or Integration Objectives
+                    Message
                   </label>
                   <textarea
-                    rows={3}
+                    rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Briefly describe your integration landscape, migration goals, or AI initiatives..."
+                    placeholder="Tell me about your project, integration landscape, or inquiry..."
                     className="w-full rounded-lg bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
                   />
                 </div>
 
-                <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-3 pt-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                   <button
                     type="submit"
                     disabled={submitting}
                     className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-xs font-bold text-slate-950 hover:bg-emerald-400 transition-all shadow-md shadow-emerald-950/60 disabled:opacity-50"
                   >
-                    <span>{submitting ? "Sending..." : "Submit Consultation Request"}</span>
+                    <span>{submitting ? "Sending..." : "Send Message"}</span>
                     <ArrowRight className="size-3.5" />
                   </button>
 
@@ -663,21 +512,20 @@ export function SandipPortfolio() {
                     href="mailto:sandipprodhan100@gmail.com"
                     className="text-xs text-slate-400 hover:text-emerald-400 transition-colors"
                   >
-                    Or direct email: <span className="font-mono text-slate-300">sandipprodhan100@gmail.com</span>
+                    Direct email: <span className="font-mono text-slate-300">sandipprodhan100@gmail.com</span>
                   </a>
                 </div>
               </form>
             )}
           </div>
-        </section>
+        </div>
+      </section>
 
-      </main>
-
-      {/* Modern Footer */}
-      <footer className="mt-20 border-t border-slate-800/80 bg-[#05070a] py-10 px-5 sm:px-8">
+      {/* ── FOOTER ── */}
+      <footer className="border-t border-slate-800/80 bg-[#05070a] py-8 px-5 sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            <span className="font-semibold text-slate-200">Sandip Prodhan</span> · Enterprise Integration &amp; AI Advisory
+            <span className="font-semibold text-slate-200">Sandip Prodhan</span> · Integration Consultant &amp; AI Enabler
           </div>
           <div className="flex items-center gap-6">
             <a
@@ -704,6 +552,7 @@ export function SandipPortfolio() {
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
