@@ -12,5 +12,20 @@
   "assets": {
     "binding": "ASSETS",
     "directory": ".output/public"
+  },
+  // Non-secret environment variables (safe to commit)
+  "vars": {
+    "AWS_REGION": "ap-south-1",
+    "AWS_S3_BUCKET": "mutualfundlens-s3",
+    "BACKEND_API_URL": "https://sandy-fundlens.onrender.com",
+    "VITE_APP_EDITION": "open",
+    "SUPABASE_URL": "https://svwmenagvnvmburdwvpl.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_3hyE2cYN2FM2vYNv1Ft3lw_W5hJ1XSE",
+    "VITE_SUPABASE_URL": "https://svwmenagvnvmburdwvpl.supabase.co",
+    "VITE_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_3hyE2cYN2FM2vYNv1Ft3lw_W5hJ1XSE",
+    "VITE_SUPABASE_PROJECT_ID": "svwmenagvnvmburdwvpl"
   }
-}
+  // IMPORTANT: AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY must be set as
+  // secrets via: npx wrangler secret put AWS_ACCESS_KEY_ID
+  //              npx wrangler secret put AWS_SECRET_ACCESS_KEY
+}
