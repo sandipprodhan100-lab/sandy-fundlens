@@ -66,8 +66,8 @@ export function SandipPortfolio() {
         },
       });
 
-      // 2. Trigger direct mailto link to sandipprodhan100@gmail.com
-      const mailtoUrl = `mailto:sandipprodhan100@gmail.com?subject=${encodeURIComponent(
+      // 2. Trigger direct mailto link to sandip.prodhan@pabtechnologies.com
+      const mailtoUrl = `mailto:sandip.prodhan@pabtechnologies.com?subject=${encodeURIComponent(
         subject.trim() || `Inquiry from ${name.trim()}`,
       )}&body=${encodeURIComponent(
         `Name: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`,
@@ -76,10 +76,10 @@ export function SandipPortfolio() {
       window.location.href = mailtoUrl;
 
       setSubmitted(true);
-      toast.success("Thank you! Your inquiry has been sent to sandipprodhan100@gmail.com.");
+      toast.success("Thank you! Your inquiry has been sent to sandip.prodhan@pabtechnologies.com.");
     } catch {
       // Fallback direct mailto
-      window.location.href = `mailto:sandipprodhan100@gmail.com?subject=${encodeURIComponent(
+      window.location.href = `mailto:sandip.prodhan@pabtechnologies.com?subject=${encodeURIComponent(
         subject.trim() || "Consulting Inquiry",
       )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
       setSubmitted(true);
@@ -880,10 +880,10 @@ export function SandipPortfolio() {
                   </button>
 
                   <a
-                    href="mailto:sandipprodhan100@gmail.com"
+                    href="mailto:sandip.prodhan@pabtechnologies.com"
                     className="text-xs text-slate-600 hover:text-slate-900 transition-colors"
                   >
-                    Direct Email: <span className="font-mono font-bold text-slate-900">sandipprodhan100@gmail.com</span>
+                    Direct Email: <span className="font-mono font-bold text-slate-900">sandip.prodhan@pabtechnologies.com</span>
                   </a>
                 </div>
               </form>
@@ -900,10 +900,10 @@ export function SandipPortfolio() {
           </div>
           <div className="flex items-center gap-6">
             <a
-              href="mailto:sandipprodhan100@gmail.com"
+              href="mailto:sandip.prodhan@pabtechnologies.com"
               className="hover:text-slate-900 transition-colors"
             >
-              sandipprodhan100@gmail.com
+              sandip.prodhan@pabtechnologies.com
             </a>
             <a
               href="https://linkedin.com/in/sandip-prodhan-17790427"
