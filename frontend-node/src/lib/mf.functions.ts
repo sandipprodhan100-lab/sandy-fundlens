@@ -16,24 +16,19 @@ export const getSidewaysWindows = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
-    const url = new URL(`${backendUrl}/api/v1/sideways/${data.indexKey}`);
-    if (data.bandPct !== undefined) url.searchParams.set("band_pct", String(data.bandPct));
-    if (data.minDays !== undefined) url.searchParams.set("min_days", String(data.minDays));
-    if (data.maxDrift !== undefined) url.searchParams.set("max_drift", String(data.maxDrift));
-
-    const res = await fetch(url.toString());
-    if (!res.ok) throw new Error("FastAPI sideways request failed");
-    const result = await res.json();
-
-    const [{ getViewer }] = await Promise.all([
+    // Use the in-process SSR engine (reads directly from S3 Parquet lake)
+    // instead of calling the Render backend, avoiding cold-start delays.
+    const [{ detectSideways }, { getViewer }] = await Promise.all([
+      import("./mf.server"),
       import("./entitlement.server"),
     ]);
+    const result = await detectSideways(data.indexKey);
     const viewer = await getViewer();
     // Free/anonymous callers only get the most recent sideways window.
     if (viewer.isPro) return result;
     return { ...result, windows: result.windows.slice(0, 1) };
   });
+
 
 export const analyseFunds = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) =>
