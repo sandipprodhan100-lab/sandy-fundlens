@@ -1,29 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ExternalLink, Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Bot, CheckCircle2, Database, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
-import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/lib/auth";
-import { getPaddleEnvironment } from "@/lib/paddle";
-import { createPortalSession, getBillingOverview } from "@/lib/payments.functions";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/account")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Account & Billing — MF Lens" },
+      { title: "Account & Analytics Usage — MF Lens" },
       {
         name: "description",
-        content:
-          "View your MF Lens plan, payment history, receipts and manage or cancel your Pro subscription.",
+        content: "View your account status, query usage, and explore MF Lens Pro capabilities.",
       },
-      { property: "og:title", content: "Account & Billing — MF Lens" },
-      {
-        property: "og:description",
-        content: "Manage your MF Lens Pro plan, receipts and subscription.",
-      },
+      { property: "og:title", content: "Account & Analytics Usage — MF Lens" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -31,22 +24,9 @@ export const Route = createFileRoute("/account")({
   component: AccountPage,
 });
 
-const money = (amount: number, currency: string) => {
-  try {
-    return new Intl.NumberFormat("en-IN", { style: "currency", currency }).format(amount / 100);
-  } catch {
-    return `${currency} ${(amount / 100).toFixed(2)}`;
-  }
-};
-
-const day = (v: string | null) => (v ? new Date(v).toLocaleDateString("en-IN") : "—");
-
 function AccountPage() {
   const { session, loading } = useSession();
   const navigate = useNavigate();
-  const environment = getPaddleEnvironment();
-  const [portalLoading, setPortalLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && !session) {
@@ -54,144 +34,148 @@ function AccountPage() {
     }
   }, [loading, session, navigate]);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["billing", environment, session?.user?.id],
-    queryFn: () => getBillingOverview({ data: { environment } }),
+  const userEmail = session?.user?.email?.toLowerCase() ?? "";
+  const isAdmin =
+    userEmail === "sandipprodhan100@gmail.com" || userEmail === "sandeepprodhan100@gmail.com";
+
+  // Query usage counts for user
+  const usageQuery = useQuery({
+    queryKey: ["user-usage-count", session?.user?.id],
     enabled: !!session,
+    queryFn: async () => {
+      if (!session) return { totalQueries: 0, threadsCount: 0 };
+      const [usageRes, threadsRes] = await Promise.all([
+        supabase.from("agent_usage").select("turns").eq("user_id", session.user.id),
+        supabase.from("agent_threads").select("id", { count: "exact" }).eq("user_id", session.user.id),
+      ]);
+      const totalTurns = (usageRes.data ?? []).reduce((sum, r) => sum + (Number(r.turns) || 0), 0);
+      return {
+        totalQueries: totalTurns,
+        threadsCount: threadsRes.count ?? (threadsRes.data?.length ?? 0),
+      };
+    },
   });
 
-  const openPortal = async () => {
-    setPortalLoading(true);
-    setError(null);
-    try {
-      const url = await createPortalSession({ data: { environment } });
-      window.open(url, "_blank", "noopener");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not open the billing portal.");
-    } finally {
-      setPortalLoading(false);
-    }
-  };
-
-  const subscription = data?.subscriptions?.[0];
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <PaymentTestModeBanner />
-      <div className="mx-auto max-w-3xl px-4 py-10">
-        <header className="flex flex-wrap items-center justify-between gap-3">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+      <div className="mx-auto max-w-4xl px-4 py-12 space-y-8">
+        
+        {/* Header */}
+        <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-6">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Account & billing</h1>
-            <p className="mt-1 text-xs text-muted-foreground">{session?.user?.email ?? ""}</p>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Account & Usage</h1>
+            <p className="mt-1 text-sm text-slate-600 font-mono">{userEmail || "Signed In"}</p>
           </div>
-          <div className="flex gap-2">
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/admin/storage">Data lake</Link>
+          <div className="flex items-center gap-2.5">
+            <Button asChild variant="outline" size="sm" className="cursor-pointer bg-white">
+              <Link to="/analysis">Back to Terminal</Link>
             </Button>
-            <Button asChild variant="outline" size="sm">
-              <Link to="/analysis">Back to analysis</Link>
+            <Button asChild size="sm" className="bg-slate-900 hover:bg-slate-800 text-white cursor-pointer">
+              <Link to="/analyst">Open AI Analyst</Link>
             </Button>
           </div>
-
         </header>
 
-        {isLoading ? (
-          <div className="panel mt-6 flex items-center gap-2 p-6 text-sm text-muted-foreground">
-            <Loader2 className="size-4 animate-spin" /> Loading your billing details…
+        {/* User Status & Activity Metrics */}
+        <section className="grid sm:grid-cols-3 gap-4">
+          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-1">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Access Tier</span>
+            <div className="flex items-center gap-2 pt-1">
+              {isAdmin ? (
+                <>
+                  <ShieldCheck className="size-5 text-indigo-600 shrink-0" />
+                  <span className="text-base font-bold text-slate-900">Super Admin</span>
+                </>
+              ) : (
+                <>
+                  <Bot className="size-5 text-emerald-600 shrink-0" />
+                  <span className="text-base font-bold text-slate-900">Standard Access</span>
+                </>
+              )}
+            </div>
+            <p className="text-[11px] text-slate-500 pt-1">
+              {isAdmin ? "Unlimited queries & full pipeline access" : "Grounded queries with Delta Lake tools"}
+            </p>
           </div>
-        ) : (
-          <>
-            <section className="panel mt-6 p-6">
-              <h2 className="text-sm font-semibold">Current plan</h2>
-              {data?.isPro ? (
-                <p className="mt-2 text-sm">
-                  <span className="rounded bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary">
-                    {data?.isAdmin ? "Admin — full access" : "FunsLensePro active"}
-                  </span>
-                  {data?.isAdmin ? (
-                    <span className="ml-2 text-xs text-muted-foreground">
-                      Your account has the admin role, so every Pro feature is unlocked without a
-                      subscription.
-                    </span>
-                  ) : null}
 
-                  {subscription ? (
-                    <span className="ml-2 text-xs text-muted-foreground">
-                      {subscription.price_id === "funslense_pro_annual"
-                        ? "Annual"
-                        : subscription.price_id === "funslense_pro_3year"
-                          ? "3-Year"
-                          : "Subscription"}{" "}
-                      · status {subscription.status} ·{" "}
-                      {subscription.cancel_at_period_end ? "ends" : "renews"}{" "}
-                      {day(subscription.current_period_end)}
-                    </span>
-                  ) : data?.isAdmin ? null : (
-                    <span className="ml-2 text-xs text-muted-foreground">
-                      One-time purchase — no renewal needed
-                    </span>
-                  )}
+          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-1">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Queries Run</span>
+            <div className="flex items-center gap-2 pt-1">
+              <Zap className="size-5 text-amber-500 shrink-0" />
+              <span className="text-2xl font-black text-slate-900">
+                {usageQuery.data?.totalQueries ?? 0}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-500 pt-1">Real-time analytical questions processed</p>
+          </div>
 
-                </p>
-              ) : (
-                <p className="mt-2 text-sm text-muted-foreground">
-                  You're on the free plan.{" "}
-                  <Link to="/pricing" className="text-primary underline">
-                    See Pro plans
-                  </Link>
-                  .
-                </p>
-              )}
+          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-1">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Threads</span>
+            <div className="flex items-center gap-2 pt-1">
+              <Database className="size-5 text-blue-600 shrink-0" />
+              <span className="text-2xl font-black text-slate-900">
+                {usageQuery.data?.threadsCount ?? 0}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-500 pt-1">Saved research conversations in S3</p>
+          </div>
+        </section>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Button size="sm" variant="outline" disabled={portalLoading} onClick={openPortal}>
-                  {portalLoading ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <ExternalLink className="size-4" />
-                  )}
-                  Manage billing & invoices
-                </Button>
-                {!data?.isPro ? (
-                  <Button asChild size="sm">
-                    <Link to="/pricing">Upgrade</Link>
-                  </Button>
-                ) : null}
+        {/* MF Lens Pro Advertisement Showcase */}
+        <section className="rounded-2xl border border-slate-200 bg-white p-7 sm:p-8 shadow-sm space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold mb-2">
+                <Sparkles className="size-3.5" /> MF Lens Pro & Enterprise
               </div>
-              {error ? <p className="mt-3 text-xs text-destructive">{error}</p> : null}
-            </section>
+              <h2 className="text-xl font-bold text-slate-900">
+                Advanced AI Research & Institutional Quantitative Tools
+              </h2>
+            </div>
+            <Button
+              asChild
+              className="bg-slate-900 hover:bg-slate-800 text-white font-bold cursor-pointer"
+            >
+              <a href="https://sandipprodhan.in/#consultation" target="_blank" rel="noopener noreferrer">
+                Request Pro / Enterprise Access
+              </a>
+            </Button>
+          </div>
 
-            <section className="panel mt-4 p-6">
-              <h2 className="text-sm font-semibold">Payment history</h2>
-              {data?.purchases?.length ? (
-                <div className="mt-3 overflow-x-auto">
-                  <table className="w-full text-xs">
-                    <thead className="text-muted-foreground">
-                      <tr className="text-left">
-                        <th className="py-2">Date</th>
-                        <th>Plan</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.purchases.map((p: any) => (
-                        <tr key={p.id} className="border-t border-border/60">
-                          <td className="py-2">{day(p.created_at)}</td>
-                          <td>{p.price_id}</td>
-                          <td>{money(Number(p.amount), p.currency)}</td>
-                          <td className="capitalize">{p.status}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+          <p className="text-sm text-slate-600 leading-relaxed max-w-2xl">
+            MF Lens Pro is built for wealth managers, quant analysts, and institutional teams who require high-frequency sideways market detection, custom fund mandates, and direct S3 Parquet delta lake integrations.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-4 pt-2">
+            {[
+              {
+                title: "Live Sideways Market Radar",
+                desc: "Real-time automated regime classification across 24 Category × Benchmark combinations with instant change alerts.",
+              },
+              {
+                title: "Institutional Manager Track Records",
+                desc: "10-year longitudinal manager history, cross-fund tenure analytics, and scheme alpha attribution.",
+              },
+              {
+                title: "Automated Rebalancing Engine",
+                desc: "Algorithmic model portfolio stress testing with custom Sharpe, Sortino, and downside risk constraints.",
+              },
+              {
+                title: "Direct Data Lake & API Feeds",
+                desc: "REST and MCP tool integration hooking your private internal models directly into the AWS S3 Delta Lake repository.",
+              },
+            ].map((item, idx) => (
+              <div key={idx} className="flex gap-3 p-4 rounded-xl border border-slate-100 bg-slate-50/70">
+                <CheckCircle2 className="size-5 text-indigo-600 shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-xs font-bold text-slate-900">{item.title}</h3>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">{item.desc}</p>
                 </div>
-              ) : (
-                <p className="mt-2 text-xs text-muted-foreground">No payments yet.</p>
-              )}
-            </section>
-          </>
-        )}
+              </div>
+            ))}
+          </div>
+        </section>
+
       </div>
     </div>
   );
