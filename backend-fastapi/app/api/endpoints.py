@@ -84,6 +84,60 @@ def get_scheme_analysis(
     analysis["schemeCode"] = code
     return analysis
 
+@router.get("/schemes/analysis", summary="Analyze all funds in a category over a window")
+def get_category_analysis(
+    category: str = Query(..., description="Fund category (large, mid, small, multi, flexi, hybrid)"),
+    index_key: str = Query(..., description="Benchmark index key"),
+    start: str = Query(..., description="Start date in YYYY-MM-DD format"),
+    end: str = Query(..., description="End date in YYYY-MM-DD format"),
+):
+    """Rank all funds in a category by performance over the given window."""
+    from ..data_lake.parquet_manager import read_manifest
+    from .calculations import get_nav_series, calculate_metrics
+
+    try:
+        manifest = read_manifest(category)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to read category manifest: {e}")
+
+    if not manifest:
+        return {"category": category, "indexKey": index_key, "start": start, "end": end, "funds": [], "analysed": 0}
+
+    results = []
+    for entry in manifest:
+        code = entry.get("schemeCode")
+        name = entry.get("schemeName", "")
+        house = entry.get("fundHouse", "")
+        if not code:
+            continue
+
+        points = get_nav_series(code)
+        if not points:
+            continue
+
+        sliced = [p for p in points if start <= p["date"] <= end]
+        if len(sliced) < 2:
+            continue
+
+        metrics = calculate_metrics(sliced)
+        results.append({
+            "schemeCode": code,
+            "schemeName": name,
+            "fundHouse": house,
+            **metrics,
+        })
+
+    # Sort by return descending
+    results.sort(key=lambda x: x["ret"], reverse=True)
+    return {
+        "category": category,
+        "indexKey": index_key,
+        "start": start,
+        "end": end,
+        "funds": results,
+        "analysed": len(results),
+    }
+
 from pydantic import BaseModel
 from typing import List, Optional
 from ..agents import run_agentic_analysis

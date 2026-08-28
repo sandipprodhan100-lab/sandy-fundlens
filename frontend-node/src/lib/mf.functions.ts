@@ -16,17 +16,17 @@ export const getSidewaysWindows = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    // Use the in-process SSR engine (reads directly from S3 Parquet lake)
-    // instead of calling the Render backend, avoiding cold-start delays.
-    const [{ detectSideways }, { getViewer }] = await Promise.all([
-      import("./mf.server"),
-      import("./entitlement.server"),
-    ]);
-    const result = await detectSideways(data.indexKey);
-    const viewer = await getViewer();
-    // Free/anonymous callers only get the most recent sideways window.
-    if (viewer.isPro) return result;
-    return { ...result, windows: result.windows.slice(0, 1) };
+    // Proxy to the FastAPI backend — the Worker's 10ms CPU limit can't handle
+    // the full sideways-window detection across all schemes.
+    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
+    const url = new URL(`${backendUrl}/api/v1/sideways/${data.indexKey}`);
+    if (data.bandPct !== undefined) url.searchParams.set("band_pct", String(data.bandPct));
+    if (data.minDays !== undefined) url.searchParams.set("min_days", String(data.minDays));
+    if (data.maxDrift !== undefined) url.searchParams.set("max_drift", String(data.maxDrift));
+
+    const res = await fetch(url.toString());
+    if (!res.ok) throw new Error(`Backend sideways request failed: ${res.status}`);
+    return await res.json();
   });
 
 
@@ -42,20 +42,17 @@ export const analyseFunds = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const [{ analyse, detectSideways }, { getViewer }] = await Promise.all([
-      import("./mf.server"),
-      import("./entitlement.server"),
-    ]);
-    const viewer = await getViewer();
-    if (!viewer.isPro) {
-      // Free tier: only the most recent detected sideways window, no custom ranges.
-      const { windows } = await detectSideways(data.indexKey);
-      const free = windows[0];
-      if (!free || free.start !== data.start || free.end !== data.end) {
-        throw new Error("Custom date ranges require an active MF Lens Pro plan.");
-      }
-    }
-    return analyse(data);
+    // Proxy to the FastAPI backend — heavy fund analysis can't run in a Worker.
+    const backendUrl = process.env["BACKEND_API_URL"] || "http://localhost:8000";
+    const url = new URL(`${backendUrl}/api/v1/schemes/analysis`);
+    url.searchParams.set("category", data.category);
+    url.searchParams.set("index_key", data.indexKey);
+    url.searchParams.set("start", data.start);
+    url.searchParams.set("end", data.end);
+
+    const res = await fetch(url.toString());
+    if (!res.ok) throw new Error(`Backend analysis request failed: ${res.status}`);
+    return await res.json();
   });
 
 export const getHoldings = createServerFn({ method: "GET" })

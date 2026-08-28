@@ -16,7 +16,9 @@ export async function getViewer(): Promise<Viewer> {
     const request = getRequest();
     const header = request?.headers?.get("authorization") ?? null;
     if (header?.startsWith("Bearer ")) token = header.slice("Bearer ".length).trim() || null;
-  } catch {
+  } catch (e) {
+    // In Cloudflare Workers, getRequest() may not have context; treat as anonymous.
+    console.warn("[getViewer] getRequest failed, treating as anonymous:", e);
     token = null;
   }
 
