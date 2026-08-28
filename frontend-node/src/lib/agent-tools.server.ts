@@ -1,21 +1,16 @@
 import { tool } from "ai";
 import { z } from "zod";
 
-const PRO_ONLY = {
-  proRequired: true,
-  message: "This query needs MF Lens Pro. View details at /pricing.",
-};
-
 const fail = (error: unknown) => ({
   error: error instanceof Error ? error.message : "Tool failed",
   unavailable: true,
 });
 
-export function buildAnalystTools({ isPro }: { isPro: boolean }) {
+export function buildAnalystTools({ isPro = true }: { isPro?: boolean } = {}) {
   return {
     list_categories: tool({
       description: "List the mutual fund categories supported by MF Lens and their default benchmark indices.",
-      inputSchema: z.object({}),
+      inputSchema: z.object({}).optional(),
       execute: async () => ({
         categories: [
           { key: "large", name: "Large Cap", benchmark: "nifty50" },
@@ -30,18 +25,22 @@ export function buildAnalystTools({ isPro }: { isPro: boolean }) {
 
     detect_sideways_windows: tool({
       description: "Find sideways (range-bound) market phases for a benchmark index.",
-      inputSchema: z.object({
-        indexKey: z
-          .enum([
-            "nifty50",
-            "nifty_midcap_150",
-            "nifty_smallcap_250",
-            "nifty500",
-            "nifty_large_midcap_250",
-          ])
-          .default("nifty500"),
-      }),
-      execute: async ({ indexKey }) => {
+      inputSchema: z
+        .object({
+          indexKey: z
+            .enum([
+              "nifty50",
+              "nifty_midcap_150",
+              "nifty_smallcap_250",
+              "nifty500",
+              "nifty_large_midcap_250",
+            ])
+            .optional()
+            .default("nifty500"),
+        })
+        .optional(),
+      execute: async (args?: { indexKey?: string }) => {
+        const indexKey = args?.indexKey || "nifty500";
         try {
           const { readSidewaysSnapshot } = await import("@/lib/mf-snapshots.server");
           const snap = await readSidewaysSnapshot(indexKey);
@@ -57,7 +56,7 @@ export function buildAnalystTools({ isPro }: { isPro: boolean }) {
       description:
         "Full quantitative screening for a mutual fund category during a sideways market regime. Returns schemes with alpha, Sharpe, Sortino, Treynor, Max DD, and composite score.",
       inputSchema: z.object({
-        category: z.enum(["large", "mid", "small", "flexi", "elss", "large_mid"]),
+        category: z.enum(["large", "mid", "small", "flexi", "elss", "large_mid"]).default("mid"),
         indexKey: z
           .enum([
             "nifty50",
@@ -66,9 +65,12 @@ export function buildAnalystTools({ isPro }: { isPro: boolean }) {
             "nifty500",
             "nifty_large_midcap_250",
           ])
+          .optional()
           .default("nifty500"),
       }),
-      execute: async ({ category, indexKey }) => {
+      execute: async (args?: { category?: string; indexKey?: string }) => {
+        const category = args?.category || "mid";
+        const indexKey = args?.indexKey || (category === "mid" ? "nifty_midcap_150" : category === "small" ? "nifty_smallcap_250" : category === "large" ? "nifty50" : "nifty500");
         try {
           const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
           const snap = await readAnalysisSnapshot(category, indexKey);
@@ -82,11 +84,14 @@ export function buildAnalystTools({ isPro }: { isPro: boolean }) {
 
     fund_holdings: tool({
       description: "Top stock holdings (name, weight, sector) for a fund.",
-      inputSchema: z.object({ schemeCode: z.number(), fundName: z.string() }),
-      execute: async ({ schemeCode, fundName }) => {
+      inputSchema: z.object({
+        schemeCode: z.number().optional(),
+        fundName: z.string().optional(),
+      }).optional(),
+      execute: async (args?: { schemeCode?: number; fundName?: string }) => {
         try {
           const { fetchHoldings } = await import("@/lib/holdings.server");
-          return await fetchHoldings({ schemeCode, fundName });
+          return await fetchHoldings({ schemeCode: args?.schemeCode ?? 0, fundName: args?.fundName ?? "" });
         } catch (error) {
           return fail(error);
         }
@@ -101,7 +106,7 @@ Hard rules on precision & objectivity:
 - Every number you state MUST come from a tool result in this conversation. Never estimate, never recall figures from memory, never round a figure into a different one.
 - If a tool returns { "unavailable": true }, say the figure is unavailable and why. Never substitute a guess.
 - Always state the context of a number: category, benchmark index, and the exact window (start to end).
-- When the user asks about a category without a window, call detect_sideways_windows first or analyse_category and use the most recent sideways window, saying which one you used.
+- When the user asks about a category (such as mid cap, small cap, large cap, flexi cap), ALWAYS call analyse_category and/or detect_sideways_windows to obtain real quantitative metrics.
 - Quote figures with their units (%, ₹ crore) and at most 2 decimals.
 - IMPORTANT: Do NOT judge, praise, or criticise individual fund managers. You do not evaluate human managers; keep manager facts purely in the background for internal analytics and scheme parameters without passing personal qualitative judgment on individuals.
 

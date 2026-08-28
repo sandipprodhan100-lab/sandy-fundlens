@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { streamText, type UIMessage } from "ai";
 
 import { getAiModel } from "@/lib/ai-gateway.server";
-import { ANALYST_SYSTEM_PROMPT, buildAnalystTools } from "@/lib/agent-tools.server";
+import { ANALYST_SYSTEM_PROMPT } from "@/lib/agent-tools.server";
+import { readAnalysisSnapshot, readSidewaysSnapshot } from "@/lib/mf-snapshots.server";
 
 type Body = { messages?: unknown; threadId?: unknown };
 
 const FREE_MONTHLY_TURNS = 5;
 
-// Admin emails with unlimited queries and full access
+// Super Admin emails with unlimited queries and full access
 const ADMIN_EMAILS = new Set([
   "sandipprodhan100@gmail.com",
   "sandeepprodhan100@gmail.com",
@@ -182,16 +183,74 @@ export const Route = createFileRoute("/api/chat")({
             .join(" ")
             .trim() || "";
 
-        // Stream AI Generation using Gemini with S3-backed tools via streamText
+        // 1. Determine Category and Benchmark from Prompt
+        const lower = latestPrompt.toLowerCase();
+        let category = "large";
+        let indexKey = "nifty50";
+
+        if (lower.includes("mid") || lower.includes("midcap") || lower.includes("mid-cap")) {
+          category = "mid";
+          indexKey = "nifty_midcap_150";
+        } else if (lower.includes("small") || lower.includes("smallcap") || lower.includes("small-cap")) {
+          category = "small";
+          indexKey = "nifty_smallcap_250";
+        } else if (lower.includes("flexi") || lower.includes("flexicap")) {
+          category = "flexi";
+          indexKey = "nifty500";
+        } else if (lower.includes("elss") || lower.includes("tax")) {
+          category = "elss";
+          indexKey = "nifty500";
+        } else if (lower.includes("large") && lower.includes("mid")) {
+          category = "large_mid";
+          indexKey = "nifty_large_midcap_250";
+        }
+
+        // 2. Fetch Real S3 Delta Lake Snapshots for Grounding
+        let groundingContext = "";
+        try {
+          const [analysisSnap, sidewaysSnap] = await Promise.all([
+            readAnalysisSnapshot(category, indexKey),
+            readSidewaysSnapshot(indexKey),
+          ]);
+
+          const funds = (analysisSnap as any)?.funds || [];
+          const topFunds = funds.slice(0, 10);
+          const windows = (sidewaysSnap as any)?.windows || [];
+
+          groundingContext = JSON.stringify(
+            {
+              category,
+              benchmarkIndex: indexKey,
+              sidewaysRegimes: windows.slice(-3),
+              fundMetrics: topFunds.map((f: any) => ({
+                name: f.name,
+                score: f.score,
+                returnPct: f.return,
+                maxDrawdownPct: f.maxDrawdown,
+                sharpe: f.sharpe,
+                sortino: f.sortino,
+                aumCr: f.aum,
+              })),
+            },
+            null,
+            2,
+          );
+        } catch (s3Err) {
+          console.warn("S3 snapshot grounding notice:", s3Err);
+        }
+
+        // 3. Stream AI Generation using Gemini with Grounding Context
         const model = getAiModel();
         if (model) {
           try {
+            const promptWithGrounding = groundingContext
+              ? `User Question: "${latestPrompt}"\n\nVerified Grounding Data from AWS S3 Delta Lake Repository:\n${groundingContext}\n\nAnalyze this data, identify the top performing funds during the sideways regime, and present the structured response with ## Answer, ## Key numbers table, ## What it means, and ## Context. Remember: Do not evaluate or mention individual fund managers.`
+              : latestPrompt;
+
             const result = streamText({
               model,
               system: ANALYST_SYSTEM_PROMPT,
-              prompt: latestPrompt,
-              tools: buildAnalystTools({ isPro: true }),
-              maxSteps: 5,
+              prompt: promptWithGrounding,
               onFinish: async ({ text }) => {
                 try {
                   const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
@@ -215,18 +274,18 @@ export const Route = createFileRoute("/api/chat")({
         }
 
         // Fallback: S3 Snapshot Quantitative Screening
-        const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
-        const snap = (await readAnalysisSnapshot("mid", "nifty_midcap_150")) as any;
+        const { readAnalysisSnapshot: fallbackSnapshot } = await import("@/lib/mf-snapshots.server");
+        const snap = (await fallbackSnapshot(category, indexKey)) as any;
         const topFunds = snap?.funds?.slice(0, 5) ?? [];
 
-        const fallbackText = `## Answer\nHere is the quantitative screening for mid-cap funds during the active sideways market phase based on verified NAV data.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
+        const fallbackText = `## Answer\nHere is the quantitative screening for ${category} cap funds during the active sideways market phase based on verified NAV data.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
           topFunds
             .map(
               (f: any) =>
                 `| ${f.name} | ${f.score?.toFixed(1) ?? "—"} | ${f.return?.toFixed(2) ?? "—"} | ${f.maxDrawdown?.toFixed(2) ?? "—"} | ${f.sharpe?.toFixed(2) ?? "—"} | ${f.sortino?.toFixed(2) ?? "—"} |`,
             )
             .join("\n") +
-          `\n\n## What it means\n- Schemes with positive Sharpe and Sortino ratios demonstrated resilient downside protection when the benchmark drifted flat.\n- Low maximum drawdown indicates disciplined risk management.\n\n## Context\nCategory: Mid Cap · Benchmark: Nifty Midcap 150 · Source: AWS S3 AMFI NAV Dataset.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
+          `\n\n## What it means\n- Schemes with positive Sharpe and Sortino ratios demonstrated resilient downside protection when the benchmark drifted flat.\n- Low maximum drawdown indicates disciplined risk management.\n\n## Context\nCategory: ${category} Cap · Benchmark: ${indexKey} · Source: AWS S3 AMFI NAV Dataset.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
 
         return new Response(`0:${JSON.stringify(fallbackText)}\n`, {
           headers: {
