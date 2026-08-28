@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
-import { AuthStatus } from "@/components/AuthStatus";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useQuery } from "@tanstack/react-query";
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -199,9 +198,9 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
 
   const windows = sideways.data?.windows ?? [];
 
-  // In the open edition nothing is gated; the subscription edition keeps the
-  // free demo but now offers a wider slice of recent sideways windows.
-  const limited = isOpenEdition ? false : demo || !isPro;
+  // Analysis is fully open — no login or paywall gating. Only the MF Lens
+  // Analyst (/analyst) requires authentication.
+  const limited = false;
   // Results are open in the demo edition; the methodology behind them is not.
   const logicLocked = isLogicLocked(limited);
   const shownWindows =
@@ -268,23 +267,14 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
     setHoldings((prev) => ({ ...prev, [code]: result }));
   }, []);
 
-  const unlockAction =
-    demo || !userId ? (
-      <Link
-        to="/login"
-        search={{ next: "/analysis" }}
-        className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
-      >
-        Unlock with Pro <ArrowRight className="size-3.5" />
-      </Link>
-    ) : (
-      <Link
-        to="/pricing"
-        className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
-      >
-        Unlock with Pro <ArrowRight className="size-3.5" />
-      </Link>
-    );
+  const unlockAction = (
+    <Link
+      to="/analysis"
+      className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
+    >
+      Unlock full view <ArrowRight className="size-3.5" />
+    </Link>
+  );
 
   const upgradeCta = <div className="mt-3">{unlockAction}</div>;
 
@@ -341,7 +331,6 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
               </Link>
             )}
             <ThemeToggle />
-            <AuthStatus />
           </div>
         </div>
       </div>

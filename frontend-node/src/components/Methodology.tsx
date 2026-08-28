@@ -16,11 +16,10 @@ function LockedNote({ what, demo }: { what: string; demo: boolean }) {
         </p>
       ) : (
         <Link
-          to={demo ? "/login" : "/pricing"}
-          {...(demo ? { search: { next: "/analysis" } } : {})}
+          to="/analysis"
           className="mt-1 inline-block text-xs text-primary underline"
         >
-          {demo ? "Sign in to continue" : "Unlock with FunsLensePro"}
+          Explore the full analysis
         </Link>
       )}
     </div>

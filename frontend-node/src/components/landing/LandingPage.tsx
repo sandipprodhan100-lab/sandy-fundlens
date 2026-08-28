@@ -197,13 +197,12 @@ export function LandingPage() {
           </nav>
           <div className="flex items-center gap-4">
             <Link
-              to="/login"
-              search={{ next: "/analysis" }}
+              to="/analysis"
               className="text-[14px] text-[var(--ink-2)] hover:text-[var(--ink)]"
             >
               Sign in
             </Link>
-            <Link to="/login" search={{ next: "/analysis" }} className="btn-primary">
+            <Link to="/analysis" className="btn-primary">
               Get started
             </Link>
           </div>
@@ -393,14 +392,13 @@ export function LandingPage() {
                   </ul>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     <Link
-                      to="/login"
-                      search={{ next: "/analysis" }}
+                      to="/analysis"
                       className="btn-primary"
                     >
-                      Create a free account
+                      Start analysing
                     </Link>
                     <span className="num text-[11.5px] text-[var(--ink-3)]">
-                      No card · Google or mobile OTP
+                      Free · no account needed
                     </span>
                   </div>
                 </div>
@@ -517,14 +515,13 @@ export function LandingPage() {
               See how your funds handled flat markets
             </h2>
             <p className="mx-auto mt-2 max-w-[36em] text-[15.5px] text-white/75">
-              Free account, real NAV data, every category — no card and nothing to install.
+              Real NAV data, every category — free, nothing to install.
             </p>
             <Link
-              to="/login"
-              search={{ next: "/analysis" }}
+              to="/analysis"
               className="mt-6 inline-flex items-center rounded-[8px] bg-white px-[22px] py-3 text-[15.5px] font-semibold text-[var(--accent)] hover:bg-white/90"
             >
-              Create a free account
+              Start analysing
             </Link>
           </div>
         </section>

@@ -34,11 +34,10 @@ export function LockedPreview({
         <div className="mt-1">
           {action ?? (
             <Link
-              to="/login"
-              search={{ next: "/analysis" }}
+              to="/analysis"
               className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
             >
-              <Lock className="size-3.5" /> Unlock with Pro
+              <Lock className="size-3.5" /> Unlock full view
             </Link>
           )}
         </div>
