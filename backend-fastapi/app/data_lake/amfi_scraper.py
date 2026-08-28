@@ -1,7 +1,7 @@
 import re
 import time
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 from .s3_connector import s3_lake
 from .parquet_manager import write_nav_parquet, read_manifest
@@ -10,6 +10,9 @@ AMFI_SOURCES = [
     "https://portal.amfiindia.com/spages/NAVAll.txt",
     "https://www.amfiindia.com/spages/NAVAll.txt"
 ]
+
+# How many years of NAV history are kept hot in the DB (fast path). Older rows are purged daily.
+DB_RETENTION_YEARS = 3
 
 MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
 
@@ -94,37 +97,6 @@ def parse_amfi_nav_txt(text: str) -> List[Dict[str, Any]]:
             
     return rows
 
-def ingest_daily_nav() -> Dict[str, Any]:
-    """Downloads daily AMFI NAV text, saves raw copy, and updates parquet partitions."""
-    started_at = datetime.utcnow().isoformat() + "Z"
-    errors = []
-    
-    try:
-        text = download_amfi_nav()
-        rows = parse_amfi_nav_txt(text)
-    except Exception as e:
-        return {
-            "job": "daily-nav",
-            "startedAt": started_at,
-            "finishedAt": datetime.utcnow().isoformat() + "Z",
-            "totalRows": 0,
-            "errors": [f"Download/parse failure: {e}"]
-        }
-        
-    as_of = rows[0]["date"] if rows else datetime.utcnow().strftime("%Y-%m-%d")
-    
-    # Save a raw copy to S3 data lake
-    raw_key = f"nav/raw/amfi/dt={as_of}/NAVAll.txt"
-    s3_lake.put_bytes(raw_key, text.encode("utf-8"), "text/plain")
-    
-    # Index rows by schemeCode
-    nav_map = {r["schemeCode"]: r for r in rows}
-    
-    # Track metrics
-    tracked = 0
-    updated = 0
-    skipped = 0
-    
 def classify_scheme_category(scheme_name: str) -> Optional[str]:
     """Classifies an AMFI scheme into a category key based on scheme name keywords."""
     name = scheme_name.lower()
@@ -227,6 +199,9 @@ def ingest_daily_nav() -> Dict[str, Any]:
                 except Exception as e:
                     errors.append(f"Auto-discovery scheme {row['schemeCode']} error: {e}")
 
+    # 3. Keep the DB hot window in sync (rolling 3-year window for fast reads)
+    db_stats = _sync_db_window(rows, errors)
+
     return {
         "job": "daily-nav",
         "startedAt": started_at,
@@ -236,6 +211,57 @@ def ingest_daily_nav() -> Dict[str, Any]:
         "trackedSchemes": tracked,
         "updatedSchemes": updated,
         "skipped": skipped,
+        "dbUpserted": db_stats["upserted"],
+        "dbPurged": db_stats["purged"],
         "errors": errors
     }
+
+
+def _sync_db_window(db_rows: List[Dict[str, Any]], errors: List[str]) -> Dict[str, int]:
+    """Upserts today's NAV rows into the DB hot window and purges rows older than the retention window."""
+    stats = {"upserted": 0, "purged": 0}
+    try:
+        from ..database import SessionLocal, Fund, NavHistory
+    except Exception as e:
+        errors.append(f"DB import error: {e}")
+        return stats
+
+    cutoff = (datetime.utcnow() - timedelta(days=DB_RETENTION_YEARS * 365)).date()
+    db = SessionLocal()
+    try:
+        fund_codes = {f.scheme_code for f in db.query(Fund.scheme_code).all()}
+        for r in db_rows:
+            code = r["schemeCode"]
+            if code not in fund_codes:
+                continue  # only keep DB rows for funds tracked in the funds table
+            try:
+                nav_date = datetime.strptime(r["date"], "%Y-%m-%d").date()
+            except Exception:
+                continue
+            existing = (
+                db.query(NavHistory)
+                .filter(NavHistory.scheme_code == code, NavHistory.nav_date == nav_date)
+                .first()
+            )
+            if existing:
+                if float(existing.nav) != float(r["nav"]):
+                    existing.nav = float(r["nav"])
+            else:
+                db.add(NavHistory(scheme_code=code, nav_date=nav_date, nav=float(r["nav"])))
+            stats["upserted"] += 1
+
+        # Rolling purge: drop rows outside the retention window from the DB (they live on in parquet).
+        purged = (
+            db.query(NavHistory)
+            .filter(NavHistory.nav_date < cutoff)
+            .delete(synchronize_session=False)
+        )
+        stats["purged"] = int(purged or 0)
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        errors.append(f"DB window sync error: {e}")
+    finally:
+        db.close()
+    return stats
 

@@ -7,6 +7,8 @@ AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_REGION = os.getenv("AWS_REGION", "ap-south-1")
 AWS_S3_BUCKET = os.getenv("AWS_S3_BUCKET") or os.getenv("S3_BUCKET")
+# Custom endpoint for S3-compatible stores (e.g. Cloudflare R2: https://<account_id>.r2.cloudflarestorage.com)
+S3_ENDPOINT_URL = os.getenv("S3_ENDPOINT_URL") or os.getenv("AWS_S3_ENDPOINT")
 
 # Local folder used to simulate S3 if credentials are not configured
 LOCAL_LAKE_DIR = os.getenv("LOCAL_LAKE_DIR", os.path.abspath(
@@ -22,12 +24,14 @@ class S3Connector:
     def __init__(self):
         self.use_local = not (AWS_ACCESS_KEY_ID and AWS_S3_BUCKET)
         if not self.use_local:
-            self.s3 = boto3.client(
-                "s3",
-                aws_access_key_id=AWS_ACCESS_KEY_ID,
-                aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-                region_name=AWS_REGION
-            )
+            client_kwargs = {
+                "aws_access_key_id": AWS_ACCESS_KEY_ID,
+                "aws_secret_access_key": AWS_SECRET_ACCESS_KEY,
+                "region_name": AWS_REGION,
+            }
+            if S3_ENDPOINT_URL:
+                client_kwargs["endpoint_url"] = S3_ENDPOINT_URL
+            self.s3 = boto3.client("s3", **client_kwargs)
             self.bucket = AWS_S3_BUCKET
         else:
             self.s3 = None

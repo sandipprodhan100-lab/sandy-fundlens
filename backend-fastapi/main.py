@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+# Load .env before any app modules so DATABASE_URL / S3 creds are picked up at import time.
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

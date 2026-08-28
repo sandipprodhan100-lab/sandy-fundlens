@@ -7,6 +7,9 @@ from ..data_lake.parquet_manager import read_nav_parquet
 BASE_API_URL = "https://api.mfapi.in"
 RISK_FREE_RATE = 6.0  # 6% annual risk-free rate
 
+# How many years of NAV history are kept hot in the DB (fast path). Older data is served from parquet.
+DB_RETENTION_YEARS = 3
+
 INDEX_MAP = {
     "nifty50": {"code": 120716, "fallbacks": [118881]},
     "midcap150": {"code": 148726, "fallbacks": [147622]},
@@ -39,14 +42,53 @@ def fetch_nav_from_public_api(code: int) -> List[Dict[str, Any]]:
         return []
 
 def get_nav_series(code: int) -> List[Dict[str, Any]]:
-    """Gets NAV history from data lake parquet, falling back to public API."""
-    points = read_nav_parquet(code)
+    """Gets NAV history, DB-first (3-year hot window) then parquet (full history), then public API."""
+    points: List[Dict[str, Any]] = []
+    db_cutoff = (datetime.utcnow() - timedelta(days=DB_RETENTION_YEARS * 365)).date()
+
+    # 1. Fast path: read the 3-year hot window from the DB.
+    try:
+        from ..database import SessionLocal, NavHistory
+        db = SessionLocal()
+        try:
+            rows = (
+                db.query(NavHistory)
+                .filter(NavHistory.scheme_code == code)
+                .order_by(NavHistory.nav_date.asc())
+                .all()
+            )
+            points = [{"date": r.nav_date.strftime("%Y-%m-%d"), "nav": float(r.nav)} for r in rows]
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"[DB] nav_history read failed for {code}: {e}")
+        points = []
+
     if len(points) > 100:
+        # DB only holds the recent window; if the caller needs history older than the
+        # DB cutoff, merge the full parquet series underneath.
+        if points[0]["date"] <= db_cutoff.strftime("%Y-%m-%d"):
+            return points
+        try:
+            lake_points = read_nav_parquet(code)
+        except Exception:
+            lake_points = []
+        if len(lake_points) > len(points):
+            seen = {p["date"] for p in points}
+            merged = [p for p in lake_points if p["date"] not in seen] + points
+            return sorted(merged, key=lambda x: x["date"])
         return points
-    
-    # Fallback to public API
-    points = fetch_nav_from_public_api(code)
-    return points
+
+    # 2. Full history from the data lake parquet.
+    try:
+        lake_points = read_nav_parquet(code)
+    except Exception:
+        lake_points = []
+    if len(lake_points) > 100:
+        return lake_points
+
+    # 3. Fallback to public API
+    return fetch_nav_from_public_api(code)
 
 def calculate_metrics(points: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Calculates performance returns, drawdown, and annualised volatility."""

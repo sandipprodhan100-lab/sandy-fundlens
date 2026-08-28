@@ -1,9 +1,13 @@
 import os
 import sys
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
 # Add backend directory to module search path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+# Load .env BEFORE importing app modules so DATABASE_URL / AWS creds are available at import time.
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 from app.database import SessionLocal, init_db, Fund, NavHistory, AdminSetting
 from app.data_lake.parquet_manager import write_nav_parquet, read_manifest
@@ -83,7 +87,7 @@ def process_single_scheme(item: dict, cutoff_date: str) -> tuple:
         points = fetch_nav_from_public_api(code)
         if not points or len(points) < 50:
             return (code, name, False, 0, 0, f"insufficient points ({len(points) if points else 0})")
-            
+
         # 1. Write FULL deep historical NAV series to S3 Parquet Lake
         write_nav_parquet(
             category=cat,
@@ -93,10 +97,10 @@ def process_single_scheme(item: dict, cutoff_date: str) -> tuple:
             points=points,
             scheme_category=cat.capitalize() + " Cap"
         )
-        
-        # 2. Filter 1-3 year window for DB seeding
+
+        # 2. Filter the rolling window for DB seeding (fast-response hot data)
         db_points = [p for p in points if p["date"] >= cutoff_date]
-        return (code, name, True, len(points), len(db_points), item)
+        return (code, name, True, len(points), db_points, item)
     except Exception as e:
         return (code, name, False, 0, 0, str(e))
 
@@ -132,20 +136,21 @@ def run_historical_ingestion(years: int = 3):
         }
         
         for idx, future in enumerate(as_completed(futures), 1):
-            code, name, ok, total_pts, db_pts, extra = future.result()
+            code, name, ok, total_pts, db_points, extra = future.result()
             if ok:
                 success_count += 1
-                total_records += db_pts
-                db_items_to_seed.append((extra, db_pts))
+                total_records += len(db_points)
+                db_items_to_seed.append((extra, db_points))
                 if idx % 10 == 0 or idx == len(all_schemes):
                     print(f"[{idx}/{len(all_schemes)}] Processed scheme {code} ({name[:35]}...) - {total_pts} pts (S3 Parquet)", flush=True)
             else:
                 if idx % 20 == 0:
                     print(f"[{idx}/{len(all_schemes)}] Skipped scheme {code}: {extra}", flush=True)
 
-    # Bulk seed DB
+    # Bulk seed DB: fund metadata + rolling-window NAV rows (fast-response hot data)
     print(f"Seeding {len(db_items_to_seed)} active schemes into DB...", flush=True)
-    for item, db_pts in db_items_to_seed:
+    seeded_nav_rows = 0
+    for item, db_points in db_items_to_seed:
         code = item["code"]
         name = item["name"]
         cat = item["category"]
@@ -154,10 +159,26 @@ def run_historical_ingestion(years: int = 3):
         if not fund:
             fund = Fund(scheme_code=code, scheme_name=name, fund_house=house, category=cat)
             db.add(fund)
+            db.flush()
+
+        # Replace existing hot-window rows for this scheme, then bulk-insert fresh ones.
+        db.query(NavHistory).filter(NavHistory.scheme_code == code).delete(synchronize_session=False)
+        nav_rows = [
+            NavHistory(
+                scheme_code=code,
+                nav_date=datetime.strptime(p["date"], "%Y-%m-%d").date(),
+                nav=float(p["nav"]),
+            )
+            for p in db_points
+        ]
+        db.bulk_save_objects(nav_rows)
+        seeded_nav_rows += len(nav_rows)
+        if seeded_nav_rows and seeded_nav_rows % 50000 < 750:
+            db.commit()
     db.commit()
     db.close()
-    
-    print(f"=== All-Category Ingestion Complete! {success_count}/{len(all_schemes)} schemes processed, Total DB Records: {total_records} ===", flush=True)
+
+    print(f"=== All-Category Ingestion Complete! {success_count}/{len(all_schemes)} schemes processed, Total DB Records: {total_records}, NavHistory rows seeded: {seeded_nav_rows} ===", flush=True)
 
 
 
