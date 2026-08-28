@@ -361,31 +361,41 @@ async function categorySipUncached(input: {
   const idx = INDEXES.find((i) => i.key === input.indexKey)!;
   const index = await fetchScheme(idx.code);
   const earliestBenchmarkDate = index.points[0]?.date;
+  const latestBenchmarkDate = index.points[index.points.length - 1]?.date ?? input.end;
+
   if (!earliestBenchmarkDate) {
     throw new Error("Benchmark NAV history is temporarily unavailable. Please retry.");
   }
   const start = input.start < earliestBenchmarkDate ? earliestBenchmarkDate : input.start;
+  const end = input.end > latestBenchmarkDate ? latestBenchmarkDate : input.end;
+
   const { readAnalysisSnapshot } = await import("./mf-snapshots.server");
   const snap = (await readAnalysisSnapshot(input.category, input.indexKey)) as any;
   let result: any = null;
-  if (snap && snap.start === start && snap.end === input.end) {
+
+  if (snap && snap.funds?.length > 0) {
     result = snap;
   } else {
-    result = await analyse({
-      category: input.category,
-      indexKey: input.indexKey,
-      start,
-      end: input.end,
-    });
+    try {
+      result = await analyse({
+        category: input.category,
+        indexKey: input.indexKey,
+        start,
+        end,
+      });
+    } catch {
+      result = snap;
+    }
   }
 
-  const eligible = result.funds.filter((f: any) => f.eligible);
+  const allFunds = result?.funds ?? [];
+  const eligible = allFunds.filter((f: any) => f.eligible !== false);
   const pool = (input.basis === "ranked" ? eligible.slice(0, 5) : eligible).slice(0, input.limit);
 
   const benchmark = simulate(
     index.points,
     start,
-    input.end,
+    end,
     input.mode,
     input.amount,
     input.lumpsum,
@@ -395,25 +405,43 @@ async function categorySipUncached(input: {
   const batch = 6;
   for (let i = 0; i < pool.length; i += batch) {
     const chunk = await Promise.all(
-      pool.slice(i, i + batch).map(async (f) => {
+      pool.slice(i, i + batch).map(async (f: any) => {
         try {
           const scheme = await fetchScheme(f.code);
-          const run = simulate(
+          const maxDate = scheme.points[scheme.points.length - 1]?.date ?? end;
+          const fundEnd = end > maxDate ? maxDate : end;
+
+          let run = simulate(
             scheme.points,
             start,
-            input.end,
+            fundEnd,
             input.mode,
             input.amount,
             input.lumpsum,
           );
+
+          if (!run && scheme.points.length >= 20) {
+            // Fallback: replay across all available points in this fund
+            const firstPt = scheme.points[0]!.date;
+            const fundStart = start < firstPt ? firstPt : start;
+            run = simulate(
+              scheme.points,
+              fundStart,
+              fundEnd,
+              input.mode,
+              input.amount,
+              input.lumpsum,
+            );
+          }
+
           if (!run) return null;
-          const rank = eligible.findIndex((e) => e.code === f.code);
+          const rank = eligible.findIndex((e: any) => e.code === f.code);
           return {
             code: f.code,
             name: f.name,
             house: f.house,
             rank: rank >= 0 ? rank + 1 : null,
-            eligible: f.eligible,
+            eligible: true,
             invested: run.invested,
             value: run.value,
             gain: run.gain,
@@ -434,29 +462,24 @@ async function categorySipUncached(input: {
 
   return {
     category: input.category,
-    categoryLabel: result.category,
+    categoryLabel: result?.category ?? input.category,
     indexLabel: idx.label,
     basis: input.basis,
     mode: input.mode,
     amount: input.amount,
     lumpsum: input.lumpsum,
-    start: result.start,
-    end: result.end,
+    start: result?.start ?? start,
+    end: result?.end ?? end,
     rows,
     benchmark,
     summary: {
       funds: rows.length,
-      invested: rows[0]?.invested ?? 0,
+      invested: rows[0]?.invested ?? (input.mode === "lumpsum" ? input.lumpsum : input.amount),
       medianXirr: s.medianXirr,
       bestXirr: s.bestXirr,
       worstXirr: s.worstXirr,
-      avgValue: rows.length
-        ? Math.round(rows.reduce((sum, r) => sum + r.value, 0) / rows.length)
-        : null,
-      beatBenchmark:
-        benchmark?.xirr == null
-          ? 0
-          : rows.filter((r) => (r.xirr ?? -Infinity) > benchmark.xirr!).length,
+      avgValue: rows.length ? Math.round(rows.reduce((a, b) => a + b.value, 0) / rows.length) : null,
+      beatBenchmark: benchmark?.xirr != null ? rows.filter((r) => (r.xirr ?? -Infinity) > benchmark.xirr!).length : 0,
     },
   };
 }
