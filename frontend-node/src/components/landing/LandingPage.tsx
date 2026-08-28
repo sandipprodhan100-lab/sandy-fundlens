@@ -480,21 +480,23 @@ export function LandingPage() {
           <PortfolioConsultationForm />
         </section>
 
-        {/* 7 — CTA BAND -------------------------------------------- */}
-        <section className="px-5 py-16 sm:px-8" style={{ background: "var(--accent)" }}>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[29px] font-[730] tracking-[-0.02em] text-white">
+        {/* 7 — CTA SECTION -------------------------------------------- */}
+        <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 sm:p-12 text-center space-y-4 shadow-2xs">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
               See how your funds handled flat markets
             </h2>
-            <p className="mx-auto mt-2 max-w-[36em] text-[15.5px] text-white/75">
-              Real NAV data, every category — free, nothing to install.
+            <p className="mx-auto max-w-xl text-sm text-slate-600">
+              Real NAV data across every category — free, open, and instant.
             </p>
-            <Link
-              to="/analysis"
-              className="mt-6 inline-flex items-center rounded-[8px] bg-white px-[22px] py-3 text-[15.5px] font-semibold text-[var(--accent)] hover:bg-white/90"
-            >
-              Start analysing
-            </Link>
+            <div className="pt-2">
+              <Link
+                to="/analysis"
+                className="inline-flex items-center rounded-lg bg-slate-900 px-5 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm"
+              >
+                Start analysing
+              </Link>
+            </div>
           </div>
         </section>
       </main>
