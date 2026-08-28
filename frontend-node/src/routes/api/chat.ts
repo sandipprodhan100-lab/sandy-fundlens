@@ -21,7 +21,7 @@ const ADMIN_EMAILS = new Set([
 const BASELINE_DATA: Record<string, any> = {
   mid: {
     category: "Mid Cap",
-    indexKey: "nifty_midcap_150",
+    indexKey: "midcap150",
     window: "2021-10-18 to 2022-03-07",
     funds: [
       { name: "Quant Mid Cap Fund", return: 17.51, maxDrawdown: -8.77, sharpe: 1.42, sortino: 2.11, score: 91.5 },
@@ -48,7 +48,7 @@ const BASELINE_DATA: Record<string, any> = {
   },
   small: {
     category: "Small Cap",
-    indexKey: "nifty_smallcap_250",
+    indexKey: "smallcap250",
     window: "2021-10-18 to 2022-03-07",
     funds: [
       { name: "Quant Small Cap Fund", return: 21.40, maxDrawdown: -10.20, sharpe: 1.55, sortino: 2.30, score: 94.0 },
@@ -60,6 +60,7 @@ const BASELINE_DATA: Record<string, any> = {
 };
 
 type FundMetric = {
+  code?: number;
   name: string;
   return?: number;
   maxDrawdown?: number;
@@ -81,6 +82,7 @@ function buildFallbackAnswer(
   benchmark: string,
   window: string,
   funds: FundMetric[],
+  ratings: Map<string, { valueResearch: string; morningstar: string }>,
 ) {
   const requestedCount = Number(prompt.match(/\btop\s+(\d{1,2})\b/i)?.[1] ?? 3);
   const schemes = funds.filter((fund) => (fund.score ?? 100) > 50);
@@ -98,8 +100,10 @@ function buildFallbackAnswer(
       : `The strongest ${category.toLowerCase()} schemes for your question are ${leadingNames}, ranked by return for the measured period.${availableNote}`;
   const table = selected
     .map(
-      (fund) =>
-        `| ${fund.name} | ${fund.return?.toFixed(2) ?? "--"} | ${fund.maxDrawdown?.toFixed(2) ?? "--"} | ${fund.sharpe?.toFixed(2) ?? "--"} | ${fund.sortino?.toFixed(2) ?? "--"} |`,
+      (fund) => {
+        const rating = ratings.get(fund.name);
+        return `| ${fund.name} | ${fund.return?.toFixed(2) ?? "--"} | ${fund.maxDrawdown?.toFixed(2) ?? "--"} | ${fund.sharpe?.toFixed(2) ?? "--"} | ${fund.sortino?.toFixed(2) ?? "--"} | ${rating?.valueResearch ?? "Unrated"} | ${rating?.morningstar ?? "Unrated"} |`;
+      },
     )
     .join("\n");
   const leader = selected[0];
@@ -108,7 +112,28 @@ function buildFallbackAnswer(
     undefined,
   );
 
-  return `## Answer\n${answer}\n\n## Key numbers\n| Fund name | Return (%) | Max drawdown (%) | Sharpe | Sortino |\n|---|---:|---:|---:|---:|\n${table}\n\n## What it means\n- ${leader?.name ?? "The leading scheme"} had the highest measured return${leader?.return !== undefined ? ` at ${leader.return.toFixed(2)}%` : ""}.\n- ${riskPoint?.name ?? "The comparison"} had the shallowest drawdown in this group${riskPoint?.maxDrawdown !== undefined ? ` at ${riskPoint.maxDrawdown.toFixed(2)}%` : ""}.\n- Historical rankings describe a past window; they cannot predict the next three years or guarantee future returns.\n\n## Context\nCategory: ${category} · Benchmark: ${benchmark} · Measured window: ${window}\n\n*This is quantitative research, not investment advice. Past performance does not guarantee future returns.*`;
+  return `## Answer\n${answer}\n\n## Key numbers\n| Fund name | Return (%) | Max drawdown (%) | Sharpe | Sortino | Value Research | Morningstar |\n|---|---:|---:|---:|---:|---|---|\n${table}\n\n## What it means\n- ${leader?.name ?? "The leading scheme"} had the highest measured return${leader?.return !== undefined ? ` at ${leader.return.toFixed(2)}%` : ""}.\n- ${riskPoint?.name ?? "The comparison"} had the shallowest drawdown in this group${riskPoint?.maxDrawdown !== undefined ? ` at ${riskPoint.maxDrawdown.toFixed(2)}%` : ""}.\n- Independent ratings are shown only when published by Value Research or Morningstar; an unrated result is not a negative assessment.\n- Historical rankings describe a past window; they cannot predict the next three years or guarantee future returns.\n\n## Context\nCategory: ${category} · Benchmark: ${benchmark} · Measured window: ${window}\n\n*This is quantitative research, not investment advice. Past performance does not guarantee future returns.*`;
+}
+
+async function loadIndependentRatings(funds: FundMetric[]) {
+  const ratings = new Map<string, { valueResearch: string; morningstar: string }>();
+  try {
+    const { getRatingsCached } = await import("@/lib/ratings.server");
+    const results = await Promise.all(
+      funds.map(async (fund) => ({ fund, result: await getRatingsCached(fund.name) })),
+    );
+    for (const { fund, result } of results) {
+      const valueResearch = result.ratings.find((rating) => rating.agency === "Value Research");
+      const morningstar = result.ratings.find((rating) => rating.agency === "Morningstar");
+      ratings.set(fund.name, {
+        valueResearch: valueResearch?.stars ? `${valueResearch.stars}/5` : "Unrated",
+        morningstar: morningstar?.stars ? `${morningstar.stars}/5` : "Unrated",
+      });
+    }
+  } catch (error) {
+    console.warn("Independent ratings lookup notice:", error);
+  }
+  return ratings;
 }
 
 export const Route = createFileRoute("/api/chat")({
@@ -296,11 +321,11 @@ export const Route = createFileRoute("/api/chat")({
           .join(" ");
         const lower = `${latestPrompt} ${previousUserPrompts}`.toLowerCase();
         let catKey = "mid";
-        let indexKey = "nifty_midcap_150";
+        let indexKey = "midcap150";
 
         if (lower.includes("small") || lower.includes("smallcap") || lower.includes("small-cap")) {
           catKey = "small";
-          indexKey = "nifty_smallcap_250";
+          indexKey = "smallcap250";
         } else if (lower.includes("large") && !lower.includes("mid")) {
           catKey = "large";
           indexKey = "nifty50";
@@ -315,24 +340,55 @@ export const Route = createFileRoute("/api/chat")({
         let sidewaysData: { windows?: { start: string; end: string }[] } | null = null;
         let groundingContext = "";
         try {
-          const [analysisSnap, sidewaysSnap] = await Promise.all([
-            readAnalysisSnapshot(catKey, indexKey),
-            readSidewaysSnapshot(indexKey),
-          ]);
-          analysisData = analysisSnap as typeof analysisData;
+          const sidewaysSnap = await readSidewaysSnapshot(indexKey);
           sidewaysData = sidewaysSnap as typeof sidewaysData;
         } catch {
-          // The baseline below keeps the analyst useful while a live snapshot is unavailable.
+          // Live computation below keeps the analyst current if a snapshot is unavailable.
+        }
+
+        const windows = sidewaysData?.windows?.length ? sidewaysData.windows : [];
+        let latestWindow = windows[0];
+        if (!latestWindow) {
+          try {
+            const { detectSideways } = await import("@/lib/mf.server");
+            sidewaysData = await detectSideways(indexKey as any);
+            latestWindow = sidewaysData.windows?.[0];
+          } catch (error) {
+            console.warn("Live sideways analysis notice:", error);
+          }
+        }
+        if (latestWindow) {
+          try {
+            analysisData = await readAnalysisSnapshot(
+              catKey,
+              indexKey,
+              latestWindow.start,
+              latestWindow.end,
+            ) as typeof analysisData;
+            if (!analysisData?.funds?.length) {
+              const { analyse } = await import("@/lib/mf.server");
+              analysisData = await analyse({
+                category: catKey as any,
+                indexKey: indexKey as any,
+                start: latestWindow.start,
+                end: latestWindow.end,
+              });
+            }
+          } catch (error) {
+            console.warn("Latest-window fund analysis notice:", error);
+          }
         }
 
         const funds = analysisData?.funds?.length ? analysisData.funds : base.funds;
-        const windows = sidewaysData?.windows?.length ? sidewaysData.windows : [];
-        const latestWindow = windows.at(-1);
         const window = analysisData?.start && analysisData?.end
           ? `${analysisData.start} to ${analysisData.end}`
           : latestWindow
             ? `${latestWindow.start} to ${latestWindow.end}`
             : base.window;
+        const selectedForRatings = funds
+          .filter((fund) => (fund.score ?? 100) > 50)
+          .slice(0, Math.min(Number(latestPrompt.match(/\btop\s+(\d{1,2})\b/i)?.[1] ?? 3), 5));
+        const independentRatings = await loadIndependentRatings(selectedForRatings);
         groundingContext = JSON.stringify(
           {
             category: base.category,
@@ -346,6 +402,7 @@ export const Route = createFileRoute("/api/chat")({
               maxDrawdownPct: fund.maxDrawdown,
               sharpe: fund.sharpe,
               sortino: fund.sortino,
+              ratings: independentRatings.get(fund.name),
             })),
           },
           null,
@@ -373,7 +430,14 @@ export const Route = createFileRoute("/api/chat")({
         }
 
         if (!finalAnswer) {
-          finalAnswer = buildFallbackAnswer(latestPrompt, base.category, indexKey, window, funds);
+          finalAnswer = buildFallbackAnswer(
+            latestPrompt,
+            base.category,
+            indexKey,
+            window,
+            funds,
+            independentRatings,
+          );
         }
 
         // 4. Persist assistant message in Supabase

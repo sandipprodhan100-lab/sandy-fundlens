@@ -182,7 +182,15 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[680px] text-sm">
+            <table className="w-full min-w-[900px] table-fixed text-sm">
+              <colgroup>
+                <col className="w-[13%]" />
+                <col className="w-[8%]" />
+                {showSip && <col className="w-[12%]" />}
+                {showLumpsum && <col className="w-[12%]" />}
+                <col className="w-[28%]" />
+                <col />
+              </colgroup>
               <thead className="text-left text-xs uppercase tracking-widest text-muted-foreground">
                 <tr>
                   <th className="pb-2 font-medium">Sleeve</th>
@@ -218,11 +226,11 @@ export function ModelPortfolio({ onUnlock }: { onUnlock?: React.ReactNode }) {
                       </td>
                     )}
 
-                    <td className="py-3">
+                    <td className="py-3 pr-5">
                       <span className="font-medium">{s.role}</span>
                       <p className="mt-1 max-w-sm text-xs text-muted-foreground">{s.standard}</p>
                     </td>
-                    <td className="py-3">
+                    <td className="py-3 break-words">
                       {data.locked ? (
                         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                           <Lock className="size-3" /> Pro
