@@ -38,4 +38,9 @@ jobs:
       - name: Precompute & Refresh All 24 S3 Snapshots
         run: |
           cd frontend-node
-          npx tsx scripts/precompute-snapshots.mts
+          if [ -n "$AWS_ACCESS_KEY_ID" ] && [ -n "$AWS_SECRET_ACCESS_KEY" ]; then
+            echo "Running S3 Snapshot precomputation..."
+            npx tsx scripts/precompute-snapshots.mts
+          else
+            echo "AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY not configured in GitHub Secrets. Skipping automated S3 push."
+          fi
