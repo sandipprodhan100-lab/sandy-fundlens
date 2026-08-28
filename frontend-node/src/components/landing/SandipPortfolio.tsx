@@ -165,11 +165,7 @@ export function SandipPortfolio() {
             </div>
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-lg shadow-2xs">
               <ShieldCheck className="size-4 text-slate-700" />
-              <span>450+ Integrations Built &amp; Delivered</span>
-            </div>
-            <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-lg shadow-2xs">
-              <Award className="size-4 text-slate-700" />
-              <span>60+ Data Pipelines Created</span>
+              <span>500+ Integration &amp; ETL/ELT Pipelines</span>
             </div>
           </div>
         </div>
@@ -303,7 +299,7 @@ export function SandipPortfolio() {
                 <Network className="size-5" />
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-bold font-mono text-slate-600 uppercase">450+ Integrations Built &amp; Delivered</div>
+                <div className="text-xs font-bold font-mono text-slate-600 uppercase">500+ Integration &amp; ETL/ELT Pipelines</div>
                 <h3 className="text-base font-bold text-slate-900">
                   Oracle Middleware Integration Products
                 </h3>
@@ -779,8 +775,8 @@ export function SandipPortfolio() {
 
             <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1 shadow-2xs">
               <div className="text-3xl sm:text-4xl font-extrabold font-mono text-slate-900">500+</div>
-              <div className="text-xs font-bold text-slate-900">Pipelines Governed</div>
-              <p className="text-[11px] text-slate-500">Oracle, AWS &amp; Azure</p>
+              <div className="text-xs font-bold text-slate-900">Integration &amp; ETL/ELT Pipelines</div>
+              <p className="text-[11px] text-slate-500">Oracle, AWS, Azure &amp; Medallion Lakehouses</p>
             </div>
 
             <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1 shadow-2xs">
