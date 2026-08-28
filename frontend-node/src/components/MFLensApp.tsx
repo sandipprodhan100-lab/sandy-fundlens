@@ -340,8 +340,8 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
           {sideways.data?.last && (
             <div className="flex items-center gap-2">
               <LivePill />
-              <span className="num text-[11px] text-muted-foreground/80">
-                NAV through {prettyDate(sideways.data.last)}
+              <span className="num text-[11px] font-medium text-foreground/80">
+                NAV updated through {prettyDate(sideways.data.last)} · 10:00 PM IST
               </span>
             </div>
           )}
