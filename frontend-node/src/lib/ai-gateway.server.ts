@@ -6,7 +6,11 @@ import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
  * or Lovable AI Gateway if configured.
  */
 export function getAiModel() {
-  const geminiKey = process.env["GEMINI_API_KEY"];
+  const geminiKey =
+    process.env["GEMINI_API_KEY"] ||
+    process.env["GOOGLE_GENERATIVE_AI_API_KEY"] ||
+    process.env["GOOGLE_API_KEY"];
+
   if (geminiKey) {
     const provider = createOpenAICompatible({
       name: "gemini",
@@ -23,7 +27,7 @@ export function getAiModel() {
       baseURL: "https://ai.gateway.lovable.dev/v1",
       headers: { "Lovable-API-Key": lovableKey },
     });
-    return provider("google/gemini-3.6-flash");
+    return provider("google/gemini-2.5-flash");
   }
 
   return null;

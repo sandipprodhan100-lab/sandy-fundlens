@@ -121,8 +121,8 @@ const FAQS = [
     a: "It explains what the numbers show in plain language. It describes results — it never recommends a scheme.",
   },
   {
-    q: "Can I cancel?",
-    a: "Yes, any time from the account page. Access continues until the end of the paid period.",
+    q: "How many free AI analyses do I get?",
+    a: "Every registered user receives 5 free AI analyses per month directly grounded on verified NAV data and S3 historical sideways regimes.",
   },
 ];
 

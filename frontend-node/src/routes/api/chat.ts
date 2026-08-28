@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { generateText, type UIMessage } from "ai";
 
-import { FREE_DAILY_TURNS, PRO_DAILY_TURNS } from "@/lib/analyst-limits";
-import { isOpenEdition, TRIAL_ANALYST_TURNS } from "@/lib/app-edition";
 import { getAiModel } from "@/lib/ai-gateway.server";
 import { ANALYST_SYSTEM_PROMPT, buildAnalystTools } from "@/lib/agent-tools.server";
 
 type Body = { messages?: unknown; threadId?: unknown };
+
+const FREE_MONTHLY_TURNS = 5;
 
 function json(body: unknown, status: number) {
   return new Response(JSON.stringify(body), {
@@ -43,102 +43,99 @@ export const Route = createFileRoute("/api/chat")({
 
         const header = request.headers.get("authorization") ?? "";
         const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
-        const anonSession = request.headers.get("x-mfl-session") ?? "";
         const signedIn = !!token && token.split(".").length === 3;
 
-        if (!signedIn && !uuidRe.test(anonSession)) {
-          return json({ error: "Sign in to use the analyst." }, 401);
+        // User must be signed in with email / Google
+        if (!signedIn) {
+          return json(
+            {
+              error:
+                "Please sign in or create an account with your email to use the AI Analyst (5 free analyses per month).",
+            },
+            401,
+          );
         }
 
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const today = new Date().toISOString().slice(0, 10);
+        const currentMonth = today.slice(0, 7); // e.g. "2026-08"
         const uiMessages = messages as UIMessage[];
 
-        let userId: string | null = null;
-        let isPro = true;
+        const { data: userData } = await supabaseAdmin.auth.getUser(token);
+        const userId = userData?.user?.id ?? null;
+        if (!userId) {
+          return json({ error: "Your session expired. Please sign in again." }, 401);
+        }
 
-        if (!signedIn) {
-          // Anonymous trial turns check
-          const { data: trial } = await supabaseAdmin
-            .from("anon_analyst_usage")
-            .select("turns")
-            .eq("session_id", anonSession)
-            .maybeSingle();
-          const trialUsed = trial?.turns ?? 0;
-          if (trialUsed >= TRIAL_ANALYST_TURNS) {
-            return json(
-              {
-                error: `You've used your ${TRIAL_ANALYST_TURNS} free analyst questions for this session. Sign in with Google or a mobile OTP to unlock the full analyst.`,
-              },
-              429,
-            );
-          }
-          await supabaseAdmin.from("anon_analyst_usage").upsert(
-            { session_id: anonSession, turns: trialUsed + 1, updated_at: new Date().toISOString() },
-            { onConflict: "session_id" },
+        // Thread validation
+        const { data: thread } = await supabaseAdmin
+          .from("agent_threads")
+          .select("id,user_id,title")
+          .eq("id", threadId)
+          .maybeSingle();
+
+        if (!thread || thread.user_id !== userId) {
+          return json({ error: "Thread not found." }, 404);
+        }
+
+        // Check Monthly Usage (5 free analyses per month)
+        const { data: monthUsage } = await supabaseAdmin
+          .from("agent_usage")
+          .select("turns")
+          .eq("user_id", userId)
+          .like("usage_date", `${currentMonth}%`);
+
+        const monthlyUsed =
+          monthUsage?.reduce((acc, row) => acc + (Number(row.turns) || 0), 0) ?? 0;
+
+        if (monthlyUsed >= FREE_MONTHLY_TURNS) {
+          return json(
+            {
+              error: `You have reached your quota of ${FREE_MONTHLY_TURNS} free AI analyses for ${currentMonth}. Your quota resets at the start of next month.`,
+            },
+            429,
           );
-        } else {
-          const { data: userData } = await supabaseAdmin.auth.getUser(token);
-          userId = userData?.user?.id ?? null;
-          if (!userId) return json({ error: "Your session expired. Sign in again." }, 401);
+        }
 
-          // Thread check
-          const { data: thread } = await supabaseAdmin
-            .from("agent_threads")
-            .select("id,user_id,title")
-            .eq("id", threadId)
-            .maybeSingle();
-          if (!thread || thread.user_id !== userId) return json({ error: "Thread not found." }, 404);
+        // Increment today's turns for this user
+        const { data: todayUsage } = await supabaseAdmin
+          .from("agent_usage")
+          .select("turns")
+          .eq("user_id", userId)
+          .eq("usage_date", today)
+          .maybeSingle();
 
-          // Usage check
-          const cap = PRO_DAILY_TURNS;
-          const { data: usage } = await supabaseAdmin
-            .from("agent_usage")
-            .select("turns")
-            .eq("user_id", userId)
-            .eq("usage_date", today)
-            .maybeSingle();
-          const used = usage?.turns ?? 0;
+        const todayUsed = todayUsage?.turns ?? 0;
+        await supabaseAdmin
+          .from("agent_usage")
+          .upsert(
+            { user_id: userId, usage_date: today, turns: todayUsed + 1 },
+            { onConflict: "user_id,usage_date" },
+          );
 
-          if (used >= cap) {
-            return json(
-              { error: `You've used today's ${PRO_DAILY_TURNS} analyst questions. Come back after midnight UTC.` },
-              429,
-            );
-          }
+        // Record incoming user message
+        const lastMsg = uiMessages[uiMessages.length - 1];
+        if (lastMsg?.role === "user") {
+          await supabaseAdmin.from("agent_messages").insert({
+            thread_id: threadId,
+            user_id: userId,
+            role: "user",
+            sdk_message_id: lastMsg.id ?? null,
+            parts: lastMsg.parts as unknown as never,
+          });
 
-          await supabaseAdmin
-            .from("agent_usage")
-            .upsert(
-              { user_id: userId, usage_date: today, turns: used + 1 },
-              { onConflict: "user_id,usage_date" },
-            );
-
-          // Record user message
-          const lastMsg = uiMessages[uiMessages.length - 1];
-          if (lastMsg?.role === "user") {
-            await supabaseAdmin.from("agent_messages").insert({
-              thread_id: threadId,
-              user_id: userId,
-              role: "user",
-              sdk_message_id: lastMsg.id ?? null,
-              parts: lastMsg.parts as unknown as never,
-            });
-
-            const firstText = lastMsg.parts
-              .map((p) => (p.type === "text" ? p.text : ""))
-              .join(" ")
-              .trim();
-            if (firstText && (thread.title === "New analysis" || !thread.title)) {
-              await supabaseAdmin
-                .from("agent_threads")
-                .update({ title: firstText.slice(0, 70), updated_at: new Date().toISOString() })
-                .eq("id", threadId);
-            }
+          const firstText = lastMsg.parts
+            .map((p) => (p.type === "text" ? p.text : ""))
+            .join(" ")
+            .trim();
+          if (firstText && (thread.title === "New analysis" || !thread.title)) {
+            await supabaseAdmin
+              .from("agent_threads")
+              .update({ title: firstText.slice(0, 70), updated_at: new Date().toISOString() })
+              .eq("id", threadId);
           }
         }
 
-        const lastMsg = uiMessages[uiMessages.length - 1];
         const latestPrompt =
           lastMsg?.parts
             .map((p: any) => (p.type === "text" ? p.text : ""))
@@ -147,7 +144,7 @@ export const Route = createFileRoute("/api/chat")({
 
         let finalAnswer = "";
 
-        // 1. Try Direct AI Generation using Gemini / Lovable
+        // 1. Direct AI Generation using Gemini with S3-backed tools
         const model = getAiModel();
         if (model) {
           try {
@@ -155,43 +152,40 @@ export const Route = createFileRoute("/api/chat")({
               model,
               system: ANALYST_SYSTEM_PROMPT,
               prompt: latestPrompt,
-              tools: buildAnalystTools({ isPro }),
+              tools: buildAnalystTools({ isPro: true }),
               maxSteps: 5,
             });
             finalAnswer = result.text;
           } catch (aiErr) {
-            console.warn("Direct AI model generation error:", aiErr);
+            console.warn("Direct Gemini AI generation error:", aiErr);
           }
         }
 
-
-        // 3. Fallback to Snapshot-backed Quantitative Analysis
+        // 2. Fallback to S3 Snapshot-backed Quantitative Analysis if API key is not configured
         if (!finalAnswer) {
           const { readAnalysisSnapshot } = await import("@/lib/mf-snapshots.server");
           const snap = (await readAnalysisSnapshot("flexi", "nifty500")) as any;
           const topFunds = snap?.funds?.slice(0, 5) ?? [];
 
-          finalAnswer = `## Answer\nHere is the latest quantitative screening based on verified AMFI NAV data during the most recent market regime.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
+          finalAnswer = `## Answer\nHere is the latest quantitative screening based on verified AMFI NAV data during the active sideways market regime.\n\n## Key numbers\n| Scheme | Score | Return (%) | Max DD (%) | Sharpe | Sortino |\n|---|---|---|---|---|---|\n` +
             topFunds
               .map(
                 (f: any) =>
                   `| ${f.name} | ${f.score?.toFixed(1) ?? "—"} | ${f.return?.toFixed(2) ?? "—"} | ${f.maxDrawdown?.toFixed(2) ?? "—"} | ${f.sharpe?.toFixed(2) ?? "—"} | ${f.sortino?.toFixed(2) ?? "—"} |`,
               )
               .join("\n") +
-            `\n\n## What it means\n- Funds with positive Sharpe and Sortino ratios demonstrated resilient downside protection when the benchmark drifted flat.\n- Low maximum drawdown indicates disciplined risk management.\n\n## Context\nCategory: Flexi Cap · Benchmark: Nifty 500 · Source: AMFI Daily NAV Data.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
+            `\n\n## What it means\n- Schemes with positive Sharpe and Sortino ratios generated superior risk-adjusted alpha when the benchmark stayed range-bound.\n- Lower maximum drawdowns reflect strict capital protection.\n\n## Context\nCategory: Flexi Cap · Benchmark: Nifty 500 · Source: AWS S3 AMFI NAV Dataset.\n\n*Disclaimer: Quantitative analysis for research only. Mutual fund investments are subject to market risks.*`;
         }
 
-        // If user is authenticated, record assistant message in thread
-        if (userId) {
-          const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
-          await supabaseAdmin.from("agent_messages").insert({
-            thread_id: threadId,
-            user_id: userId,
-            role: "assistant",
-            sdk_message_id: assistantMessageId,
-            parts: [{ type: "text", text: finalAnswer }] as unknown as never,
-          });
-        }
+        // Record assistant response
+        const assistantMessageId = "msg-" + Math.random().toString(36).slice(2, 11);
+        await supabaseAdmin.from("agent_messages").insert({
+          thread_id: threadId,
+          user_id: userId,
+          role: "assistant",
+          sdk_message_id: assistantMessageId,
+          parts: [{ type: "text", text: finalAnswer }] as unknown as never,
+        });
 
         return new Response(finalAnswer, {
           headers: { "content-type": "text/plain; charset=utf-8" },
