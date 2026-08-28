@@ -316,11 +316,6 @@ export function MFLensApp({ demo = false }: { demo?: boolean }) {
                 Analyst
               </Link>
             )}
-            {FEATURES.pricing && (
-              <Link to="/pricing" className="text-foreground/70 hover:text-foreground">
-                Pricing
-              </Link>
-            )}
             {userId && (
               <Link to="/account" className="text-foreground/70 hover:text-foreground">
                 Account

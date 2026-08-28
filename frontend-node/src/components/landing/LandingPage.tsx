@@ -63,7 +63,6 @@ const NAV_LINKS = [
   { label: "Analysis", to: "/analysis" },
   { label: "Analyst", to: "/analyst" },
   { label: "Methodology", to: "/methodology" },
-  { label: "Pricing", to: "/pricing" },
 ] as const;
 
 const FEATURE_ITEMS = [
@@ -519,7 +518,6 @@ export function LandingPage() {
               links: [
                 { to: "/analysis", label: "Analysis" },
                 { to: "/analyst", label: "AI analyst" },
-                { to: "/pricing", label: "Pricing" },
               ],
             },
             {

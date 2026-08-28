@@ -46,64 +46,40 @@ export const analyseCategorySipPlan = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const [{ categorySip }, { getViewer }] = await Promise.all([
+    const [{ categorySip }] = await Promise.all([
       import("./sip.server"),
-      import("./entitlement.server"),
     ]);
-    const viewer = await getViewer();
-    const basis = viewer.isPro ? data.basis : "ranked";
     const result = await categorySip({
       ...data,
-      basis,
-      limit: viewer.isPro ? 40 : 3,
+      basis: data.basis,
+      limit: 40,
     });
-    return { ...result, locked: !viewer.isPro };
+    return { ...result, locked: false };
   });
 
-/** Sector allocation drift, 6m -> 3m -> now. Free tier gets the headline only. */
+/** Sector allocation drift, 6m -> 3m -> now. Fully unlocked in Open Edition. */
 export const getSectorDriftFn = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) =>
     z.object({ schemeCode: z.number(), fundName: z.string().min(3) }).parse(input),
   )
   .handler(async ({ data }) => {
-    const [{ getSectorDrift }, { getViewer }] = await Promise.all([
-      import("./sector-history.server"),
-      import("./entitlement.server"),
-    ]);
-    const [drift, viewer] = await Promise.all([getSectorDrift(data), getViewer()]);
-    if (viewer.isPro) return { ...drift, locked: false };
-    const top = [...drift.rows]
-      .filter((r) => r.change != null)
-      .sort((a, b) => (b.change ?? 0) - (a.change ?? 0));
-    const headline = [top[0], top[top.length - 1]].filter(
-      (r, i, arr): r is NonNullable<typeof r> => !!r && arr.indexOf(r) === i,
-    );
-    return { ...drift, rows: headline, locked: true };
+    const { getSectorDrift } = await import("./sector-history.server");
+    const drift = await getSectorDrift(data);
+    return { ...drift, locked: false };
   });
 
-/** Stocks common to the top ranked funds of a category. Free tier sees three. */
+/** Stocks common to the top ranked funds of a category. Fully unlocked. */
 export const getCommonHoldings = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) =>
     z.object({ category: categoryKey, indexKey, start: DATE, end: DATE }).parse(input),
   )
   .handler(async ({ data }) => {
-    const [{ commonHoldings }, { getViewer }] = await Promise.all([
-      import("./overlap.server"),
-      import("./entitlement.server"),
-    ]);
-    const [result, viewer] = await Promise.all([commonHoldings(data), getViewer()]);
-    if (viewer.isPro) return { ...result, locked: false };
-    return {
-      ...result,
-      stocks: result.stocks.slice(0, 3).map((s) => ({
-        ...s,
-        weights: {} as Record<number, number | null>,
-      })),
-      locked: true,
-    };
+    const { commonHoldings } = await import("./overlap.server");
+    const result = await commonHoldings(data);
+    return { ...result, locked: false };
   });
 
-/** Model portfolio. Free tier sees the allocation, Pro sees the fund picks. */
+/** Model portfolio. Fully unlocked in Open Edition. */
 export const getModelPortfolio = createServerFn({ method: "GET" })
   .inputValidator((input: unknown) =>
     z
@@ -114,11 +90,8 @@ export const getModelPortfolio = createServerFn({ method: "GET" })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const [{ buildPortfolio }, { getViewer }] = await Promise.all([
-      import("./portfolio.server"),
-      import("./entitlement.server"),
-    ]);
-    const viewer = await getViewer();
-    const result = await buildPortfolio({ ...data, withPicks: viewer.isPro });
-    return { ...result, locked: !viewer.isPro };
+    const { buildPortfolio } = await import("./portfolio.server");
+    const result = await buildPortfolio({ ...data, withPicks: true });
+    return { ...result, locked: false };
   });
+
