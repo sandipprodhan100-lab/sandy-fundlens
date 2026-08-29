@@ -1,0 +1,8 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "<gateway-url>/v1",
+    "ANTHROPIC_API_URL": "<gateway-url>/v1",
+    "ANTHROPIC_API_KEY": "<gateway-api-key>",
+    "ANTHROPIC_MODEL": "<model-id>"
+  }
+}
