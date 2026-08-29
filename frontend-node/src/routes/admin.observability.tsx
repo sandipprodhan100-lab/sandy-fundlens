@@ -12,6 +12,7 @@ import {
 } from "recharts";
 
 import { AuthStatus } from "@/components/AuthStatus";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { getObservability } from "@/lib/observability.functions";
 
 export const Route = createFileRoute("/admin/observability")({
@@ -67,10 +68,11 @@ function ObservabilityPage() {
           <Link to="/" className="text-sm font-semibold">
             MF Lens · admin
           </Link>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-3 sm:gap-4 text-sm">
             <Link to="/admin/storage" className="text-muted-foreground hover:text-foreground">
               Storage
             </Link>
+            <ThemeToggle />
             <AuthStatus />
           </div>
         </div>

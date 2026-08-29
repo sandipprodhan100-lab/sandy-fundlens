@@ -104,10 +104,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const themeScript = `
+  (function() {
+    try {
+      var stored = localStorage.getItem('mflens-theme');
+      var theme = stored;
+      if (!theme) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      var root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        root.classList.remove('light');
+        root.style.colorScheme = 'dark';
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+        root.style.colorScheme = 'light';
+      }
+    } catch (e) {}
+  })();
+`;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-IN" className="light">
+    <html lang="en-IN" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
       </head>
       <body>

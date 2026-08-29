@@ -33,20 +33,20 @@ export function AnalystQuota() {
   if (!session) return null;
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-2xs">
+    <div className="rounded-xl border border-border bg-card px-4 py-3 shadow-2xs">
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2 text-slate-700">
+        <div className="flex items-center gap-2 text-foreground/80">
           <Zap className="size-4 text-amber-500 shrink-0" />
-          <span className="font-semibold text-slate-900">
+          <span className="font-semibold text-foreground">
             {isAdmin ? "Super Admin (Unlimited Access)" : `Queries Run: ${usageQuery.data?.totalQueries ?? 0}`}
           </span>
-          <span className="text-slate-400">·</span>
-          <span className="text-slate-500">Grounded on S3 Delta Lake AMFI Data</span>
+          <span className="text-muted-foreground/60">·</span>
+          <span className="text-muted-foreground">Grounded on S3 Delta Lake AMFI Data</span>
         </div>
 
         <Link
           to="/account"
-          className="inline-flex items-center gap-1.5 font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+          className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline transition-colors"
         >
           <Sparkles className="size-3.5" /> Explore Pro & Enterprise Features →
         </Link>

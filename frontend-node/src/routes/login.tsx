@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { safeNextPath } from "@/lib/auth";
 import { Bot, CheckCircle2, Lock, Mail, Sparkles, ShieldCheck } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Route = createFileRoute("/login")({
   ssr: false,
@@ -144,185 +145,204 @@ function Login() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-colors shadow-2xs";
+    "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors shadow-2xs";
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-16 font-sans">
-      <div className="rounded-2xl border border-slate-200 bg-white p-7 sm:p-8 shadow-sm space-y-6">
-        
-        {/* Header */}
-        <div className="space-y-1.5 text-center">
-          <div className="mx-auto grid size-10 place-items-center rounded-xl bg-slate-900 text-white font-bold text-sm shadow-sm mb-3">
-            <Bot className="size-5" />
+    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col justify-between">
+      {/* Top Header */}
+      <header className="border-b border-border/60 bg-background/80 backdrop-blur">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+          <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
+            <Sparkles className="h-4 w-4 text-primary" /> MF Lens
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link to="/analysis" className="text-xs text-muted-foreground hover:text-foreground">
+              Analysis
+            </Link>
+            <ThemeToggle />
           </div>
-          <h1 className="text-xl font-bold tracking-tight text-slate-900">
-            {mode === "signup"
-              ? "Create MF Lens Account"
-              : mode === "magiclink"
-              ? "MF Lens Magic Link Login"
-              : "MF Lens Login"}
-          </h1>
-          <p className="text-xs text-slate-600 max-w-xs mx-auto font-medium">
-            Mutual Fund AI Data-Backed Analysis
-          </p>
-          <p className="text-[11px] text-slate-400 max-w-xs mx-auto">
-            Conversational analytics grounded in verified AWS S3 Delta Lake NAV data.
-          </p>
         </div>
+      </header>
 
-        {/* Tab Switcher: Sign In / Sign Up */}
-        <div className="grid grid-cols-2 rounded-lg bg-slate-100 p-1 text-xs font-semibold text-slate-600">
-          <button
-            type="button"
-            onClick={() => {
-              setMode("signin");
-              setError(null);
-              setMsg(null);
-            }}
-            className={`rounded-md py-1.5 transition-all cursor-pointer ${
-              mode === "signin" || mode === "magiclink"
-                ? "bg-white text-slate-950 font-bold shadow-2xs"
-                : "hover:text-slate-900"
-            }`}
-          >
-            Sign In
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setMode("signup");
-              setError(null);
-              setMsg(null);
-            }}
-            className={`rounded-md py-1.5 transition-all cursor-pointer ${
-              mode === "signup" ? "bg-white text-slate-950 font-bold shadow-2xs" : "hover:text-slate-900"
-            }`}
-          >
-            Sign Up
-          </button>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
-          <div>
-            <label className="text-xs font-semibold text-slate-700 mb-1 block">
-              Email Address
-            </label>
-            <div className="relative">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                className={inputClass}
-              />
-              <Mail className="size-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
+      <main className="mx-auto flex w-full max-w-md flex-col justify-center px-6 py-12">
+        <div className="rounded-2xl border border-border bg-card p-7 sm:p-8 shadow-sm space-y-6">
+          {/* Header */}
+          <div className="space-y-1.5 text-center">
+            <div className="mx-auto grid size-10 place-items-center rounded-xl bg-primary text-primary-foreground font-bold text-sm shadow-sm mb-3">
+              <Bot className="size-5" />
             </div>
+            <h1 className="text-xl font-bold tracking-tight text-foreground">
+              {mode === "signup"
+                ? "Create MF Lens Account"
+                : mode === "magiclink"
+                ? "MF Lens Magic Link Login"
+                : "MF Lens Login"}
+            </h1>
+            <p className="text-xs text-muted-foreground max-w-xs mx-auto font-medium">
+              Mutual Fund AI Data-Backed Analysis
+            </p>
+            <p className="text-[11px] text-muted-foreground/80 max-w-xs mx-auto">
+              Conversational analytics grounded in verified AWS S3 Delta Lake NAV data.
+            </p>
           </div>
 
-          {mode !== "magiclink" && (
+          {/* Tab Switcher: Sign In / Sign Up */}
+          <div className="grid grid-cols-2 rounded-lg bg-muted p-1 text-xs font-semibold text-muted-foreground">
+            <button
+              type="button"
+              onClick={() => {
+                setMode("signin");
+                setError(null);
+                setMsg(null);
+              }}
+              className={`rounded-md py-1.5 transition-all cursor-pointer ${
+                mode === "signin" || mode === "magiclink"
+                  ? "bg-card text-foreground font-bold shadow-2xs"
+                  : "hover:text-foreground"
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMode("signup");
+                setError(null);
+                setMsg(null);
+              }}
+              className={`rounded-md py-1.5 transition-all cursor-pointer ${
+                mode === "signup" ? "bg-card text-foreground font-bold shadow-2xs" : "hover:text-foreground"
+              }`}
+            >
+              Sign Up
+            </button>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="text-xs font-semibold text-slate-700 block">
-                  Password
-                </label>
-                {mode === "signin" && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMode("magiclink");
-                      setError(null);
-                      setMsg(null);
-                    }}
-                    className="text-[11px] text-slate-500 underline hover:text-slate-900 cursor-pointer"
-                  >
-                    Forgot / Use Magic Link
-                  </button>
-                )}
-              </div>
+              <label className="text-xs font-semibold text-foreground/90 mb-1 block">
+                Email Address
+              </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type="email"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  minLength={6}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@company.com"
                   className={inputClass}
                 />
-                <Lock className="size-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
+                <Mail className="size-4 text-muted-foreground absolute right-3 top-3 pointer-events-none" />
               </div>
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={busy}
-            className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
-          >
-            {busy
-              ? "Please wait…"
-              : mode === "signup"
-              ? "Send Verification Email & Sign Up"
-              : mode === "magiclink"
-              ? "Send Magic Link"
-              : "Sign In"}
-          </button>
+            {mode !== "magiclink" && (
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-xs font-semibold text-foreground/90 block">
+                    Password
+                  </label>
+                  {mode === "signin" && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("magiclink");
+                        setError(null);
+                        setMsg(null);
+                      }}
+                      className="text-[11px] text-muted-foreground underline hover:text-foreground cursor-pointer"
+                    >
+                      Forgot / Use Magic Link
+                    </button>
+                  )}
+                </div>
+                <div className="relative">
+                  <input
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    minLength={6}
+                    className={inputClass}
+                  />
+                  <Lock className="size-4 text-muted-foreground absolute right-3 top-3 pointer-events-none" />
+                </div>
+              </div>
+            )}
 
-          {mode === "magiclink" && (
-            <div className="text-center pt-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setMode("signin");
-                  setError(null);
-                  setMsg(null);
-                }}
-                className="text-[11px] text-slate-500 underline hover:text-slate-900 cursor-pointer"
-              >
-                Back to Sign In with Password
-              </button>
+            <button
+              type="submit"
+              disabled={busy}
+              className="w-full rounded-lg bg-primary px-4 py-2.5 text-xs font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
+            >
+              {busy
+                ? "Please wait…"
+                : mode === "signup"
+                ? "Send Verification Email & Sign Up"
+                : mode === "magiclink"
+                ? "Send Magic Link"
+                : "Sign In"}
+            </button>
+
+            {mode === "magiclink" && (
+              <div className="text-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("signin");
+                    setError(null);
+                    setMsg(null);
+                  }}
+                  className="text-[11px] text-muted-foreground underline hover:text-foreground cursor-pointer"
+                >
+                  Back to Sign In with Password
+                </button>
+              </div>
+            )}
+          </form>
+
+          {/* Success message */}
+          {msg && (
+            <div className="p-4 rounded-xl bg-muted border border-border text-center space-y-2">
+              <CheckCircle2 className="size-6 text-positive mx-auto" />
+              <p className="text-xs text-foreground font-bold">Email Sent</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{msg}</p>
             </div>
           )}
-        </form>
 
-        {/* Success message */}
-        {msg && (
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-2">
-            <CheckCircle2 className="size-6 text-emerald-600 mx-auto" />
-            <p className="text-xs text-slate-900 font-bold">Email Sent</p>
-            <p className="text-xs text-slate-600 leading-relaxed">{msg}</p>
+          {/* Error message */}
+          {error && (
+            <p className="text-xs text-destructive bg-destructive/10 border border-destructive/20 p-2.5 rounded-lg text-center font-medium">
+              {error}
+            </p>
+          )}
+
+          {/* Admin notice hint */}
+          <div className="flex items-center gap-2 p-3 rounded-lg bg-muted border border-border text-[11px] text-muted-foreground">
+            <ShieldCheck className="size-4 text-primary shrink-0" />
+            <span>Admin accounts (e.g. <strong>sandipprodhan100@gmail.com</strong>) have unlimited prompts.</span>
           </div>
-        )}
 
-        {/* Error message */}
-        {error && (
-          <p className="text-xs text-red-600 bg-red-50 border border-red-200 p-2.5 rounded-lg text-center font-medium">
-            {error}
+          {/* Footer legal */}
+          <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
+            By continuing, you agree to our{" "}
+            <Link to="/terms" className="underline hover:text-foreground">
+              Terms
+            </Link>{" "}
+            and{" "}
+            <Link to="/privacy" className="underline hover:text-foreground">
+              Privacy Policy
+            </Link>
+            .
           </p>
-        )}
-
-        {/* Admin notice hint */}
-        <div className="flex items-center gap-2 p-3 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600">
-          <ShieldCheck className="size-4 text-slate-700 shrink-0" />
-          <span>Admin accounts (e.g. <strong>sandipprodhan100@gmail.com</strong>) have unlimited prompts.</span>
         </div>
+      </main>
 
-        {/* Footer legal */}
-        <p className="text-[11px] text-slate-500 text-center leading-relaxed">
-          By continuing, you agree to our{" "}
-          <a href="/terms" className="underline hover:text-slate-800">
-            Terms
-          </a>{" "}
-          and{" "}
-          <a href="/privacy" className="underline hover:text-slate-800">
-            Privacy Policy
-          </a>
-          .
-        </p>
-
-      </div>
-    </main>
+      <footer className="py-4 text-center text-xs text-muted-foreground border-t border-border/40">
+        © {new Date().getFullYear()} MF Lens · Quantitative Mutual Fund Research
+      </footer>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 
 import { AuthStatus } from "@/components/AuthStatus";
 import { AnalystQuota } from "@/components/analyst/AnalystQuota";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/lib/auth";
@@ -112,12 +113,13 @@ function AnalystHome() {
           <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
             <Sparkles className="h-4 w-4 text-primary" /> MF Lens
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             {FEATURES.pricing ? (
               <Link to="/pricing" className="text-sm text-foreground/70 hover:text-foreground">
                 Pricing
               </Link>
             ) : null}
+            <ThemeToggle />
             <AuthStatus />
           </div>
         </div>

@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useSession } from "@/lib/auth";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { AuthStatus } from "@/components/AuthStatus";
 import { getPaddleEnvironment } from "@/lib/paddle";
 import { listPromoCodes } from "@/lib/payments.functions";
 import type { CategoryKey } from "@/lib/mf-catalog";
@@ -159,11 +161,27 @@ function StorageConsole() {
   const data = overview.data;
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-12">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">S3 data lake</p>
-          <h1 className="mt-1 text-3xl font-semibold tracking-tight">Storage console</h1>
+    <div className="min-h-screen bg-background text-foreground">
+      <nav className="border-b border-border/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <Link to="/" className="text-sm font-semibold">
+            MF Lens · admin
+          </Link>
+          <div className="flex items-center gap-3 sm:gap-4 text-sm">
+            <Link to="/admin/observability" className="text-muted-foreground hover:text-foreground">
+              Observability
+            </Link>
+            <ThemeToggle />
+            <AuthStatus />
+          </div>
+        </div>
+      </nav>
+
+      <main className="mx-auto max-w-6xl px-6 py-12">
+        <header className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">S3 data lake</p>
+            <h1 className="mt-1 text-3xl font-semibold tracking-tight">Storage console</h1>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             NAV history is kept as Parquet per scheme, the official AMFI daily file is archived raw, fund-house
             documents live in their own folder, and runtime config sits under <code>app/config/</code>.
@@ -379,6 +397,7 @@ function StorageConsole() {
         </>
       )}
     </main>
+    </div>
   );
 }
 

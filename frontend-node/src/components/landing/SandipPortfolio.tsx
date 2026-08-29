@@ -30,6 +30,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import { submitPortfolioRequest } from "@/lib/contact.functions";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function SandipPortfolio() {
   const isLocal =
@@ -76,58 +77,60 @@ export function SandipPortfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-slate-200 selection:text-slate-900">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-slate-200 dark:selection:bg-slate-800 selection:text-slate-900 dark:selection:text-slate-100">
       
       {/* ── STICKY TOP NAVIGATION ── */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/95 border-b border-slate-200 shadow-2xs">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/95 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 shadow-2xs">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
           <div className="flex items-center gap-3">
-            <div className="grid size-9 place-items-center rounded-xl bg-slate-900 text-white font-bold text-sm shadow-2xs">
+            <div className="grid size-9 place-items-center rounded-xl bg-slate-900 dark:bg-slate-800 text-white font-bold text-sm shadow-2xs">
               SP
             </div>
             <div>
-              <h1 className="text-sm font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <h1 className="text-sm font-bold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-2">
                 Sandip Prodhan
-                <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-700 border border-slate-200">
+                <span className="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[10px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                   Available
                 </span>
               </h1>
-              <p className="text-[11px] text-slate-500 font-medium">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 Enterprise Integration Consultant, Cloud Data Engineer &amp; AI Reliability Practitioner
               </p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-xs text-slate-600 font-semibold">
-            <a href="#expertise" className="hover:text-slate-950 transition-colors">
+          <nav className="hidden md:flex items-center gap-6 text-xs text-slate-600 dark:text-slate-400 font-semibold">
+            <a href="#expertise" className="hover:text-slate-950 dark:hover:text-white transition-colors">
               Tech Areas
             </a>
-            <a href="#domains" className="hover:text-slate-950 transition-colors">
+            <a href="#domains" className="hover:text-slate-950 dark:hover:text-white transition-colors">
               Domains
             </a>
-            <a href="#ai-enablement" className="hover:text-slate-950 transition-colors">
+            <a href="#ai-enablement" className="hover:text-slate-950 dark:hover:text-white transition-colors">
               AI Enablement &amp; MCP
             </a>
-            <a href="#education" className="hover:text-slate-950 transition-colors">
+            <a href="#education" className="hover:text-slate-950 dark:hover:text-white transition-colors">
               Education &amp; Certs
             </a>
-            <a href="#research" className="hover:text-slate-950 transition-colors text-slate-900">
+            <a href="#research" className="hover:text-slate-950 dark:hover:text-white transition-colors text-slate-900 dark:text-slate-200">
               Research (MF Lens)
             </a>
           </nav>
 
           <div className="flex items-center gap-2.5">
+            <ThemeToggle />
+
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-white border border-slate-300 px-3.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-2xs"
             >
-              <Mail className="size-3.5 text-slate-600" />
+              <Mail className="size-3.5 text-slate-600 dark:text-slate-400" />
               <span>Contact</span>
             </a>
 
             <a
               href={fundLensAppUrl}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-slate-800 shadow-2xs transition-all"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 dark:bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-slate-800 dark:hover:bg-emerald-500 shadow-2xs transition-all"
             >
               <span>MF Lens App</span>
               <ArrowUpRight className="size-3.5" />

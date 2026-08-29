@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { AnalystAnswer } from "@/components/analyst/AnalystAnswer";
 import { AnalystQuota } from "@/components/analyst/AnalystQuota";
 import { AuthStatus } from "@/components/AuthStatus";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "@/lib/auth";
@@ -156,10 +157,11 @@ function AnalystThreadPage() {
           <Link to="/analyst" className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> All conversations
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link to="/" className="flex items-center gap-1 text-sm text-foreground/70 hover:text-foreground">
               <Sparkles className="h-4 w-4 text-primary" /> Workspace
             </Link>
+            <ThemeToggle />
             <AuthStatus />
           </div>
         </div>
@@ -171,9 +173,9 @@ function AnalystThreadPage() {
 
       <div ref={boxRef} className="mx-auto w-full max-w-4xl flex-1 space-y-6 overflow-y-auto px-4 py-8">
         {messages.length === 0 ? (
-          <div className="rounded-xl border border-border/60 p-6 bg-white shadow-2xs">
+          <div className="rounded-xl border border-border/60 p-6 bg-card shadow-2xs">
             <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
-              <Bot className="h-5 w-5 text-indigo-600" /> Ask the MF Lens AI Analyst
+              <Bot className="h-5 w-5 text-primary" /> Ask the MF Lens AI Analyst
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Every quantitative ranking and risk metric is grounded on verified AWS S3 Delta Lake NAV data.
@@ -183,7 +185,7 @@ function AnalystThreadPage() {
                 <button
                   key={s}
                   onClick={() => void submit(s)}
-                  className="rounded-full border border-border/60 px-3.5 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+                  className="rounded-full border border-border/60 px-3.5 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground cursor-pointer"
                 >
                   {s}
                 </button>
@@ -194,16 +196,16 @@ function AnalystThreadPage() {
 
         {messages.map((m) => (
           <div key={m.id} className="flex gap-3">
-            <div className="mt-1 shrink-0 rounded-full border border-border/60 p-1.5 bg-slate-50">
+            <div className="mt-1 shrink-0 rounded-full border border-border/60 p-1.5 bg-muted">
               {m.role === "user" ? (
                 <User className="h-4 w-4 text-muted-foreground" />
               ) : (
-                <Bot className="h-4 w-4 text-indigo-600" />
+                <Bot className="h-4 w-4 text-primary" />
               )}
             </div>
             <div className="min-w-0 flex-1 space-y-2">
               {m.role === "user" ? (
-                <div className="text-sm font-medium text-foreground bg-slate-100/70 p-3 rounded-xl inline-block max-w-xl">
+                <div className="text-sm font-medium text-foreground bg-muted/70 p-3 rounded-xl inline-block max-w-xl">
                   {m.content}
                 </div>
               ) : (

@@ -24,6 +24,7 @@ import { RankTable } from "@/components/terminal/RankTable";
 import { SkeletonRows } from "@/components/terminal/LockedPreview";
 import { FundChartPanel } from "@/components/FundChartPanel";
 import { PortfolioConsultationForm } from "@/components/PortfolioConsultationForm";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 /* ------------------------------------------------------------------ */
 /* Small presentational helpers                                        */
@@ -179,22 +180,25 @@ export function LandingPage() {
     <>
       {/* 1 — NAV -------------------------------------------------- */}
       <header
-        className="sticky top-0 z-40 h-[62px] border-b"
+        className="sticky top-0 z-40 h-[62px] border-b backdrop-blur-md"
         style={{
-          background: "rgba(255,255,255,0.9)",
-          backdropFilter: "blur(10px)",
+          background: "color-mix(in oklab, var(--bg) 88%, transparent)",
           borderColor: "var(--border)",
         }}
       >
         <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
           <Wordmark />
-          <nav className="flex items-center gap-6 text-[14px] text-[var(--ink-2)]">
-            {NAV_LINKS.map((l) => (
-              <Link key={l.to} to={l.to} className="hover:text-[var(--ink)]">
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <nav className="flex items-center gap-4 sm:gap-6 text-[14px] text-[var(--ink-2)]">
+              {NAV_LINKS.map((l) => (
+                <Link key={l.to} to={l.to} className="hover:text-[var(--ink)] transition-colors">
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="h-4 w-px bg-[var(--border)]" />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -482,17 +486,17 @@ export function LandingPage() {
 
         {/* 7 — CTA SECTION -------------------------------------------- */}
         <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 sm:p-12 text-center space-y-4 shadow-2xs">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-alt)] p-8 sm:p-12 text-center space-y-4 shadow-2xs">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)]">
               See how your funds handled flat markets
             </h2>
-            <p className="mx-auto max-w-xl text-sm text-slate-600">
+            <p className="mx-auto max-w-xl text-sm text-[var(--ink-2)]">
               Real NAV data across every category — free, open, and instant.
             </p>
             <div className="pt-2">
               <Link
                 to="/analysis"
-                className="inline-flex items-center rounded-lg bg-slate-900 px-5 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-all shadow-sm"
+                className="inline-flex items-center rounded-lg bg-[var(--accent)] px-5 py-2.5 text-xs font-bold text-white hover:bg-[var(--accent-hover)] transition-all shadow-sm"
               >
                 Start analysing
               </Link>
