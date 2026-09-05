@@ -46,18 +46,118 @@ data-platform/
             └── schema.yml                 # Referential integrity & data quality tests
 ```
 
-## Quick Start
+## Quick Start & Snowflake Connection Setup
 
-1. Review the [Architecture Blueprint](architecture/ARCHITECTURE.md).
-2. Follow the [Prerequisites Checklist](architecture/PREREQUISITES.md) to configure AWS and Snowflake.
-3. Apply the SQL scripts in `snowflake/` in numerical order (`01` &rarr; `02` &rarr; `03`).
-4. Set up your local dbt environment in `dbt_fundlens/`:
-   ```bash
-   cd data-platform/dbt_fundlens
-   python -m venv venv
-   source venv/bin/activate  # Or .\venv\Scripts\Activate.ps1 on Windows
-   pip install dbt-snowflake
-   dbt deps
-   dbt run
-   dbt test
-   ```
+Follow these steps to obtain your Snowflake details and configure dbt.
+
+---
+
+### Step 1: Discover Your Snowflake Account Details
+Log in to your **Snowflake Web UI** and run the following SQL query in a worksheet:
+
+```sql
+-- 1. Get your exact Snowflake Account Identifier:
+SELECT CURRENT_ORGANIZATION_NAME() || '-' || CURRENT_ACCOUNT_NAME() AS ACCOUNT_IDENTIFIER;
+-- Output example: "MYORG-MYACCOUNT" or check URL: "xy12345.ap-south-1"
+
+-- 2. Verify current user & active role:
+SELECT CURRENT_USER(), CURRENT_ROLE();
+```
+
+---
+
+### Step 2: Create a Dedicated Transformer User in Snowflake (Optional but Recommended)
+Run in Snowflake as `SECURITYADMIN` / `ACCOUNTADMIN`:
+
+```sql
+USE ROLE SECURITYADMIN;
+
+-- Create dedicated dbt developer user
+CREATE USER IF NOT EXISTS FUNDLENS_DEV_USER
+  PASSWORD = 'YourStrongPassword123!'
+  DEFAULT_ROLE = FUNDLENS_TRANSFORMER_ROLE
+  DEFAULT_WAREHOUSE = FUNDLENS_WH
+  MUST_CHANGE_PASSWORD = FALSE
+  COMMENT = 'dbt Developer Service User for FundLens';
+
+-- Grant transformer role
+GRANT ROLE FUNDLENS_TRANSFORMER_ROLE TO USER FUNDLENS_DEV_USER;
+```
+
+---
+
+### Step 3: Run Database & S3 Storage Setup Scripts
+Execute the SQL scripts in [`data-platform/snowflake/`](snowflake/) in numerical order:
+1. `01_setup_database_warehouse.sql` &rarr; Creates `FUNDLENS_DW` database, schemas, and warehouse.
+2. `02_storage_integration_s3.sql` &rarr; Configures secure S3 access.
+3. `03_external_stage_and_snowpipe.sql` &rarr; Configures Parquet stage & Snowpipe auto-ingest.
+
+---
+
+### Step 4: Where to Configure Your dbt Credentials
+
+You have **two easy methods** to configure your credentials:
+
+#### Option A: Global User Profile File (`~/.dbt/profiles.yml`) — Recommended
+dbt looks for `profiles.yml` in your home directory by default:
+- **Windows**: `C:\Users\<YourUsername>\.dbt\profiles.yml`
+- **macOS / Linux**: `~/.dbt/profiles.yml`
+
+Create or edit that file with your values:
+
+```yaml
+dbt_fundlens:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <ACCOUNT_IDENTIFIER>  # e.g. "MYORG-MYACCOUNT" or "xy12345.ap-south-1"
+      user: FUNDLENS_DEV_USER        # Or your Snowflake username
+      password: "YourStrongPassword123!"
+      role: FUNDLENS_TRANSFORMER_ROLE
+      database: FUNDLENS_DW
+      warehouse: FUNDLENS_WH
+      schema: SILVER
+      threads: 4
+      client_session_keep_alive: False
+```
+
+#### Option B: Environment Variables (`.env`)
+In `data-platform/dbt_fundlens/`, copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+Populate `SNOWFLAKE_ACCOUNT`, `SNOWFLAKE_USER`, `SNOWFLAKE_PASSWORD`.
+
+---
+
+### Step 5: Test Connection & Run Transformations
+
+```bash
+cd data-platform/dbt_fundlens
+
+# 1. Create and activate virtual environment
+python -m venv venv
+.\venv\Scripts\Activate.ps1    # (Windows PowerShell)
+# source venv/bin/activate     # (macOS/Linux)
+
+# 2. Install dbt-snowflake
+pip install dbt-snowflake
+
+# 3. Test Snowflake connection
+dbt debug
+
+# 4. Install dbt packages (dbt_utils)
+dbt deps
+
+# 5. Build all staging views and star-schema dimensional marts
+dbt run
+
+# 6. Run automated schema & referential integrity tests
+dbt test
+```
+
+---
+
+### Step 6: Query Analytics in Snowflake
+Once `dbt run` completes, run any of the production queries in [`snowflake/04_analytics_queries_examples.sql`](snowflake/04_analytics_queries_examples.sql) to explore top funds, rolling alpha/beta, and category benchmarks!
