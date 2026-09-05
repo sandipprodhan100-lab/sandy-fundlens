@@ -23,21 +23,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
           cache-dependency-path: "frontend-node/package-lock.json"
 
       - name: Install Frontend Dependencies
-        run: |
-          cd frontend-node
-          npm ci
+        working-directory: frontend-node
+        run: npm ci || npm install
 
       - name: Precompute & Refresh All 24 S3 Snapshots
+        working-directory: frontend-node
         run: |
-          cd frontend-node
           if [ -n "$AWS_ACCESS_KEY_ID" ] && [ -n "$AWS_SECRET_ACCESS_KEY" ]; then
             echo "Running S3 Snapshot precomputation..."
             npx tsx scripts/precompute-snapshots.mts
