@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw_stg
+    database: "{{ env_var('SNOWFLAKE_DATABASE', 'FUNDLENS_DW') }}"
+    schema: raw_stg
+    description: "Bronze layer: Raw micro-batch feeds streamed from S3 Curated via Snowpipe"
+    tables:
+      - name: amfi_nav_stream
+        description: "Raw AMFI daily NAV stream loaded from Parquet files"
+        columns:
+          - name: scheme_code
+            description: "AMFI unique scheme identifier"
+          - name: scheme_name
+            description: "Full descriptive scheme name"
+          - name: net_asset_value
+            description: "Net Asset Value as string from source"
+          - name: nav_date
+            description: "NAV calculation date string"
+          - name: ingestion_timestamp
+            description: "Timestamp when Snowpipe loaded the record into Snowflake"

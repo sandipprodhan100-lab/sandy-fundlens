@@ -1,0 +1,37 @@
+name: 'dbt_fundlens'
+version: '1.0.0'
+config-version: 2
+
+# Profile matches profiles.yml entry
+profile: 'dbt_fundlens'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_fundlens:
+    # Staging layer: Views over raw Snowflake staging tables
+    staging:
+      +materialized: view
+      +schema: silver
+      +tags: ["staging", "daily"]
+
+    # Marts layer: Star Schema Dimensions and Incremental Facts
+    marts:
+      dimensions:
+        +materialized: table
+        +schema: gold_marts
+        +tags: ["dimensions", "gold"]
+
+      facts:
+        +materialized: incremental
+        +schema: gold_marts
+        +tags: ["facts", "gold", "daily"]

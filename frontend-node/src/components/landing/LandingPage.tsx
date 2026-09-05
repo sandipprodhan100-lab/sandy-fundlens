@@ -25,6 +25,7 @@ import { SkeletonRows } from "@/components/terminal/LockedPreview";
 import { FundChartPanel } from "@/components/FundChartPanel";
 import { PortfolioConsultationForm } from "@/components/PortfolioConsultationForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { DataArchitectureSection } from "@/components/landing/DataArchitectureSection";
 
 /* ------------------------------------------------------------------ */
 /* Small presentational helpers                                        */
@@ -195,6 +196,9 @@ export function LandingPage() {
                   {l.label}
                 </Link>
               ))}
+              <a href="#data-engineering" className="hover:text-[var(--ink)] transition-colors font-medium text-blue-500/90 dark:text-blue-400">
+                Data Platform
+              </a>
             </nav>
             <div className="h-4 w-px bg-[var(--border)]" />
             <ThemeToggle />
@@ -503,6 +507,9 @@ export function LandingPage() {
             </div>
           </div>
         </section>
+
+        {/* 7.5 — DATA ENGINEERING ARCHITECTURE SHOWCASE */}
+        <DataArchitectureSection />
       </main>
 
       {/* 8 — FOOTER ------------------------------------------------ */}
@@ -531,6 +538,7 @@ export function LandingPage() {
               links: [
                 { to: "/methodology", label: "Methodology" },
                 { to: "/analysis", label: "Sideways windows" },
+                { to: "/#data-engineering", label: "Data Architecture" },
               ],
             },
             {

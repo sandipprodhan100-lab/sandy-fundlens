@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_amfi_nav_daily
+    description: "Cleaned and deduplicated daily NAV records from AMFI feed"
+    columns:
+      - name: scheme_code
+        description: "Unique identifier of mutual fund scheme"
+        tests:
+          - not_null
+      - name: nav_date
+        description: "Date of published NAV"
+        tests:
+          - not_null
+      - name: net_asset_value
+        description: "Net Asset Value per unit"
+        tests:
+          - not_null
+
+  - name: stg_amfi_schemes
+    description: "Normalized scheme master metadata with parsed AMC and Category"
+    columns:
+      - name: scheme_code
+        description: "AMFI scheme code"
+        tests:
+          - unique
+          - not_null
+      - name: scheme_name
+        description: "Full scheme name"
+        tests:
+          - not_null
+      - name: amc_name
+        description: "Asset Management Company"
+        tests:
+          - not_null
+      - name: plan_type
+        description: "Direct or Regular plan"
+        tests:
+          - accepted_values:
+              values: ['Direct', 'Regular']

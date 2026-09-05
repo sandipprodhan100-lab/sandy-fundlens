@@ -1,0 +1,35 @@
+# ==============================================================================
+# FundLens dbt Connection Profile Template (Snowflake)
+# Place in ~/.dbt/profiles.yml or configure via environment variables
+# ==============================================================================
+
+dbt_fundlens:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT', 'xy12345.ap-south-1') }}"
+      user: "{{ env_var('SNOWFLAKE_USER', 'FUNDLENS_DEV_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD', '') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'FUNDLENS_TRANSFORMER_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE', 'FUNDLENS_DW') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'FUNDLENS_WH') }}"
+      schema: dev_silver
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: "dbt_fundlens_dev"
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_PROD_USER', 'FUNDLENS_SVC_ACCOUNT') }}"
+      # Key-pair authentication for enterprise CI/CD:
+      private_key_path: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PATH', '') }}"
+      private_key_passphrase: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PASSPHRASE', '') }}"
+      role: FUNDLENS_TRANSFORMER_ROLE
+      database: FUNDLENS_DW
+      warehouse: FUNDLENS_WH
+      schema: silver
+      threads: 8
+      client_session_keep_alive: False
+      query_tag: "dbt_fundlens_prod"

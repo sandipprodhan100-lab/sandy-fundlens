@@ -1,0 +1,91 @@
+version: 2
+
+models:
+  - name: dim_fund
+    description: "Conformed mutual fund dimension table (Type-1 SCD)"
+    columns:
+      - name: fund_key
+        description: "Primary surrogate hash key"
+        tests:
+          - unique
+          - not_null
+      - name: scheme_code
+        description: "Natural AMFI scheme key"
+        tests:
+          - unique
+          - not_null
+      - name: fund_category
+        description: "Standardized mutual fund classification"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Large Cap', 'Mid Cap', 'Small Cap', 'Flexi Cap', 'Multi Cap', 'Hybrid', 'Other Category']
+
+  - name: dim_amc
+    description: "Asset Management Company dimension"
+    columns:
+      - name: amc_key
+        description: "Surrogate key for AMC"
+        tests:
+          - unique
+          - not_null
+      - name: amc_name
+        description: "AMC name"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_benchmark
+    description: "Benchmark index reference dimension"
+    columns:
+      - name: benchmark_key
+        tests:
+          - unique
+          - not_null
+      - name: benchmark_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    description: "Financial calendar dimension"
+    columns:
+      - name: date_key
+        description: "Integer date key YYYYMMDD"
+        tests:
+          - unique
+          - not_null
+      - name: calendar_date
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_daily_nav
+    description: "Incremental daily NAV fact table with daily returns"
+    columns:
+      - name: scheme_code
+        description: "Reference to dim_fund"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_fund')
+              field: scheme_code
+      - name: nav_date
+        description: "Calculation date"
+        tests:
+          - not_null
+      - name: net_asset_value
+        description: "Net Asset Value"
+        tests:
+          - not_null
+
+  - name: fact_rolling_performance
+    description: "Precomputed rolling performance metrics and multi-period returns"
+    columns:
+      - name: scheme_code
+        tests:
+          - unique
+          - not_null
+      - name: latest_nav
+        tests:
+          - not_null
