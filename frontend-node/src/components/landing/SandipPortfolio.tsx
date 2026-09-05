@@ -652,17 +652,17 @@ export function SandipPortfolio() {
         </div>
       </section>
 
-      {/* ── SECTION 6: RESEARCH PROJECT — MF LENS & MEDALLION DELTA LAKE ── */}
+      {/* ── SECTION 6: INDEPENDENT PROJECTS — DATA, INTEGRATION & AI ── */}
       <section id="research" className="relative bg-[#f1f5f9] border-b border-slate-200 py-16 sm:py-20">
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 space-y-10">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-300 pb-4">
             <div>
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600">
-                Independent Research Project
+                Independent Project
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight mt-1">
-                DevOps &amp; AI Enablement with Medallion Architecture
+                Data, Integration &amp; AI
               </h2>
             </div>
             <a
@@ -674,6 +674,7 @@ export function SandipPortfolio() {
             </a>
           </div>
 
+          {/* ── Project 1: Quantitative Screener & AI Agent Analyst ── */}
           <div className="rounded-2xl bg-white border border-slate-200 p-7 sm:p-9 space-y-8 shadow-2xs">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-slate-200 pb-6">
               <div className="space-y-2 max-w-2xl">
@@ -742,6 +743,116 @@ export function SandipPortfolio() {
                   </p>
                 </div>
 
+              </div>
+            </div>
+
+          </div>
+
+          {/* ── Project 2: Enterprise Data Engineering & Analytics Platform ── */}
+          <div className="rounded-2xl bg-white border border-slate-200 p-7 sm:p-9 space-y-8 shadow-2xs">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-slate-200 pb-6">
+              <div className="space-y-2 max-w-2xl">
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-800 bg-blue-50 border border-blue-200 px-3 py-1 rounded-md">
+                  <Database className="size-3.5 text-blue-600" />
+                  <span>Enterprise Data Engineering Project</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                  Medallion Lakehouse &amp; Analytics Platform
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  A resilient, decoupled enterprise analytical data pipeline transforming raw daily AMFI mutual fund data feeds into high-performance dimensional data marts using <strong>dbt Core</strong>, <strong>AWS S3 curated Lakehouse</strong>, <strong>Snowflake Data Cloud</strong>, and <strong>Apache Airflow</strong> orchestration.
+                </p>
+              </div>
+
+              <div className="inline-flex items-center gap-2 rounded-xl bg-slate-100 border border-slate-200 px-4 py-3 text-xs font-mono text-slate-700 shadow-2xs shrink-0">
+                <Workflow className="size-4 text-blue-600" />
+                <span>Automated ELT Pipeline</span>
+              </div>
+            </div>
+
+            {/* 3-Tier Enterprise Lakehouse Breakdown */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">
+                Medallion Architecture &amp; Data Lineage (AWS S3 &bull; Snowflake &bull; dbt)
+              </h4>
+              
+              <div className="grid sm:grid-cols-3 gap-4">
+                
+                {/* Bronze */}
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 shadow-2xs">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-amber-600 uppercase">Bronze Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">Raw AMFI Landing</span>
+                  </div>
+                  <div className="text-sm font-bold text-slate-900">Immutable Raw S3 Stage</div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Automated extraction from official AMFI NAV endpoints landing text dumps directly into raw S3 buckets with complete auditability.
+                  </p>
+                  <div className="pt-2 border-t border-slate-200 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">AWS S3 Raw</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">AMFI API</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">CI/CD Worker</span>
+                  </div>
+                </div>
+
+                {/* Silver */}
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 shadow-2xs">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-blue-600 uppercase">Silver Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">Curated Parquet</span>
+                  </div>
+                  <div className="text-sm font-bold text-slate-900">Partitioned S3 Lakehouse</div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Cleansed, validated, schema-enforced Snappy Parquet tables partitioned hierarchically (<code className="text-[11px] bg-slate-200/60 px-1 py-0.5 rounded">year/month</code>) for instant pruning.
+                  </p>
+                  <div className="pt-2 border-t border-slate-200 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Apache Parquet</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Snappy Compression</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Partition Pruning</span>
+                  </div>
+                </div>
+
+                {/* Gold */}
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 shadow-2xs">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono text-emerald-600 uppercase">Gold Layer</span>
+                    <span className="text-[10px] font-mono text-slate-500">Snowflake + dbt Marts</span>
+                  </div>
+                  <div className="text-sm font-bold text-slate-900">Kimball Star Schema</div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Auto-ingested via Snowpipe SQS event triggers into Snowflake, transformed through dbt incremental merge models into conformed dimensional marts.
+                  </p>
+                  <div className="pt-2 border-t border-slate-200 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Snowflake Cloud</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">dbt Core</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Snowpipe</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Operational SLA & Performance Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-slate-200">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-0.5">
+                <div className="text-base sm:text-lg font-bold font-mono text-blue-600">&lt; 3 mins</div>
+                <div className="text-xs font-semibold text-slate-900">Continuous Ingest SLA</div>
+                <div className="text-[10px] text-slate-500">AMFI publish to curated S3 &amp; Snowflake</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-0.5">
+                <div className="text-base sm:text-lg font-bold font-mono text-purple-600">Idempotent</div>
+                <div className="text-xs font-semibold text-slate-900">dbt Merge Strategy</div>
+                <div className="text-[10px] text-slate-500">Natural key deduplication on NAV dates</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-0.5">
+                <div className="text-base sm:text-lg font-bold font-mono text-amber-600">60s Auto-Suspend</div>
+                <div className="text-xs font-semibold text-slate-900">Cost Governance</div>
+                <div className="text-[10px] text-slate-500">Zero idle cloud credit consumption</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-0.5">
+                <div className="text-base sm:text-lg font-bold font-mono text-emerald-600">100% Tested</div>
+                <div className="text-xs font-semibold text-slate-900">Schema Governance</div>
+                <div className="text-[10px] text-slate-500">dbt uniqueness &amp; foreign key contracts</div>
               </div>
             </div>
 
