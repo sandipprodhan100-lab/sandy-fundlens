@@ -10,6 +10,14 @@ data-platform/
 │   ├── ARCHITECTURE.md          # End-to-end Medallion Lakehouse blueprint & Mermaid data lineage
 │   └── PREREQUISITES.md         # AWS S3, Snowflake, and dbt setup instructions
 │
+├── airflow/                               # Apache Airflow Orchestration
+│   ├── dags/
+│   │   ├── fundlens_daily_elt_pipeline.py # End-to-end scheduled DAG
+│   │   └── cosmos_fundlens_dag.py         # Astronomer Cosmos granular dbt DAG
+│   ├── docker-compose.airflow.yml         # Containerized Airflow Cluster
+│   ├── .env.airflow.example
+│   └── README.md                          # Airflow setup & connection guide
+│
 ├── snowflake/
 │   ├── 01_setup_database_warehouse.sql    # Database, Warehouse, and Role DDL
 │   ├── 02_storage_integration_s3.sql      # Secure cross-account S3 Storage Integration
