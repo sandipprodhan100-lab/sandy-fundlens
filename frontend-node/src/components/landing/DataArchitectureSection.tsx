@@ -8,7 +8,6 @@ import {
   Zap,
   ArrowRight,
   CheckCircle2,
-  ExternalLink,
   Cpu,
   Server,
   Cloud,
@@ -294,33 +293,6 @@ export function DataArchitectureSection() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* GitHub Deep-Dive CTA Banner */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 rounded-xl border border-blue-500/20 bg-blue-500/5 p-6 backdrop-blur-md sm:flex-row sm:p-7">
-          <div className="flex items-center gap-3.5">
-            <div className="grid size-10 place-items-center rounded-lg bg-blue-500/20 text-blue-400">
-              <Sparkles className="size-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--ink)] sm:text-base">
-                Explore Full dbt Project &amp; Snowflake DDLs
-              </h4>
-              <p className="text-xs text-[var(--ink-2)]">
-                Inspect complete dbt models, dimensional star schemas, and S3 Storage Integration code in the repository.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="https://github.com/sandipprodhan100-lab/sandy-fundlens/tree/main/data-platform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-md transition-all hover:bg-blue-500 hover:shadow-blue-500/25"
-          >
-            <span>Browse data-platform/ on GitHub</span>
-            <ExternalLink className="size-3.5" />
-          </a>
         </div>
       </div>
     </section>
