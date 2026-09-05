@@ -11,6 +11,7 @@ import {
   Cpu,
   Server,
   Cloud,
+  Workflow,
 } from "lucide-react";
 
 interface LayerDetail {
@@ -234,41 +235,66 @@ export function DataArchitectureSection() {
               </div>
             </div>
 
-            {/* Right: Interactive Architectural Visual Card */}
+            {/* Right: Clean Concise Pipeline Lineage Architecture Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-alt)] p-5 shadow-inner">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-alt)] p-5 shadow-inner space-y-4">
                 <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                   <div className="flex items-center gap-2">
-                    <GitBranch className="size-4 text-blue-400" />
+                    <Workflow className="size-4 text-blue-400" />
                     <span className="font-mono text-xs font-semibold text-[var(--ink)]">
-                      pipeline_lineage.sql
+                      End-to-End Pipeline Lineage
                     </span>
                   </div>
                   <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
-                    Active Production
+                    Operational
                   </span>
                 </div>
 
-                <div className="mt-4 space-y-2.5 font-mono text-xs text-[var(--ink-2)]">
-                  <div className="rounded bg-[var(--card)] p-2.5">
-                    <p className="text-[var(--ink-3)]">// S3 Curated &rarr; Snowflake Ingest</p>
-                    <p className="text-blue-400">CREATE OR REPLACE PIPE pipe_amfi_nav_ingest</p>
-                    <p className="text-[var(--ink)]">AUTO_INGEST = TRUE AS</p>
-                    <p className="text-emerald-400">COPY INTO raw_stg.amfi_nav_stream</p>
-                    <p className="text-[var(--ink-2)]">FROM @s3_curated_stage/nav/</p>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-3">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-amber-500/10 text-xs font-bold font-mono text-amber-500">
+                      1
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-[var(--ink)]">Raw AMFI Landing</div>
+                      <div className="text-[11px] text-[var(--ink-2)]">Automated daily fetch &rarr; AWS S3 Raw Stage</div>
+                    </div>
                   </div>
 
-                  <div className="rounded bg-[var(--card)] p-2.5">
-                    <p className="text-[var(--ink-3)]">// dbt Incremental Star Schema</p>
-                    <p className="text-purple-400">{`{{ config(materialized='incremental') }}`}</p>
-                    <p className="text-amber-400">unique_key = ['scheme_code', 'nav_date']</p>
-                    <p className="text-blue-400">incremental_strategy = 'merge'</p>
+                  <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-3">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-blue-500/10 text-xs font-bold font-mono text-blue-500">
+                      2
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-[var(--ink)]">Curated S3 Lakehouse</div>
+                      <div className="text-[11px] text-[var(--ink-2)]">Columnar Snappy Parquet with Partition Pruning</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-3">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-purple-500/10 text-xs font-bold font-mono text-purple-500">
+                      3
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-[var(--ink)]">Snowflake &amp; dbt Core</div>
+                      <div className="text-[11px] text-[var(--ink-2)]">Snowpipe auto-ingest &rarr; Kimball incremental marts</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-3">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-emerald-500/10 text-xs font-bold font-mono text-emerald-500">
+                      4
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-[var(--ink)]">Airflow &amp; AI Agent Engine</div>
+                      <div className="text-[11px] text-[var(--ink-2)]">Scheduled DAGs &rarr; Real-time quant screener inference</div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between text-[11px] text-[var(--ink-3)]">
-                  <span>Storage: S3 Columnar Parquet</span>
-                  <span>Warehouse: Snowflake DW</span>
+                <div className="pt-2 border-t border-[var(--border)] flex items-center justify-between text-[11px] text-[var(--ink-3)]">
+                  <span>Storage: S3 Lakehouse</span>
+                  <span>Transform: dbt + Snowflake</span>
                 </div>
               </div>
             </div>

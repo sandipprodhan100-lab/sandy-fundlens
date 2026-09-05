@@ -662,7 +662,7 @@ export function SandipPortfolio() {
                 Independent Research Project
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight mt-1">
-                DevOps &amp; AI Enablement with Medallion Architecture
+                Enterprise Lakehouse, dbt &amp; AI Enablement
               </h2>
             </div>
             <a
@@ -679,13 +679,13 @@ export function SandipPortfolio() {
               <div className="space-y-2 max-w-2xl">
                 <div className="inline-flex items-center gap-2 text-xs font-mono text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1 rounded-md">
                   <Activity className="size-3.5 text-slate-600" />
-                  <span>Case Study: MF Lens Platform &amp; MF Analyst</span>
+                  <span>Case Study: FundLens Lakehouse &amp; AI Agent Engine</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
-                  Real-Time Quantitative Screener &amp; AI Agent Analyst
+                  Real-Time Quantitative Screener &amp; AI Analyst
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  A high-throughput quantitative platform demonstrating how <strong>autonomous AI Analyst agents</strong> execute real-time statistical inference and market regime analysis directly on top of <strong>AWS S3 Delta Lake / Parquet columnar storage</strong> with &lt;50ms response times.
+                  An end-to-end analytical data platform demonstrating how <strong>autonomous AI agents</strong> execute real-time statistical inference and market regime analysis directly on top of an <strong>AWS S3 Medallion Lakehouse</strong>, <strong>dbt Core dimensional marts</strong>, and <strong>Snowflake</strong> with &lt;50ms response times.
                 </p>
               </div>
 
@@ -701,7 +701,7 @@ export function SandipPortfolio() {
             {/* Medallion Architecture Breakdown */}
             <div className="space-y-3">
               <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">
-                Implemented 3-Tier Medallion Data Architecture (AWS S3)
+                Implemented 3-Tier Medallion Data Architecture (AWS S3 + dbt + Snowflake)
               </h4>
               
               <div className="grid sm:grid-cols-3 gap-4">
@@ -710,38 +710,72 @@ export function SandipPortfolio() {
                 <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold font-mono text-slate-700 uppercase">Bronze Layer</span>
-                    <span className="text-[10px] font-mono text-slate-500">Raw Ingest</span>
+                    <span className="text-[10px] font-mono text-slate-500">Raw Ingestion</span>
                   </div>
-                  <div className="text-sm font-bold text-slate-900">Daily Automated Ingest</div>
+                  <div className="text-sm font-bold text-slate-900">Automated Daily Ingest</div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Automated GitHub Actions CI/CD jobs pulling daily raw AMFI NAV feeds and official factsheets directly into raw S3 buckets.
+                    Automated GitHub Actions CI/CD jobs pulling daily raw AMFI NAV feeds and official factsheets directly into raw S3 landing buckets.
                   </p>
+                  <div className="pt-2 border-t border-slate-200/80 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">AWS S3</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">AMFI API</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">CI/CD Pipeline</span>
+                  </div>
                 </div>
 
                 {/* Silver */}
                 <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold font-mono text-slate-700 uppercase">Silver Layer</span>
-                    <span className="text-[10px] font-mono text-slate-500">Cleaned Parquet</span>
+                    <span className="text-[10px] font-mono text-slate-500">Curated S3 Lakehouse</span>
                   </div>
-                  <div className="text-sm font-bold text-slate-900">Columnar Partitioning</div>
+                  <div className="text-sm font-bold text-slate-900">Columnar Parquet &amp; Partitioning</div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Hyparquet transform pipeline validating schemas, scrubbing missing timestamps, and generating partitioned columnar parquet tables.
+                    Hive-style partition pruning (<code className="text-[11px] bg-slate-200/60 px-1 py-0.5 rounded">year/month</code>), schema validation, and Snappy compression for high-throughput queries.
                   </p>
+                  <div className="pt-2 border-t border-slate-200/80 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Apache Parquet</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Snappy Compression</span>
+                  </div>
                 </div>
 
                 {/* Gold */}
                 <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold font-mono text-slate-900 uppercase">Gold Layer</span>
-                    <span className="text-[10px] font-mono text-slate-500">AI &amp; Predictions</span>
+                    <span className="text-[10px] font-mono text-slate-500">Snowflake + dbt + AI</span>
                   </div>
-                  <div className="text-sm font-bold text-slate-900">MF Analyst Agent Engine</div>
+                  <div className="text-sm font-bold text-slate-900">Dimensional Marts &amp; AI Engine</div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Precomputed analytical snapshots combined with an autonomous ReAct AI Analyst agent using server tools to predict and evaluate risk metrics in real time.
+                    dbt incremental merge models, Kimball star schemas, and Apache Airflow orchestration feeding autonomous ReAct AI Analyst agents.
                   </p>
+                  <div className="pt-2 border-t border-slate-200/80 flex flex-wrap gap-1 text-[10px] font-mono text-slate-600">
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Snowflake DW</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">dbt Core</span>
+                    <span className="bg-white px-2 py-0.5 rounded border border-slate-200">Airflow</span>
+                  </div>
                 </div>
 
+              </div>
+            </div>
+
+            {/* Architecture Highlights & Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-slate-200">
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <div className="text-base sm:text-lg font-bold font-mono text-slate-900">&lt; 3 mins</div>
+                <div className="text-[11px] text-slate-600 font-medium">Daily Pipeline SLA</div>
+              </div>
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <div className="text-base sm:text-lg font-bold font-mono text-slate-900">Idempotent</div>
+                <div className="text-[11px] text-slate-600 font-medium">dbt Incremental Merge</div>
+              </div>
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <div className="text-base sm:text-lg font-bold font-mono text-slate-900">Auto-Suspend</div>
+                <div className="text-[11px] text-slate-600 font-medium">60s Cloud Cost Control</div>
+              </div>
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <div className="text-base sm:text-lg font-bold font-mono text-slate-900">100% Tested</div>
+                <div className="text-[11px] text-slate-600 font-medium">dbt Schema Quality Tests</div>
               </div>
             </div>
 
