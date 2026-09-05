@@ -80,3 +80,44 @@ In the Airflow UI (**Admin &rarr; Connections**), add the following two connecti
    - `verify_snowpipe_sync` triggers and confirms Snowflake micro-batch ingestion.
    - `dbt_run_staging` & `dbt_test_staging` clean raw data into Silver views.
    - `dbt_run_marts` & `dbt_test_marts` incrementally merge facts and refresh star-schema data marts.
+
+---
+
+## 5. Strategy A: AWS EC2 (t3.medium) Provisioning & Auto Start/Stop
+
+To cut AWS compute costs down to **~$2 / month**, the `t3.medium` EC2 instance only runs at night during the pipeline execution window.
+
+### Step 5.1: Provision the EC2 Instance (Single Command)
+Run the automated launcher script from [`data-platform/infrastructure/ec2/`](../infrastructure/ec2/):
+
+```bash
+cd data-platform/infrastructure/ec2
+chmod +x launch-ec2-t3medium.sh user-data-bootstrap.sh
+
+# Launch t3.medium in ap-south-1 with your key pair name (e.g. fundlens-key)
+./launch-ec2-t3medium.sh fundlens-key
+```
+
+This automatically:
+- Creates Security Group `fundlens-airflow-sg` with Ports `22` (SSH) and `8080` (Airflow Web UI).
+- Launches an **Ubuntu 24.04 `t3.medium`** instance with 30GB gp3 storage.
+- Runs [`user-data-bootstrap.sh`](../infrastructure/ec2/user-data-bootstrap.sh) on first boot to install Docker, Docker Compose, 2GB swap, and configures `fundlens-airflow.service` systemd service so **Airflow boots automatically whenever the EC2 starts**.
+
+### Step 5.2: Save the Instance ID in GitHub Secrets
+```bash
+gh secret set AWS_EC2_INSTANCE_ID -b "i-0123456789abcdef0"
+```
+
+### Step 5.3: Automated & On-Demand Lifecycle via GitHub Actions
+
+The workflow [`.github/workflows/ec2-airflow-lifecycle.yml`](../../.github/workflows/ec2-airflow-lifecycle.yml) provides two controls:
+
+#### 1. Automated Nightly Schedule
+- **21:45 IST (16:15 UTC)** &rarr; Automatically **Starts** the EC2 instance (Airflow auto-boots).
+- **22:00 IST (16:30 UTC)** &rarr; Airflow runs the scheduled daily ELT pipeline.
+- **23:00 IST (17:30 UTC)** &rarr; Automatically **Stops** the EC2 instance, saving compute costs.
+
+#### 2. Manual On-Demand Control
+1. Go to your GitHub repository &rarr; **Actions** &rarr; **EC2 Airflow Lifecycle Control (Start / Stop)**.
+2. Click **Run workflow** &rarr; Select `start`, `stop`, `status`, or `restart`.
+3. When you run `start` or `status`, the workflow outputs the **Live Public IP and Airflow UI URL** (`http://<EC2-PUBLIC-IP>:8080`)!

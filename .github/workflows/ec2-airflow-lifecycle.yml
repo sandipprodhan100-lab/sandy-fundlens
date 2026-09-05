@@ -1,0 +1,149 @@
+name: EC2 Airflow Lifecycle Control (Start / Stop)
+
+on:
+  # 1. Manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Action to perform on the Airflow EC2 instance"
+        required: true
+        type: choice
+        default: "status"
+        options:
+          - "start"
+          - "stop"
+          - "status"
+          - "restart"
+
+  # 2. Automated Scheduled triggers (Strategy A: Run only at night)
+  schedule:
+    # Auto-start at 21:45 IST (16:15 UTC), Mon-Fri
+    - cron: "15 16 * * 1-5"
+    # Auto-stop at 23:00 IST (17:30 UTC), Mon-Fri
+    - cron: "30 17 * * 1-5"
+
+jobs:
+  manage-ec2-lifecycle:
+    name: Manage EC2 Instance Lifecycle
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ap-south-1
+      EC2_INSTANCE_ID: ${{ secrets.AWS_EC2_INSTANCE_ID }}
+
+    steps:
+      - name: Verify AWS & Instance Configuration
+        run: |
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+            echo "::error::AWS credentials not configured in GitHub Secrets."
+            exit 1
+          fi
+
+          if [ -z "$EC2_INSTANCE_ID" ]; then
+            echo "::warning::AWS_EC2_INSTANCE_ID not set in GitHub Secrets. Searching for instance by tag 'fundlens-airflow-server'..."
+            INSTANCE_SEARCH=$(aws ec2 describe-instances \
+              --region "$AWS_REGION" \
+              --filters "Name=tag:Name,Values=fundlens-airflow-server" "Name=instance-state-name,Values=running,stopped,pending,stopping" \
+              --query "Reservations[*].Instances[*].InstanceId" \
+              --output text)
+            
+            if [ -n "$INSTANCE_SEARCH" ]; then
+              echo "Found EC2 Instance: $INSTANCE_SEARCH"
+              echo "EC2_INSTANCE_ID=$INSTANCE_SEARCH" >> $GITHUB_ENV
+            else
+              echo "::error::No EC2 instance found with tag 'fundlens-airflow-server'. Please set AWS_EC2_INSTANCE_ID secret."
+              exit 1
+            fi
+          else
+            echo "Using configured EC2_INSTANCE_ID: $EC2_INSTANCE_ID"
+            echo "EC2_INSTANCE_ID=$EC2_INSTANCE_ID" >> $GITHUB_ENV
+          fi
+
+      - name: Determine Target Action
+        id: determine_action
+        run: |
+          # If manual trigger, use input
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "ACTION=${{ github.event.inputs.action }}" >> $GITHUB_ENV
+          else
+            # Scheduled cron trigger
+            # UTC 16:15 is start, UTC 17:30 is stop
+            CURRENT_HOUR=$(date -u +%H)
+            CURRENT_MIN=$(date -u +%M)
+            echo "Cron trigger at UTC: $CURRENT_HOUR:$CURRENT_MIN"
+            
+            if [ "$CURRENT_HOUR" -eq 16 ]; then
+              echo "Scheduled Nightly Start (21:45 IST)"
+              echo "ACTION=start" >> $GITHUB_ENV
+            else
+              echo "Scheduled Nightly Stop (23:00 IST)"
+              echo "ACTION=stop" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Execute EC2 Action
+        run: |
+          echo "=========================================================="
+          echo "Executing action '$ACTION' on instance '$EC2_INSTANCE_ID' in region '$AWS_REGION'"
+          echo "=========================================================="
+
+          case "$ACTION" in
+            "start")
+              echo "Starting EC2 instance..."
+              aws ec2 start-instances --instance-ids "$EC2_INSTANCE_ID" --region "$AWS_REGION"
+              echo "Waiting for instance to reach 'running' state..."
+              aws ec2 wait instance-running --instance-ids "$EC2_INSTANCE_ID" --region "$AWS_REGION"
+              
+              PUBLIC_IP=$(aws ec2 describe-instances \
+                --instance-ids "$EC2_INSTANCE_ID" \
+                --region "$AWS_REGION" \
+                --query "Reservations[0].Instances[0].PublicIpAddress" \
+                --output text)
+              
+              echo "----------------------------------------------------------"
+              echo "SUCCESS! EC2 is running."
+              echo "Public IP: $PUBLIC_IP"
+              echo "Airflow Web UI: http://$PUBLIC_IP:8080"
+              echo "----------------------------------------------------------"
+              ;;
+
+            "stop")
+              echo "Stopping EC2 instance (saving compute costs)..."
+              aws ec2 stop-instances --instance-ids "$EC2_INSTANCE_ID" --region "$AWS_REGION"
+              echo "Waiting for instance to reach 'stopped' state..."
+              aws ec2 wait instance-stopped --instance-ids "$EC2_INSTANCE_ID" --region "$AWS_REGION"
+              echo "SUCCESS! EC2 instance is safely stopped."
+              ;;
+
+            "restart")
+              echo "Restarting EC2 instance..."
+              aws ec2 reboot-instances --instance-ids "$EC2_INSTANCE_ID" --region "$AWS_REGION"
+              echo "Reboot signal sent successfully."
+              ;;
+
+            "status")
+              STATE=$(aws ec2 describe-instances \
+                --instance-ids "$EC2_INSTANCE_ID" \
+                --region "$AWS_REGION" \
+                --query "Reservations[0].Instances[0].State.Name" \
+                --output text)
+              
+              PUBLIC_IP=$(aws ec2 describe-instances \
+                --instance-ids "$EC2_INSTANCE_ID" \
+                --region "$AWS_REGION" \
+                --query "Reservations[0].Instances[0].PublicIpAddress" \
+                --output text)
+
+              echo "----------------------------------------------------------"
+              echo "Instance ID : $EC2_INSTANCE_ID"
+              echo "State       : $STATE"
+              echo "Public IP   : $PUBLIC_IP"
+              if [ "$STATE" = "running" ]; then
+                echo "Airflow UI  : http://$PUBLIC_IP:8080"
+              fi
+              echo "----------------------------------------------------------"
+              ;;
+          esac
