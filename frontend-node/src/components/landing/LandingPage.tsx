@@ -195,9 +195,6 @@ export function LandingPage() {
                   {l.label}
                 </Link>
               ))}
-              <a href="#data-engineering" className="hover:text-[var(--ink)] transition-colors font-medium text-blue-500/90 dark:text-blue-400">
-                Data Platform
-              </a>
             </nav>
             <div className="h-4 w-px bg-[var(--border)]" />
             <ThemeToggle />
