@@ -1,0 +1,66 @@
+name: Daily Health Check & Auto-Remediation
+
+# Runs every morning IST to check backend/frontend performance and monitored
+# scheduled-job (nightly ingest, EC2 Airflow lifecycle) failures from the past ~26h.
+on:
+  schedule:
+    - cron: "0 3 * * *" # 08:30 IST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  actions: read
+
+jobs:
+  health-check:
+    name: Check Performance & Job Failures
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      has_issues: ${{ steps.run_agent.outputs.has_issues }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Health & Job-Failure Agent
+        id: run_agent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEALTH_BACKEND_URL: ${{ vars.HEALTH_BACKEND_URL }}
+          HEALTH_FRONTEND_URL: ${{ vars.HEALTH_FRONTEND_URL }}
+        run: python scripts/daily_health_agent.py
+        continue-on-error: true
+
+      - name: Upload health report
+        uses: actions/upload-artifact@v4
+        with:
+          name: health-report
+          path: health-report.md
+
+      - name: File & assign remediation issue
+        if: steps.run_agent.outputs.has_issues == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="Daily health check: issues detected $(date -u +%Y-%m-%d)"
+          ISSUE_URL=$(gh issue create \
+            --title "$TITLE" \
+            --body-file health-report.md \
+            --label "bug,automated-health-check")
+          echo "Created $ISSUE_URL"
+
+          # Hand off to GitHub Copilot coding agent for an investigated fix + PR.
+          # Requires the Copilot coding agent to be enabled for this repository;
+          # safe to ignore if unavailable since the issue itself already alerts the team.
+          gh issue edit "$ISSUE_URL" --add-assignee "copilot" || \
+            echo "::warning::Could not assign issue to Copilot coding agent (feature may not be enabled for this repo)."
