@@ -19,8 +19,8 @@ from typing import Any, Dict, List, Optional
 
 import requests
 
-BACKEND_URL = os.environ.get("HEALTH_BACKEND_URL", "https://fundlens-backend.onrender.com/api/v1/health")
-FRONTEND_URL = os.environ.get("HEALTH_FRONTEND_URL", "https://fundlens.sandipprodhan.in/")
+BACKEND_URL = os.environ.get("HEALTH_BACKEND_URL") or "https://fundlens-backend.onrender.com/api/v1/health"
+FRONTEND_URL = os.environ.get("HEALTH_FRONTEND_URL") or "https://fundlens.sandipprodhan.in/"
 LATENCY_WARN_MS = int(os.environ.get("HEALTH_LATENCY_WARN_MS", "3000"))
 REQUEST_TIMEOUT = int(os.environ.get("HEALTH_REQUEST_TIMEOUT", "20"))
 
